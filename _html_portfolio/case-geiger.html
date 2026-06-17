@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Sales Rep Platform · Geiger · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("e07b8bda-597b-4b08-a5a4-64a028acc95c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("eaa4ffd2-fb24-431d-ab90-5afe730e1052") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("e07b8bda-597b-4b08-a5a4-64a028acc95c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("eaa4ffd2-fb24-431d-ab90-5afe730e1052") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("e07b8bda-597b-4b08-a5a4-64a028acc95c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("eaa4ffd2-fb24-431d-ab90-5afe730e1052") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("e07b8bda-597b-4b08-a5a4-64a028acc95c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("eaa4ffd2-fb24-431d-ab90-5afe730e1052") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("db182b41-7cd6-404f-8edf-0030f2d5baa1") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("477c1211-4412-4ce8-8f02-dd6d80145388") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("85a764c2-522d-464c-a3bd-58d236e2dc31") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("7b22839a-9a8d-453a-91b5-41242209ed1e") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("91263fc7-4eae-4cc3-9edb-18f66b4aa639") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("c0454376-3ddb-4def-a85a-0def6df465ba") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("db182b41-7cd6-404f-8edf-0030f2d5baa1") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("477c1211-4412-4ce8-8f02-dd6d80145388") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("85a764c2-522d-464c-a3bd-58d236e2dc31") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("7b22839a-9a8d-453a-91b5-41242209ed1e") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("91263fc7-4eae-4cc3-9edb-18f66b4aa639") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("c0454376-3ddb-4def-a85a-0def6df465ba") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>/* =========================================================
+   Portfolio · Shared Design System
+   Senior UI/UX · Multi-page · Contentful-inflected
+   ========================================================= */
+
+:root{
+  /* Color */
+  --bg:#FFFFFF;
+  --bg-2:#EEF0F6;
+  --card:#FFFFFF;
+  --ink:#0A0A0A;
+  --ink-2:#4A4A4A;
+  --ink-3:#8A8A8A;
+  --ink-4:#C2C2C2;
+  --rule:#ECEAE3;
+  --rule-2:#F4F2EC;
+  --tag-bg:#F1EFE8;
+
+  /* Accent — electric blue */
+  --accent:#1F50FF;
+  --accent-hov:#163FCC;
+  --accent-soft:#E8EEFF;
+  --accent-tint:#F4F6FF;
+
+  /* State */
+  --ok:#2E8B5F;
+  --warn:#C08A3B;
+
+  /* Type */
+  --sans:"DM Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+  /* Spacing */
+  --s-xs:4px; --s-sm:8px; --s-md:12px; --s-lg:16px; --s-xl:24px;
+  --s-2xl:32px; --s-3xl:48px; --s-4xl:72px; --s-5xl:120px;
+
+  /* Geometry */
+  --radius-sm:4px;
+  --radius:8px;
+  --radius-lg:16px;
+  --container:1240px;
+
+  /* Motion */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --t-fast:150ms;
+  --t-base:250ms;
+  --t-slow:400ms;
+
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(10,10,10,.04), 0 1px 0 rgba(10,10,10,.02);
+  --shadow:0 4px 16px -4px rgba(10,10,10,.06), 0 1px 2px rgba(10,10,10,.04);
+  --shadow-lg:0 20px 50px -16px rgba(10,10,10,.14), 0 4px 12px -2px rgba(10,10,10,.06);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums;
+}
+body{min-height:100vh}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ===== Layout ===== */
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--s-xl)}
+.container-wide{max-width:1440px;margin:0 auto;padding:0 var(--s-xl)}
+@media (max-width:720px){
+  .container,.container-wide{padding:0 var(--s-lg)}
+}
+
+/* ===== Utility ===== */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.eyebrow::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+.eyebrow.muted{color:var(--ink-3)}
+.eyebrow.muted::before{background:var(--ink-3)}
+
+.label-mono{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+
+.section{padding:var(--s-5xl) 0}
+.section-sm{padding:var(--s-4xl) 0}
+.section-tight{padding:var(--s-3xl) 0}
+@media (max-width:780px){
+  .section{padding:var(--s-3xl) 0}
+  .section-sm{padding:var(--s-2xl) 0}
+  .section-tight{padding:var(--s-xl) 0}
+}
+
+.h1{font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance}
+.h2{font-size:clamp(30px,4vw,52px);line-height:1.05;letter-spacing:-.022em;font-weight:500;text-wrap:balance}
+.h3{font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.015em;font-weight:500}
+.h4{font-size:clamp(18px,1.8vw,22px);line-height:1.25;letter-spacing:-.01em;font-weight:600}
+.lede{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:54ch}
+.body-lg{font-size:17px;line-height:1.65;color:var(--ink-2)}
+
+.kicker{color:var(--accent)}
+.muted{color:var(--ink-3)}
+
+/* ===== NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),background .25s var(--ease);
+}
+.nav.scrolled{
+  border-bottom-color:var(--rule);
+  background:rgba(255,255,255,.95);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);padding:16px 0;max-width:var(--container);margin:0 auto;padding-left:var(--s-xl);padding-right:var(--s-xl)}
+@media (max-width:720px){.nav-inner{padding-left:var(--s-lg);padding-right:var(--s-lg)}}
+
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:-.012em;color:var(--ink)}
+.brand-logo{height:22px;width:auto;display:block}
+.brand-mark{
+  width:28px;height:28px;border-radius:7px;
+  background:var(--ink);
+  position:relative;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:var(--mono);font-size:13px;font-weight:600;
+}
+.brand-mark::after{
+  content:"";position:absolute;top:5px;right:5px;
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+
+.nav-center{display:flex;gap:var(--s-2xl);align-items:center}
+
+/* ===== BURGER + MOBILE NAV ===== */
+.nav-burger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;background:transparent;border:none;cursor:pointer;
+  padding:8px;border-radius:8px;flex-shrink:0;
+  transition:background var(--t-fast);
+  position:relative;z-index:80;
+}
+.nav-burger:hover{background:var(--tag-bg)}
+.nav-burger span{
+  display:block;width:100%;height:1.5px;background:var(--ink);border-radius:2px;
+  transform-origin:center;
+  transition:transform .28s var(--ease), opacity .2s, width .25s var(--ease);
+}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;width:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media (max-width:780px){.nav-burger{display:flex}.nav-center{display:none}.nav-right .btn{display:none}.nav-right .nav-state{display:none}}
+
+.nav-mobile{
+  position:fixed;inset:0;z-index:70;
+  background:rgba(255,255,255,.98);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:0;
+  opacity:0;pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.nav-mobile.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nm-links{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  width:100%;max-width:360px;
+  border-top:1px solid var(--rule);
+}
+.nm-link{
+  display:block;width:100%;text-align:center;
+  padding:20px var(--s-xl);
+  font-size:28px;font-weight:500;letter-spacing:-.02em;color:var(--ink);
+  border-bottom:1px solid var(--rule);
+  transition:color var(--t-fast) var(--ease),background var(--t-fast) var(--ease);
+}
+.nm-link:hover{color:var(--accent);background:var(--accent-tint)}
+.nm-link.active{color:var(--accent)}
+.nm-footer{
+  margin-top:var(--s-2xl);
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--s-md);
+}
+@media (min-width:781px){.nav-mobile{display:none!important}}
+.nav-link{
+  font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);
+  padding:8px 4px;letter-spacing:-.005em;
+  transition:color var(--t-fast) var(--ease);
+  position:relative;
+}
+.nav-link:hover{color:var(--ink)}
+.nav-link.active{color:var(--ink)}
+.nav-link.active::after{
+  content:"";position:absolute;left:4px;right:4px;bottom:0;
+  height:2px;background:var(--accent);border-radius:1px;
+}
+
+.nav-right{display:flex;align-items:center;gap:var(--s-md)}
+.nav-state{
+  display:none;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+@media (min-width:900px){.nav-state{display:inline-flex}}
+.nav-state .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 0 0 rgba(46,139,95,.4);animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(46,139,95,.4)}
+  70%{box-shadow:0 0 0 6px rgba(46,139,95,0)}
+  100%{box-shadow:0 0 0 0 rgba(46,139,95,0)}
+}
+
+@media (max-width:780px){
+  .nav-center{display:none}
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  padding:11px 18px;border-radius:999px;
+  background:var(--ink);color:#fff;
+  transition:background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  cursor:pointer;line-height:1;
+}
+.btn:hover{background:#222}
+.btn .arr{transition:transform var(--t-fast) var(--ease);font-size:15px}
+.btn:hover .arr{transform:translateX(4px)}
+
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hov)}
+
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn-ghost:hover{background:#fff;border-color:var(--ink-3)}
+
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn-lg{padding:14px 22px;font-size:15px}
+
+.link-arrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  color:var(--accent);
+  transition:color var(--t-fast) var(--ease);
+}
+.link-arrow .arr{transition:transform var(--t-fast) var(--ease)}
+.link-arrow:hover{color:var(--accent-hov)}
+.link-arrow:hover .arr{transform:translateX(4px)}
+
+/* ===== TAGS / CHIPS ===== */
+.tag{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-2);
+  background:var(--tag-bg);padding:5px 9px;border-radius:999px;
+}
+.tag-accent{background:var(--accent-soft);color:var(--accent)}
+.tag-outline{background:transparent;border:1px solid var(--rule);color:var(--ink-2)}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:var(--s-2xl);
+  transition:transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+.card-hov:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-lg);
+  border-color:#dcdad3;
+}
+
+/* ===== HERO blocks ===== */
+.hero{padding:var(--s-5xl) 0 var(--s-4xl);position:relative}
+.hero-meta{
+  display:flex;gap:var(--s-xl);flex-wrap:wrap;margin-bottom:var(--s-2xl);
+}
+.hero-meta-item{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+.hero-meta-item b{color:var(--ink);font-weight:500}
+
+/* ===== FOOTER ===== */
+.foot{
+  border-top:1px solid var(--rule);
+  margin-top:var(--s-5xl);
+  padding:var(--s-3xl) 0 var(--s-xl);
+  background:var(--bg);
+}
+.foot-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--s-2xl);
+  margin-bottom:var(--s-3xl);
+}
+@media (max-width:900px){
+  .foot-grid{grid-template-columns:1fr 1fr;gap:var(--s-xl)}
+}
+@media (max-width:520px){
+  .foot-grid{grid-template-columns:1fr}
+}
+.foot-col h5{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  margin-bottom:var(--s-md);
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col a{
+  font-size:14px;color:var(--ink-2);transition:color var(--t-fast) var(--ease);
+}
+.foot-col a:hover{color:var(--ink)}
+.foot-statement{
+  font-size:17px;line-height:1.45;letter-spacing:-.01em;color:var(--ink);
+  max-width:32ch;font-weight:500;margin-bottom:var(--s-lg);
+}
+.foot-bot{
+  display:flex;justify-content:space-between;align-items:center;gap:var(--s-lg);
+  flex-wrap:wrap;padding-top:var(--s-xl);border-top:1px solid var(--rule);
+}
+.foot-bot,.foot-bot a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.foot-bot a:hover{color:var(--ink)}
+.foot-bot .left{display:flex;gap:var(--s-lg);flex-wrap:wrap;align-items:center}
+
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease), transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .nav-state .dot{animation:none}
+}
+
+/* ===== Text Line Reveal ===== */
+.text-reveal .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.text-reveal .line-inner{display:block;transform:translateY(115%);transition:transform .85s cubic-bezier(.16,1,.3,1);will-change:transform}
+.text-reveal.in .line-inner{transform:translateY(0)}
+.text-reveal .line:nth-child(1) .line-inner{transition-delay:.1s}
+.text-reveal .line:nth-child(2) .line-inner{transition-delay:.18s}
+.text-reveal .line:nth-child(3) .line-inner{transition-delay:.26s}
+.text-reveal .line:nth-child(4) .line-inner{transition-delay:.34s}
+.text-reveal .line:nth-child(5) .line-inner{transition-delay:.42s}
+@media(prefers-reduced-motion:reduce){.text-reveal .line-inner{transform:none;transition:none}}
+
+/* ===== Common section heads ===== */
+.section-head{
+  display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);
+  align-items:end;margin-bottom:var(--s-3xl);
+}
+@media (max-width:720px){
+  .section-head{grid-template-columns:1fr}
+}
+.section-head .ev{margin-bottom:var(--s-md)}
+.section-head .aside{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7;
+}
+.section-head .aside b{color:var(--ink);font-weight:500}
+@media (max-width:720px){
+  .section-head .aside{text-align:left}
+}
+
+/* ===== Worklist (numbered, used on Home + Work) ===== */
+.worklist{border-top:1px solid var(--ink);margin-top:var(--s-lg)}
+.work-row{
+  display:grid;
+  grid-template-columns:56px 1.7fr 1fr auto auto;
+  gap:var(--s-xl);
+  align-items:center;
+  padding:var(--s-xl) 0;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+  transition:padding var(--t-base) var(--ease);
+  cursor:pointer;
+}
+.work-row:hover{padding-left:var(--s-md)}
+.wi-ix{font-family:var(--mono);font-size:13px;color:var(--ink-3);font-weight:500;letter-spacing:.04em}
+.wi-title{font-size:clamp(20px,2.2vw,28px);font-weight:500;letter-spacing:-.012em;line-height:1.15;color:var(--ink);text-wrap:balance}
+.wi-client{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;font-weight:500}
+.wi-tags{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.wi-year{font-family:var(--mono);font-size:13px;color:var(--ink-3);letter-spacing:.04em}
+.wi-arr{font-family:var(--mono);font-size:18px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease)}
+.work-row:hover .wi-arr{transform:translateX(6px);color:var(--accent)}
+.work-row:hover .wi-title{color:var(--ink)}
+@media (max-width:780px){
+  .work-row{grid-template-columns:36px 1fr auto;gap:var(--s-md)}
+  .wi-tags,.wi-year{display:none}
+}
+
+/* ===== Page header (for sub-pages) ===== */
+.pagehead{
+  padding:var(--s-5xl) 0 var(--s-3xl);
+  border-bottom:1px solid var(--rule);
+}
+.pagehead .ev{margin-bottom:var(--s-md)}
+.pagehead h1{margin-bottom:var(--s-md)}
+.pagehead p{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:60ch}
+
+/* ===== Subtle pattern (disabled — white bg) ===== */
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:transparent;
+}
+
+/* ===== Mobile: inline panel images in sticky-scroll steps ===== */
+.step .mob-panel-img{display:none}
+@media(max-width:900px){
+  .sticky-left{display:none !important}
+  .step .mob-panel-img{
+    display:block;width:100%;border-radius:var(--radius-lg);overflow:hidden;
+    background:var(--card);border:1px solid var(--rule);margin-bottom:var(--s-lg);line-height:0;
+  }
+  .step .mob-panel-img img,
+  .step .mob-panel-img video{width:100%;display:block;object-fit:cover;object-position:center top;max-height:280px}
+}
+</style>
+<style>
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:18ch;margin-bottom:var(--s-xl)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:60ch}
+
+  .hero-art{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow)}
+  .hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  @media(max-width:520px){.meta-cell:nth-child(odd){border-right:1px solid var(--rule)}.meta-cell:nth-child(even){border-right:none}.meta-cell{border-bottom:1px solid var(--rule)!important}.meta-cell:nth-last-child(-n+2){border-bottom:none!important}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  .cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-2xl)}
+  @media(max-width:900px){.cr-grid{grid-template-columns:1fr}}
+  .cr-cell{padding:var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  .cr-cell .ev{margin-bottom:var(--s-md)}
+  .cr-cell h3{font-size:18px;font-weight:600;letter-spacing:-.005em;margin-bottom:var(--s-sm)}
+  .cr-cell p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .cr-cell p b{color:var(--ink);font-weight:500}
+
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-xl);text-align:center}
+  @media(max-width:780px){.chapter-head{padding:var(--s-3xl) 0 var(--s-md)}}
+  .chapter-head .ev{margin-bottom:var(--s-md)}
+  .chapter-head h2{margin:0 auto;max-width:18ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:54ch;margin:var(--s-lg) auto 0}
+
+  /* Sticky scroll */
+  .sticky-wrap{height:500vh;padding-bottom:0}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+
+  .sticky-left{height:auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:4/3;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease);display:flex;align-items:center;justify-content:center}
+  .panel.visible{opacity:1}
+  .panel svg{width:100%;height:100%;display:block}
+  .panel img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:20%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:900px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;min-height:0}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px);transition-delay:0s}
+  @media(max-width:900px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-md);max-width:22ch}
+  .step p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .step p+p{margin-top:var(--s-md)}
+  .step .ss-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-lg)}
+  .step .ss-artifact{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s-lg);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:6px 12px;background:var(--tag-bg);border-radius:999px}
+  .step .ss-artifact::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink-3)}
+
+  /* Showcase */
+  .showcase{padding:var(--s-4xl) 0}
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:780px){.showcase-grid{grid-template-columns:1fr}}
+  .sc-full{grid-column:1/-1;border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-full img{width:100%;display:block;max-height:600px;object-fit:cover;object-position:center top}
+  .sc-half{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-half img{width:100%;display:block;object-fit:cover;object-position:center top}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* Style Guide Walkthrough */
+  .walkthrough{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .wt-grid{margin-top:var(--s-3xl);display:flex;flex-direction:column;gap:var(--s-lg)}
+  .wt-main{border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);line-height:0;position:relative}
+  .wt-main video{width:100%;display:block;max-height:620px;object-fit:contain;background:#111}
+  .wt-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* Outcome */
+  .outcome{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .out-head{margin-bottom:var(--s-3xl);text-align:center}
+  .out-head .ev{margin-bottom:var(--s-md)}
+  .out-head h2{margin:0 auto;max-width:20ch}
+  .out-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-bottom:var(--s-3xl)}
+  @media(max-width:720px){.out-stats{grid-template-columns:1fr}}
+  .out-stat{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl);position:relative;overflow:hidden;transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .out-stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .out-stat.accent{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .out-stat.accent::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:radial-gradient(ellipse 80% 80% at 100% 100%,rgba(31,80,255,.4),transparent 70%)}
+  .out-stat .sl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);position:relative}
+  .out-stat.accent .sl{color:rgba(255,255,255,.5)}
+  .out-stat .sv{font-size:clamp(36px,5vw,56px);font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink);position:relative}
+  .out-stat.accent .sv{color:#fff}
+  .out-stat .sn{font-size:13px;color:var(--ink-3);margin-top:var(--s-md);position:relative}
+  .out-stat.accent .sn{color:rgba(255,255,255,.55)}
+
+  .quote-block{background:var(--accent-tint);border:1px solid var(--accent-soft);border-radius:var(--radius-lg);padding:var(--s-3xl);text-align:center}
+  .quote-mark{font-size:48px;line-height:1;color:var(--accent);margin-bottom:var(--s-md)}
+  .quote-text{font-size:clamp(22px,2.6vw,32px);line-height:1.3;letter-spacing:-.015em;font-weight:500;color:var(--ink);max-width:32ch;margin:0 auto var(--s-lg);text-wrap:balance}
+  .quote-cite{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+
+  /* Reflections */
+  .reflect{padding:var(--s-5xl) 0;
+  }
+  @media(max-width:780px){.reflect{padding:var(--s-3xl) 0}
+  }
+  .reflect-PLACEHOLDER{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start}
+  @media(max-width:780px){.reflect-grid{grid-template-columns:1fr;gap:var(--s-xl)}}
+  .reflect-grid h3{font-size:24px;font-weight:500;letter-spacing:-.012em;margin-bottom:var(--s-md)}
+  .reflect-grid ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .reflect-grid li{padding-left:24px;position:relative;font-size:15px;line-height:1.6;color:var(--ink-2)}
+  .reflect-grid li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .reflect-grid li b{color:var(--ink);font-weight:500}
+
+  /* Next case */
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+</style>
+
+
+
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="../assets/images/case-geiger-01.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="work.html">Work</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state"><span class="dot"></span>Available · 2026</span>
+      <a class="btn btn-sm btn-accent" href="contact.html">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="work.html">Work</a>
+        <span class="sep">/</span>
+        <span>Geiger</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)">Sales Rep Platform</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s">Case Study · 2025 – 2026</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner">Redesigning the Sales Rep</span></span>
+        <span class="line"><span class="line-inner">experience for the world's</span></span>
+        <span class="line"><span class="line-inner">largest promo company.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.35s">
+        Geiger, the largest family-owned promotional products company in the US, needed a complete redesign of their Sales Rep application. Built on SAP Commerce Cloud, the project demanded extensive user research with internal stakeholders before translating complex B2B configurations into a streamlined, budget-conscious interface.
+      </p>
+
+      <div class="hero-art reveal" style="transition-delay:.45s">
+        <img src="../assets/images/case-geiger-05.jpg" alt="Geiger Sales Rep Platform · Product Configuration &amp; Detail Page">
+      </div>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l">Client</div><div class="v">Geiger US</div></div>
+        <div class="meta-cell"><div class="l">Role</div><div class="v">UX/UI Design in a Team
+</div></div>
+        <div class="meta-cell"><div class="l">Year</div><div class="v">2025 – 2026</div></div>
+        <div class="meta-cell"><div class="l">Platform</div><div class="v">SAP Commerce Cloud</div></div>
+        <div class="meta-cell"><div class="l">Method</div><div class="v">Research-Led · Agile</div></div>
+        <div class="meta-cell"><div class="l">Deliverables</div><div class="v">Research · UI · Style Guide</div></div>
+      </div>
+
+      <div class="cr-grid">
+        <div class="cr-cell">
+          <span class="eyebrow ev">Challenge</span>
+          <h3>Complex configurations in a rigid SAP context</h3>
+          <p>Sales Reps needed to configure decorated promotional products (embroidery, imprints, proofs) with <b>pricing, margin calculations and variant management</b> all within SAP Commerce Cloud constraints. The legacy tool was slow and unintuitive.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev">My role</span>
+          <h3>Research through handoff. Full UX ownership</h3>
+          <p>Responsible for <b>all UX deliverables</b>: stakeholder workshops, user interviews, journey mapping, wireframes, UI design, client alignment and the creation of a comprehensive style guide for developer handoff.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev">Outcome</span>
+          <h3>A platform Sales Reps actually want to use</h3>
+          <p>A redesigned Sales Rep application that <b>simplifies product configuration</b>, surfaces margin data in real-time, and was delivered within budget, meeting both Geiger's business goals and their users' daily needs.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS — STICKY SCROLL -->
+  <section data-screen-label="02 Process">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="eyebrow ev">/02 · Process</span>
+        <h2 class="h2">Research first, pixels second.</h2>
+        <p>Geiger insisted on a thorough research phase before any design work began: interviews, workshops and journey maps informed every screen. The image on the left changes as you scroll.</p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY VISUAL STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+
+            <!-- Panel 1: User Journey -->
+            <div class="panel visible" data-panel="1">
+              <img src="../assets/images/case-geiger-06.jpg" alt="User Journey for Requirements Engineering · Stakeholder Workshop">
+            </div>
+
+            <!-- Panel 2: Sitemap & IA -->
+            <div class="panel" data-panel="2">
+              <img src="../assets/images/case-geiger-02.jpg" alt="Sitemap · Information Architecture · Geiger CX">
+            </div>
+
+            <!-- Panel 3: Product Listing UI -->
+            <div class="panel" data-panel="3">
+              <img src="../assets/images/case-geiger-03.webp" alt="Product Listing · Polo Shirts · Filters &amp; Facets">
+            </div>
+
+            <!-- Panel 4: Cart & Configuration -->
+            <div class="panel" data-panel="4">
+              <img src="../assets/images/case-geiger-04.webp" alt="Cart / Proposal · Configuration Summary &amp; Margin">
+            </div>
+
+            <!-- Panel 5: Final Mockup -->
+            <div class="panel" data-panel="5">
+              <img src="../assets/images/case-geiger-05.jpg" alt="Final Design · Product Detail &amp; Configuration Mockup">
+            </div>
+
+          </div>
+
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label">User Research · Interviews &amp; Workshops</span>
+            <span class="pc-prog" id="pc-prog">01 / 05</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="prog"></div></div>
+        </div>
+
+        <!-- RIGHT — SCROLLING NARRATIVE -->
+        <div class="sticky-right">
+
+          <article class="step active" data-panel="1" data-prog="20" data-label="User Research · Interviews &amp; Workshops">
+            <div class="ss-num">/01 · User Research</div>
+            <h3>Understanding Sales Reps before touching a single screen.</h3>
+            <p>Geiger prioritised a deep research phase from day one. We conducted <b>stakeholder interviews and workshops</b> with internal Sales Reps, product managers and technical leads to map out pain points, workflows and unmet needs.</p>
+            <p>The resulting user journey revealed where the legacy application forced workarounds, particularly around <b>product configuration, decoration methods and margin visibility</b>. These findings became the evidence base for every design decision.</p>
+            <div class="ss-tags">
+              <span class="tag">Interviews</span>
+              <span class="tag">Workshops</span>
+              <span class="tag">User Journey</span>
+              <span class="tag tag-accent">Requirements Engineering</span>
+            </div>
+            <div class="ss-artifact">Artefact · User Journey Map · Interview Synthesis · Workshop Protocols</div>
+          </article>
+
+          <article class="step" data-panel="2" data-prog="40" data-label="Information Architecture · Sitemap">
+            <div class="ss-num">/02 · Information Architecture</div>
+            <h3>Structuring a complex B2B application from the ground up.</h3>
+            <p>From the research insights, we defined the full <b>sitemap and information architecture</b>. The application needed to serve multiple workflows: product search, configuration, cart management, quoting, checkout and reporting, all within the SAP Commerce Cloud framework.</p>
+            <p>Key decisions at this stage: <b>separating standard and non-standard composable storefront pages</b>, defining the cart-to-quote flow, and mapping how configuration data flows between product detail, decorator selection and proof management.</p>
+            <div class="ss-tags">
+              <span class="tag">Sitemap</span>
+              <span class="tag">User Flows</span>
+              <span class="tag">SAP Commerce</span>
+              <span class="tag tag-accent">IA Defined</span>
+            </div>
+            <div class="ss-artifact">Artefact · Sitemap v1 · Flow Diagrams · SAP Integration Map</div>
+          </article>
+
+          <article class="step" data-panel="3" data-prog="60" data-label="UI Design · Product Listing &amp; Filters">
+            <div class="ss-num">/03 · UI Design</div>
+            <h3>Translating research into a polished product interface.</h3>
+            <p>The UI design phase translated wireframes and validated flows into <b>high-fidelity screens</b>. We designed the complete product listing with advanced faceted filtering (vendors, colours, sizes, price ranges — optimised for the way Sales Reps actually browse and sell.</p>
+            <p>Every screen went through <b>multiple alignment rounds with Geiger</b> to ensure it met both their brand standards and their Sales Reps' daily workflow needs. The dark header with Geiger's teal brand colour anchored the identity throughout.</p>
+            <div class="ss-tags">
+              <span class="tag">Figma</span>
+              <span class="tag">Hi-Fi Design</span>
+              <span class="tag">Faceted Search</span>
+              <span class="tag tag-accent">Client Alignment</span>
+            </div>
+            <div class="ss-artifact">Artefact · Hi-Fi Screens · Design Review Protocols</div>
+          </article>
+
+          <article class="step" data-panel="4" data-prog="80" data-label="Cart &amp; Configuration · Complex Workflows">
+            <div class="ss-num">/04 · Complex Workflows</div>
+            <h3>Making margin, configuration and proofs transparent.</h3>
+            <p>The cart and proposal view was the most complex screen in the application. Sales Reps needed to see <b>variant breakdowns, decoration charges, margin percentages and total pricing</b>, all at a glance, without navigating away.</p>
+            <p>We designed a <b>configuration summary with real-time margin calculation</b>, inline variant editing, and a streamlined proof management flow (PDF proofs, virtual proofs, sample proofs). The challenge: fitting this complexity into a clean, scannable layout within SAP's component constraints.</p>
+            <div class="ss-tags">
+              <span class="tag">Cart / Proposal</span>
+              <span class="tag">Margin Calculator</span>
+              <span class="tag">Proof Management</span>
+              <span class="tag tag-accent">SAP Commerce</span>
+            </div>
+            <div class="ss-artifact">Artefact · Cart Screens · Configuration Flows · Edge Cases</div>
+          </article>
+
+          <article class="step" data-panel="5" data-prog="100" data-label="Style Guide &amp; Developer Handoff">
+            <div class="ss-num">/05 · Style Guide &amp; Handoff</div>
+            <h3>From design to development. A complete style guide.</h3>
+            <p>The final phase produced a <b>comprehensive style guide</b> for the development team: component specifications, spacing tokens, colour definitions, interaction patterns and responsive behaviour, all documented to ensure consistent implementation on SAP Commerce Cloud.</p>
+            <p>The handoff bridged the gap between Geiger's custom requirements and the SAP Composable Storefront's standard capabilities. <b>Every custom adaptation was documented with rationale and technical constraints</b>, so developers could implement without guesswork.</p>
+            <div class="ss-tags">
+              <span class="tag">Style Guide</span>
+              <span class="tag">Component Specs</span>
+              <span class="tag">Dev Handoff</span>
+              <span class="tag tag-accent">Delivered</span>
+            </div>
+            <div class="ss-artifact">Artefact · Style Guide · Component Library · Handoff Documentation</div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SHOWCASE -->
+  <section class="showcase" data-screen-label="03 Final Design">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev">/03 · Final Design</span>
+          <h2 class="h3">The platform, delivered.</h2>
+        </div>
+        <div class="aside" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7">
+          <b>Product Listing · Detail</b><br>
+          Cart / Proposal · Configuration
+        </div>
+      </div>
+      <div class="showcase-grid">
+        <div class="sc-full">
+          <img src="../assets/images/case-geiger-05.jpg" alt="Geiger Sales Rep Platform · Product Detail &amp; Configuration Mockup">
+        </div>
+        <div>
+          <div class="sc-half">
+            <img src="../assets/images/case-geiger-03.webp" alt="Product Listing · Faceted Filters">
+          </div>
+          <p class="sc-cap">Product Listing · Faceted Search &amp; Filters</p>
+        </div>
+        <div>
+          <div class="sc-half">
+            <img src="../assets/images/case-geiger-04.webp" alt="Cart / Proposal · Margin &amp; Configuration">
+          </div>
+          <p class="sc-cap">Cart / Proposal · Real-time Margin Calculation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STYLE GUIDE WALKTHROUGH -->
+  <section class="walkthrough" data-screen-label="04 Style Guide Walkthrough">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev">/04 · Style Guide</span>
+          <h2 class="h3">An interactive style guide for seamless handoff.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7">
+          <b>Components · Tokens</b><br>
+          Interaction Patterns · Specs
+        </div>
+      </div>
+      <div class="wt-grid">
+        <div class="wt-main">
+          <video src="../assets/videos/case-geiger-07.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+        </div>
+        <p class="wt-cap">Interactive Style Guide · Component Library · Spacing &amp; Colour Tokens · Developer Handoff</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="outcome" data-screen-label="04 Outcome">
+    <div class="container">
+      <div class="out-head">
+        <span class="eyebrow ev">/05 · Impact</span>
+        <h2 class="h2">Research-driven, budget-conscious, user-approved.</h2>
+      </div>
+
+      <div class="out-stats">
+        <div class="out-stat">
+          <div class="sl">Stakeholder Workshops</div>
+          <div class="sv">12+</div>
+          <div class="sn">Interviews &amp; workshops with internal teams</div>
+        </div>
+        <div class="out-stat accent">
+          <div class="sl">Delivered within Budget</div>
+          <div class="sv">100%</div>
+          <div class="sn">Complex SAP customisations on scope &amp; on budget</div>
+        </div>
+        <div class="out-stat">
+          <div class="sl">Screens Designed</div>
+          <div class="sv">40+</div>
+          <div class="sn">From product listing to checkout &amp; reporting</div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-mark">"</div>
+        <div class="quote-text">Finally a tool that works the way our Sales Reps think.</div>
+        <div class="quote-cite">— Geiger Product Team · 2026</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTIONS -->
+  <section class="reflect" data-screen-label="05 Reflections">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:var(--s-2xl)">
+        <div>
+          <span class="eyebrow ev">/06 · Reflections</span>
+          <h2 class="h3">What I'd carry forward.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7">
+          <b>Notes to self</b><br>for the next B2B platform
+        </div>
+      </div>
+      <div class="reflect-grid">
+        <div>
+          <h3>What worked</h3>
+          <ul>
+            <li><b>Research-first approach</b>: Geiger's insistence on a thorough research phase paid off. Every design decision had evidence behind it, which shortened review cycles and reduced rework.</li>
+            <li><b>User journey as alignment tool</b>: The journey map became the single artefact everyone referenced. Stakeholders, designers and developers could point to the same document when discussing scope or priorities.</li>
+            <li><b>SAP-aware design</b>: Designing with SAP Commerce Cloud constraints in mind from the start avoided costly "that's not possible" moments later in development.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What I'd change</h3>
+          <ul>
+            <li><b>Earlier dev involvement</b>: Some SAP Composable Storefront limitations only surfaced during implementation. Having a developer in the room during wireframe reviews would have caught these sooner.</li>
+            <li><b>More usability testing rounds</b>: The research phase was strong, but we could have validated the configuration flow with real Sales Reps before moving to Hi-Fi, especially the decoration and proof management screens.</li>
+            <li><b>Sustainability integration</b>: Geiger's CSR focus is a key differentiator. Surfacing sustainability data (eco-friendly materials, certifications) more prominently in the product listing would strengthen their brand story.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT CASE -->
+  <section class="next-case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)">More projects</p>
+      <div class="next-links">
+        <a href="case-enercon.html">
+          <div>
+            <span class="lbl">Case Study</span>
+            <div class="nm">ENERCON · Customer Portal</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-mapal.html">
+          <div>
+            <span class="lbl">Case Study</span>
+            <div class="nm">MAPAL · Configuration Platform</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5>Pages</h5><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5>Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span>© 2026 Johannes Reichard</span>
+      </div>
+      <span>Last updated · June 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html">Home</a>
+    <a class="nm-link" href="work.html">Work</a>
+    <a class="nm-link" href="about.html">About</a>
+    <a class="nm-link" href="contact.html">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="contact.html">Get in touch →</a>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Sticky scroll sync
+  const steps     = document.querySelectorAll('.step');
+  const panels    = document.querySelectorAll('.panel');
+  const prog      = document.getElementById('prog');
+  const pcNum     = document.getElementById('pc-num');
+  const pcLabel   = document.getElementById('pc-label');
+  const pcProg    = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total     = steps.length;
+  let lastIdx     = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector(`.panel[data-panel="${idx + 1}"]`);
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)   prog.style.width = pct + '%';
+    if(pcNum)  pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.textContent = steps[idx]?.dataset.label || '';
+    if(pcProg) pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 900){ activateIdx(0); return; }
+      const rect   = stickyWrap.getBoundingClientRect();
+      const sH     = stickyWrap.offsetHeight;
+      const vH     = window.innerHeight;
+      const range  = sH - vH;
+      if(range <= 0) return;
+      const scrolled  = Math.max(0, Math.min(range, -rect.top));
+      const progress  = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script src="../assets/js/case-geiger-08.js"></script>
+
+
+</body></html>

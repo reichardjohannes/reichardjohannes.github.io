@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Work · Johannes Reichard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d30db5a6-3c9c-4533-8af0-254cc99675fe") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("80bed867-1baf-4321-b86e-bd854fe15953") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d30db5a6-3c9c-4533-8af0-254cc99675fe") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("80bed867-1baf-4321-b86e-bd854fe15953") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("d30db5a6-3c9c-4533-8af0-254cc99675fe") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("80bed867-1baf-4321-b86e-bd854fe15953") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("d30db5a6-3c9c-4533-8af0-254cc99675fe") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("80bed867-1baf-4321-b86e-bd854fe15953") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("8a468edf-6cdf-4faa-a724-e42c135aedd8") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("cc58c2c8-656c-4b9e-a6a0-f29c8b12f20f") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("b59d6233-f615-475c-bbce-03ecb368c21d") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ae0e9df1-d6a7-4de9-b4ae-6d528727e5e8") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("53f96325-0bb8-4315-bcfb-5c5c4bccf932") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("4d4559b3-d0e7-45c4-b5e4-43cdedff4379") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("8a468edf-6cdf-4faa-a724-e42c135aedd8") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("cc58c2c8-656c-4b9e-a6a0-f29c8b12f20f") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("b59d6233-f615-475c-bbce-03ecb368c21d") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("ae0e9df1-d6a7-4de9-b4ae-6d528727e5e8") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("53f96325-0bb8-4315-bcfb-5c5c4bccf932") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("4d4559b3-d0e7-45c4-b5e4-43cdedff4379") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>/* =========================================================
+   Portfolio · Shared Design System
+   Senior UI/UX · Multi-page · Contentful-inflected
+   ========================================================= */
+
+:root{
+  /* Color */
+  --bg:#FFFFFF;
+  --bg-2:#EEF0F6;
+  --card:#FFFFFF;
+  --ink:#0A0A0A;
+  --ink-2:#4A4A4A;
+  --ink-3:#8A8A8A;
+  --ink-4:#C2C2C2;
+  --rule:#ECEAE3;
+  --rule-2:#F4F2EC;
+  --tag-bg:#F1EFE8;
+
+  /* Accent — electric blue */
+  --accent:#1F50FF;
+  --accent-hov:#163FCC;
+  --accent-soft:#E8EEFF;
+  --accent-tint:#F4F6FF;
+
+  /* State */
+  --ok:#2E8B5F;
+  --warn:#C08A3B;
+
+  /* Type */
+  --sans:"DM Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+  /* Spacing */
+  --s-xs:4px; --s-sm:8px; --s-md:12px; --s-lg:16px; --s-xl:24px;
+  --s-2xl:32px; --s-3xl:48px; --s-4xl:72px; --s-5xl:120px;
+
+  /* Geometry */
+  --radius-sm:4px;
+  --radius:8px;
+  --radius-lg:16px;
+  --container:1240px;
+
+  /* Motion */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --t-fast:150ms;
+  --t-base:250ms;
+  --t-slow:400ms;
+
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(10,10,10,.04), 0 1px 0 rgba(10,10,10,.02);
+  --shadow:0 4px 16px -4px rgba(10,10,10,.06), 0 1px 2px rgba(10,10,10,.04);
+  --shadow-lg:0 20px 50px -16px rgba(10,10,10,.14), 0 4px 12px -2px rgba(10,10,10,.06);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums;
+}
+body{min-height:100vh}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ===== Layout ===== */
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--s-xl)}
+.container-wide{max-width:1440px;margin:0 auto;padding:0 var(--s-xl)}
+@media (max-width:720px){
+  .container,.container-wide{padding:0 var(--s-lg)}
+}
+
+/* ===== Utility ===== */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.eyebrow::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+.eyebrow.muted{color:var(--ink-3)}
+.eyebrow.muted::before{background:var(--ink-3)}
+
+.label-mono{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+
+.section{padding:var(--s-5xl) 0}
+.section-sm{padding:var(--s-4xl) 0}
+.section-tight{padding:var(--s-3xl) 0}
+@media (max-width:780px){
+  .section{padding:var(--s-3xl) 0}
+  .section-sm{padding:var(--s-2xl) 0}
+  .section-tight{padding:var(--s-xl) 0}
+}
+
+.h1{font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance}
+.h2{font-size:clamp(30px,4vw,52px);line-height:1.05;letter-spacing:-.022em;font-weight:500;text-wrap:balance}
+.h3{font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.015em;font-weight:500}
+.h4{font-size:clamp(18px,1.8vw,22px);line-height:1.25;letter-spacing:-.01em;font-weight:600}
+.lede{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:54ch}
+.body-lg{font-size:17px;line-height:1.65;color:var(--ink-2)}
+
+.kicker{color:var(--accent)}
+.muted{color:var(--ink-3)}
+
+/* ===== NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),background .25s var(--ease);
+}
+.nav.scrolled{
+  border-bottom-color:var(--rule);
+  background:rgba(255,255,255,.95);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);padding:16px 0;max-width:var(--container);margin:0 auto;padding-left:var(--s-xl);padding-right:var(--s-xl)}
+@media (max-width:720px){.nav-inner{padding-left:var(--s-lg);padding-right:var(--s-lg)}}
+
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:-.012em;color:var(--ink)}
+.brand-logo{height:22px;width:auto;display:block}
+.brand-mark{
+  width:28px;height:28px;border-radius:7px;
+  background:var(--ink);
+  position:relative;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:var(--mono);font-size:13px;font-weight:600;
+}
+.brand-mark::after{
+  content:"";position:absolute;top:5px;right:5px;
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+
+.nav-center{display:flex;gap:var(--s-2xl);align-items:center}
+
+/* ===== BURGER + MOBILE NAV ===== */
+.nav-burger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;background:transparent;border:none;cursor:pointer;
+  padding:8px;border-radius:8px;flex-shrink:0;
+  transition:background var(--t-fast);
+  position:relative;z-index:80;
+}
+.nav-burger:hover{background:var(--tag-bg)}
+.nav-burger span{
+  display:block;width:100%;height:1.5px;background:var(--ink);border-radius:2px;
+  transform-origin:center;
+  transition:transform .28s var(--ease), opacity .2s, width .25s var(--ease);
+}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;width:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media (max-width:780px){.nav-burger{display:flex}.nav-center{display:none}.nav-right .btn{display:none}.nav-right .nav-state{display:none}}
+
+.nav-mobile{
+  position:fixed;inset:0;z-index:70;
+  background:rgba(255,255,255,.98);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:0;
+  opacity:0;pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.nav-mobile.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nm-links{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  width:100%;max-width:360px;
+  border-top:1px solid var(--rule);
+}
+.nm-link{
+  display:block;width:100%;text-align:center;
+  padding:20px var(--s-xl);
+  font-size:28px;font-weight:500;letter-spacing:-.02em;color:var(--ink);
+  border-bottom:1px solid var(--rule);
+  transition:color var(--t-fast) var(--ease),background var(--t-fast) var(--ease);
+}
+.nm-link:hover{color:var(--accent);background:var(--accent-tint)}
+.nm-link.active{color:var(--accent)}
+.nm-footer{
+  margin-top:var(--s-2xl);
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--s-md);
+}
+@media (min-width:781px){.nav-mobile{display:none!important}}
+.nav-link{
+  font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);
+  padding:8px 4px;letter-spacing:-.005em;
+  transition:color var(--t-fast) var(--ease);
+  position:relative;
+}
+.nav-link:hover{color:var(--ink)}
+.nav-link.active{color:var(--ink)}
+.nav-link.active::after{
+  content:"";position:absolute;left:4px;right:4px;bottom:0;
+  height:2px;background:var(--accent);border-radius:1px;
+}
+
+.nav-right{display:flex;align-items:center;gap:var(--s-md)}
+.nav-state{
+  display:none;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+@media (min-width:900px){.nav-state{display:inline-flex}}
+.nav-state .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 0 0 rgba(46,139,95,.4);animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(46,139,95,.4)}
+  70%{box-shadow:0 0 0 6px rgba(46,139,95,0)}
+  100%{box-shadow:0 0 0 0 rgba(46,139,95,0)}
+}
+
+@media (max-width:780px){
+  .nav-center{display:none}
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  padding:11px 18px;border-radius:999px;
+  background:var(--ink);color:#fff;
+  transition:background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  cursor:pointer;line-height:1;
+}
+.btn:hover{background:#222}
+.btn .arr{transition:transform var(--t-fast) var(--ease);font-size:15px}
+.btn:hover .arr{transform:translateX(4px)}
+
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hov)}
+
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn-ghost:hover{background:#fff;border-color:var(--ink-3)}
+
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn-lg{padding:14px 22px;font-size:15px}
+
+.link-arrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  color:var(--accent);
+  transition:color var(--t-fast) var(--ease);
+}
+.link-arrow .arr{transition:transform var(--t-fast) var(--ease)}
+.link-arrow:hover{color:var(--accent-hov)}
+.link-arrow:hover .arr{transform:translateX(4px)}
+
+/* ===== TAGS / CHIPS ===== */
+.tag{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-2);
+  background:var(--tag-bg);padding:5px 9px;border-radius:999px;
+}
+.tag-accent{background:var(--accent-soft);color:var(--accent)}
+.tag-outline{background:transparent;border:1px solid var(--rule);color:var(--ink-2)}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:var(--s-2xl);
+  transition:transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+.card-hov:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-lg);
+  border-color:#dcdad3;
+}
+
+/* ===== HERO blocks ===== */
+.hero{padding:var(--s-5xl) 0 var(--s-4xl);position:relative}
+.hero-meta{
+  display:flex;gap:var(--s-xl);flex-wrap:wrap;margin-bottom:var(--s-2xl);
+}
+.hero-meta-item{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+.hero-meta-item b{color:var(--ink);font-weight:500}
+
+/* ===== FOOTER ===== */
+.foot{
+  border-top:1px solid var(--rule);
+  margin-top:var(--s-5xl);
+  padding:var(--s-3xl) 0 var(--s-xl);
+  background:var(--bg);
+}
+.foot-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--s-2xl);
+  margin-bottom:var(--s-3xl);
+}
+@media (max-width:900px){
+  .foot-grid{grid-template-columns:1fr 1fr;gap:var(--s-xl)}
+}
+@media (max-width:520px){
+  .foot-grid{grid-template-columns:1fr}
+}
+.foot-col h5{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  margin-bottom:var(--s-md);
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col a{
+  font-size:14px;color:var(--ink-2);transition:color var(--t-fast) var(--ease);
+}
+.foot-col a:hover{color:var(--ink)}
+.foot-statement{
+  font-size:17px;line-height:1.45;letter-spacing:-.01em;color:var(--ink);
+  max-width:32ch;font-weight:500;margin-bottom:var(--s-lg);
+}
+.foot-bot{
+  display:flex;justify-content:space-between;align-items:center;gap:var(--s-lg);
+  flex-wrap:wrap;padding-top:var(--s-xl);border-top:1px solid var(--rule);
+}
+.foot-bot,.foot-bot a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.foot-bot a:hover{color:var(--ink)}
+.foot-bot .left{display:flex;gap:var(--s-lg);flex-wrap:wrap;align-items:center}
+
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease), transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .nav-state .dot{animation:none}
+}
+
+/* ===== Text Line Reveal ===== */
+.text-reveal .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.text-reveal .line-inner{display:block;transform:translateY(115%);transition:transform .85s cubic-bezier(.16,1,.3,1);will-change:transform}
+.text-reveal.in .line-inner{transform:translateY(0)}
+.text-reveal .line:nth-child(1) .line-inner{transition-delay:.1s}
+.text-reveal .line:nth-child(2) .line-inner{transition-delay:.18s}
+.text-reveal .line:nth-child(3) .line-inner{transition-delay:.26s}
+.text-reveal .line:nth-child(4) .line-inner{transition-delay:.34s}
+.text-reveal .line:nth-child(5) .line-inner{transition-delay:.42s}
+@media(prefers-reduced-motion:reduce){.text-reveal .line-inner{transform:none;transition:none}}
+
+/* ===== Common section heads ===== */
+.section-head{
+  display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);
+  align-items:end;margin-bottom:var(--s-3xl);
+}
+@media (max-width:720px){
+  .section-head{grid-template-columns:1fr}
+}
+.section-head .ev{margin-bottom:var(--s-md)}
+.section-head .aside{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7;
+}
+.section-head .aside b{color:var(--ink);font-weight:500}
+@media (max-width:720px){
+  .section-head .aside{text-align:left}
+}
+
+/* ===== Worklist (numbered, used on Home + Work) ===== */
+.worklist{border-top:1px solid var(--ink);margin-top:var(--s-lg)}
+.work-row{
+  display:grid;
+  grid-template-columns:56px 1.7fr 1fr auto auto;
+  gap:var(--s-xl);
+  align-items:center;
+  padding:var(--s-xl) 0;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+  transition:padding var(--t-base) var(--ease);
+  cursor:pointer;
+}
+.work-row:hover{padding-left:var(--s-md)}
+.wi-ix{font-family:var(--mono);font-size:13px;color:var(--ink-3);font-weight:500;letter-spacing:.04em}
+.wi-title{font-size:clamp(20px,2.2vw,28px);font-weight:500;letter-spacing:-.012em;line-height:1.15;color:var(--ink);text-wrap:balance}
+.wi-client{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;font-weight:500}
+.wi-tags{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.wi-year{font-family:var(--mono);font-size:13px;color:var(--ink-3);letter-spacing:.04em}
+.wi-arr{font-family:var(--mono);font-size:18px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease)}
+.work-row:hover .wi-arr{transform:translateX(6px);color:var(--accent)}
+.work-row:hover .wi-title{color:var(--ink)}
+@media (max-width:780px){
+  .work-row{grid-template-columns:36px 1fr auto;gap:var(--s-md)}
+  .wi-tags,.wi-year{display:none}
+}
+
+/* ===== Page header (for sub-pages) ===== */
+.pagehead{
+  padding:var(--s-5xl) 0 var(--s-3xl);
+  border-bottom:1px solid var(--rule);
+}
+.pagehead .ev{margin-bottom:var(--s-md)}
+.pagehead h1{margin-bottom:var(--s-md)}
+.pagehead p{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:60ch}
+
+/* ===== Subtle pattern (disabled — white bg) ===== */
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:transparent;
+}
+
+/* ===== Mobile: inline panel images in sticky-scroll steps ===== */
+.step .mob-panel-img{display:none}
+@media(max-width:900px){
+  .sticky-left{display:none !important}
+  .step .mob-panel-img{
+    display:block;width:100%;border-radius:var(--radius-lg);overflow:hidden;
+    background:var(--card);border:1px solid var(--rule);margin-bottom:var(--s-lg);line-height:0;
+  }
+  .step .mob-panel-img img,
+  .step .mob-panel-img video{width:100%;display:block;object-fit:cover;object-position:center top;max-height:280px}
+}
+</style>
+<style>
+  /* ===== Work page — Oimachi-pattern ===== */
+
+  /* Full-bleed layout: left dark sidebar + right content */
+  .work-layout{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    min-height:100vh;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .work-layout{grid-template-columns:1fr}
+  }
+
+  /* ===== LEFT SIDEBAR ===== */
+  .work-sidebar{
+    position:sticky;top:0;
+    height:100vh;
+    background:#EEF0F6;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  @media (max-width:900px){
+    .work-sidebar{position:relative;height:auto}
+  }
+
+  .sidebar-head{
+    padding:var(--s-xl) var(--s-2xl) var(--s-lg);
+    border-bottom:1px solid var(--rule);
+    flex-shrink:0;
+  }
+  .sidebar-name{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;margin-bottom:var(--s-sm);
+  }
+  .sidebar-title{
+    font-size:22px;font-weight:600;letter-spacing:-.015em;color:var(--ink);line-height:1.2;
+  }
+
+  /* Filter chips */
+  .sidebar-filters{
+    display:flex;flex-wrap:wrap;gap:6px;
+    padding:var(--s-lg) var(--s-2xl);
+    border-bottom:1px solid var(--rule);
+    flex-shrink:0;
+  }
+  .filter-btn{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-2);background:transparent;
+    border:1px solid var(--rule);border-radius:999px;
+    padding:5px 12px;cursor:pointer;font-weight:500;
+    transition:all var(--t-fast) var(--ease);
+  }
+  .filter-btn:hover{background:var(--card);color:var(--ink);border-color:var(--ink-4)}
+  .filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* Project list */
+  .project-list{
+    flex:1;overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:var(--ink-4) transparent;
+  }
+  .project-list::-webkit-scrollbar{width:3px}
+  .project-list::-webkit-scrollbar-thumb{background:var(--ink-4);border-radius:2px}
+
+  .proj-item{
+    display:flex;flex-direction:column;
+    padding:var(--s-xl) var(--s-2xl);
+    border-bottom:1px solid var(--rule);
+    cursor:pointer;
+    transition:background .2s var(--ease);
+    position:relative;
+  }
+  .proj-item:hover{background:rgba(0,0,0,.03)}
+  .proj-item.active{background:var(--card)}
+  .proj-item.active::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+    background:var(--accent);
+  }
+
+  .proj-top{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:var(--s-sm);
+  }
+  .proj-industry{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;
+  }
+  .proj-item.active .proj-industry{color:var(--accent)}
+  .proj-arrow{
+    font-family:var(--mono);font-size:12px;color:var(--ink-4);
+    opacity:0;transition:opacity .2s,transform .2s var(--ease);
+    transform:translateX(-4px);
+  }
+  .proj-item:hover .proj-arrow,.proj-item.active .proj-arrow{
+    opacity:1;transform:translateX(0);color:var(--ink-2);
+  }
+  .proj-item.active .proj-arrow{color:var(--accent)}
+  .proj-name{
+    font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.01em;line-height:1.2;
+    margin-bottom:6px;
+  }
+  .proj-desc{
+    font-size:13px;line-height:1.5;color:var(--ink-2);max-width:28ch;
+  }
+
+  /* Sidebar footer */
+  .sidebar-footer{
+    padding:var(--s-lg) var(--s-2xl);
+    border-top:1px solid var(--rule);
+    flex-shrink:0;
+  }
+  .sf-count{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .sf-count b{color:var(--ink-2);font-weight:500}
+
+  /* ===== RIGHT PANEL ===== */
+  .work-panel{
+    position:sticky;top:0;
+    height:100vh;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    background:var(--bg);
+  }
+  @media (max-width:900px){
+    .work-panel{position:relative;height:auto;min-height:0}
+  }
+
+  /* Panel inner — all panels stacked, only active visible */
+  .panel-inner{
+    position:relative;flex:1;overflow:hidden;
+  }
+
+  .panel-item{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    opacity:0;transform:translateY(16px);
+    transition:opacity .45s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+    padding:var(--s-xl) var(--s-xl) 0;
+  }
+  .panel-item.active{
+    opacity:1;transform:translateY(0);
+    pointer-events:auto;
+    transition-delay:.04s;
+  }
+  .panel-item.past{
+    opacity:0;transform:translateY(-16px);
+    transition-delay:0s;
+  }
+
+  /* Visual — teaser stage: media floats at its natural proportions on a soft backdrop */
+  .panel-visual{
+    flex:1;min-height:0;
+    background:
+      radial-gradient(130% 110% at 100% 0%, rgba(31,80,255,.06), transparent 58%),
+      linear-gradient(176deg, var(--card) 0%, var(--bg-2) 100%);
+    border:1px solid var(--rule);border-radius:var(--radius-lg);
+    overflow:hidden;position:relative;
+    margin-bottom:var(--s-xl);
+    max-height:calc(100vh - 280px);
+    display:flex;align-items:center;justify-content:center;
+    padding:clamp(22px,3.4vw,52px);
+  }
+  /* Photographic device mockups — keep aspect, float as a card */
+  .panel-visual img{
+    position:static;inset:auto;
+    max-width:100%;max-height:100%;
+    width:auto;height:auto;
+    object-fit:contain;display:block;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  /* Flat UI mockups (inline SVG) — present as a floating app window */
+  .panel-visual svg{
+    position:static;inset:auto;
+    width:100%;height:auto;max-height:100%;
+    aspect-ratio:1100/680;display:block;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
+    overflow:hidden;
+  }
+
+  /* Panel meta row */
+  .panel-meta{
+    display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);
+    padding:0 0 var(--s-xl);flex-shrink:0;
+    border-top:1px solid var(--rule);padding-top:var(--s-lg);
+  }
+  .pm-left{}
+  .pm-client{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;margin-bottom:4px;
+  }
+  .pm-title{font-size:20px;font-weight:500;letter-spacing:-.012em;color:var(--ink)}
+  .pm-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-sm)}
+  .pm-right{display:flex;align-items:center;gap:var(--s-md);flex-shrink:0}
+
+  /* ===== MOBILE: full card list ===== */
+  .mobile-stack{
+    display:none;flex-direction:column;gap:0;
+    padding-top:0;
+  }
+  @media (max-width:900px){
+    .work-layout{display:none}
+    .work-sidebar,.work-panel{display:none}
+    .mobile-stack{display:flex}
+  }
+  .mob-header{
+    background:#EEF0F6;padding:var(--s-3xl) var(--s-xl) var(--s-xl);
+  }
+  .mob-header h1{font-size:32px;font-weight:500;letter-spacing:-.02em;color:var(--ink);margin-bottom:var(--s-md)}
+  .mob-header p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .mob-filters{
+    display:flex;gap:6px;flex-wrap:wrap;
+    padding:var(--s-lg) var(--s-xl);
+    background:#EEF0F6;
+    border-bottom:1px solid var(--rule);
+  }
+  .mob-filter-btn{
+    font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-2);background:transparent;
+    border:1px solid var(--rule);border-radius:999px;
+    padding:5px 12px;cursor:pointer;font-weight:500;
+    transition:all var(--t-fast);
+  }
+  .mob-filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .mob-card{
+    display:flex;flex-direction:column;
+    border-bottom:1px solid var(--rule);
+    background:var(--bg);
+    text-decoration:none;color:inherit;
+    transition:background var(--t-fast);
+  }
+  .mob-card:hover{background:var(--card)}
+  .mob-visual{
+    width:100%;aspect-ratio:16/9;
+    overflow:hidden;position:relative;
+    background:var(--card);border-bottom:1px solid var(--rule);
+  }
+  .mob-visual svg{width:100%;height:100%;display:block;position:absolute;inset:0}
+  .mob-body{padding:var(--s-xl)}
+  .mob-client{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+  .mob-title{font-size:20px;font-weight:500;letter-spacing:-.012em;margin-bottom:var(--s-sm)}
+  .mob-desc{font-size:14px;line-height:1.55;color:var(--ink-2);margin-bottom:var(--s-lg)}
+  .mob-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:var(--s-lg)}
+  .mob-cta{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  .mob-cta .arr{transition:transform var(--t-fast) var(--ease)}
+  .mob-card:hover .mob-cta .arr{transform:translateX(4px)}
+</style>
+
+
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="../assets/images/work-01.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="work.html">Work</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state"><span class="dot"></span>Available · 2026</span>
+      <a class="btn btn-sm btn-accent" href="contact.html">Get in touch <span class="arr">→</span></a>
+    </div>
+  <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+<div class="work-layout">
+
+  <!-- ===== LEFT SIDEBAR ===== -->
+  <aside class="work-sidebar">
+
+    <div class="sidebar-filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="portal">Portal</button>
+      <button class="filter-btn" data-filter="ecommerce">eCommerce</button>
+      <button class="filter-btn" data-filter="ai">AI</button>
+    </div>
+
+    <div class="project-list" id="projectList">
+
+      <div class="proj-item active" data-index="0" data-tags="ecommerce portal" data-href="case-schunk.html">
+        <div class="proj-top">
+          <span class="proj-industry">SAP Commerce · B2B</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">FANUC Portal &amp; eShop</div>
+        <div class="proj-desc">One portal replacing four disconnected systems for FANUC's customers.</div>
+      </div>
+
+      <div class="proj-item" data-index="1" data-tags="ecommerce portal" data-href="case-geiger.html">
+        <div class="proj-top">
+          <span class="proj-industry">SAP Commerce · B2B</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">Geiger Sales Rep Platform</div>
+        <div class="proj-desc">Redesigning the Sales Rep experience for the world's largest promo company.</div>
+      </div>
+
+      <div class="proj-item" data-index="2" data-tags="fleet portal" data-href="case-index.html">
+        <div class="proj-top">
+          <span class="proj-industry">Fleet Operations</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">Machine Management</div>
+        <div class="proj-desc">Single dashboard for three roles managing global machine fleets.</div>
+      </div>
+
+      <div class="proj-item" data-index="3" data-tags="monitoring portal" data-href="case-enercon.html">
+        <div class="proj-top">
+          <span class="proj-industry">Monitoring · Energy</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">ENERCON Customer Portal</div>
+        <div class="proj-desc">One unified portal monitoring distributed wind parks, turbines &amp; service.</div>
+      </div>
+
+      <div class="proj-item" data-tags="cpq portal" data-href="case-mapal.html">
+        <div class="proj-top">
+          <span class="proj-industry">Admin Tooling · SAP BTP</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">MAPAL Configuration Platform</div>
+        <div class="proj-desc">Replacing a legacy expert tool with a purpose-built SAP BTP configurator backend.</div>
+      </div>
+
+      <div class="proj-item" data-index="5" data-tags="ecommerce commerce rebranding" data-href="case-wagner.html">
+        <div class="proj-top">
+          <span class="proj-industry">SAP Commerce · B2B</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">Wagner eShop &amp; Titan Tools</div>
+        <div class="proj-desc">SAP Spartacus B2B shop for spray systems, plus US rebranding.</div>
+      </div>
+
+      <div class="proj-item" data-index="6" data-tags="ai research saas" data-href="case-uip.html">
+        <div class="proj-top">
+          <span class="proj-industry">AI · UX Research</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">User Intelligence Platform</div>
+        <div class="proj-desc">Static personas become living AI research companions you can talk to.</div>
+      </div>
+
+      <div class="proj-item" data-index="7" data-tags="portal sales" data-href="case-whitelabel.html">
+        <div class="proj-top">
+          <span class="proj-industry">Sales Enablement · SAP BTP</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">White-Label Portals</div>
+        <div class="proj-desc">Configurable portal demos that turn pitches into projects.</div>
+      </div>
+
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sf-count"><b id="visibleCount">08</b> Projects · Phase 0 → Delivery</div>
+    </div>
+  </aside>
+
+  <!-- ===== RIGHT PANEL ===== -->
+  <div class="work-panel">
+    <div class="panel-inner" id="panelInner">
+
+      <!-- 0: FANUC -->
+      <div class="panel-item active" data-panel="0">
+        <div class="panel-visual">
+          <img src="../assets/images/work-02.jpg" alt="FANUC Portal &amp; eShop · Product Detail View">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">FANUC · 2023–2024</div>
+            <div class="pm-title">Portal &amp; eShop. One place for the customer</div>
+            <div class="pm-tags">
+              <span class="tag">eShop</span><span class="tag">Portal</span>
+              <span class="tag">Fleet</span><span class="tag tag-accent">SAP Commerce</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-schunk.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1: GEIGER -->
+      <div class="panel-item" data-panel="1">
+        <div class="panel-visual">
+          <img src="../assets/images/work-07.jpg" alt="Geiger Sales Rep Platform · Product Configuration">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">Geiger US · 2025–2026</div>
+            <div class="pm-title">Sales Rep Platform. Redesigned for configuration &amp; quoting</div>
+            <div class="pm-tags">
+              <span class="tag">eCommerce</span><span class="tag">Configuration</span>
+              <span class="tag tag-accent">SAP Commerce</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-geiger.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: INDEX-TRAUB -->
+      <div class="panel-item" data-panel="2">
+        <div class="panel-visual">
+          <img src="../assets/images/work-06.jpg" alt="INDEX-TRAUB iXworld Portal">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">INDEX-TRAUB · 2023</div>
+            <div class="pm-title">iXworld Portal &amp; CycletimePro</div>
+            <div class="pm-tags">
+              <span class="tag">Maschinenmanagement</span><span class="tag">eShop</span>
+              <span class="tag tag-accent">iXworld</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-ghost" href="case-index.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: ENERCON -->
+      <div class="panel-item" data-panel="3">
+        <div class="panel-visual">
+          <img src="../assets/images/work-09.jpg" alt="ENERCON Customer Portal · responsive across laptop, tablet and mobile">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">ENERCON · 2025–2026</div>
+            <div class="pm-title">ENERCON Customer Portal</div>
+            <div class="pm-tags">
+              <span class="tag">Dashboard</span><span class="tag">Monitoring</span>
+              <span class="tag tag-accent">SSO Portal</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-enercon.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <!-- 4: MAPAL CONFIGURATION PLATFORM (admin tooling) -->
+      <div class="panel-item" data-panel="4b">
+        <div class="panel-visual">
+          <img src="../assets/images/work-08.jpg" alt="MAPAL Configuration Platform · Solution Expert">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">MAPAL · 2024–2025</div>
+            <div class="pm-title">Configuration Platform. Legacy expert-tool replacement</div>
+            <div class="pm-tags">
+              <span class="tag">Admin Tooling</span><span class="tag">Flow Steps</span>
+              <span class="tag tag-accent">SAP BTP</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-mapal.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: TITAN WAGNER -->
+      <div class="panel-item" data-panel="5">
+        <div class="panel-visual">
+          <img src="../assets/images/work-04.jpg" alt="Wagner eShop · Product Detail Page Multi-Device Mockup">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">J. Wagner GmbH · 2022–2023</div>
+            <div class="pm-title">Wagner eShop &amp; Titan Tools Rebranding</div>
+            <div class="pm-tags">
+              <span class="tag">SAP Spartacus</span><span class="tag">eCommerce</span>
+              <span class="tag tag-accent">US Rebranding</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-wagner.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6: USER INTELLIGENCE PLATFORM -->
+      <div class="panel-item" data-panel="6">
+        <div class="panel-visual">
+          <img src="../assets/images/work-05.webp" alt="User Intelligence Platform · Persona Chat interface">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">Internal Innovation · Product Concept</div>
+            <div class="pm-title">User Intelligence Platform</div>
+            <div class="pm-tags">
+              <span class="tag">AI</span><span class="tag">UX Research</span>
+              <span class="tag tag-accent">Product Strategy</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-uip.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- 7: WHITE-LABEL PORTALS -->
+      <div class="panel-item" data-panel="7">
+        <div class="panel-visual">
+          <img src="../assets/images/work-03.jpg" alt="White-Label Portal · Sybit Customer Dashboard">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">Sybit · Internal · 2024–2025</div>
+            <div class="pm-title">White-Label Portals. From concept to customer in days</div>
+            <div class="pm-tags">
+              <span class="tag">Sales Enablement</span><span class="tag">White-Label</span>
+              <span class="tag tag-accent">SAP BTP</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-whitelabel.html">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.panel-inner -->
+  </div><!-- /.work-panel -->
+
+</div><!-- /.work-layout -->
+
+<!-- 16px gap between desktop sidebar items -->
+<style>
+  .proj-item + .proj-item { margin-top: 0; }
+  .project-list { gap: 0; }
+  .proj-item { border-bottom: none; position: relative; }
+  .proj-item::after {
+    content:"";
+    display:block;
+    height:1px;
+    background:var(--rule);
+    position:absolute;
+    left:var(--s-2xl);right:var(--s-2xl);bottom:0;
+  }
+</style>
+
+
+<div class="mobile-stack">
+
+  <div class="mob-header">
+    <h1>Selected Work</h1>
+    <p>2021 – 2024 · Phase 0 → Delivery</p>
+  </div>
+
+  <div class="mob-filters">
+    <button class="mob-filter-btn active" data-mfilter="all">All</button>
+    <button class="mob-filter-btn" data-mfilter="portal">Portal</button>
+    <button class="mob-filter-btn" data-mfilter="ecommerce">eCommerce</button>
+    <button class="mob-filter-btn" data-mfilter="ai">AI</button>
+  </div>
+
+  <a class="mob-card" href="case-schunk.html" data-mtags="ecommerce portal">
+    <div class="mob-visual">
+      <img src="../assets/images/work-02.jpg" alt="FANUC Portal &amp; eShop" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">FANUC · SAP Commerce · 2023–2024</div>
+      <div class="mob-title">Portal &amp; eShop. One place for the customer</div>
+      <div class="mob-desc">Replaced four disconnected systems with a single SAP-Commerce portal.</div>
+      <div class="mob-tags"><span class="tag">eShop</span><span class="tag">Portal</span><span class="tag tag-accent">SAP Commerce</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-geiger.html" data-mtags="ecommerce portal">
+    <div class="mob-visual">
+      <img src="../assets/images/work-07.jpg" alt="Geiger Sales Rep Platform" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">Geiger US · SAP Commerce · 2025–2026</div>
+      <div class="mob-title">Sales Rep Platform</div>
+      <div class="mob-desc">Redesigning the Sales Rep experience for the world's largest promo company.</div>
+      <div class="mob-tags"><span class="tag">eCommerce</span><span class="tag">Configuration</span><span class="tag tag-accent">SAP Commerce</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-index.html" data-mtags="fleet portal">
+    <div class="mob-visual">
+      <img src="../assets/images/work-06.jpg" alt="INDEX-TRAUB iXworld Portal" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">Index-Traub · Fleet Operations · 2023</div>
+      <div class="mob-title">Machine Management Platform</div>
+      <div class="mob-desc">Single dashboard, three roles managing global machine fleets.</div>
+      <div class="mob-tags"><span class="tag">Fleet</span><span class="tag">Platform</span><span class="tag tag-accent">Multi-role</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-enercon.html" data-mtags="monitoring portal">
+    <div class="mob-visual">
+      <img src="../assets/images/work-09.jpg" alt="ENERCON Customer Portal" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">ENERCON · Monitoring · 2025–2026</div>
+      <div class="mob-title">ENERCON Customer Portal</div>
+      <div class="mob-desc">One unified SSO portal monitoring distributed wind parks, turbines &amp; service.</div>
+      <div class="mob-tags"><span class="tag">Dashboard</span><span class="tag tag-accent">SSO Portal</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-mapal.html" data-mtags="cpq portal">
+    <div class="mob-visual">
+      <img src="../assets/images/work-08.jpg" alt="MAPAL Configuration Platform" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">MAPAL · Admin Tooling · 2024–2025</div>
+      <div class="mob-title">MAPAL Configuration Platform</div>
+      <div class="mob-desc">Replacing a legacy expert tool (Zoovu/Suvo) with a purpose-built SAP BTP configurator backend.</div>
+      <div class="mob-tags"><span class="tag">Flow Steps</span><span class="tag tag-accent">SAP BTP</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-wagner.html" data-mtags="ecommerce commerce rebranding">
+    <div class="mob-visual">
+      <img src="../assets/images/work-04.jpg" alt="Wagner eShop" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">J. Wagner GmbH · 2022–2023</div>
+      <div class="mob-title">Wagner eShop &amp; Titan Tools</div>
+      <div class="mob-desc">SAP Spartacus B2B shop for spray systems, plus US rebranding as Titan Tools.</div>
+      <div class="mob-tags"><span class="tag">SAP Spartacus</span><span class="tag tag-accent">US Rebranding</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-uip.html" data-mtags="ai research saas">
+    <div class="mob-visual">
+      <img src="../assets/images/work-05.webp" alt="User Intelligence Platform · Persona Chat interface" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">Internal Innovation · Concept</div>
+      <div class="mob-title">User Intelligence Platform</div>
+      <div class="mob-desc">Static personas become living AI research companions you can talk to.</div>
+      <div class="mob-tags"><span class="tag">AI</span><span class="tag tag-accent">UX Research</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-whitelabel.html" data-mtags="portal sales">
+    <div class="mob-visual">
+      <img src="../assets/images/work-03.jpg" alt="White-Label Portal · Sybit Customer Dashboard" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">Sybit · Internal · 2024–2025</div>
+      <div class="mob-title">White-Label Portals</div>
+      <div class="mob-desc">Configurable portal demos on SAP BTP that turn pitches into projects.</div>
+      <div class="mob-tags"><span class="tag">Sales Enablement</span><span class="tag tag-accent">SAP BTP</span></div>
+      <span class="mob-cta">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+
+
+</div>
+</main>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html">Home</a>
+    <a class="nm-link active" href="work.html">Work</a>
+    <a class="nm-link" href="about.html">About</a>
+    <a class="nm-link" href="contact.html">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="contact.html">Get in touch →</a>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    // close on link click
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  const items   = document.querySelectorAll('.proj-item');
+  const panels  = document.querySelectorAll('.panel-item');
+  const filters = document.querySelectorAll('.filter-btn');
+  const countEl = document.getElementById('visibleCount');
+
+  let activeIdx = 0;
+  let prevIdx   = -1;
+
+  function activateProject(idx, skipScroll){
+    if(idx === activeIdx && prevIdx !== -1) return;
+    prevIdx = activeIdx;
+    activeIdx = idx;
+
+    items.forEach((it, i)  => it.classList.toggle('active', i === idx));
+    panels.forEach((p, i)  => {
+      p.classList.toggle('active', i === idx);
+      p.classList.toggle('past',   i === prevIdx && i !== idx);
+    });
+    if(!skipScroll){
+      items[idx]?.scrollIntoView({block:'nearest', behavior:'smooth'});
+    }
+  }
+
+  items.forEach((item, i) => {
+    item.addEventListener('mouseenter', () => activateProject(i));
+    item.addEventListener('click', () => {
+      const href = item.dataset.href;
+      if(href){ window.location.href = href; }
+      else { activateProject(i); }
+    });
+  });
+
+  // Filter
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      items.forEach((item, i) => {
+        const tags = (item.dataset.tags || '').split(' ');
+        const show = f === 'all' || tags.includes(f);
+        item.style.display = show ? '' : 'none';
+        if(show){ visible++; }
+      });
+      countEl.textContent = String(visible).padStart(2,'0');
+      // Activate first visible
+      const first = [...items].findIndex(it => it.style.display !== 'none');
+      if(first !== -1) activateProject(first, true);
+    });
+  });
+
+  activateProject(0, true);
+
+  // Mobile filters
+  const mobFilters = document.querySelectorAll('.mob-filter-btn');
+  const mobCards   = document.querySelectorAll('.mob-card');
+  mobFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      mobFilters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.mfilter;
+      mobCards.forEach(card => {
+        const tags = (card.dataset.mtags || '').split(' ');
+        card.style.display = (f === 'all' || tags.includes(f)) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+<script src="../assets/js/work-10.js"></script>
+
+
+
+</body></html>

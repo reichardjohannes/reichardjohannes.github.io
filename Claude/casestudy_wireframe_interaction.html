@@ -1,0 +1,515 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f5f4f2;font-size:12px}
+
+.outer{display:flex;gap:24px;padding:20px;align-items:flex-start}
+
+/* LEFT: full page wireframe */
+.col-wf{width:210px;flex-shrink:0}
+.wf-label{font-size:9px;letter-spacing:.1em;color:#999;margin-bottom:8px;font-weight:500}
+.wf-block{border:1.5px solid #ccc;background:#fff;margin-bottom:4px;border-radius:2px;overflow:hidden}
+.wf-block.active{border-color:#333}
+.wf-bh{display:flex;justify-content:space-between;align-items:center;padding:5px 8px;background:#f8f8f6;border-bottom:1px solid #eee}
+.wf-bn{font-size:9px;font-weight:600;color:#333;letter-spacing:.02em}
+.wf-bt{font-size:8px;color:#999;background:#eee;padding:1px 5px;border-radius:1px}
+.wf-bt.m{background:#333;color:#fff}
+.wf-bi{padding:6px 8px}
+.wb{background:#e0dedd;border-radius:1px;height:7px;margin-bottom:3px}
+.wb.dark{background:#b0afad}
+.wb.tall{height:14px}
+.wb.short{height:5px}
+.wb.w20{width:20%}.wb.w30{width:30%}.wb.w40{width:40%}.wb.w50{width:50%}
+.wb.w60{width:60%}.wb.w70{width:70%}.wb.w80{width:80%}.wb.w100{width:100%}
+.wf-row{display:flex;gap:4px;align-items:center;margin-bottom:3px}
+.wf-img{background:#d0cfcc;border-radius:1px;flex-shrink:0}
+.wf-pill{background:#ddd;border-radius:8px;height:6px;width:36px;flex-shrink:0}
+.wf-btn{background:#333;color:#fff;font-size:8px;padding:3px 7px;border-radius:1px}
+.wf-btn.o{background:#fff;border:1px solid #ccc;color:#555}
+.wf-num{font-size:8px;color:#bbb;width:14px;flex-shrink:0}
+.wf-arr{font-size:9px;color:#ccc;margin-left:auto}
+.nav-wf{display:flex;justify-content:space-between;align-items:center;padding:6px 8px;background:#eee}
+.nav-dots{display:flex;gap:6px}
+.nav-dot{width:22px;height:5px;background:#ccc;border-radius:1px}
+
+/* sticky scroll demo */
+.col-demo{flex:1;min-width:280px}
+.demo-label{font-size:9px;letter-spacing:.1em;color:#999;margin-bottom:8px;font-weight:500}
+.demo-wrap{background:#fff;border:1.5px solid #ccc;border-radius:4px;overflow:hidden}
+
+.demo-header{padding:10px 14px;border-bottom:1px solid #eee;background:#f8f8f6}
+.demo-title{font-size:11px;font-weight:600;color:#333}
+.demo-sub{font-size:10px;color:#999;margin-top:1px}
+
+.demo-body{display:flex;height:340px}
+.demo-left{width:48%;border-right:1px solid #eee;position:relative;overflow:hidden;background:#fafaf9}
+.demo-right{flex:1;overflow-y:auto;scroll-behavior:smooth}
+.demo-right::-webkit-scrollbar{width:3px}
+.demo-right::-webkit-scrollbar-track{background:#f5f5f5}
+.demo-right::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
+
+/* image panel */
+.img-panel{position:absolute;top:0;left:0;right:0;bottom:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .4s ease}
+.img-panel.visible{opacity:1}
+.img-frame{width:100%;background:#e8e7e4;border-radius:3px;border:1px solid #ddd;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;position:relative}
+.img-label{font-size:9px;color:#aaa;letter-spacing:.06em;text-transform:uppercase}
+.img-tag{position:absolute;top:8px;left:8px;font-size:8px;background:#fff;border:1px solid #ddd;padding:2px 6px;border-radius:2px;color:#888;letter-spacing:.04em}
+
+/* mock wireframe frames */
+.mock{width:100%;display:flex;flex-direction:column;gap:4px;padding:8px}
+.mr{display:flex;gap:3px;align-items:center}
+.mb{background:#d0cfcc;border-radius:1px}
+.mb.h6{height:6px}.mb.h8{height:8px}.mb.h10{height:10px}.mb.h14{height:14px}.mb.h20{height:20px}.mb.h30{height:30px}.mb.h40{height:40px}
+.mb.dark{background:#aaa}
+.mb.light{background:#e8e7e4}
+.mb.f1{flex:1}.mb.w20{width:20%}.mb.w30{width:30%}.mb.w40{width:40%}.mb.w50{width:50%}.mb.w60{width:60%}.mb.w70{width:70%}.mb.w80{width:80%}
+.mb.sq{flex-shrink:0}
+
+/* scroll sections */
+.scroll-section{padding:16px;border-bottom:1px solid #f0f0f0;cursor:pointer;transition:background .2s}
+.scroll-section:last-child{border-bottom:none;min-height:80px}
+.scroll-section:hover{background:#fafaf9}
+.scroll-section.active{background:#f5f4f2}
+.ss-num{font-size:8px;color:#bbb;letter-spacing:.1em;margin-bottom:4px}
+.ss-title{font-size:11px;font-weight:600;color:#333;margin-bottom:5px}
+.ss-text{font-size:10px;color:#777;line-height:1.6}
+.ss-tags{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+.ss-tag{font-size:8px;color:#999;background:#f0f0f0;padding:2px 6px;border-radius:10px}
+.ss-artifact{font-size:9px;color:#aaa;margin-top:5px;display:flex;align-items:center;gap:3px}
+.artifact-dot{width:5px;height:5px;border-radius:50%;background:#ddd;flex-shrink:0}
+
+/* progress */
+.progress-bar{height:2px;background:#eee;margin:0}
+.progress-fill{height:100%;background:#333;transition:width .3s ease;width:16%}
+
+/* scroll hint */
+.scroll-hint{text-align:center;padding:6px;font-size:9px;color:#ccc;border-top:1px solid #f0f0f0;letter-spacing:.06em;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:.4}50%{opacity:1}}
+
+/* right col: notes */
+.col-notes{width:160px;flex-shrink:0}
+.note-section{margin-bottom:14px}
+.note-head{font-size:9px;font-weight:600;letter-spacing:.08em;color:#666;margin-bottom:6px}
+.note-item{font-size:10px;color:#666;line-height:1.5;margin-bottom:3px;padding-left:10px;position:relative}
+.note-item::before{content:'·';position:absolute;left:2px;color:#bbb}
+.note-divider{height:1px;background:#e8e8e8;margin:10px 0}
+.pattern-box{border:1px solid #e0e0e0;border-radius:3px;padding:8px;margin-bottom:8px;background:#fff}
+.pattern-name{font-size:10px;font-weight:600;color:#333;margin-bottom:3px}
+.pattern-desc{font-size:9px;color:#888;line-height:1.4}
+.pattern-used{font-size:8px;margin-top:4px;color:#aaa;letter-spacing:.04em}
+.pattern-used span{background:#f0f0f0;padding:1px 5px;border-radius:2px}
+</style>
+
+<div class="outer">
+
+<!-- LEFT: PAGE WIREFRAME -->
+<div class="col-wf">
+  <div class="wf-label">CASE STUDY SEITE</div>
+
+  <!-- nav -->
+  <div class="wf-block">
+    <div class="nav-wf">
+      <div class="wb w30 dark" style="height:6px"></div>
+      <div class="nav-dots">
+        <div class="nav-dot"></div><div class="nav-dot"></div><div class="nav-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- hero block -->
+  <div class="wf-block">
+    <div class="wf-bh"><span class="wf-bn">HERO</span><span class="wf-bt m">MUST</span></div>
+    <div class="wf-bi">
+      <div class="wf-row"><div class="wb w40 short dark"></div><div class="wf-pill"></div></div>
+      <div class="wb w80 tall dark" style="margin:4px 0"></div>
+      <div class="wb w60 short"></div>
+      <div class="wf-row" style="margin-top:5px">
+        <div class="wb w20 short"></div>
+        <div style="font-size:8px;color:#aaa">|</div>
+        <div class="wb w20 short"></div>
+        <div style="font-size:8px;color:#aaa">|</div>
+        <div class="wb w20 short"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- challenge -->
+  <div class="wf-block">
+    <div class="wf-bh"><span class="wf-bn">CHALLENGE</span><span class="wf-bt m">MUST</span></div>
+    <div class="wf-bi">
+      <div class="wf-row">
+        <div class="wf-img" style="width:40px;height:32px"></div>
+        <div style="flex:1">
+          <div class="wb w100 short dark" style="margin-bottom:3px"></div>
+          <div class="wb w80 short"></div>
+          <div class="wb w60 short"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY SCROLL — highlighted -->
+  <div class="wf-block active">
+    <div class="wf-bh" style="background:#333"><span class="wf-bn" style="color:#fff">STICKY SCROLL</span><span class="wf-bt m" style="background:#555">CORE</span></div>
+    <div class="wf-bi" style="display:flex;gap:4px;padding:6px 8px">
+      <!-- left fixed image -->
+      <div style="flex:1;background:#e0dedd;border-radius:2px;height:70px;display:flex;align-items:center;justify-content:center">
+        <div style="font-size:8px;color:#aaa;text-align:center;line-height:1.4">Bild<br>fixiert</div>
+      </div>
+      <!-- right scrolling text -->
+      <div style="flex:1;display:flex;flex-direction:column;gap:4px">
+        <div style="border-left:2px solid #333;padding-left:5px">
+          <div class="wb w80 short dark"></div>
+          <div class="wb w60 short" style="margin-top:2px"></div>
+        </div>
+        <div style="border-left:1px solid #eee;padding-left:5px">
+          <div class="wb w80 short"></div>
+          <div class="wb w60 short" style="margin-top:2px"></div>
+        </div>
+        <div style="border-left:1px solid #eee;padding-left:5px">
+          <div class="wb w80 short"></div>
+          <div class="wb w50 short" style="margin-top:2px"></div>
+        </div>
+      </div>
+    </div>
+    <div style="padding:0 8px 6px;font-size:8px;color:#999">↑ Bild wechselt beim Scrollen</div>
+  </div>
+
+  <!-- outcome -->
+  <div class="wf-block">
+    <div class="wf-bh"><span class="wf-bn">OUTCOME</span><span class="wf-bt">HIGH</span></div>
+    <div class="wf-bi">
+      <div class="wf-row">
+        <div class="wb w100 short dark"></div>
+      </div>
+      <div style="border-left:2px solid #ccc;padding-left:6px;margin:4px 0">
+        <div class="wb w80 short"></div>
+        <div class="wb w60 short" style="margin-top:2px"></div>
+      </div>
+      <div class="wf-row" style="gap:4px;margin-top:4px">
+        <div class="wf-pill"></div><div class="wf-pill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- next -->
+  <div class="wf-block">
+    <div class="wf-bh"><span class="wf-bn">NÄCHSTES PROJEKT</span></div>
+    <div class="wf-bi">
+      <div class="wf-row">
+        <div class="wb w50 short dark"></div>
+        <div class="wf-arr" style="margin-left:auto;font-size:10px">→</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MIDDLE: INTERACTIVE DEMO -->
+<div class="col-demo">
+  <div class="demo-label">STICKY SCROLL — INTERAKTIVES PRINZIP (klick auf Abschnitte rechts)</div>
+  <div class="demo-wrap">
+    <div class="demo-header">
+      <div class="demo-title">Globaler Robotikhersteller — Portal & eShop</div>
+      <div class="demo-sub">End-to-End UX · Portal · eShop · Maschinenmanagement</div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+    <div class="demo-body">
+
+      <!-- LEFT: sticky image -->
+      <div class="demo-left" id="imgCol">
+
+        <!-- Panel 1: Expert Review -->
+        <div class="img-panel visible" id="p1">
+          <div class="img-frame" style="height:160px">
+            <div class="img-tag">Expert Review</div>
+            <div class="mock" style="width:90%">
+              <div class="mr"><div class="mb h6 dark w100"></div></div>
+              <div class="mr"><div class="mb h6 w80"></div></div>
+              <div class="mr" style="gap:3px">
+                <div class="mb h20 f1 light"></div>
+                <div class="mb h20 f1 light"></div>
+                <div class="mb h20 f1 light"></div>
+              </div>
+              <div class="mr"><div class="mb h40 w100 light"></div></div>
+              <div class="mr"><div class="mb h6 w60"></div></div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#bbb;margin-top:8px;text-align:center;letter-spacing:.04em">Bestehender eShop — Heuristic Evaluation</div>
+        </div>
+
+        <!-- Panel 2: Research -->
+        <div class="img-panel" id="p2">
+          <div class="img-frame" style="height:160px">
+            <div class="img-tag">Research</div>
+            <div class="mock" style="width:90%">
+              <div class="mr" style="gap:4px">
+                <div style="width:32px;height:40px;background:#d0cfcc;border-radius:50% 50% 0 0;flex-shrink:0"></div>
+                <div style="flex:1">
+                  <div class="mb h8 dark w80" style="margin-bottom:3px"></div>
+                  <div class="mb h6 w60"></div>
+                  <div class="mb h6 w70" style="margin-top:2px"></div>
+                </div>
+              </div>
+              <div style="height:1px;background:#e0e0e0;margin:5px 0"></div>
+              <div class="mr"><div class="mb h6 w100"></div></div>
+              <div class="mr"><div class="mb h6 w80"></div></div>
+              <div style="margin-top:5px;display:flex;gap:3px">
+                <div class="mb h14 f1 light"></div>
+                <div class="mb h14 f1 light"></div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#bbb;margin-top:8px;text-align:center;letter-spacing:.04em">Persona · User Journey Map</div>
+        </div>
+
+        <!-- Panel 3: Wireframes -->
+        <div class="img-panel" id="p3">
+          <div class="img-frame" style="height:160px">
+            <div class="img-tag">Balsamiq Wireframe</div>
+            <div class="mock" style="width:90%">
+              <div style="display:grid;grid-template-columns:1fr 2fr;gap:4px">
+                <div>
+                  <div class="mb h6 w100 dark" style="margin-bottom:3px"></div>
+                  <div class="mb h6 w100" style="margin-bottom:2px"></div>
+                  <div class="mb h6 w100" style="margin-bottom:2px"></div>
+                  <div class="mb h6 w100" style="margin-bottom:2px"></div>
+                  <div class="mb h6 w100"></div>
+                </div>
+                <div>
+                  <div class="mb h8 dark w80" style="margin-bottom:4px"></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px">
+                    <div class="mb h20 light"></div>
+                    <div class="mb h20 light"></div>
+                    <div class="mb h20 light"></div>
+                    <div class="mb h20 light"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#bbb;margin-top:8px;text-align:center;letter-spacing:.04em">Portal-Navigation · Maschinenübersicht</div>
+        </div>
+
+        <!-- Panel 4: Testing -->
+        <div class="img-panel" id="p4">
+          <div class="img-frame" style="height:160px">
+            <div class="img-tag">Usability Test</div>
+            <div class="mock" style="width:90%">
+              <div class="mr"><div class="mb h8 dark w70"></div></div>
+              <div style="height:1px;background:#e0e0e0;margin:4px 0"></div>
+              <div class="mr" style="align-items:flex-start;gap:5px">
+                <div style="width:6px;height:6px;border-radius:50%;background:#aaa;flex-shrink:0;margin-top:2px"></div>
+                <div>
+                  <div class="mb h6 w80" style="margin-bottom:2px"></div>
+                  <div class="mb h6 w60"></div>
+                </div>
+              </div>
+              <div class="mr" style="margin-top:4px">
+                <div class="mb h6 w40"></div>
+                <div style="flex:1;height:6px;background:#e8e8e8;border-radius:3px;margin-left:6px">
+                  <div style="width:70%;height:100%;background:#aaa;border-radius:3px"></div>
+                </div>
+                <div class="mb h6 w10" style="margin-left:4px;width:16px"></div>
+              </div>
+              <div class="mr" style="margin-top:2px">
+                <div class="mb h6 w40"></div>
+                <div style="flex:1;height:6px;background:#e8e8e8;border-radius:3px;margin-left:6px">
+                  <div style="width:45%;height:100%;background:#aaa;border-radius:3px"></div>
+                </div>
+                <div class="mb h6 w10" style="margin-left:4px;width:16px"></div>
+              </div>
+              <div class="mr" style="margin-top:2px">
+                <div class="mb h6 w40"></div>
+                <div style="flex:1;height:6px;background:#e8e8e8;border-radius:3px;margin-left:6px">
+                  <div style="width:88%;height:100%;background:#aaa;border-radius:3px"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#bbb;margin-top:8px;text-align:center;letter-spacing:.04em">Test-Protokoll · Task-Completion-Rate</div>
+        </div>
+
+        <!-- Panel 5: Final Design -->
+        <div class="img-panel" id="p5">
+          <div class="img-frame" style="height:160px">
+            <div class="img-tag">Final Design · Sketch</div>
+            <div class="mock" style="width:90%">
+              <div style="display:flex;align-items:center;gap:4px;margin-bottom:4px">
+                <div style="width:14px;height:14px;background:#333;border-radius:2px;flex-shrink:0"></div>
+                <div class="mb h6 w50 dark"></div>
+                <div class="mb h6 w20" style="margin-left:auto"></div>
+              </div>
+              <div style="height:1px;background:#e0e0e0;margin-bottom:4px"></div>
+              <div style="display:grid;grid-template-columns:28px 1fr;gap:4px">
+                <div style="display:flex;flex-direction:column;gap:3px">
+                  <div class="mb h8 w100 dark"></div>
+                  <div class="mb h8 w100"></div>
+                  <div class="mb h8 w100"></div>
+                  <div class="mb h8 w100"></div>
+                </div>
+                <div>
+                  <div class="mb h8 dark w60" style="margin-bottom:3px"></div>
+                  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px">
+                    <div class="mb h16 light" style="height:16px"></div>
+                    <div class="mb h16 light" style="height:16px"></div>
+                    <div class="mb h16 light" style="height:16px"></div>
+                  </div>
+                  <div class="mb h30 w100 light" style="margin-top:3px;height:18px"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#bbb;margin-top:8px;text-align:center;letter-spacing:.04em">Portal Dashboard · Maschinenübersicht</div>
+        </div>
+
+        <!-- Panel 6: Outcome -->
+        <div class="img-panel" id="p6">
+          <div class="img-frame" style="height:160px">
+            <div class="img-tag">Outcome</div>
+            <div class="mock" style="width:90%">
+              <div style="text-align:center;padding:8px 0">
+                <div class="mb h14 dark" style="width:60%;margin:0 auto 6px"></div>
+                <div class="mb h6" style="width:80%;margin:0 auto 3px"></div>
+                <div class="mb h6" style="width:70%;margin:0 auto 10px"></div>
+                <div style="border-left:2px solid #aaa;padding-left:8px;text-align:left">
+                  <div class="mb h6 w90" style="margin-bottom:2px"></div>
+                  <div class="mb h6 w70"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="font-size:9px;color:#bbb;margin-top:8px;text-align:center;letter-spacing:.04em">Kundenfeedback · Abnahme</div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT: scrolling content -->
+      <div class="demo-right" id="scrollCol">
+
+        <div class="scroll-section active" data-panel="1" data-prog="16">
+          <div class="ss-num">/01 · EXPERT REVIEW</div>
+          <div class="ss-title">Analyse des Ist-Zustands</div>
+          <div class="ss-text">Heuristische Evaluation des bestehenden eShops. Identifikation von 23 kritischen Usability-Problemen. Basis für alle weiteren Entscheidungen.</div>
+          <div class="ss-tags"><span class="ss-tag">Heuristic Eval.</span><span class="ss-tag">Pain Points</span></div>
+          <div class="ss-artifact"><div class="artifact-dot"></div>Artefakt: Audit-Dokument</div>
+        </div>
+
+        <div class="scroll-section" data-panel="2" data-prog="33">
+          <div class="ss-num">/02 · RESEARCH</div>
+          <div class="ss-title">Verstehen, wer die User sind</div>
+          <div class="ss-text">Stakeholder-Workshops mit PO & PL. Entwicklung von 3 Personas — Einkäufer, Maschinen-Admin, Service-Techniker. User Journey Maps zeigen Brüche im bestehenden Prozess.</div>
+          <div class="ss-tags"><span class="ss-tag">Personas</span><span class="ss-tag">Journey Map</span><span class="ss-tag">Workshops</span></div>
+          <div class="ss-artifact"><div class="artifact-dot"></div>Artefakt: Personas · Journey Maps</div>
+        </div>
+
+        <div class="scroll-section" data-panel="3" data-prog="50">
+          <div class="ss-num">/03 · WIREFRAMES</div>
+          <div class="ss-title">Struktur vor Ästhetik</div>
+          <div class="ss-text">Iterative Wireframe-Entwicklung in Balsamiq. Drei Review-Runden mit internen und externen Stakeholdern. Jede Entscheidung ist begründet — nicht dekorativ.</div>
+          <div class="ss-tags"><span class="ss-tag">Balsamiq</span><span class="ss-tag">Review-Zyklen</span></div>
+          <div class="ss-artifact"><div class="artifact-dot"></div>Artefakt: Wireframe-PDFs</div>
+        </div>
+
+        <div class="scroll-section" data-panel="4" data-prog="66">
+          <div class="ss-num">/04 · TESTING</div>
+          <div class="ss-title">Validieren, nicht vermuten</div>
+          <div class="ss-text">Moderierte Usability-Tests mit realen Nutzern auf Wireframe-Basis. Ergebnisse fließen direkt zurück in die Iteration. Kein Design ohne Test-Grundlage.</div>
+          <div class="ss-tags"><span class="ss-tag">Usability Test</span><span class="ss-tag">Iteration</span></div>
+          <div class="ss-artifact"><div class="artifact-dot"></div>Artefakt: Test-Protokolle</div>
+        </div>
+
+        <div class="scroll-section" data-panel="5" data-prog="83">
+          <div class="ss-num">/05 · FINAL DESIGN & SCRUM</div>
+          <div class="ss-title">Von Sketch zur Umsetzung</div>
+          <div class="ss-text">Finales Design in Sketch, abgenommen durch den Kunden. Übergabe an interdisziplinäres Dev-Team. 2-Wochen-Sprints, kontinuierliche Qualitätssicherung bis zur Abnahme.</div>
+          <div class="ss-tags"><span class="ss-tag">Sketch</span><span class="ss-tag">Scrum</span><span class="ss-tag">Dev-Handoff</span></div>
+          <div class="ss-artifact"><div class="artifact-dot"></div>Artefakt: Final Screens</div>
+        </div>
+
+        <div class="scroll-section" data-panel="6" data-prog="100">
+          <div class="ss-num">/06 · OUTCOME</div>
+          <div class="ss-title">Was es verändert hat</div>
+          <div class="ss-text">User können sich zentral anmelden und alles an einem Ort verwalten: eShop, registrierte Maschinen, Wartungen, Benefits. Kundenfeedback und PO/PL-Abnahme bestätigen den Erfolg.</div>
+          <div class="ss-tags"><span class="ss-tag">Abnahme</span><span class="ss-tag">User Feedback</span></div>
+          <div class="ss-artifact"><div class="artifact-dot" style="background:#4ade80"></div>„Besser verwendbar und schneller zum Ziel."</div>
+        </div>
+
+        <div class="scroll-hint">↕ SCROLLEN UM ABSCHNITTE ZU WECHSELN</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RIGHT: NOTES -->
+<div class="col-notes">
+  <div class="demo-label">PATTERN</div>
+
+  <div class="pattern-box">
+    <div class="pattern-name">Sticky Scroll</div>
+    <div class="pattern-desc">Bild bleibt links fixiert. Text scrollt rechts durch Phasen. Bild wechselt bei jedem Abschnitt — mit Fade-Transition.</div>
+    <div class="pattern-used">Genutzt bei <span>Linear</span> <span>Stripe</span></div>
+  </div>
+
+  <div class="note-divider"></div>
+  <div class="note-section">
+    <div class="note-head">WARUM DIESES PATTERN</div>
+    <div class="note-item">User verliert nie den visuellen Kontext</div>
+    <div class="note-item">Artefakte werden erklärt, nicht nur gezeigt</div>
+    <div class="note-item">Zeigt Prozessdenken — kein reiner Screen-Dump</div>
+    <div class="note-item">Fühlt sich narrativ an, nicht wie eine Liste</div>
+  </div>
+
+  <div class="note-divider"></div>
+  <div class="note-section">
+    <div class="note-head">BILD-WECHSEL LOGIK</div>
+    <div class="note-item">Phase 1 → Audit-Screenshot</div>
+    <div class="note-item">Phase 2 → Persona / Journey</div>
+    <div class="note-item">Phase 3 → Balsamiq Wireframe</div>
+    <div class="note-item">Phase 4 → Testprotokoll</div>
+    <div class="note-item">Phase 5 → Final Design Screen</div>
+    <div class="note-item">Phase 6 → Zitat + Ergebnis</div>
+  </div>
+
+  <div class="note-divider"></div>
+  <div class="note-section">
+    <div class="note-head">MOBILE FALLBACK</div>
+    <div class="note-item">Auf Mobile: Bild oben, Text darunter — gestapelt</div>
+    <div class="note-item">Sticky entfällt, Scroll bleibt</div>
+  </div>
+</div>
+
+</div>
+
+<script>
+const sections = document.querySelectorAll('.scroll-section');
+const panels = document.querySelectorAll('.img-panel');
+const prog = document.getElementById('prog');
+
+function activate(el) {
+  sections.forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+  const pNum = el.dataset.panel;
+  const pProg = el.dataset.prog;
+  panels.forEach(p => p.classList.remove('visible'));
+  const target = document.getElementById('p' + pNum);
+  if (target) target.classList.add('visible');
+  prog.style.width = pProg + '%';
+}
+
+sections.forEach(s => {
+  s.addEventListener('click', () => activate(s));
+});
+
+// scroll-based activation
+const scrollCol = document.getElementById('scrollCol');
+scrollCol.addEventListener('scroll', () => {
+  let closest = null, minDist = Infinity;
+  sections.forEach(s => {
+    const rect = s.getBoundingClientRect();
+    const colRect = scrollCol.getBoundingClientRect();
+    const dist = Math.abs(rect.top - colRect.top - 40);
+    if (dist < minDist) { minDist = dist; closest = s; }
+  });
+  if (closest) activate(closest);
+});
+</script>

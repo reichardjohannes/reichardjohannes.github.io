@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap');
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+:root{
+  --bg:#F5F3EE;--bg2:#EEECEA;--bg3:#E8E6E0;
+  --border:#DDDBD4;--border2:#CCCAC3;
+  --text:#1C1B18;--text2:#6A6860;--text3:#A8A69F;
+  --acc:#C8392B;--acc2:#E04535;
+  --acc-dim:rgba(200,57,43,.07);--acc-b:rgba(200,57,43,.18);
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;overflow-x:hidden}
+.page{display:none}.page.active{display:block}
+img{display:block;width:100%;object-fit:cover}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;border-bottom:1px solid var(--border);background:rgba(245,243,238,.93);backdrop-filter:blur(16px)}
+.nav-left{display:flex;align-items:center;gap:10px}
+.nav-logo{font-size:14px;font-weight:500;letter-spacing:.01em;cursor:pointer}
+.nav-logo:hover{color:var(--acc)}
+.nav-pill{display:flex;align-items:center;gap:5px;padding:3px 10px;border:1px solid var(--border);border-radius:20px;background:var(--bg2)}
+.pill-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.pill-txt{font-size:9px;color:var(--text2);letter-spacing:.06em}
+.nav-links{display:flex;gap:24px}
+.nav-link{font-size:12px;color:var(--text2);letter-spacing:.04em;cursor:pointer;transition:color .2s;background:none;border:none;font-family:inherit}
+.nav-link:hover,.nav-link.on{color:var(--text)}
+.nav-cta{font-size:11px;padding:7px 18px;background:var(--text);color:var(--bg);border-radius:3px;cursor:pointer;font-weight:500;letter-spacing:.06em;border:none;font-family:inherit;transition:background .2s}
+.nav-cta:hover{background:var(--acc)}
+
+/* ── CURSOR HOVER IMAGE ── */
+#hov{position:fixed;pointer-events:none;z-index:500;width:280px;height:190px;border-radius:4px;overflow:hidden;opacity:0;transform:scale(.96);transition:opacity .25s,transform .25s;box-shadow:0 8px 32px rgba(0,0,0,.14)}
+#hov.show{opacity:1;transform:scale(1)}
+#hov img{width:100%;height:100%;object-fit:cover}
+
+/* ── MARQUEE ── */
+.marquee-wrap{overflow:hidden;border-bottom:1px solid var(--border);background:var(--bg2);padding:9px 0;margin-top:56px}
+.marquee-track{display:flex;width:max-content;animation:mq 30s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mi{display:flex;align-items:center;gap:16px;padding:0 24px;font-size:10px;color:var(--text3);letter-spacing:.12em;white-space:nowrap}
+.mi.acc{color:var(--acc)}.mdot{width:4px;height:4px;border-radius:50%;background:var(--acc);flex-shrink:0}
+
+/* ── HERO ── */
+.hero{padding:72px 32px 64px;min-height:92vh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.h-glow{position:absolute;border-radius:50%;pointer-events:none}
+.h-glow1{width:500px;height:500px;top:-15%;right:-8%;background:radial-gradient(circle,rgba(200,57,43,.09),transparent 65%)}
+.h-glow2{width:350px;height:350px;bottom:-5%;left:5%;background:radial-gradient(circle,rgba(200,57,43,.05),transparent 70%)}
+.hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:1;display:grid;grid-template-columns:54% 46%;gap:40px;align-items:center}
+.hero-content{display:flex;flex-direction:column}
+.hero-visual{position:relative;height:480px;border-radius:4px;overflow:hidden}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.hero-visual{height:280px;margin-top:32px}}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:48px}
+.h-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);padding:5px 14px;border-radius:20px;background:var(--bg2);font-size:10px;color:var(--text2);letter-spacing:.08em}
+.h-badge b{color:var(--acc);font-weight:400}
+.h-meta{font-size:11px;color:var(--text3);letter-spacing:.06em;text-align:right;line-height:1.9}
+.hero-h{font-size:clamp(50px,8vw,94px);font-weight:200;line-height:.97;letter-spacing:-.04em}
+.hero-h em{font-style:normal;color:var(--acc)}
+.hero-h .ol{-webkit-text-stroke:1.5px rgba(28,27,24,.16);color:transparent}
+.hero-bot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:48px;padding-top:28px;border-top:1px solid var(--border)}
+.hero-sub{font-size:14px;color:var(--text2);line-height:1.78;max-width:420px}
+.hero-sub b{color:var(--text);font-weight:400}
+.hero-acts{display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.btn-p{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;background:var(--acc);color:#fff;font-size:12px;font-weight:500;letter-spacing:.06em;border-radius:3px;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btn-p:hover{background:var(--acc2);transform:translateX(2px)}
+.btn-g{font-size:11px;color:var(--text2);letter-spacing:.06em;cursor:pointer;border-bottom:1px solid var(--border);padding-bottom:2px;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none;font-family:inherit}
+.btn-g:hover{color:var(--text);border-color:var(--text2)}
+.h-count{font-size:10px;color:var(--text3);letter-spacing:.06em}
+
+/* ── STATS ── */
+.stats-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding:28px 32px;display:flex;justify-content:center}
+.stat-i{flex:1;max-width:220px;padding:0 28px;border-right:1px solid var(--border);text-align:center}
+.stat-i:last-child{border-right:none}
+.sn{font-size:38px;font-weight:200;letter-spacing:-.04em;line-height:1;margin-bottom:5px}
+.sn span{color:var(--acc)}
+.sl{font-size:9px;color:var(--text3);letter-spacing:.1em}
+
+/* ── WORK LIST ── */
+.work-wrap{border-top:1px solid var(--border)}
+.wi{border-bottom:1px solid var(--border);transition:background .2s}
+.wi:hover{background:var(--bg2)}
+.wi-inner{display:flex;align-items:center;gap:20px;padding:18px 32px;max-width:1100px;margin:0 auto;cursor:pointer;transition:padding .25s}
+.wi:hover .wi-inner{padding-left:46px}
+.wi:hover .wa{opacity:1;color:var(--acc);transform:translateX(5px)}
+.wi:hover .wn-txt{color:var(--acc)}
+.wnum{font-size:11px;color:var(--text3);letter-spacing:.1em;width:30px;flex-shrink:0}
+.winfo{flex:1}
+.wn-txt{font-size:20px;font-weight:300;letter-spacing:-.01em;margin-bottom:5px;transition:color .2s}
+.wtags{display:flex;gap:5px;flex-wrap:wrap}
+.wt{font-size:9px;color:var(--text3);background:var(--bg3);padding:2px 8px;border-radius:2px;letter-spacing:.04em}
+.wt.a{background:var(--acc-dim);color:var(--acc);border:1px solid var(--acc-b)}
+.wright{display:flex;align-items:center;gap:18px;flex-shrink:0}
+.wtype{font-size:10px;color:var(--text3);letter-spacing:.05em;text-align:right;line-height:1.5}
+.wyear{font-size:11px;color:var(--text3)}
+.wa{font-size:18px;color:var(--text3);opacity:0;transition:all .25s}
+
+/* ── SECTION HEADER ── */
+.sec-wrap{padding:64px 32px;max-width:1100px;margin:0 auto}
+.sec-hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:40px}
+.sec-tag{font-size:9px;letter-spacing:.16em;color:var(--text3);font-weight:500;margin-bottom:6px}
+.sec-tag span{color:var(--acc)}
+.sec-title{font-size:clamp(30px,4vw,50px);font-weight:200;letter-spacing:-.03em;line-height:1.05}
+.sec-title em{font-style:normal;color:var(--acc)}
+
+/* ── PROCESS GRID ── */
+.proc-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border)}
+.proc-i{background:var(--bg);padding:28px 24px;transition:background .2s}
+.proc-i:hover{background:var(--bg2)}
+.proc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.proc-num{font-size:11px;font-weight:600;color:var(--acc);letter-spacing:.1em}
+.proc-ph{font-size:9px;color:var(--text3);letter-spacing:.08em;border:1px solid var(--border);padding:2px 8px;border-radius:10px;background:var(--bg2)}
+.proc-name{font-size:15px;font-weight:400;margin-bottom:7px;letter-spacing:-.01em}
+.proc-desc{font-size:12px;color:var(--text2);line-height:1.7}
+
+/* ── CONTACT ── */
+.contact-sec{border-top:1px solid var(--border);padding:80px 32px;background:var(--text);position:relative;overflow:hidden}
+.c-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:250px;background:radial-gradient(ellipse,rgba(200,57,43,.14),transparent 70%);pointer-events:none}
+.c-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1}
+.c-h{font-size:clamp(38px,5vw,68px);font-weight:200;line-height:1.02;letter-spacing:-.04em;color:var(--bg)}
+.c-h em{font-style:normal;color:var(--acc)}
+.c-sub{font-size:14px;color:rgba(245,243,238,.5);line-height:1.75;margin-bottom:24px}
+.c-email{font-size:17px;color:var(--acc);border-bottom:1px solid rgba(200,57,43,.3);padding-bottom:4px;display:inline-block;cursor:pointer;text-decoration:none;transition:border-color .2s}
+.c-email:hover{border-color:var(--acc)}
+.c-socials{display:flex;gap:16px;margin-top:18px}
+.c-soc{font-size:11px;color:rgba(245,243,238,.3);letter-spacing:.08em;cursor:pointer;transition:color .2s;text-decoration:none}
+.c-soc:hover{color:var(--acc)}
+footer{padding:18px 32px;display:flex;justify-content:space-between;background:var(--text);border-top:1px solid rgba(245,243,238,.06)}
+.ft{font-size:11px;color:rgba(245,243,238,.2)}
+
+/* ══════════════════════════════════
+   CASE STUDY PAGE
+══════════════════════════════════ */
+.cs-hero{padding:96px 32px 56px;border-bottom:1px solid var(--border);background:var(--bg2)}
+.cs-hero-inner{max-width:1100px;margin:0 auto}
+.cs-back{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text3);letter-spacing:.06em;cursor:pointer;margin-bottom:32px;transition:color .2s;background:none;border:none;font-family:inherit}
+.cs-back:hover{color:var(--acc)}
+.cs-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.cs-tag{font-size:9px;color:var(--text2);background:var(--bg3);padding:3px 10px;border-radius:2px;letter-spacing:.06em}
+.cs-tag.acc{background:var(--acc-dim);color:var(--acc);border:1px solid var(--acc-b)}
+.cs-h{font-size:clamp(32px,5vw,62px);font-weight:200;letter-spacing:-.035em;line-height:1.06;margin-bottom:20px}
+.cs-meta{display:flex;gap:32px;padding-top:24px;border-top:1px solid var(--border)}
+.cs-meta-i{display:flex;flex-direction:column;gap:3px}
+.cs-meta-l{font-size:9px;color:var(--text3);letter-spacing:.1em}
+.cs-meta-v{font-size:13px;color:var(--text);font-weight:400}
+
+/* challenge block */
+.cs-challenge{border-bottom:1px solid var(--border);padding:56px 32px}
+.cs-challenge-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.ch-img{border-radius:4px;overflow:hidden;height:280px;background:var(--bg3)}
+.ch-img img{height:100%;object-fit:cover}
+.ch-label{font-size:9px;letter-spacing:.14em;color:var(--acc);font-weight:500;margin-bottom:12px}
+.ch-title{font-size:26px;font-weight:300;letter-spacing:-.02em;margin-bottom:16px}
+.ch-text{font-size:14px;color:var(--text2);line-height:1.8}
+
+/* sticky scroll */
+.sticky-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+.sticky-left{position:sticky;top:56px;height:calc(100vh - 56px);overflow:hidden}
+.sticky-img{position:absolute;inset:0;opacity:0;transition:opacity .45s ease}
+.sticky-img.on{opacity:1}
+.sticky-img img{width:100%;height:100%;object-fit:cover}
+.sticky-img-label{position:absolute;bottom:24px;left:24px;background:rgba(245,243,238,.92);backdrop-filter:blur(8px);padding:6px 14px;border-radius:2px;font-size:10px;color:var(--text2);letter-spacing:.08em}
+.scroll-right{padding:48px 40px}
+.scroll-sec{padding:40px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all .2s}
+.scroll-sec:last-child{border-bottom:none;min-height:200px}
+.scroll-sec:hover .ss-title{color:var(--acc)}
+.ss-num{font-size:10px;letter-spacing:.12em;color:var(--acc);font-weight:600;margin-bottom:8px}
+.ss-title{font-size:20px;font-weight:300;letter-spacing:-.01em;margin-bottom:10px;transition:color .2s}
+.ss-text{font-size:13px;color:var(--text2);line-height:1.75}
+.ss-art{display:flex;align-items:center;gap:6px;margin-top:12px;font-size:10px;color:var(--text3);letter-spacing:.06em}
+.art-dot{width:6px;height:6px;border-radius:50%;background:var(--border);flex-shrink:0}
+.art-dot.on{background:var(--acc)}
+.ss-chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.ss-chip{font-size:9px;background:var(--bg2);color:var(--text3);padding:3px 8px;border-radius:2px;letter-spacing:.04em}
+
+/* outcome */
+.outcome-sec{border-top:1px solid var(--border);padding:56px 32px;background:var(--bg2)}
+.oc-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.oc-quote{padding:24px;border-left:3px solid var(--acc);background:var(--bg)}
+.oc-qt{font-size:18px;font-weight:200;line-height:1.6;color:var(--text);font-style:italic;letter-spacing:-.01em}
+.oc-attr{font-size:9px;color:var(--text3);letter-spacing:.1em;margin-top:12px}
+.oc-items{display:flex;flex-direction:column;gap:16px}
+.oc-item{padding:16px;border:1px solid var(--border);border-radius:3px;background:var(--bg)}
+.oc-item-l{font-size:9px;color:var(--text3);letter-spacing:.1em;margin-bottom:5px}
+.oc-item-v{font-size:14px;color:var(--text);font-weight:300;line-height:1.6}
+.cs-nav-row{max-width:1100px;margin:0 auto;padding:32px 32px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border)}
+.cs-nav-btn{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);cursor:pointer;letter-spacing:.04em;transition:color .2s;background:none;border:none;font-family:inherit}
+.cs-nav-btn:hover{color:var(--acc)}
+
+/* ══════════════════════════════════
+   PROCESS PAGE
+══════════════════════════════════ */
+.proc-hero{padding:96px 32px 56px;border-bottom:1px solid var(--border)}
+.proc-hero-inner{max-width:1100px;margin:0 auto}
+.proc-steps{max-width:1100px;margin:0 auto;padding:0 32px}
+.ps-item{display:grid;grid-template-columns:80px 1fr 1fr;gap:32px;padding:40px 0;border-bottom:1px solid var(--border);align-items:start}
+.ps-item:last-child{border-bottom:none}
+.ps-num{font-size:13px;font-weight:600;color:var(--acc);letter-spacing:.08em;padding-top:4px}
+.ps-left{}
+.ps-phase{font-size:9px;letter-spacing:.12em;color:var(--text3);margin-bottom:8px}
+.ps-name{font-size:22px;font-weight:300;letter-spacing:-.02em;margin-bottom:10px}
+.ps-text{font-size:13px;color:var(--text2);line-height:1.78}
+.ps-right{display:flex;flex-direction:column;gap:8px}
+.ps-del{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2)}
+.ps-del::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--acc-b);flex-shrink:0;border:1px solid var(--acc)}
+
+/* ══════════════════════════════════
+   ABOUT PAGE
+══════════════════════════════════ */
+.about-hero{padding:96px 32px 56px;border-bottom:1px solid var(--border)}
+.about-hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+.ab-img-wrap{position:relative;height:460px;overflow:hidden;border-radius:3px;background:var(--bg3)}
+.ab-img-wrap img{height:100%;object-fit:cover;filter:grayscale(15%)}
+.ab-img-label{position:absolute;bottom:16px;right:16px;background:rgba(245,243,238,.9);backdrop-filter:blur(8px);padding:5px 12px;border-radius:2px;font-size:9px;color:var(--text2);letter-spacing:.08em}
+.ab-right{}
+.ab-eyebrow{font-size:9px;letter-spacing:.16em;color:var(--acc);font-weight:500;margin-bottom:16px}
+.ab-h{font-size:clamp(32px,4vw,52px);font-weight:200;letter-spacing:-.035em;line-height:1.05;margin-bottom:24px}
+.ab-h em{font-style:normal;color:var(--acc)}
+.ab-bio{font-size:15px;font-weight:300;line-height:1.8;color:var(--text2);margin-bottom:32px}
+.ab-bio b{color:var(--text);font-weight:400}
+.ab-cta{display:flex;gap:10px}
+
+.about-creds{max-width:1100px;margin:0 auto;padding:56px 32px;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);margin:0 32px}
+.cred-col{padding:40px}
+.cred-col:first-child{border-right:1px solid var(--border)}
+.cred-label{font-size:9px;letter-spacing:.16em;color:var(--text3);margin-bottom:24px}
+.cred-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid var(--border)}
+.cred-row:last-child{border-bottom:none}
+.ck{font-size:10px;color:var(--text3);letter-spacing:.06em}
+.cv{font-size:13px;color:var(--text)}
+.skills-sec{max-width:1100px;margin:0 32px;padding:40px;border:1px solid var(--border);border-top:none}
+.sk-label{font-size:9px;letter-spacing:.14em;color:var(--text3);margin-bottom:16px}
+.sk-tags{display:flex;flex-wrap:wrap;gap:6px}
+.sk-t{font-size:11px;color:var(--text2);border:1px solid var(--border);padding:5px 12px;border-radius:2px;letter-spacing:.02em;transition:all .2s;cursor:default;background:var(--bg)}
+.sk-t:hover{border-color:var(--acc);color:var(--acc);background:var(--acc-dim)}
+
+/* about clients */
+.clients-sec{padding:56px 32px;border-top:1px solid var(--border)}
+.clients-inner{max-width:1100px;margin:0 auto}
+.client-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:32px}
+.client-i{background:var(--bg2);padding:20px 24px;display:flex;flex-direction:column;gap:4px}
+.client-name{font-size:15px;font-weight:400;color:var(--text);letter-spacing:-.01em}
+.client-cat{font-size:10px;color:var(--text3);letter-spacing:.06em}
+</style>
+</head>
+<body>
+
+<!-- CURSOR HOVER IMAGE -->
+<div id="hov"><img id="hov-img" src="" alt=""></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-left">
+    <span class="nav-logo" onclick="go('home')">[Dein Name]®</span>
+    <div class="nav-pill"><div class="pill-dot"></div><div class="pill-txt">VERFÜGBAR</div></div>
+  </div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="go('home')">Work</button>
+    <button class="nav-link" onclick="go('process')">Process</button>
+    <button class="nav-link" onclick="go('about')">About</button>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact-sec').scrollIntoView({behavior:'smooth'})">KONTAKT →</button>
+</nav>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="pg-home" class="page active">
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="mi acc"><div class="mdot"></div>UI/UX DESIGNER & CONSULTANT</div>
+      <div class="mi">ENTERPRISE UX</div>
+      <div class="mi acc"><div class="mdot"></div>B2B PLATTFORMEN</div>
+      <div class="mi">PHASE 0 BIS LAUNCH</div>
+      <div class="mi acc"><div class="mdot"></div>SCRUM & AGILE</div>
+      <div class="mi">6 JAHRE ERFAHRUNG</div>
+      <div class="mi acc"><div class="mdot"></div>WIEN → SCHWEIZ</div>
+      <div class="mi">SAP · PORTALE · DASHBOARDS</div>
+      <div class="mi acc"><div class="mdot"></div>UI/UX DESIGNER & CONSULTANT</div>
+      <div class="mi">ENTERPRISE UX</div>
+      <div class="mi acc"><div class="mdot"></div>B2B PLATTFORMEN</div>
+      <div class="mi">PHASE 0 BIS LAUNCH</div>
+      <div class="mi acc"><div class="mdot"></div>SCRUM & AGILE</div>
+      <div class="mi">6 JAHRE ERFAHRUNG</div>
+      <div class="mi acc"><div class="mdot"></div>WIEN → SCHWEIZ</div>
+      <div class="mi">SAP · PORTALE · DASHBOARDS</div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="h-glow h-glow1"></div>
+    <div class="h-glow h-glow2"></div>
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-top">
+          <div class="h-badge">Senior UI/UX <b>Designer</b> & Consultant</div>
+          <div class="h-meta">Est. 2018 · Wien<br>→ Schweiz 2025</div>
+        </div>
+        <h1 class="hero-h">
+          Design,<br><em>das wirkt</em><br><span class="ol">vom ersten Tag.</span>
+        </h1>
+        <div class="hero-bot">
+          <p class="hero-sub"><b>6 Jahre End-to-End UX</b> — von der ersten Kundenphase bis zum Launch im Scrum-Team. Spezialisiert auf <b>Enterprise B2B</b>, Portale, SAP-Plattformen und industrielle Dashboards.</p>
+          <div class="hero-acts">
+            <button class="btn-p" onclick="document.querySelector('.work-wrap').scrollIntoView({behavior:'smooth'})">PROJEKTE ANSEHEN →</button>
+            <button class="btn-g" onclick="document.getElementById('contact-sec').scrollIntoView({behavior:'smooth'})">KONTAKT AUFNEHMEN</button>
+            <div class="h-count">003 PROJEKTE · 006 PHASEN</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <canvas id="heroCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-strip">
+    <div class="stat-i"><div class="sn"><span>6</span>+</div><div class="sl">JAHRE ERFAHRUNG</div></div>
+    <div class="stat-i"><div class="sn">Ph<span>0</span></div><div class="sl">BIS LAUNCH</div></div>
+    <div class="stat-i"><div class="sn">B<span>2</span>B</div><div class="sl">ENTERPRISE UX</div></div>
+    <div class="stat-i"><div class="sn"><span>∞</span></div><div class="sl">ITERATIONEN</div></div>
+  </div>
+
+  <!-- WORK LIST -->
+  <div style="max-width:1100px;margin:0 auto;padding:56px 32px 0">
+    <div class="sec-hd">
+      <div>
+        <div class="sec-tag"><span>WORK</span> PORTFOLIO</div>
+        <div class="sec-title">Ausgewählte<br><em>Projekte.</em></div>
+      </div>
+      <div style="font-size:11px;color:var(--text3);letter-spacing:.06em">003 PROJEKTE</div>
+    </div>
+  </div>
+  <div class="work-wrap">
+    <div class="wi" onmouseenter="showHov(event,'https://picsum.photos/seed/robotics1/560/380')" onmouseleave="hideHov()">
+      <div class="wi-inner" onclick="go('case')">
+        <div class="wnum">(01)</div>
+        <div class="winfo">
+          <div class="wn-txt">Globaler Robotikhersteller — Portal & eShop</div>
+          <div class="wtags">
+            <div class="wt a">End-to-End UX</div><div class="wt">Portal</div><div class="wt">eShop</div><div class="wt">Maschinenmanagement</div><div class="wt">Scrum</div>
+          </div>
+        </div>
+        <div class="wright">
+          <div class="wtype">ENTERPRISE<br>B2B</div>
+          <div class="wyear">2024</div>
+          <div class="wa">→</div>
+        </div>
+      </div>
+    </div>
+    <div class="wi" onmouseenter="showHov(event,'https://picsum.photos/seed/fleet22/560/380')" onmouseleave="hideHov()">
+      <div class="wi-inner">
+        <div class="wnum">(02)</div>
+        <div class="winfo">
+          <div class="wn-txt">B2B Plattform — Flottenmanagement</div>
+          <div class="wtags">
+            <div class="wt a">Dashboard Design</div><div class="wt">B2B</div><div class="wt">Industrial</div><div class="wt">Research</div>
+          </div>
+        </div>
+        <div class="wright">
+          <div class="wtype">PLATFORM<br>DESIGN</div>
+          <div class="wyear">2023</div>
+          <div class="wa">→</div>
+        </div>
+      </div>
+    </div>
+    <div class="wi" onmouseenter="showHov(event,'https://picsum.photos/seed/machine55/560/380')" onmouseleave="hideHov()">
+      <div class="wi-inner">
+        <div class="wnum">(03)</div>
+        <div class="winfo">
+          <div class="wn-txt">Maschinenübersicht — Industrial Dashboard</div>
+          <div class="wtags">
+            <div class="wt a">SAP Integration</div><div class="wt">Data UI</div><div class="wt">Wireframing</div><div class="wt">Usability Testing</div>
+          </div>
+        </div>
+        <div class="wright">
+          <div class="wtype">INDUSTRIAL<br>UX</div>
+          <div class="wyear">2022</div>
+          <div class="wa">→</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS TEASER -->
+  <div class="sec-wrap" style="padding-bottom:0">
+    <div class="sec-hd" style="margin-bottom:0">
+      <div>
+        <div class="sec-tag"><span>MY</span> PROCESS</div>
+        <div class="sec-title">Wie ich<br><em>arbeite.</em></div>
+      </div>
+      <button class="btn-p" onclick="go('process')">PROZESS ANSEHEN →</button>
+    </div>
+  </div>
+  <div class="proc-grid" style="margin-top:32px">
+    <div class="proc-i"><div class="proc-top"><div class="proc-num">/01/</div><div class="proc-ph">PHASE 0</div></div><div class="proc-name">Discovery & Kick-off</div><div class="proc-desc">Kundenkommunikation, Zieldefinition, Erwartungsmanagement — von Anfang an am Tisch.</div></div>
+    <div class="proc-i"><div class="proc-top"><div class="proc-num">/02/</div><div class="proc-ph">RESEARCH</div></div><div class="proc-name">Research & Analyse</div><div class="proc-desc">Interviews, Heuristic Evaluation, Personas und Journey Maps als Entscheidungsbasis.</div></div>
+    <div class="proc-i"><div class="proc-top"><div class="proc-num">/03/</div><div class="proc-ph">ALIGNMENT</div></div><div class="proc-name">Workshops</div><div class="proc-desc">Design Sprints, How-Might-We, Priorisierungs-Workshops mit Stakeholdern.</div></div>
+    <div class="proc-i"><div class="proc-top"><div class="proc-num">/04/</div><div class="proc-ph">DESIGN</div></div><div class="proc-name">Wireframes & Konzept</div><div class="proc-desc">Lo-Fi bis Mid-Fi, iterativ, mit internen und externen Review-Zyklen.</div></div>
+    <div class="proc-i"><div class="proc-top"><div class="proc-num">/05/</div><div class="proc-ph">VALIDATION</div></div><div class="proc-name">Testing & Iteration</div><div class="proc-desc">Moderierte Usability-Tests, Iteration auf Basis echter Nutzerdaten.</div></div>
+    <div class="proc-i"><div class="proc-top"><div class="proc-num">/06/</div><div class="proc-ph">DELIVERY</div></div><div class="proc-name">Scrum & Launch</div><div class="proc-desc">Dev-Handoff, 2-Wochen-Sprints, QS und finale Abnahme durch den Kunden.</div></div>
+  </div>
+
+  <!-- CONTACT -->
+  <div id="contact-sec" class="contact-sec">
+    <div class="c-glow"></div>
+    <div class="c-inner">
+      <div class="c-h">Lass uns<br><em>zusammen</em><br>arbeiten.</div>
+      <div>
+        <div class="c-sub">Offen für Senior UI/UX Positionen in der Schweiz. Wenn du ein Team aufbaust, das ganzheitliches UX-Denken von Phase 0 an schätzt — meld dich direkt.</div>
+        <a class="c-email" href="mailto:deine@email.com">deine@email.com</a>
+        <div class="c-socials">
+          <a class="c-soc" href="#">LINKEDIN</a>
+          <a class="c-soc" href="#">DRIBBBLE</a>
+          <a class="c-soc" href="#">BEHANCE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="ft">© 2025 [Dein Name]® — UI/UX Designer & Consultant</div><div class="ft">Wien & Schweiz · Remote</div></footer>
+</div>
+
+<!-- ══════════ CASE STUDY ══════════ -->
+<div id="pg-case" class="page">
+  <div class="cs-hero">
+    <div class="cs-hero-inner">
+      <button class="cs-back" onclick="go('home')">← ZURÜCK ZUR ÜBERSICHT</button>
+      <div class="cs-tags">
+        <div class="cs-tag acc">End-to-End UX</div>
+        <div class="cs-tag">Portal</div><div class="cs-tag">eShop</div>
+        <div class="cs-tag">Maschinenmanagement</div><div class="cs-tag">Scrum</div>
+        <div class="cs-tag">Industriebereich</div>
+      </div>
+      <div class="cs-h">Globaler Robotikhersteller —<br>Portal & eShop</div>
+      <div class="cs-meta">
+        <div class="cs-meta-i"><div class="cs-meta-l">ROLLE</div><div class="cs-meta-v">End-to-End UX Lead</div></div>
+        <div class="cs-meta-i"><div class="cs-meta-l">ZEITRAUM</div><div class="cs-meta-v">2023 – 2024</div></div>
+        <div class="cs-meta-i"><div class="cs-meta-l">BRANCHE</div><div class="cs-meta-v">Industrierobotik / B2B</div></div>
+        <div class="cs-meta-i"><div class="cs-meta-l">TOOLS</div><div class="cs-meta-v">Balsamiq · Sketch · Figma</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO IMAGE -->
+  <div style="height:420px;overflow:hidden;background:var(--bg3)">
+    <img src="https://picsum.photos/seed/robotics-hero/1200/420" style="width:100%;height:100%;object-fit:cover;filter:grayscale(10%)">
+  </div>
+
+  <!-- CHALLENGE -->
+  <div class="cs-challenge">
+    <div class="cs-challenge-inner">
+      <div class="ch-img">
+        <img src="https://picsum.photos/seed/oldshop/600/280">
+      </div>
+      <div>
+        <div class="ch-label">DIE AUSGANGSLAGE</div>
+        <div class="ch-title">Kein Portal. Ein veralteter eShop. Keine User Experience.</div>
+        <div class="ch-text">Der Kunde — ein globaler Hersteller von Industrierobotern — betrieb einen veralteten, nicht nutzerfreundlichen eShop ohne zentrales Portal. Maschinen, Wartungen und Bestellungen existierten als voneinander isolierte, unverbundene Systeme. Es gab keine übergreifende User Experience. Ziel war die vollständige Ablösung und der Aufbau eines integrierten Portals — von Grund auf, mit dem Nutzer im Mittelpunkt.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY SCROLL -->
+  <div style="border-top:1px solid var(--border)">
+    <div class="sticky-wrap">
+      <!-- LEFT: sticky image -->
+      <div class="sticky-left" style="position:relative">
+        <div class="sticky-img on" id="si1">
+          <img src="https://picsum.photos/seed/audit99/600/700">
+          <div class="sticky-img-label">ARTEFAKT · EXPERT REVIEW DOKUMENT</div>
+        </div>
+        <div class="sticky-img" id="si2">
+          <img src="https://picsum.photos/seed/workshop44/600/700">
+          <div class="sticky-img-label">ARTEFAKT · PERSONAS & JOURNEY MAPS</div>
+        </div>
+        <div class="sticky-img" id="si3">
+          <img src="https://picsum.photos/seed/wires77/600/700">
+          <div class="sticky-img-label">ARTEFAKT · BALSAMIQ WIREFRAMES</div>
+        </div>
+        <div class="sticky-img" id="si4">
+          <img src="https://picsum.photos/seed/test88/600/700">
+          <div class="sticky-img-label">ARTEFAKT · USABILITY TEST PROTOKOLL</div>
+        </div>
+        <div class="sticky-img" id="si5">
+          <img src="https://picsum.photos/seed/finalui/600/700">
+          <div class="sticky-img-label">ARTEFAKT · FINAL DESIGN · SKETCH</div>
+        </div>
+        <div class="sticky-img" id="si6">
+          <img src="https://picsum.photos/seed/launch99/600/700">
+          <div class="sticky-img-label">OUTCOME · LAUNCH & ABNAHME</div>
+        </div>
+      </div>
+      <!-- RIGHT: scrolling content -->
+      <div class="scroll-right">
+        <div class="scroll-sec" data-img="si1">
+          <div class="ss-num">/01/ · EXPERT REVIEW</div>
+          <div class="ss-title">Analyse des Ist-Zustands</div>
+          <div class="ss-text">Ausgangspunkt war eine heuristische Evaluation des bestehenden eShops. 23 kritische Usability-Probleme wurden identifiziert — von inkonsistenter Navigation über fehlende Feedback-Mechanismen bis zu unklaren Kaufprozessen. Diese Basis bildete das Fundament für alle folgenden Designentscheidungen.</div>
+          <div class="ss-chips"><div class="ss-chip">Heuristic Evaluation</div><div class="ss-chip">Nielsen 10 Heuristics</div><div class="ss-chip">Pain Point Mapping</div></div>
+          <div class="ss-art"><div class="art-dot on"></div>Audit-Dokument · Priorisierungsmatrix</div>
+        </div>
+        <div class="scroll-sec" data-img="si2">
+          <div class="ss-num">/02/ · RESEARCH & WORKSHOPS</div>
+          <div class="ss-title">Verstehen, wer die User wirklich sind</div>
+          <div class="ss-text">In Workshops mit Stakeholdern, Project Owner und Project Lead wurden Ziele, Constraints und User-Gruppen erarbeitet. Drei Personas wurden entwickelt: der Einkäufer, der Maschinen-Admin und der Service-Techniker. User Journey Maps legten offen, wo der bestehende Prozess die Nutzer verlor — und warum.</div>
+          <div class="ss-chips"><div class="ss-chip">Stakeholder Workshops</div><div class="ss-chip">Personas</div><div class="ss-chip">Journey Mapping</div></div>
+          <div class="ss-art"><div class="art-dot on"></div>3 Personas · 2 Journey Maps · Workshop-Protokolle</div>
+        </div>
+        <div class="scroll-sec" data-img="si3">
+          <div class="ss-num">/03/ · WIREFRAMES</div>
+          <div class="ss-title">Struktur vor Ästhetik</div>
+          <div class="ss-text">Iterative Wireframe-Entwicklung in Balsamiq. Drei vollständige Review-Zyklen mit internen Fachleuten und externen Stakeholdern. Jede strukturelle Entscheidung ist begründet und dokumentiert — nicht dekorativ. Portal-Architektur, Navigation, eShop-Flow und Maschinenübersicht wurden schrittweise validiert.</div>
+          <div class="ss-chips"><div class="ss-chip">Balsamiq</div><div class="ss-chip">Lo-Fi → Mid-Fi</div><div class="ss-chip">Review-Zyklen</div></div>
+          <div class="ss-art"><div class="art-dot on"></div>Wireframe-PDFs · Annotierte Screens</div>
+        </div>
+        <div class="scroll-sec" data-img="si4">
+          <div class="ss-num">/04/ · USABILITY TESTING</div>
+          <div class="ss-title">Validieren, nicht vermuten</div>
+          <div class="ss-text">Moderierte Usability-Tests mit realen Nutzern — direkt auf den Wireframes. Ergebnisse wurden priorisiert und direkt in die Iteration eingespeist. Kein Design wurde auf Basis von Annahmen finalisiert. Kritische Flows wie der Bestellprozess und die Maschinenregistrierung wurden mehrfach getestet.</div>
+          <div class="ss-chips"><div class="ss-chip">Moderierte Tests</div><div class="ss-chip">Task-Completion</div><div class="ss-chip">Iterationszyklen</div></div>
+          <div class="ss-art"><div class="art-dot on"></div>Test-Protokolle · Iterationslog</div>
+        </div>
+        <div class="scroll-sec" data-img="si5">
+          <div class="ss-num">/05/ · FINAL DESIGN & ABNAHME</div>
+          <div class="ss-title">Vom Wireframe zum fertigen Produkt</div>
+          <div class="ss-text">Überführung in das finale UI-Design in Sketch. Vollständiges Design System mit Komponenten-Bibliothek für die Übergabe an das Dev-Team. Mehrere Abstimmungsrunden mit dem Kunden bis zur finalen Abnahme. Dev-Handoff mit Spezifikationen, Interaktionsbeschreibungen und Komponenten-Dokumentation.</div>
+          <div class="ss-chips"><div class="ss-chip">Sketch</div><div class="ss-chip">Design System</div><div class="ss-chip">Dev-Handoff</div></div>
+          <div class="ss-art"><div class="art-dot on"></div>Final Screens · Komponenten-Bibliothek</div>
+        </div>
+        <div class="scroll-sec" data-img="si6">
+          <div class="ss-num">/06/ · SCRUM & LAUNCH</div>
+          <div class="ss-title">Enge Begleitung bis zur Abnahme</div>
+          <div class="ss-text">Umsetzung im 2-Wochen-Scrum-Sprint mit einem interdisziplinären Team aus internen und externen Developern. Kontinuierliche QS, Sprint-Reviews und Design-Anpassungen bis zur finalen Kundenabnahme. PO und PL bestätigten: alle geplanten Komponenten wurden umgesetzt, die User-Akzeptanz war hoch.</div>
+          <div class="ss-chips"><div class="ss-chip">Scrum</div><div class="ss-chip">2-Wochen-Sprints</div><div class="ss-chip">QS & Abnahme</div></div>
+          <div class="ss-art"><div class="art-dot on"></div>Sprint-Dokumentation · Abnahmeprotokoll</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTCOME -->
+  <div class="outcome-sec">
+    <div class="oc-inner">
+      <div>
+        <div class="sec-tag" style="margin-bottom:12px"><span>OUTCOME</span></div>
+        <div class="sec-title" style="margin-bottom:24px">Was es<br><em>verändert hat.</em></div>
+        <div class="oc-quote">
+          <div class="oc-qt">„Besser verwendbar und schneller zum Ziel."</div>
+          <div class="oc-attr">— KUNDENFEEDBACK · GLOBALER ROBOTIKHERSTELLER · 2024</div>
+        </div>
+      </div>
+      <div class="oc-items">
+        <div class="oc-item"><div class="oc-item-l">ZENTRALES PORTAL</div><div class="oc-item-v">Nutzer melden sich einmal an und verwalten alles an einem Ort: eShop, Maschinen, Wartungen und Benefits.</div></div>
+        <div class="oc-item"><div class="oc-item-l">USER-AKZEPTANZ</div><div class="oc-item-v">Hohes positives Feedback von Endnutzern. Die Arbeitsweise wurde nach Aussage von PO und PL deutlich erleichtert.</div></div>
+        <div class="oc-item"><div class="oc-item-l">VOLLSTÄNDIGE UMSETZUNG</div><div class="oc-item-v">Alle ursprünglich als Vision definierten Komponenten wurden im Scrum-Prozess erfolgreich umgesetzt.</div></div>
+      </div>
+    </div>
+    <div class="cs-nav-row">
+      <button class="cs-nav-btn" onclick="go('home')">← ZURÜCK ZUR ÜBERSICHT</button>
+      <button class="cs-nav-btn">NÄCHSTES PROJEKT →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PROCESS ══════════ -->
+<div id="pg-process" class="page">
+  <div class="proc-hero">
+    <div class="proc-hero-inner">
+      <button class="cs-back" onclick="go('home')">← ZURÜCK</button>
+      <div class="sec-tag" style="margin-bottom:10px"><span>MY</span> PROCESS</div>
+      <div style="font-size:clamp(40px,6vw,80px);font-weight:200;letter-spacing:-.04em;line-height:1.02;margin-bottom:20px">Von Phase 0<br>bis zum <em style="font-style:normal;color:var(--acc)">Launch.</em></div>
+      <p style="font-size:15px;color:var(--text2);max-width:560px;line-height:1.78">Ich begleite Projekte vom ersten Kundengespräch bis zur finalen Implementierung — mit klarer Struktur, starker Kommunikation und nutzerzentriertem Denken in jeder Phase.</p>
+    </div>
+  </div>
+
+  <!-- PROCESS IMAGE STRIP -->
+  <div style="height:320px;overflow:hidden;background:var(--bg3)">
+    <img src="https://picsum.photos/seed/process-hero/1200/320" style="width:100%;height:100%;object-fit:cover;filter:grayscale(15%)opacity(.85)">
+  </div>
+
+  <div class="proc-steps" style="padding-top:0">
+    <div class="ps-item">
+      <div class="ps-num">/01/</div>
+      <div class="ps-left">
+        <div class="ps-phase">PHASE 0 · DISCOVERY</div>
+        <div class="ps-name">Discovery & Kick-off</div>
+        <div class="ps-text">Ich starte von Anfang an mit am Tisch — nicht erst beim ersten Wireframe. Die initiale Kundenkommunikation, Zieldefinition und das Erwartungsmanagement sind entscheidend für den Erfolg jedes Projekts. Hier werden die Grundlagen gelegt: Scope, Stakeholder, Timeline und KPIs.</div>
+      </div>
+      <div class="ps-right">
+        <div class="ps-del">Stakeholder-Interviews</div>
+        <div class="ps-del">Projektscope & Zieldefinition</div>
+        <div class="ps-del">KPI-Definition</div>
+        <div class="ps-del">Erwartungsmanagement</div>
+        <div class="ps-del">Projektsetup & Tooling</div>
+      </div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-num">/02/</div>
+      <div class="ps-left">
+        <div class="ps-phase">RESEARCH</div>
+        <div class="ps-name">Research & Analyse</div>
+        <div class="ps-text">Datenbasierte Entscheidungen statt Annahmen. Nutzerinterviews, heuristische Evaluationen, Wettbewerbsanalysen und quantitative Auswertungen bilden das Fundament. Nur wer die Nutzer und ihr Umfeld wirklich versteht, kann für sie gestalten.</div>
+      </div>
+      <div class="ps-right">
+        <div class="ps-del">Nutzerinterviews</div>
+        <div class="ps-del">Heuristic Evaluation</div>
+        <div class="ps-del">Wettbewerbsanalyse</div>
+        <div class="ps-del">Personas & Segmentierung</div>
+        <div class="ps-del">User Journey Mapping</div>
+      </div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-num">/03/</div>
+      <div class="ps-left">
+        <div class="ps-phase">ALIGNMENT</div>
+        <div class="ps-name">Workshops & Alignment</div>
+        <div class="ps-text">Kein Design ohne gemeinsames Verständnis. Workshops schaffen Konsens — zwischen Designern, Stakeholdern, Product Ownern und Entwicklern. Ich moderiere und strukturiere diese Prozesse so, dass alle Beteiligten auf einem Stand sind, bevor die erste Linie gezeichnet wird.</div>
+      </div>
+      <div class="ps-right">
+        <div class="ps-del">Design Sprint Facilitation</div>
+        <div class="ps-del">How-Might-We Sessions</div>
+        <div class="ps-del">Priorisierungs-Workshops</div>
+        <div class="ps-del">Stakeholder-Alignment</div>
+        <div class="ps-del">Ergebnis-Dokumentation</div>
+      </div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-num">/04/</div>
+      <div class="ps-left">
+        <div class="ps-phase">DESIGN</div>
+        <div class="ps-name">Wireframes & Konzept</div>
+        <div class="ps-text">Von Lo-Fi-Skizzen bis zu annotierten Mid-Fi-Wireframes. Iterative Entwicklung mit kontinuierlichen Review-Zyklen durch interne und externe Stakeholder. Jede Entscheidung ist begründet und dokumentiert — Struktur und Funktion vor visueller Ästhetik.</div>
+      </div>
+      <div class="ps-right">
+        <div class="ps-del">Lo-Fi Skizzen</div>
+        <div class="ps-del">Mid-Fi Wireframes</div>
+        <div class="ps-del">Annotierungen</div>
+        <div class="ps-del">Interne Review-Zyklen</div>
+        <div class="ps-del">Stakeholder-Feedback</div>
+      </div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-num">/05/</div>
+      <div class="ps-left">
+        <div class="ps-phase">VALIDATION</div>
+        <div class="ps-name">Testing & Iteration</div>
+        <div class="ps-text">Validieren statt vermuten. Moderierte Usability-Tests mit realen Nutzern auf Wireframe-Basis, A/B-Tests und iterative Optimierung auf Basis echter Daten. Jede Iteration ist besser als ihre Vorgängerin — weil sie auf Fakten basiert.</div>
+      </div>
+      <div class="ps-right">
+        <div class="ps-del">Moderierte Usability Tests</div>
+        <div class="ps-del">Unmoderierte Tests</div>
+        <div class="ps-del">Task-Completion-Analyse</div>
+        <div class="ps-del">Iterationszyklen</div>
+        <div class="ps-del">Testprotokolle</div>
+      </div>
+    </div>
+    <div class="ps-item">
+      <div class="ps-num">/06/</div>
+      <div class="ps-left">
+        <div class="ps-phase">DELIVERY</div>
+        <div class="ps-name">Scrum & Launch</div>
+        <div class="ps-text">Enge Zusammenarbeit mit internen und externen Developern im 2-Wochen-Scrum-Sprint. Dev-Handoff mit vollständiger Spezifikation, Komponenten-Dokumentation und Interaktionsbeschreibungen. Qualitätssicherung und Kundenabnahme bis zum finalen Launch.</div>
+      </div>
+      <div class="ps-right">
+        <div class="ps-del">Design System & Handoff</div>
+        <div class="ps-del">2-Wochen-Sprints</div>
+        <div class="ps-del">Sprint Reviews</div>
+        <div class="ps-del">QS & Abnahme</div>
+        <div class="ps-del">Launch-Begleitung</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-sec" style="margin-top:64px">
+    <div class="c-glow"></div>
+    <div class="c-inner">
+      <div class="c-h">Lass uns<br><em>zusammen</em><br>arbeiten.</div>
+      <div>
+        <div class="c-sub">Dieser Prozess ist kein starres Schema — er passt sich dem Projekt, dem Team und dem Kunden an. Was bleibt: Klarheit, Struktur und der Nutzer im Mittelpunkt.</div>
+        <a class="c-email" href="mailto:deine@email.com">deine@email.com</a>
+      </div>
+    </div>
+  </div>
+  <footer><div class="ft">© 2025 [Dein Name]®</div><div class="ft">Wien & Schweiz</div></footer>
+</div>
+
+<!-- ══════════ ABOUT ══════════ -->
+<div id="pg-about" class="page">
+  <div class="about-hero">
+    <div class="about-hero-inner">
+      <div class="ab-img-wrap">
+        <img src="https://picsum.photos/seed/portrait-ux/600/460">
+        <div class="ab-img-label">UI/UX DESIGNER & CONSULTANT</div>
+      </div>
+      <div class="ab-right">
+        <div class="ab-eyebrow">ABOUT ME</div>
+        <div class="ab-h">Der Mensch<br>hinter dem<br><em>Design.</em></div>
+        <div class="ab-bio">
+          Ich bin UI/UX Consultant mit <b>6 Jahren Erfahrung</b> im vollständigen Design-Prozess — von der strategischen Kundenberatung in Phase 0 bis zur Übergabe an interdisziplinäre Entwicklungsteams.<br><br>
+          Ausgebildet mit einem <b>Bachelor in Interaction Design</b>, geformt durch mehrere Jahre in einer <b>Wiener Digitalagentur</b>. Heute spezialisiert auf komplexe Enterprise- und B2B-Plattformen im industriellen und technischen Umfeld.<br><br>
+          Mein Anspruch: Ich designe nicht für Screens — ich designe für Menschen, die täglich mit diesen Screens arbeiten müssen.
+        </div>
+        <div class="ab-cta">
+          <button class="btn-p" onclick="go('process')">MEINEN PROZESS →</button>
+          <button class="btn-g" onclick="go('home');setTimeout(()=>document.getElementById('contact-sec').scrollIntoView({behavior:'smooth'}),100)">KONTAKT AUFNEHMEN</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDENTIALS -->
+  <div class="about-creds" style="margin:0 32px;display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border)">
+    <div class="cred-col">
+      <div class="cred-label">CREDENTIALS</div>
+      <div class="cred-row"><div class="ck">ERFAHRUNG</div><div class="cv">6+ Jahre UI/UX</div></div>
+      <div class="cred-row"><div class="ck">AUSBILDUNG</div><div class="cv">Bachelor Interaction Design</div></div>
+      <div class="cred-row"><div class="ck">HINTERGRUND</div><div class="cv">Digitalagentur Wien</div></div>
+      <div class="cred-row"><div class="ck">AKTUELLE ROLLE</div><div class="cv">UI/UX Consultant</div></div>
+      <div class="cred-row"><div class="ck">STANDORT</div><div class="cv">Wien → Schweiz</div></div>
+      <div class="cred-row"><div class="ck">SPRACHEN</div><div class="cv">Deutsch · Englisch</div></div>
+    </div>
+    <div class="cred-col" style="border-left:1px solid var(--border)">
+      <div class="cred-label">FOKUS & EXPERTISE</div>
+      <div class="cred-row"><div class="ck">BRANCHE</div><div class="cv">Enterprise B2B · Industrial</div></div>
+      <div class="cred-row"><div class="ck">STÄRKE</div><div class="cv">Phase 0 → Full UX Ownership</div></div>
+      <div class="cred-row"><div class="ck">METHODIK</div><div class="cv">Research-Led Design</div></div>
+      <div class="cred-row"><div class="ck">ENTWICKLUNG</div><div class="cv">Scrum / Agile Collaboration</div></div>
+      <div class="cred-row"><div class="ck">TOOLS</div><div class="cv">Figma · Sketch · Balsamiq</div></div>
+      <div class="cred-row"><div class="ck">VERFÜGBAR</div><div class="cv">Ab sofort · Remote & vor Ort</div></div>
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="skills-sec">
+    <div class="sk-label">METHODEN & TOOLS</div>
+    <div class="sk-tags">
+      <div class="sk-t">Figma</div><div class="sk-t">Sketch</div><div class="sk-t">Balsamiq</div>
+      <div class="sk-t">UX Research</div><div class="sk-t">Heuristic Evaluation</div>
+      <div class="sk-t">Usability Testing</div><div class="sk-t">Journey Mapping</div>
+      <div class="sk-t">Persona Development</div><div class="sk-t">Design System</div>
+      <div class="sk-t">Wireframing</div><div class="sk-t">Prototyping</div>
+      <div class="sk-t">Scrum / Agile</div><div class="sk-t">Stakeholder Management</div>
+      <div class="sk-t">Workshop Facilitation</div><div class="sk-t">Dev-Handoff</div>
+      <div class="sk-t">SAP UX</div><div class="sk-t">B2B Portal Design</div>
+    </div>
+  </div>
+
+  <!-- CLIENTS -->
+  <div class="clients-sec">
+    <div class="clients-inner">
+      <div class="sec-tag"><span>CLIENTS</span> & PROJEKTE</div>
+      <div class="sec-title" style="margin-top:6px">Ausgewählte<br><em>Kunden.</em></div>
+      <div class="client-grid">
+        <div class="client-i"><div class="client-name">Globaler Robotikhersteller</div><div class="client-cat">INDUSTRIEROBOTIK · B2B</div></div>
+        <div class="client-i"><div class="client-name">Schunk</div><div class="client-cat">GREIFTECHNIK · INDUSTRIE</div></div>
+        <div class="client-i"><div class="client-name">Index-Traub</div><div class="client-cat">MASCHINENBAU · CNC</div></div>
+        <div class="client-i"><div class="client-name">Titan Wagner</div><div class="client-cat">OBERFLÄCHENTECHNIK</div></div>
+        <div class="client-i"><div class="client-name">Enercon</div><div class="client-cat">WINDENERGIE · CLEANTECH</div></div>
+        <div class="client-i"><div class="client-name">Mapal</div><div class="client-cat">PRÄZISIONSWERKZEUGE</div></div>
+        <div class="client-i"><div class="client-name">Weitere Kunden</div><div class="client-cat">AUF ANFRAGE</div></div>
+        <div class="client-i" style="background:var(--acc-dim);cursor:pointer" onclick="go('home');setTimeout(()=>document.getElementById('contact-sec').scrollIntoView({behavior:'smooth'}),100)">
+          <div class="client-name" style="color:var(--acc)">Ihr Unternehmen?</div>
+          <div class="client-cat" style="color:var(--acc);opacity:.6">JETZT KONTAKT AUFNEHMEN →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-sec">
+    <div class="c-glow"></div>
+    <div class="c-inner">
+      <div class="c-h">Lass uns<br><em>zusammen</em><br>arbeiten.</div>
+      <div>
+        <div class="c-sub">Offen für Senior UI/UX Positionen in der Schweiz. Wenn du ein Team aufbaust, das ganzheitliches UX-Denken von Phase 0 an schätzt — meld dich direkt.</div>
+        <a class="c-email" href="mailto:deine@email.com">deine@email.com</a>
+        <div class="c-socials">
+          <a class="c-soc" href="#">LINKEDIN</a>
+          <a class="c-soc" href="#">DRIBBBLE</a>
+          <a class="c-soc" href="#">BEHANCE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><div class="ft">© 2025 [Dein Name]® — UI/UX Designer & Consultant</div><div class="ft">Wien & Schweiz · Remote</div></footer>
+</div>
+
+<script>
+// ── PAGE ROUTING ──
+function go(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('pg-'+page).classList.add('active');
+  window.scrollTo(0,0);
+  document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('on'));
+  const map={home:0,case:0,process:1,about:2};
+  if(map[page]!==undefined) document.querySelectorAll('.nav-link')[map[page]]?.classList.add('on');
+}
+
+// ── CURSOR HOVER IMAGE ──
+const hov=document.getElementById('hov');
+const hovImg=document.getElementById('hov-img');
+let mx=0,my=0,cx=0,cy=0,raf;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+function lerp(a,b,t){return a+(b-a)*t}
+function animHov(){cx=lerp(cx,mx,0.12);cy=lerp(cy,my,0.12);hov.style.left=(cx+24)+'px';hov.style.top=(cy-95)+'px';raf=requestAnimationFrame(animHov)}
+animHov();
+function showHov(e,src){hovImg.src=src;hov.classList.add('show')}
+function hideHov(){hov.classList.remove('show')}
+
+// ── STICKY SCROLL INTERSECTION ──
+function initSticky(){
+  const sections=document.querySelectorAll('.scroll-sec');
+  if(!sections.length)return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        const imgId=en.target.dataset.img;
+        document.querySelectorAll('.sticky-img').forEach(i=>i.classList.remove('on'));
+        if(imgId)document.getElementById(imgId)?.classList.add('on');
+      }
+    });
+  },{threshold:.5,rootMargin:'-20% 0px -20% 0px'});
+  sections.forEach(s=>obs.observe(s));
+}
+// init on case page open
+const origGo=go;
+window.go=function(page){origGo(page);if(page==='case')setTimeout(initSticky,100)};
+
+// ── HERO CANVAS ANIMATION ──
+(function(){
+  const cv=document.getElementById('heroCanvas');
+  if(!cv)return;
+  const ctx=cv.getContext('2d');
+  const R=200,G=57,B=43;
+  let W,H,nodes,frame=0,focusIdx=0;
+  const CYCLE=320;
+
+  const LAYOUT=[
+    [.12,.14],[.42,.08],[.76,.16],[.94,.38],
+    [.06,.46],[.35,.42],[.66,.40],[.90,.62],
+    [.20,.72],[.50,.66],[.80,.80],[.55,.28],[.28,.52]
+  ];
+
+  function resize(){
+    W=cv.offsetWidth;H=cv.offsetHeight;
+    cv.width=W;cv.height=H;
+    nodes=LAYOUT.map(([px,py])=>({
+      x:px*W,y:py*H,bx:px*W,by:py*H,
+      vx:(Math.random()-.5)*.32,vy:(Math.random()-.5)*.32,f:0
+    }));
+  }
+
+  const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
+  const lerp=(a,b,t)=>a+(b-a)*t;
+  const ac=(a)=>`rgba(${R},${G},${B},${a})`;
+  const gc=(a)=>`rgba(165,160,153,${a})`;
+
+  function pairs(){
+    const out=[];
+    const maxD=Math.min(W,H)*.35;
+    for(let i=0;i<nodes.length;i++)
+      for(let j=i+1;j<nodes.length;j++){
+        const dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y;
+        if(dx*dx+dy*dy<maxD*maxD)out.push([i,j]);
+      }
+    return out;
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    if(!nodes||!W)return;
+
+    const t=(frame%CYCLE)/CYCLE;
+    let fp;
+    if(t<.12)fp=ease(t/.12);
+    else if(t<.72)fp=1;
+    else if(t<.92)fp=ease(1-(t-.72)/.20);
+    else fp=0;
+
+    if(frame%CYCLE===0&&frame>0){
+      focusIdx=(focusIdx+1)%nodes.length;
+    }
+
+    nodes.forEach((n,i)=>{
+      n.f=i===focusIdx?fp:0;
+      n.x+=n.vx+(n.bx-n.x)*.005;
+      n.y+=n.vy+(n.by-n.y)*.005;
+      if(n.x<6||n.x>W-6)n.vx*=-1;
+      if(n.y<6||n.y>H-6)n.vy*=-1;
+    });
+
+    // connections
+    pairs().forEach(([i,j])=>{
+      const ni=nodes[i],nj=nodes[j];
+      const isFoc=i===focusIdx||j===focusIdx;
+      ctx.beginPath();ctx.moveTo(ni.x,ni.y);ctx.lineTo(nj.x,nj.y);
+      ctx.strokeStyle=isFoc?ac(lerp(.1,.55,fp)):gc(.14);
+      ctx.lineWidth=isFoc?lerp(.5,1.8,fp):.5;
+      ctx.stroke();
+    });
+
+    // nodes
+    nodes.forEach((n,i)=>{
+      const isFoc=i===focusIdx;
+      const r=isFoc?lerp(3.5,9,n.f):3.5;
+      const dim=fp>.25&&!isFoc;
+
+      if(isFoc&&n.f>.05){
+        // pulse rings
+        for(let k=0;k<3;k++){
+          const p=((frame+k*22)%66)/66;
+          const rr=lerp(r+5,r+28,p);
+          ctx.beginPath();ctx.arc(n.x,n.y,rr,0,Math.PI*2);
+          ctx.strokeStyle=ac(lerp(.28,0,p)*n.f);
+          ctx.lineWidth=lerp(1.2,.4,p);ctx.stroke();
+        }
+
+        // rotating scan arc
+        if(n.f>.35){
+          const a0=(frame*.048)%(Math.PI*2);
+          const arcR=r+11;
+          // glow sweep
+          ctx.beginPath();ctx.arc(n.x,n.y,arcR,a0,a0+Math.PI*.7);
+          ctx.strokeStyle=ac(.65*n.f);ctx.lineWidth=2;
+          ctx.lineCap='round';ctx.stroke();
+          // softer trailing arc
+          ctx.beginPath();ctx.arc(n.x,n.y,arcR,a0+Math.PI*.7,a0+Math.PI*1.3);
+          ctx.strokeStyle=ac(.18*n.f);ctx.lineWidth=1;ctx.stroke();
+          ctx.lineCap='butt';
+        }
+
+        // radial tick marks
+        if(n.f>.55){
+          const d=r+14;
+          for(let k=0;k<8;k++){
+            const angle=(k/8)*Math.PI*2;
+            const len=k%2===0?6:4;
+            ctx.beginPath();
+            ctx.moveTo(n.x+Math.cos(angle)*d,n.y+Math.sin(angle)*d);
+            ctx.lineTo(n.x+Math.cos(angle)*(d+len),n.y+Math.sin(angle)*(d+len));
+            ctx.strokeStyle=ac(.45*n.f);ctx.lineWidth=1;ctx.stroke();
+          }
+        }
+
+        // data readout lines (right side of node)
+        if(n.f>.6){
+          const ox=r+16,oy=-10;
+          [[28,1.4],[18,.9],[24,.9]].forEach(([w,lw],k)=>{
+            // animate in: stagger
+            const a=Math.max(0,Math.min(1,(n.f-.6)/.3-k*.15))*.65;
+            ctx.beginPath();
+            ctx.moveTo(n.x+ox,n.y+oy+k*9);
+            ctx.lineTo(n.x+ox+w,n.y+oy+k*9);
+            ctx.strokeStyle=ac(a);ctx.lineWidth=lw;ctx.stroke();
+          });
+          // small label dot
+          ctx.beginPath();ctx.arc(n.x+ox-4,n.y+oy-4,1.5,0,Math.PI*2);
+          ctx.fillStyle=ac(.5*n.f);ctx.fill();
+        }
+
+        // crosshair lines (very faint)
+        if(n.f>.7){
+          const cl=r+20;
+          [[1,0],[0,1],[-1,0],[0,-1]].forEach(([dx,dy])=>{
+            ctx.beginPath();
+            ctx.moveTo(n.x+dx*(r+2),n.y+dy*(r+2));
+            ctx.lineTo(n.x+dx*cl,n.y+dy*cl);
+            ctx.strokeStyle=ac(.2*n.f);ctx.lineWidth=.8;ctx.stroke();
+          });
+        }
+      }
+
+      // node body
+      ctx.beginPath();ctx.arc(n.x,n.y,r,0,Math.PI*2);
+      if(isFoc){
+        ctx.fillStyle=ac(lerp(.2,1,n.f));ctx.fill();
+      } else {
+        const a=dim?lerp(.5,.18,fp):.55;
+        ctx.fillStyle=gc(a*.35);ctx.fill();
+        ctx.strokeStyle=gc(a);ctx.lineWidth=.8;ctx.stroke();
+      }
+    });
+
+    frame++;
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize',resize);
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>User Intelligence Platform · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d4ac9d52-70b7-46c2-97d8-7d6bae20b094") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("a7506fbe-1d2c-4f9d-8e2d-0c2904d1dd01") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("d4ac9d52-70b7-46c2-97d8-7d6bae20b094") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("a7506fbe-1d2c-4f9d-8e2d-0c2904d1dd01") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("d4ac9d52-70b7-46c2-97d8-7d6bae20b094") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("a7506fbe-1d2c-4f9d-8e2d-0c2904d1dd01") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("d4ac9d52-70b7-46c2-97d8-7d6bae20b094") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("a7506fbe-1d2c-4f9d-8e2d-0c2904d1dd01") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("f0fa9b6f-2a55-4edb-bf35-1b4ffb8201e9") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("07eee3a2-e12f-4ca7-8b93-255459cd4b19") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("236658cb-e453-4b3a-96d6-3f2521cab5d9") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("30f74332-bf1e-408d-bffc-b91e19b57d21") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("6716d086-c713-4b7b-8bd7-4507ef31dd12") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("1f261e1a-674b-4ba8-b237-9bfd81c801b3") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("f0fa9b6f-2a55-4edb-bf35-1b4ffb8201e9") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("07eee3a2-e12f-4ca7-8b93-255459cd4b19") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("236658cb-e453-4b3a-96d6-3f2521cab5d9") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("30f74332-bf1e-408d-bffc-b91e19b57d21") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("6716d086-c713-4b7b-8bd7-4507ef31dd12") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("1f261e1a-674b-4ba8-b237-9bfd81c801b3") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>/* =========================================================
+   Portfolio · Shared Design System
+   Senior UI/UX · Multi-page · Contentful-inflected
+   ========================================================= */
+
+:root{
+  /* Color */
+  --bg:#FFFFFF;
+  --bg-2:#EEF0F6;
+  --card:#FFFFFF;
+  --ink:#0A0A0A;
+  --ink-2:#4A4A4A;
+  --ink-3:#8A8A8A;
+  --ink-4:#C2C2C2;
+  --rule:#ECEAE3;
+  --rule-2:#F4F2EC;
+  --tag-bg:#F1EFE8;
+
+  /* Accent — electric blue */
+  --accent:#1F50FF;
+  --accent-hov:#163FCC;
+  --accent-soft:#E8EEFF;
+  --accent-tint:#F4F6FF;
+
+  /* State */
+  --ok:#2E8B5F;
+  --warn:#C08A3B;
+
+  /* Type */
+  --sans:"DM Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+  /* Spacing */
+  --s-xs:4px; --s-sm:8px; --s-md:12px; --s-lg:16px; --s-xl:24px;
+  --s-2xl:32px; --s-3xl:48px; --s-4xl:72px; --s-5xl:120px;
+
+  /* Geometry */
+  --radius-sm:4px;
+  --radius:8px;
+  --radius-lg:16px;
+  --container:1240px;
+
+  /* Motion */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --t-fast:150ms;
+  --t-base:250ms;
+  --t-slow:400ms;
+
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(10,10,10,.04), 0 1px 0 rgba(10,10,10,.02);
+  --shadow:0 4px 16px -4px rgba(10,10,10,.06), 0 1px 2px rgba(10,10,10,.04);
+  --shadow-lg:0 20px 50px -16px rgba(10,10,10,.14), 0 4px 12px -2px rgba(10,10,10,.06);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums;
+}
+body{min-height:100vh}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ===== Layout ===== */
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--s-xl)}
+.container-wide{max-width:1440px;margin:0 auto;padding:0 var(--s-xl)}
+@media (max-width:720px){
+  .container,.container-wide{padding:0 var(--s-lg)}
+}
+
+/* ===== Utility ===== */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.eyebrow::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+.eyebrow.muted{color:var(--ink-3)}
+.eyebrow.muted::before{background:var(--ink-3)}
+
+.label-mono{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+
+.section{padding:var(--s-5xl) 0}
+.section-sm{padding:var(--s-4xl) 0}
+.section-tight{padding:var(--s-3xl) 0}
+@media (max-width:780px){
+  .section{padding:var(--s-3xl) 0}
+  .section-sm{padding:var(--s-2xl) 0}
+  .section-tight{padding:var(--s-xl) 0}
+}
+
+.h1{font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance}
+.h2{font-size:clamp(30px,4vw,52px);line-height:1.05;letter-spacing:-.022em;font-weight:500;text-wrap:balance}
+.h3{font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.015em;font-weight:500}
+.h4{font-size:clamp(18px,1.8vw,22px);line-height:1.25;letter-spacing:-.01em;font-weight:600}
+.lede{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:54ch}
+.body-lg{font-size:17px;line-height:1.65;color:var(--ink-2)}
+
+.kicker{color:var(--accent)}
+.muted{color:var(--ink-3)}
+
+/* ===== NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),background .25s var(--ease);
+}
+.nav.scrolled{
+  border-bottom-color:var(--rule);
+  background:rgba(255,255,255,.95);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);padding:16px 0;max-width:var(--container);margin:0 auto;padding-left:var(--s-xl);padding-right:var(--s-xl)}
+@media (max-width:720px){.nav-inner{padding-left:var(--s-lg);padding-right:var(--s-lg)}}
+
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:-.012em;color:var(--ink)}
+.brand-logo{height:22px;width:auto;display:block}
+.brand-mark{
+  width:28px;height:28px;border-radius:7px;
+  background:var(--ink);
+  position:relative;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:var(--mono);font-size:13px;font-weight:600;
+}
+.brand-mark::after{
+  content:"";position:absolute;top:5px;right:5px;
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+
+.nav-center{display:flex;gap:var(--s-2xl);align-items:center}
+
+/* ===== BURGER + MOBILE NAV ===== */
+.nav-burger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;background:transparent;border:none;cursor:pointer;
+  padding:8px;border-radius:8px;flex-shrink:0;
+  transition:background var(--t-fast);
+  position:relative;z-index:80;
+}
+.nav-burger:hover{background:var(--tag-bg)}
+.nav-burger span{
+  display:block;width:100%;height:1.5px;background:var(--ink);border-radius:2px;
+  transform-origin:center;
+  transition:transform .28s var(--ease), opacity .2s, width .25s var(--ease);
+}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;width:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media (max-width:780px){.nav-burger{display:flex}.nav-center{display:none}.nav-right .btn{display:none}.nav-right .nav-state{display:none}}
+
+.nav-mobile{
+  position:fixed;inset:0;z-index:70;
+  background:rgba(255,255,255,.98);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:0;
+  opacity:0;pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.nav-mobile.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nm-links{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  width:100%;max-width:360px;
+  border-top:1px solid var(--rule);
+}
+.nm-link{
+  display:block;width:100%;text-align:center;
+  padding:20px var(--s-xl);
+  font-size:28px;font-weight:500;letter-spacing:-.02em;color:var(--ink);
+  border-bottom:1px solid var(--rule);
+  transition:color var(--t-fast) var(--ease),background var(--t-fast) var(--ease);
+}
+.nm-link:hover{color:var(--accent);background:var(--accent-tint)}
+.nm-link.active{color:var(--accent)}
+.nm-footer{
+  margin-top:var(--s-2xl);
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--s-md);
+}
+@media (min-width:781px){.nav-mobile{display:none!important}}
+.nav-link{
+  font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);
+  padding:8px 4px;letter-spacing:-.005em;
+  transition:color var(--t-fast) var(--ease);
+  position:relative;
+}
+.nav-link:hover{color:var(--ink)}
+.nav-link.active{color:var(--ink)}
+.nav-link.active::after{
+  content:"";position:absolute;left:4px;right:4px;bottom:0;
+  height:2px;background:var(--accent);border-radius:1px;
+}
+
+.nav-right{display:flex;align-items:center;gap:var(--s-md)}
+.nav-state{
+  display:none;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+@media (min-width:900px){.nav-state{display:inline-flex}}
+.nav-state .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 0 0 rgba(46,139,95,.4);animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(46,139,95,.4)}
+  70%{box-shadow:0 0 0 6px rgba(46,139,95,0)}
+  100%{box-shadow:0 0 0 0 rgba(46,139,95,0)}
+}
+
+@media (max-width:780px){
+  .nav-center{display:none}
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  padding:11px 18px;border-radius:999px;
+  background:var(--ink);color:#fff;
+  transition:background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  cursor:pointer;line-height:1;
+}
+.btn:hover{background:#222}
+.btn .arr{transition:transform var(--t-fast) var(--ease);font-size:15px}
+.btn:hover .arr{transform:translateX(4px)}
+
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hov)}
+
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn-ghost:hover{background:#fff;border-color:var(--ink-3)}
+
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn-lg{padding:14px 22px;font-size:15px}
+
+.link-arrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  color:var(--accent);
+  transition:color var(--t-fast) var(--ease);
+}
+.link-arrow .arr{transition:transform var(--t-fast) var(--ease)}
+.link-arrow:hover{color:var(--accent-hov)}
+.link-arrow:hover .arr{transform:translateX(4px)}
+
+/* ===== TAGS / CHIPS ===== */
+.tag{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-2);
+  background:var(--tag-bg);padding:5px 9px;border-radius:999px;
+}
+.tag-accent{background:var(--accent-soft);color:var(--accent)}
+.tag-outline{background:transparent;border:1px solid var(--rule);color:var(--ink-2)}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:var(--s-2xl);
+  transition:transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+.card-hov:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-lg);
+  border-color:#dcdad3;
+}
+
+/* ===== HERO blocks ===== */
+.hero{padding:var(--s-5xl) 0 var(--s-4xl);position:relative}
+.hero-meta{
+  display:flex;gap:var(--s-xl);flex-wrap:wrap;margin-bottom:var(--s-2xl);
+}
+.hero-meta-item{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+.hero-meta-item b{color:var(--ink);font-weight:500}
+
+/* ===== FOOTER ===== */
+.foot{
+  border-top:1px solid var(--rule);
+  margin-top:var(--s-5xl);
+  padding:var(--s-3xl) 0 var(--s-xl);
+  background:var(--bg);
+}
+.foot-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--s-2xl);
+  margin-bottom:var(--s-3xl);
+}
+@media (max-width:900px){
+  .foot-grid{grid-template-columns:1fr 1fr;gap:var(--s-xl)}
+}
+@media (max-width:520px){
+  .foot-grid{grid-template-columns:1fr}
+}
+.foot-col h5{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  margin-bottom:var(--s-md);
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col a{
+  font-size:14px;color:var(--ink-2);transition:color var(--t-fast) var(--ease);
+}
+.foot-col a:hover{color:var(--ink)}
+.foot-statement{
+  font-size:17px;line-height:1.45;letter-spacing:-.01em;color:var(--ink);
+  max-width:32ch;font-weight:500;margin-bottom:var(--s-lg);
+}
+.foot-bot{
+  display:flex;justify-content:space-between;align-items:center;gap:var(--s-lg);
+  flex-wrap:wrap;padding-top:var(--s-xl);border-top:1px solid var(--rule);
+}
+.foot-bot,.foot-bot a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.foot-bot a:hover{color:var(--ink)}
+.foot-bot .left{display:flex;gap:var(--s-lg);flex-wrap:wrap;align-items:center}
+
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease), transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .nav-state .dot{animation:none}
+}
+
+/* ===== Text Line Reveal ===== */
+.text-reveal .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.text-reveal .line-inner{display:block;transform:translateY(115%);transition:transform .85s cubic-bezier(.16,1,.3,1);will-change:transform}
+.text-reveal.in .line-inner{transform:translateY(0)}
+.text-reveal .line:nth-child(1) .line-inner{transition-delay:.1s}
+.text-reveal .line:nth-child(2) .line-inner{transition-delay:.18s}
+.text-reveal .line:nth-child(3) .line-inner{transition-delay:.26s}
+.text-reveal .line:nth-child(4) .line-inner{transition-delay:.34s}
+.text-reveal .line:nth-child(5) .line-inner{transition-delay:.42s}
+@media(prefers-reduced-motion:reduce){.text-reveal .line-inner{transform:none;transition:none}}
+
+/* ===== Common section heads ===== */
+.section-head{
+  display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);
+  align-items:end;margin-bottom:var(--s-3xl);
+}
+@media (max-width:720px){
+  .section-head{grid-template-columns:1fr}
+}
+.section-head .ev{margin-bottom:var(--s-md)}
+.section-head .aside{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7;
+}
+.section-head .aside b{color:var(--ink);font-weight:500}
+@media (max-width:720px){
+  .section-head .aside{text-align:left}
+}
+
+/* ===== Worklist (numbered, used on Home + Work) ===== */
+.worklist{border-top:1px solid var(--ink);margin-top:var(--s-lg)}
+.work-row{
+  display:grid;
+  grid-template-columns:56px 1.7fr 1fr auto auto;
+  gap:var(--s-xl);
+  align-items:center;
+  padding:var(--s-xl) 0;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+  transition:padding var(--t-base) var(--ease);
+  cursor:pointer;
+}
+.work-row:hover{padding-left:var(--s-md)}
+.wi-ix{font-family:var(--mono);font-size:13px;color:var(--ink-3);font-weight:500;letter-spacing:.04em}
+.wi-title{font-size:clamp(20px,2.2vw,28px);font-weight:500;letter-spacing:-.012em;line-height:1.15;color:var(--ink);text-wrap:balance}
+.wi-client{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;font-weight:500}
+.wi-tags{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.wi-year{font-family:var(--mono);font-size:13px;color:var(--ink-3);letter-spacing:.04em}
+.wi-arr{font-family:var(--mono);font-size:18px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease)}
+.work-row:hover .wi-arr{transform:translateX(6px);color:var(--accent)}
+.work-row:hover .wi-title{color:var(--ink)}
+@media (max-width:780px){
+  .work-row{grid-template-columns:36px 1fr auto;gap:var(--s-md)}
+  .wi-tags,.wi-year{display:none}
+}
+
+/* ===== Page header (for sub-pages) ===== */
+.pagehead{
+  padding:var(--s-5xl) 0 var(--s-3xl);
+  border-bottom:1px solid var(--rule);
+}
+.pagehead .ev{margin-bottom:var(--s-md)}
+.pagehead h1{margin-bottom:var(--s-md)}
+.pagehead p{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:60ch}
+
+/* ===== Subtle pattern (disabled — white bg) ===== */
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:transparent;
+}
+
+/* ===== Mobile: inline panel images in sticky-scroll steps ===== */
+.step .mob-panel-img{display:none}
+@media(max-width:900px){
+  .sticky-left{display:none !important}
+  .step .mob-panel-img{
+    display:block;width:100%;border-radius:var(--radius-lg);overflow:hidden;
+    background:var(--card);border:1px solid var(--rule);margin-bottom:var(--s-lg);line-height:0;
+  }
+  .step .mob-panel-img img,
+  .step .mob-panel-img video{width:100%;display:block;object-fit:cover;object-position:center top;max-height:280px}
+}
+</style>
+<style>
+  /* ── Uses global blue accent ── */
+  :root{
+    --violet-grad:linear-gradient(110deg,#1a3fcc 0%,#1F50FF 55%,#2b5fff 100%);
+  }
+
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:18ch;margin-bottom:var(--s-xl)}
+  .case-hero h1 .kic{color:var(--accent)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:62ch}
+
+  .hero-art{background:#0d0b18;border:1px solid var(--rule);border-radius:var(--radius-lg);aspect-ratio:16/9;overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow-lg)}
+  .hero-art video{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  /* ── Problem / Insight narrative ── */
+  .narr{padding:var(--s-5xl) 0 var(--s-3xl)}
+  .narr-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start}
+  @media(max-width:860px){.narr-grid{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .narr-block .ev{margin-bottom:var(--s-md)}
+  .narr-block h2{font-size:clamp(26px,3vw,38px);font-weight:500;letter-spacing:-.018em;line-height:1.1;margin-bottom:var(--s-lg);max-width:16ch}
+  .narr-block p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:50ch}
+  .narr-block p+p{margin-top:var(--s-md)}
+  .narr-block p b{color:var(--ink);font-weight:500}
+  .narr-questions{margin-top:var(--s-xl);display:flex;flex-direction:column;gap:var(--s-sm)}
+  .narr-q{font-size:16px;line-height:1.4;color:var(--ink);font-weight:500;padding:var(--s-md) var(--s-lg);background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:var(--radius)}
+  .narr-q span{color:var(--ink-3);font-weight:400}
+
+  /* ── From / To transformation ── */
+  .shift{padding:var(--s-3xl) 0 var(--s-5xl)}
+  .shift-head{text-align:center;margin-bottom:var(--s-2xl)}
+  .shift-head .ev{margin-bottom:var(--s-md)}
+  .shift-head h2{margin:0 auto;max-width:20ch}
+  .shift-rows{max-width:920px;margin:0 auto;border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;background:var(--card)}
+  .shift-row{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--s-xl);align-items:center;padding:var(--s-xl) var(--s-2xl);border-bottom:1px solid var(--rule)}
+  .shift-row:last-child{border-bottom:none}
+  @media(max-width:640px){.shift-row{grid-template-columns:1fr;gap:var(--s-sm);text-align:center}}
+  .shift-from{font-size:16px;color:var(--ink-3);text-align:right;line-height:1.4}
+  @media(max-width:640px){.shift-from{text-align:center}}
+  .shift-arrow{font-family:var(--mono);color:var(--accent);font-size:18px}
+  .shift-to{font-size:17px;color:var(--ink);font-weight:500;line-height:1.4;letter-spacing:-.01em}
+
+  /* ── Chapter head ── */
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-xl);text-align:center}
+  @media(max-width:780px){.chapter-head{padding:var(--s-3xl) 0 var(--s-md)}}
+  .chapter-head .ev{margin-bottom:var(--s-md)}
+  .chapter-head h2{margin:0 auto;max-width:20ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:56ch;margin:var(--s-lg) auto 0}
+
+  /* ── Sticky scroll walkthrough ── */
+  .sticky-wrap{height:600vh;padding-bottom:0}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+
+  .sticky-left{height:auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:1061/1104;max-height:calc(100vh - 220px);background:#eceaf4;border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease)}
+  .panel.visible{opacity:1}
+  .panel img{width:100%;height:100%;object-fit:contain;display:block}
+
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:16.6%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:900px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;min-height:0}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px);transition-delay:0s}
+  @media(max-width:900px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-md);max-width:22ch}
+  .step p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .step p+p{margin-top:var(--s-md)}
+  .step .ss-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-lg)}
+
+  /* ── Four pillars ── */
+  .pillars{padding:var(--s-4xl) 0}
+  .pillars-banner{background:var(--violet-grad);border-radius:var(--radius-lg);padding:var(--s-2xl) var(--s-3xl);display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);margin-bottom:var(--s-2xl);color:#fff;flex-wrap:wrap}
+  .pillars-banner h3{font-size:clamp(22px,2.6vw,30px);font-weight:600;letter-spacing:-.015em;margin-bottom:6px}
+  .pillars-banner p{font-size:14px;color:rgba(255,255,255,.78);font-family:var(--mono);letter-spacing:.04em}
+  .pillars-banner .count{flex-shrink:0;text-align:center;border:1px solid rgba(255,255,255,.3);border-radius:var(--radius);padding:var(--s-md) var(--s-xl);background:rgba(255,255,255,.1)}
+  .pillars-banner .count .n{font-size:40px;font-weight:600;line-height:1;letter-spacing:-.02em}
+  .pillars-banner .count .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:4px}
+  .pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-lg)}
+  @media(max-width:900px){.pillar-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.pillar-grid{grid-template-columns:1fr}}
+  .pillar{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-xl);border-top:3px solid var(--accent);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .pillar:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .pillar .pn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .pillar h4{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:var(--s-sm)}
+  .pillar p{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+
+  /* ── Maturity feature spotlight ── */
+  .spotlight{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .spot-inner{display:grid;grid-template-columns:1fr 1.25fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.spot-inner{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .spot-copy .ev{margin-bottom:var(--s-md)}
+  .spot-copy h2{font-size:clamp(26px,3vw,40px);font-weight:500;letter-spacing:-.018em;line-height:1.08;margin-bottom:var(--s-lg);max-width:16ch}
+  .spot-copy p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .spot-copy p+p{margin-top:var(--s-md)}
+  .spot-dims{margin-top:var(--s-xl);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-md)}
+  @media(max-width:520px){.spot-dims{grid-template-columns:1fr}}
+  .spot-dim{padding:var(--s-md) var(--s-lg);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius)}
+  .spot-dim .dt{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
+  .spot-dim .dd{font-size:12.5px;color:var(--ink-3);line-height:1.4}
+  .spot-img{border-radius:var(--radius-lg);overflow:hidden;background:#eceaf4;border:1px solid var(--rule);box-shadow:var(--shadow-lg);line-height:0}
+  .spot-img img{width:100%;display:block}
+
+  /* ── Feature grid ── */
+  .features{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.feat-grid{grid-template-columns:1fr}}
+  .feat{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-xl);position:relative;overflow:hidden;border-left:3px solid var(--accent);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .feat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .feat .fk{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .feat h4{font-size:17px;font-weight:600;letter-spacing:-.008em;margin-bottom:var(--s-sm);line-height:1.2}
+  .feat p{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+
+  /* ── Showcase imagery ── */
+  .showcase{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:780px){.showcase-grid{grid-template-columns:1fr}}
+  .sc-cell{border-radius:var(--radius-lg);overflow:hidden;background:#eceaf4;border:1px solid var(--rule);line-height:0}
+  .sc-cell img{width:100%;display:block;object-fit:cover;object-position:center top}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* ── Walkthrough video ── */
+  .walkthrough{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .wt-main{margin-top:var(--s-3xl);border-radius:var(--radius-lg);overflow:hidden;background:#0d0b18;border:1px solid var(--rule);line-height:0;box-shadow:var(--shadow-lg)}
+  .wt-main video{width:100%;display:block;max-height:660px;object-fit:contain;background:#0d0b18}
+  .wt-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* ── Design philosophy ── */
+  .philo{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .philo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:900px){.philo-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.philo-grid{grid-template-columns:1fr}}
+  .philo-card{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-xl)}
+  .philo-card .pk{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .philo-card h4{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--s-sm)}
+  .philo-card p{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+
+  /* ── Outcome / opportunity ── */
+  .outcome{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .quote-block{background:var(--accent-tint);border:1px solid var(--accent-soft);border-radius:var(--radius-lg);padding:var(--s-3xl);text-align:center;max-width:880px;margin:0 auto}
+  .quote-mark{font-size:48px;line-height:1;color:var(--accent);margin-bottom:var(--s-md)}
+  .quote-text{font-size:clamp(22px,2.8vw,34px);line-height:1.25;letter-spacing:-.015em;font-weight:500;color:var(--ink);max-width:24ch;margin:0 auto var(--s-lg);text-wrap:balance}
+  .quote-cite{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+
+  .opp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:900px){.opp-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.opp-grid{grid-template-columns:1fr}}
+  .opp{padding:var(--s-xl);border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--card)}
+  .opp .ot{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.008em}
+  .opp p{font-size:13px;line-height:1.55;color:var(--ink-2)}
+
+  /* ── Next case ── */
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+
+  /* ── Mobile: concept images above each step ── */
+  @media(max-width:900px){
+    .step .mob-panel-img{
+      background:#eceaf4;
+      box-shadow:var(--shadow);
+    }
+    .step .mob-panel-img img{
+      object-fit:contain;
+      max-height:360px;
+    }
+  }
+</style>
+
+
+
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="../assets/images/case-uip-01.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="work.html">Work</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state"><span class="dot"></span>Available · 2026</span>
+      <a class="btn btn-sm btn-accent" href="contact.html">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="work.html">Work</a>
+        <span class="sep">/</span>
+        <span>Internal Innovation</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)">User Intelligence Platform</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s">Case Study · Product Strategy &amp; UX Concept</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner">From static personas to</span></span>
+        <span class="line"><span class="line-inner"><span class="kic">living AI research</span></span></span>
+        <span class="line"><span class="line-inner"><span class="kic">companions.</span> A concept.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.35s">Personas are powerful but most die in a shared drive. The User Intelligence Platform replaces frozen PDF documents with interactive, data-driven personas teams can actually talk to: ask questions, test concepts, and watch them grow more precise with every interview and analytics import.</p>
+
+      <div class="hero-art reveal" style="transition-delay:.45s">
+        <video src="../assets/videos/case-uip-08.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+      </div>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l">Project</div><div class="v">User Intelligence Platform</div></div>
+        <div class="meta-cell"><div class="l">Type</div><div class="v">Product Strategy &amp; UX</div></div>
+        <div class="meta-cell"><div class="l">Role</div><div class="v">UX Strategy · Concept</div></div>
+        <div class="meta-cell"><div class="l">Context</div><div class="v">Internal Innovation</div></div>
+        <div class="meta-cell"><div class="l">Domain</div><div class="v">AI · Research · SaaS</div></div>
+        <div class="meta-cell"><div class="l">Deliverable</div><div class="v">Platform Concept</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROBLEM / INSIGHT -->
+  <section class="narr" data-screen-label="02 Problem &amp; Insight">
+    <div class="container">
+      <div class="narr-grid">
+
+        <div class="narr-block">
+          <span class="eyebrow ev">The Problem</span>
+          <h2>Personas are powerful. But they're broken.</h2>
+          <p>Every UX team knows the ritual: weeks of workshops, a beautifully designed PDF, a launch presentation, and then nothing. The document lands in a shared drive, gets referenced once or twice, then the market shifts and the persona quietly becomes fiction.</p>
+          <p>The core issue is <b>structural, not motivational</b>. Traditional personas are static by nature. They capture a moment in time. They cannot respond to new data, cannot be questioned, do not learn, and are disconnected from the day-to-day decisions teams actually make.</p>
+          <div class="narr-questions">
+            <div class="narr-q"><span>“</span>Would this user click on this call-to-action?<span>”</span></div>
+            <div class="narr-q"><span>“</span>How would she react to this onboarding flow?<span>”</span></div>
+            <div class="narr-q"><span>“</span>Does this feature solve a real problem, or an assumed one?<span>”</span></div>
+          </div>
+        </div>
+
+        <div class="narr-block">
+          <span class="eyebrow ev">The Insight</span>
+          <h2>The gap isn't in the data. It's in the dialogue.</h2>
+          <p>Most organisations already have fragments of user knowledge scattered across their systems: analytics dashboards, customer interviews, support tickets, usability recordings, surveys. The problem isn't a lack of data. It's a lack of <b>synthesis, accessibility, and interactivity</b>.</p>
+          <p>So what if a persona could speak? Instead of reading a document <em>about</em> your user, you could have a conversation <em>with</em> them. Ask directly, test hypotheses in real time, watch how they respond to a new concept, a revised copy line, a restructured journey.</p>
+          <p>That single shift, from documentation to dialogue, is the foundational insight behind the platform.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FROM / TO -->
+  <section class="shift" data-screen-label="03 The Shift">
+    <div class="container">
+      <div class="shift-head">
+        <span class="eyebrow ev">The Concept</span>
+        <h2 class="h2">Three shifts the platform enables.</h2>
+      </div>
+      <div class="shift-rows">
+        <div class="shift-row">
+          <div class="shift-from">Static PDF document</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to">Living, conversational AI persona</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-from">Assumed user behaviour</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to">Simulated responses based on real data</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-from">One-time research artefact</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to">Continuously evolving intelligence layer</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-from">“Do we need UX?”</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to">“How do we get our personas to 100%?”</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALKTHROUGH — STICKY SCROLL -->
+  <section data-screen-label="04 Concept Walkthrough">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="eyebrow ev">/04 · Concept Material</span>
+        <h2 class="h2">Walk through the platform concept.</h2>
+        <p>Six concept screens translate the strategy into a tangible product, from the intelligence engine to the live persona chat. Scroll to step through each.</p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY VISUAL STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+            <div class="panel visible" data-panel="1"><img src="../assets/images/case-uip-06.webp" alt="System Architecture · AI Intelligence Engine &amp; four input pillars"></div>
+            <div class="panel" data-panel="2"><img src="../assets/images/case-uip-02.webp" alt="Maturity Index · completeness scoring &amp; growth path"></div>
+            <div class="panel" data-panel="3"><img src="../assets/images/case-uip-07.webp" alt="Data Flow · how research enriches persona intelligence"></div>
+            <div class="panel" data-panel="4"><img src="../assets/images/case-uip-03.webp" alt="Platform User Journey · from zero to full user intelligence"></div>
+            <div class="panel" data-panel="5"><img src="../assets/images/case-uip-04.webp" alt="Feature Architecture · full feature map"></div>
+            <div class="panel" data-panel="6"><img src="../assets/images/case-uip-05.webp" alt="Persona Chat Interface · conversational research companion"></div>
+          </div>
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label">System Architecture</span>
+            <span class="pc-prog" id="pc-prog">01 / 06</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="prog"></div></div>
+        </div>
+
+        <!-- RIGHT — SCROLLING STEPS -->
+        <div class="sticky-right">
+
+          <div class="step active" data-label="System Architecture">
+            <span class="ss-num">/01 · Architecture</span>
+            <h3>An AI engine fed by four data pillars.</h3>
+            <p>At the core sits an intelligence engine that synthesises four input layers: <b>Persona DNA</b> (the interpretive profile), <b>Real Voices</b> (qualitative depth), <b>Behavioural Scale</b> (quantitative validation), and the <b>Business Lens</b> (organisational context).</p>
+            <p>The same user data means different things in different contexts, so the engine weights signals adaptively, flags contradictions, and improves with every new input rather than overstating certainty when data is thin.</p>
+            <div class="ss-tags">
+              <span class="tag">Persona DNA</span><span class="tag">Real Voices</span>
+              <span class="tag">Behavioural Scale</span><span class="tag tag-accent">Business Lens</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Maturity Index">
+            <span class="ss-num">/02 · Trust Model</span>
+            <h3>A 0–100% score that makes research quality visible.</h3>
+            <p>How do you tell a CMO their personas are built on assumptions, without making them defensive? You make the gap concrete. The Maturity Index scores each persona across <b>data depth, recency, confidence, and behavioural reach</b>.</p>
+            <p>Seeing a persona at 42% triggers a fundamentally different response than “we could do more research.” It turns an abstract methodology argument into a practical question: <b>what gets us from 42% to 80%?</b></p>
+            <div class="ss-tags">
+              <span class="tag">4-dimension model</span><span class="tag">Recency decay</span>
+              <span class="tag tag-accent">Gap-driven</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Data Flow">
+            <span class="ss-num">/03 · Data Flow</span>
+            <h3>Every research source raises the confidence.</h3>
+            <p>A first-draft persona from brand signals alone is assumption-based (20–30%). Add interview transcripts and responses become voice-anchored (45–60%). Layer in analytics and it's behaviourally validated (65–80%). Usability tests push it to simulation-ready (85–100%).</p>
+            <p>Qualitative depth tells you <em>why</em>; quantitative breadth tells you <em>how many</em> and <em>how often</em>. The flow makes that progression measurable and honest.</p>
+            <div class="ss-tags">
+              <span class="tag">Brand extraction</span><span class="tag">Qualitative analysis</span>
+              <span class="tag tag-accent">Behavioural validation</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Platform User Journey">
+            <span class="ss-num">/04 · Journey</span>
+            <h3>Value on day one. Compounding from there.</h3>
+            <p>Enter a website URL and industry, and the platform generates 5–8 personas in under five minutes. Converse immediately, value before any research is added. Then enrichment, automated artefacts, and a continuously living research asset.</p>
+            <p>The platform <b>rewards investment incrementally</b> rather than demanding a large upfront commitment before returning anything useful.</p>
+            <div class="ss-tags">
+              <span class="tag">5 min to first persona</span><span class="tag">Progressive value</span>
+              <span class="tag tag-accent">No upfront research</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Feature Architecture">
+            <span class="ss-num">/05 · Feature Map</span>
+            <h3>The full capability surface.</h3>
+            <p>Auto-persona generation, conversational chat, the Maturity Index, an interview analysis engine, automated UX artefacts, content &amp; concept testing, analytics integration and multi-user workspaces, organised across core, intelligence, output and platform layers.</p>
+            <p>Each capability is grounded in the same principle: <b>responses come from real data, not a language model's generic assumptions.</b></p>
+            <div class="ss-tags">
+              <span class="tag">Auto-generation</span><span class="tag">UX artefacts</span>
+              <span class="tag">Analytics</span><span class="tag tag-accent">Workspaces</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Persona Chat Interface">
+            <span class="ss-num">/06 · Persona Chat</span>
+            <h3>Talk to your user, with evidence behind every word.</h3>
+            <p>Ask the persona a direct question and get a contextually grounded answer. Every message carries a confidence indicator: <b>high, medium or low</b>, and cites whether it's validated across interviews or still assumption-based.</p>
+            <p>It's a research model, not a chatbot: it refuses confident responses when data is insufficient, and flags exactly which interview question would close the gap most efficiently.</p>
+            <div class="ss-tags">
+              <span class="tag">Confidence-flagged</span><span class="tag">Context-aware</span>
+              <span class="tag tag-accent">Grounded responses</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section class="features" data-screen-label="07 Features">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:0">
+        <div>
+          <span class="eyebrow ev">/07 · Key Features</span>
+          <h2 class="h3">What the platform enables.</h2>
+        </div>
+        <div class="aside"><b>Core · Intelligence · Output · Platform</b><br>Eight capabilities</div>
+      </div>
+
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="fk">Core · Interaction</div>
+          <h4>Conversational Persona Chat</h4>
+          <p>Ask behavioural questions, test concepts, simulate reactions. Responses grounded in real data — “Would you buy this at this price?” “Where would you drop off?”</p>
+        </div>
+        <div class="feat">
+          <div class="fk">Output · Artefacts</div>
+          <h4>Automated UX Artefacts</h4>
+          <p>Journey Maps, Empathy Maps and Jobs-to-be-Done frameworks generated directly from persona data. Days of workshop facilitation become a starting point in minutes.</p>
+        </div>
+        <div class="feat">
+          <div class="fk">Intelligence · Quality</div>
+          <h4>Confidence Scoring per Attribute</h4>
+          <p>Every attribute carries a confidence indicator. Profile-only traits flag as low-confidence assumptions; multi-source traits as high-confidence insights. Radical transparency.</p>
+        </div>
+        <div class="feat">
+          <div class="fk">Intelligence · Research</div>
+          <h4>Interview Gap Detection</h4>
+          <p>Based on the current profile and data, the platform suggests which interview questions would most efficiently close the remaining gaps, turning the index into a planning tool.</p>
+        </div>
+        <div class="feat">
+          <div class="fk">Output · Validation</div>
+          <h4>Website &amp; Content Simulation</h4>
+          <p>Test marketing copy, landing pages and onboarding flows against a persona. The AI evaluates alignment with known motivations, concerns and communication preferences.</p>
+        </div>
+        <div class="feat">
+          <div class="fk">Platform · Collaboration</div>
+          <h4>Multi-User Workspaces</h4>
+          <p>Personas as shared organisational assets, accessible across product, marketing, sales and development, with role-based permissions for editing and research contribution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN PHILOSOPHY -->
+  <section class="philo" data-screen-label="10 Philosophy">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:0">
+        <div>
+          <span class="eyebrow ev">/10 · Design Philosophy</span>
+          <h2 class="h3">Principles that shaped every decision.</h2>
+        </div>
+      </div>
+      <div class="philo-grid">
+        <div class="philo-card">
+          <div class="pk">Honesty</div>
+          <h4>Transparency over confidence</h4>
+          <p>Every persona is only as good as its data. Rather than presenting AI output as ground truth, the platform surfaces uncertainty explicitly. The maturity index and confidence scores are core, not add-ons.</p>
+        </div>
+        <div class="philo-card">
+          <div class="pk">Interaction</div>
+          <h4>Dialogue over documentation</h4>
+          <p>This isn't a persona-builder with a “generate PDF” button at the end. Every feature is built around the idea that the most valuable thing you can do with a persona is ask it questions.</p>
+        </div>
+        <div class="philo-card">
+          <div class="pk">Value</div>
+          <h4>Progressive value delivery</h4>
+          <p>Genuine value on day one. A basic profile, no research needed, that compounds with every interview, integration and test. Reward investment incrementally, don't demand it upfront.</p>
+        </div>
+        <div class="philo-card">
+          <div class="pk">Growth</div>
+          <h4>Research as a growth mechanic</h4>
+          <p>The value of research is made visible not through abstract argument but through measurable improvement. Every interview moves the index. the most honest demonstration of why research matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME / OPPORTUNITY -->
+  <section class="outcome" data-screen-label="11 Opportunity">
+    <div class="container">
+      <div class="quote-block">
+        <div class="quote-mark">“</div>
+        <div class="quote-text">Most personas die in shared drives. This one keeps learning.</div>
+        <div class="quote-cite">— Concept Narrative · User Intelligence Platform</div>
+      </div>
+
+      <div class="section-head" style="margin:var(--s-5xl) 0 0">
+        <div>
+          <span class="eyebrow ev">The Broader Opportunity</span>
+          <h2 class="h3">User intelligence as a shared resource.</h2>
+        </div>
+        <div class="aside" style="max-width:30ch"><b>Research becomes continuous.</b><br>Personas become organisational assets, not project deliverables.</div>
+      </div>
+
+      <div class="opp-grid">
+        <div class="opp"><div class="ot">Product</div><p>Sanity-check feature decisions against real user data before a line of code is written.</p></div>
+        <div class="opp"><div class="ot">Marketing</div><p>Test messaging alignment with persona motivations before a campaign launches.</p></div>
+        <div class="opp"><div class="ot">Sales</div><p>Understand which persona types are underserved by the current product.</p></div>
+        <div class="opp"><div class="ot">Customer Success</div><p>Identify friction patterns before they become churn signals.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT CASE -->
+  <section class="next-case" data-screen-label="12 Next Case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)">More projects</p>
+      <div class="next-links">
+        <a href="case-wagner.html">
+          <div>
+            <div class="lbl">Case Study</div>
+            <div class="nm">Wagner · eShop &amp; Titan Tools</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-index.html">
+          <div>
+            <div class="lbl">Case Study</div>
+            <div class="nm">INDEX-TRAUB · iXworld Portal</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col">
+        <h5>Pages</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span>© 2026 Johannes Reichard</span>
+      </div>
+      <span>Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html">Home</a>
+    <a class="nm-link" href="work.html">Work</a>
+    <a class="nm-link" href="about.html">About</a>
+    <a class="nm-link" href="contact.html">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="contact.html">Get in touch →</a>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
+
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+
+  const steps      = document.querySelectorAll('.step');
+  const panels     = document.querySelectorAll('.panel');
+  const prog       = document.getElementById('prog');
+  const pcNum      = document.getElementById('pc-num');
+  const pcLabel    = document.getElementById('pc-label');
+  const pcProg     = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total      = steps.length;
+  let lastIdx = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector(`.panel[data-panel="${idx + 1}"]`);
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)    prog.style.width = pct + '%';
+    if(pcNum)   pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.textContent = steps[idx]?.dataset.label || '';
+    if(pcProg)  pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / 0' + total;
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 900){ activateIdx(0); return; }
+      const rect  = stickyWrap.getBoundingClientRect();
+      const sH    = stickyWrap.offsetHeight;
+      const vH    = window.innerHeight;
+      const range = sH - vH;
+      if(range <= 0) return;
+      const scrolled = Math.max(0, Math.min(range, -rect.top));
+      const progress = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script src="../assets/js/case-uip-09.js"></script>
+
+
+
+</body></html>

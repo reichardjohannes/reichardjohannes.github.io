@@ -1,0 +1,1575 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>ENERCON Customer Portal · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("422d193c-81e4-4020-b18d-e1e5e2fb2bda") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("14c13ed2-b643-441c-a86b-d75504da7650") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("422d193c-81e4-4020-b18d-e1e5e2fb2bda") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("14c13ed2-b643-441c-a86b-d75504da7650") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("422d193c-81e4-4020-b18d-e1e5e2fb2bda") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("14c13ed2-b643-441c-a86b-d75504da7650") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("422d193c-81e4-4020-b18d-e1e5e2fb2bda") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("14c13ed2-b643-441c-a86b-d75504da7650") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("7b096424-405f-44c4-9f1c-7c295a1d8626") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("b8af8642-c007-4d33-b186-05708064c0bb") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("6eacbaa8-3963-4afa-94e6-5f28bf1a980c") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("efaaae2b-7457-4a4c-98a6-9d792dad0ac0") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("c8bc524a-aee9-495f-bf14-fc51df568183") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("6136306c-4e54-4eb3-ab8a-042d64f40608") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("7b096424-405f-44c4-9f1c-7c295a1d8626") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("b8af8642-c007-4d33-b186-05708064c0bb") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("6eacbaa8-3963-4afa-94e6-5f28bf1a980c") format('woff2');
+  unicode-range: U+0370-0377, U+037A-037F, U+0384-038A, U+038C, U+038E-03A1, U+03A3-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("efaaae2b-7457-4a4c-98a6-9d792dad0ac0") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("c8bc524a-aee9-495f-bf14-fc51df568183") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("6136306c-4e54-4eb3-ab8a-042d64f40608") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+<style>/* =========================================================
+   Portfolio · Shared Design System
+   Senior UI/UX · Multi-page · Contentful-inflected
+   ========================================================= */
+
+:root{
+  /* Color */
+  --bg:#FFFFFF;
+  --bg-2:#EEF0F6;
+  --card:#FFFFFF;
+  --ink:#0A0A0A;
+  --ink-2:#4A4A4A;
+  --ink-3:#8A8A8A;
+  --ink-4:#C2C2C2;
+  --rule:#ECEAE3;
+  --rule-2:#F4F2EC;
+  --tag-bg:#F1EFE8;
+
+  /* Accent — electric blue */
+  --accent:#1F50FF;
+  --accent-hov:#163FCC;
+  --accent-soft:#E8EEFF;
+  --accent-tint:#F4F6FF;
+
+  /* State */
+  --ok:#2E8B5F;
+  --warn:#C08A3B;
+
+  /* Type */
+  --sans:"DM Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+
+  /* Spacing */
+  --s-xs:4px; --s-sm:8px; --s-md:12px; --s-lg:16px; --s-xl:24px;
+  --s-2xl:32px; --s-3xl:48px; --s-4xl:72px; --s-5xl:120px;
+
+  /* Geometry */
+  --radius-sm:4px;
+  --radius:8px;
+  --radius-lg:16px;
+  --container:1240px;
+
+  /* Motion */
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --t-fast:150ms;
+  --t-base:250ms;
+  --t-slow:400ms;
+
+  /* Shadow */
+  --shadow-sm:0 1px 2px rgba(10,10,10,.04), 0 1px 0 rgba(10,10,10,.02);
+  --shadow:0 4px 16px -4px rgba(10,10,10,.06), 0 1px 2px rgba(10,10,10,.04);
+  --shadow-lg:0 20px 50px -16px rgba(10,10,10,.14), 0 4px 12px -2px rgba(10,10,10,.06);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  font-variant-numeric:tabular-nums;
+}
+body{min-height:100vh}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+/* ===== Layout ===== */
+.container{max-width:var(--container);margin:0 auto;padding:0 var(--s-xl)}
+.container-wide{max-width:1440px;margin:0 auto;padding:0 var(--s-xl)}
+@media (max-width:720px){
+  .container,.container-wide{padding:0 var(--s-lg)}
+}
+
+/* ===== Utility ===== */
+.eyebrow{
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--accent);font-weight:500;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.eyebrow::before{
+  content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+.eyebrow.muted{color:var(--ink-3)}
+.eyebrow.muted::before{background:var(--ink-3)}
+
+.label-mono{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+
+.section{padding:var(--s-5xl) 0}
+.section-sm{padding:var(--s-4xl) 0}
+.section-tight{padding:var(--s-3xl) 0}
+@media (max-width:780px){
+  .section{padding:var(--s-3xl) 0}
+  .section-sm{padding:var(--s-2xl) 0}
+  .section-tight{padding:var(--s-xl) 0}
+}
+
+.h1{font-size:clamp(40px,6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance}
+.h2{font-size:clamp(30px,4vw,52px);line-height:1.05;letter-spacing:-.022em;font-weight:500;text-wrap:balance}
+.h3{font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.015em;font-weight:500}
+.h4{font-size:clamp(18px,1.8vw,22px);line-height:1.25;letter-spacing:-.01em;font-weight:600}
+.lede{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:54ch}
+.body-lg{font-size:17px;line-height:1.65;color:var(--ink-2)}
+
+.kicker{color:var(--accent)}
+.muted{color:var(--ink-3)}
+
+/* ===== NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(255,255,255,.82);
+  backdrop-filter:saturate(140%) blur(10px);
+  -webkit-backdrop-filter:saturate(140%) blur(10px);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),background .25s var(--ease);
+}
+.nav.scrolled{
+  border-bottom-color:var(--rule);
+  background:rgba(255,255,255,.95);
+}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);padding:16px 0;max-width:var(--container);margin:0 auto;padding-left:var(--s-xl);padding-right:var(--s-xl)}
+@media (max-width:720px){.nav-inner{padding-left:var(--s-lg);padding-right:var(--s-lg)}}
+
+.brand{display:flex;align-items:center;gap:12px;font-family:var(--sans);font-weight:600;font-size:16px;letter-spacing:-.012em;color:var(--ink)}
+.brand-logo{height:22px;width:auto;display:block}
+.brand-mark{
+  width:28px;height:28px;border-radius:7px;
+  background:var(--ink);
+  position:relative;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-family:var(--mono);font-size:13px;font-weight:600;
+}
+.brand-mark::after{
+  content:"";position:absolute;top:5px;right:5px;
+  width:6px;height:6px;border-radius:50%;background:var(--accent);
+}
+
+.nav-center{display:flex;gap:var(--s-2xl);align-items:center}
+
+/* ===== BURGER + MOBILE NAV ===== */
+.nav-burger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;background:transparent;border:none;cursor:pointer;
+  padding:8px;border-radius:8px;flex-shrink:0;
+  transition:background var(--t-fast);
+  position:relative;z-index:80;
+}
+.nav-burger:hover{background:var(--tag-bg)}
+.nav-burger span{
+  display:block;width:100%;height:1.5px;background:var(--ink);border-radius:2px;
+  transform-origin:center;
+  transition:transform .28s var(--ease), opacity .2s, width .25s var(--ease);
+}
+.nav-burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.nav-burger.open span:nth-child(2){opacity:0;width:0}
+.nav-burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+@media (max-width:780px){.nav-burger{display:flex}.nav-center{display:none}.nav-right .btn{display:none}.nav-right .nav-state{display:none}}
+
+.nav-mobile{
+  position:fixed;inset:0;z-index:70;
+  background:rgba(255,255,255,.98);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  gap:0;
+  opacity:0;pointer-events:none;
+  transform:translateY(-8px);
+  transition:opacity .3s var(--ease), transform .3s var(--ease);
+}
+.nav-mobile.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.nm-links{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  width:100%;max-width:360px;
+  border-top:1px solid var(--rule);
+}
+.nm-link{
+  display:block;width:100%;text-align:center;
+  padding:20px var(--s-xl);
+  font-size:28px;font-weight:500;letter-spacing:-.02em;color:var(--ink);
+  border-bottom:1px solid var(--rule);
+  transition:color var(--t-fast) var(--ease),background var(--t-fast) var(--ease);
+}
+.nm-link:hover{color:var(--accent);background:var(--accent-tint)}
+.nm-link.active{color:var(--accent)}
+.nm-footer{
+  margin-top:var(--s-2xl);
+  text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:var(--s-md);
+}
+@media (min-width:781px){.nav-mobile{display:none!important}}
+.nav-link{
+  font-family:var(--sans);font-size:14px;font-weight:500;color:var(--ink-2);
+  padding:8px 4px;letter-spacing:-.005em;
+  transition:color var(--t-fast) var(--ease);
+  position:relative;
+}
+.nav-link:hover{color:var(--ink)}
+.nav-link.active{color:var(--ink)}
+.nav-link.active::after{
+  content:"";position:absolute;left:4px;right:4px;bottom:0;
+  height:2px;background:var(--accent);border-radius:1px;
+}
+
+.nav-right{display:flex;align-items:center;gap:var(--s-md)}
+.nav-state{
+  display:none;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+@media (min-width:900px){.nav-state{display:inline-flex}}
+.nav-state .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--ok);
+  box-shadow:0 0 0 0 rgba(46,139,95,.4);animation:pulse 2.4s var(--ease) infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(46,139,95,.4)}
+  70%{box-shadow:0 0 0 6px rgba(46,139,95,0)}
+  100%{box-shadow:0 0 0 0 rgba(46,139,95,0)}
+}
+
+@media (max-width:780px){
+  .nav-center{display:none}
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  padding:11px 18px;border-radius:999px;
+  background:var(--ink);color:#fff;
+  transition:background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+  cursor:pointer;line-height:1;
+}
+.btn:hover{background:#222}
+.btn .arr{transition:transform var(--t-fast) var(--ease);font-size:15px}
+.btn:hover .arr{transform:translateX(4px)}
+
+.btn-accent{background:var(--accent);color:#fff}
+.btn-accent:hover{background:var(--accent-hov)}
+
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--rule)}
+.btn-ghost:hover{background:#fff;border-color:var(--ink-3)}
+
+.btn-sm{padding:8px 14px;font-size:13px}
+.btn-lg{padding:14px 22px;font-size:15px}
+
+.link-arrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:var(--sans);font-size:14px;font-weight:500;letter-spacing:-.005em;
+  color:var(--accent);
+  transition:color var(--t-fast) var(--ease);
+}
+.link-arrow .arr{transition:transform var(--t-fast) var(--ease)}
+.link-arrow:hover{color:var(--accent-hov)}
+.link-arrow:hover .arr{transform:translateX(4px)}
+
+/* ===== TAGS / CHIPS ===== */
+.tag{
+  display:inline-flex;align-items:center;
+  font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;
+  text-transform:uppercase;color:var(--ink-2);
+  background:var(--tag-bg);padding:5px 9px;border-radius:999px;
+}
+.tag-accent{background:var(--accent-soft);color:var(--accent)}
+.tag-outline{background:transparent;border:1px solid var(--rule);color:var(--ink-2)}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+  padding:var(--s-2xl);
+  transition:transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+.card-hov:hover{
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-lg);
+  border-color:#dcdad3;
+}
+
+/* ===== HERO blocks ===== */
+.hero{padding:var(--s-5xl) 0 var(--s-4xl);position:relative}
+.hero-meta{
+  display:flex;gap:var(--s-xl);flex-wrap:wrap;margin-bottom:var(--s-2xl);
+}
+.hero-meta-item{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+}
+.hero-meta-item b{color:var(--ink);font-weight:500}
+
+/* ===== FOOTER ===== */
+.foot{
+  border-top:1px solid var(--rule);
+  margin-top:var(--s-5xl);
+  padding:var(--s-3xl) 0 var(--s-xl);
+  background:var(--bg);
+}
+.foot-grid{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:var(--s-2xl);
+  margin-bottom:var(--s-3xl);
+}
+@media (max-width:900px){
+  .foot-grid{grid-template-columns:1fr 1fr;gap:var(--s-xl)}
+}
+@media (max-width:520px){
+  .foot-grid{grid-template-columns:1fr}
+}
+.foot-col h5{
+  font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  margin-bottom:var(--s-md);
+}
+.foot-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.foot-col a{
+  font-size:14px;color:var(--ink-2);transition:color var(--t-fast) var(--ease);
+}
+.foot-col a:hover{color:var(--ink)}
+.foot-statement{
+  font-size:17px;line-height:1.45;letter-spacing:-.01em;color:var(--ink);
+  max-width:32ch;font-weight:500;margin-bottom:var(--s-lg);
+}
+.foot-bot{
+  display:flex;justify-content:space-between;align-items:center;gap:var(--s-lg);
+  flex-wrap:wrap;padding-top:var(--s-xl);border-top:1px solid var(--rule);
+}
+.foot-bot,.foot-bot a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-3);
+}
+.foot-bot a:hover{color:var(--ink)}
+.foot-bot .left{display:flex;gap:var(--s-lg);flex-wrap:wrap;align-items:center}
+
+/* ===== Reveal ===== */
+.reveal{opacity:0;transform:translateY(10px);transition:opacity .6s var(--ease), transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  .nav-state .dot{animation:none}
+}
+
+/* ===== Text Line Reveal ===== */
+.text-reveal .line{display:block;overflow:hidden;padding-bottom:.12em;margin-bottom:-.12em}
+.text-reveal .line-inner{display:block;transform:translateY(115%);transition:transform .85s cubic-bezier(.16,1,.3,1);will-change:transform}
+.text-reveal.in .line-inner{transform:translateY(0)}
+.text-reveal .line:nth-child(1) .line-inner{transition-delay:.1s}
+.text-reveal .line:nth-child(2) .line-inner{transition-delay:.18s}
+.text-reveal .line:nth-child(3) .line-inner{transition-delay:.26s}
+.text-reveal .line:nth-child(4) .line-inner{transition-delay:.34s}
+.text-reveal .line:nth-child(5) .line-inner{transition-delay:.42s}
+@media(prefers-reduced-motion:reduce){.text-reveal .line-inner{transform:none;transition:none}}
+
+/* ===== Common section heads ===== */
+.section-head{
+  display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);
+  align-items:end;margin-bottom:var(--s-3xl);
+}
+@media (max-width:720px){
+  .section-head{grid-template-columns:1fr}
+}
+.section-head .ev{margin-bottom:var(--s-md)}
+.section-head .aside{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7;
+}
+.section-head .aside b{color:var(--ink);font-weight:500}
+@media (max-width:720px){
+  .section-head .aside{text-align:left}
+}
+
+/* ===== Worklist (numbered, used on Home + Work) ===== */
+.worklist{border-top:1px solid var(--ink);margin-top:var(--s-lg)}
+.work-row{
+  display:grid;
+  grid-template-columns:56px 1.7fr 1fr auto auto;
+  gap:var(--s-xl);
+  align-items:center;
+  padding:var(--s-xl) 0;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+  transition:padding var(--t-base) var(--ease);
+  cursor:pointer;
+}
+.work-row:hover{padding-left:var(--s-md)}
+.wi-ix{font-family:var(--mono);font-size:13px;color:var(--ink-3);font-weight:500;letter-spacing:.04em}
+.wi-title{font-size:clamp(20px,2.2vw,28px);font-weight:500;letter-spacing:-.012em;line-height:1.15;color:var(--ink);text-wrap:balance}
+.wi-client{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:4px;font-weight:500}
+.wi-tags{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.wi-year{font-family:var(--mono);font-size:13px;color:var(--ink-3);letter-spacing:.04em}
+.wi-arr{font-family:var(--mono);font-size:18px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease), color var(--t-fast) var(--ease)}
+.work-row:hover .wi-arr{transform:translateX(6px);color:var(--accent)}
+.work-row:hover .wi-title{color:var(--ink)}
+@media (max-width:780px){
+  .work-row{grid-template-columns:36px 1fr auto;gap:var(--s-md)}
+  .wi-tags,.wi-year{display:none}
+}
+
+/* ===== Page header (for sub-pages) ===== */
+.pagehead{
+  padding:var(--s-5xl) 0 var(--s-3xl);
+  border-bottom:1px solid var(--rule);
+}
+.pagehead .ev{margin-bottom:var(--s-md)}
+.pagehead h1{margin-bottom:var(--s-md)}
+.pagehead p{font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:var(--ink-2);max-width:60ch}
+
+/* ===== Subtle pattern (disabled — white bg) ===== */
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:transparent;
+}
+
+/* ===== Mobile: inline panel images in sticky-scroll steps ===== */
+.step .mob-panel-img{display:none}
+@media(max-width:900px){
+  .sticky-left{display:none !important}
+  .step .mob-panel-img{
+    display:block;width:100%;border-radius:var(--radius-lg);overflow:hidden;
+    background:var(--card);border:1px solid var(--rule);margin-bottom:var(--s-lg);line-height:0;
+  }
+  .step .mob-panel-img img,
+  .step .mob-panel-img video{width:100%;display:block;object-fit:cover;object-position:center top;max-height:280px}
+}
+</style>
+<style>
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:18ch;margin-bottom:var(--s-xl)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:60ch}
+
+  .hero-art{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);aspect-ratio:16/9;overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow)}
+  .hero-art img,.hero-art video{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  @media(max-width:520px){.meta-cell:nth-child(odd){border-right:1px solid var(--rule)}.meta-cell:nth-child(even){border-right:none}.meta-cell{border-bottom:1px solid var(--rule)!important}.meta-cell:nth-last-child(-n+2){border-bottom:none!important}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  .cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-2xl)}
+  @media(max-width:900px){.cr-grid{grid-template-columns:1fr}}
+  .cr-cell{padding:var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  .cr-cell .ev{margin-bottom:var(--s-md)}
+  .cr-cell h3{font-size:18px;font-weight:600;letter-spacing:-.005em;margin-bottom:var(--s-sm)}
+  .cr-cell p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .cr-cell p b{color:var(--ink);font-weight:500}
+
+  /* ===== Section scaffolding ===== */
+  .sec-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;display:block;margin-bottom:var(--s-lg)}
+  .sec-h{font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.022em;font-weight:500;margin-bottom:var(--s-lg)}
+
+  .sec-intro{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:62ch}
+
+  /* Challenge */
+  .challenge{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:880px){.pain-grid{grid-template-columns:1fr}}
+  .pain{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .pain .pn{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-lg)}
+  .pain h4{font-size:18px;font-weight:600;letter-spacing:-.008em;margin-bottom:var(--s-sm)}
+  .pain p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+
+  /* Research */
+  .research{padding:var(--s-4xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .steps-strip{display:grid;grid-template-columns:repeat(5,1fr);margin-top:var(--s-3xl);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;background:var(--card)}
+  @media(max-width:880px){.steps-strip{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps-strip{grid-template-columns:1fr}}
+  .step-cell{padding:var(--s-xl);border-right:1px solid var(--rule);position:relative}
+  .step-cell:last-child{border-right:none}
+  @media(max-width:880px){.step-cell{border-bottom:1px solid var(--rule)}}
+  .step-cell .sk{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .step-cell h5{font-size:15px;font-weight:600;letter-spacing:-.006em;margin-bottom:6px}
+  .step-cell p{font-size:13px;line-height:1.5;color:var(--ink-3)}
+
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-lg)}
+  @media(max-width:880px){.insight-grid{grid-template-columns:1fr}}
+  .insight{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:var(--radius);padding:var(--s-xl) var(--s-2xl)}
+  .insight .iw{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .insight q{display:block;font-size:16px;line-height:1.5;color:var(--ink);font-style:italic;letter-spacing:-.006em;margin-bottom:var(--s-md);quotes:"\201C" "\201D"}
+  .insight .ir{font-size:13px;line-height:1.5;color:var(--ink-3)}
+  .insight .ir b{color:var(--ink-2);font-weight:500}
+
+  /* IA */
+  .ia{padding:var(--s-5xl) 0}
+  .ia-tree{margin-top:var(--s-3xl);border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--card);padding:var(--s-3xl) var(--s-2xl) var(--s-2xl)}
+  .ia-root{display:inline-flex;flex-direction:column;background:var(--accent);color:#fff;border-radius:var(--radius);padding:var(--s-md) var(--s-xl);margin-bottom:var(--s-xl)}
+  .ia-root .t{font-size:15px;font-weight:600;letter-spacing:-.006em}
+  .ia-root .s{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:3px}
+  .ia-branches{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-lg);border-top:1px solid var(--rule);padding-top:var(--s-xl)}
+  @media(max-width:880px){.ia-branches{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.ia-branches{grid-template-columns:1fr}}
+  .ia-col .node{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius);padding:11px 14px;font-size:14px;font-weight:500;color:var(--ink);margin-bottom:8px}
+  .ia-col .leaf{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);padding:8px 14px;border:1px dashed var(--rule);border-radius:var(--radius);margin-bottom:6px;text-transform:uppercase}
+
+  /* Chapter head */
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-md);text-align:left}
+  .chapter-head .sec-h{margin:0;max-width:20ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:56ch;margin:var(--s-lg) 0 0}
+
+  /* ===== Sticky scroll process (Design Derivation) ===== */
+  .sticky-wrap{height:300vh}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:920px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .sticky-left{display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:4/3;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease)}
+  .panel.visible{opacity:1}
+  .panel svg{width:100%;height:100%;display:block}
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:33%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:920px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px)}
+  @media(max-width:920px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,30px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-lg);max-width:22ch}
+  .rat{display:flex;flex-direction:column;gap:var(--s-md);max-width:50ch}
+  .rat-item{display:grid;grid-template-columns:22px 1fr;gap:var(--s-md);align-items:start}
+  .rat-num{width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .rat-item .rt b{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.006em}
+  .rat-item .rt span{display:block;font-size:14px;line-height:1.55;color:var(--ink-2);margin-top:2px}
+
+  /* ===== Six decisions ===== */
+  .decisions{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .dec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:920px){.dec-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.dec-grid{grid-template-columns:1fr}}
+  .dec{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column}
+  .dec-head{background:var(--accent);color:#fff;padding:var(--s-lg) var(--s-xl)}
+  .dec-head .dl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:6px}
+  .dec-head h4{font-size:17px;font-weight:600;letter-spacing:-.008em;line-height:1.25}
+  .dec-body{padding:var(--s-xl);display:flex;flex-direction:column;gap:var(--s-lg)}
+  .dec-row .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+  .dec-row.prob .k::before{content:"";width:10px;height:2px;background:#C0463B;border-radius:2px}
+  .dec-row.dec-d .k::before{content:"";width:10px;height:2px;background:var(--accent);border-radius:2px}
+  .dec-row p{font-size:14px;line-height:1.55;color:var(--ink-2)}
+
+  /* ===== Showcase ===== */
+  .showcase{padding:var(--s-5xl) 0}
+  .sc-poster{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0;margin-top:var(--s-3xl);box-shadow:var(--shadow)}
+  .sc-poster img{width:100%;display:block}
+  .sc-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-lg)}
+  @media(max-width:780px){.sc-row{grid-template-columns:1fr}}
+  .sc-cell{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-cell img{width:100%;display:block}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* ===== Walkthrough ===== */
+  .walk{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .walk-main{border-radius:var(--radius-lg);overflow:hidden;background:#0A1410;border:1px solid var(--rule);line-height:0;margin-top:var(--s-2xl);box-shadow:var(--shadow)}
+  .walk-main video{width:100%;display:block;max-height:660px;object-fit:contain;background:#0A1410}
+
+  /* ===== Critical path ===== */
+  .flow{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .flow-track{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:var(--s-3xl)}
+  .flow-node{flex:1;min-width:120px;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:var(--s-lg);text-align:left}
+  .flow-node.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .flow-node.start{background:var(--accent-soft);border-color:var(--accent-soft)}
+  .flow-node .fn{font-size:15px;font-weight:600;letter-spacing:-.008em;margin-bottom:4px}
+  .flow-node .fd{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
+  .flow-node.on .fd{color:rgba(255,255,255,.7)}
+  .flow-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--mono);color:var(--ink-4);font-size:18px;padding:0 6px}
+  @media(max-width:780px){.flow-node{flex:1 1 100%}.flow-arrow{transform:rotate(90deg);padding:8px 0}}
+  .flow-foot{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);margin-top:var(--s-3xl);padding:var(--s-2xl) var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  @media(max-width:780px){.flow-foot{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .flow-foot h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-lg)}
+  .flow-foot ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .flow-foot li{padding-left:22px;position:relative;font-size:14px;line-height:1.55;color:var(--ink-2)}
+  .flow-foot li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .flow-foot .ruled li::before{background:var(--ink-4)}
+  .flow-foot li b{color:var(--ink);font-weight:600}
+
+  /* ===== Reflections ===== */
+  .reflect{padding:var(--s-5xl) 0}
+  .reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start;margin-top:var(--s-2xl)}
+  @media(max-width:780px){.reflect-grid{grid-template-columns:1fr;gap:var(--s-xl)}}
+  .reflect-grid h3{font-size:22px;font-weight:600;letter-spacing:-.012em;margin-bottom:var(--s-lg)}
+  .reflect-grid ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .reflect-grid li{padding-left:24px;position:relative;font-size:15px;line-height:1.6;color:var(--ink-2)}
+  .reflect-grid li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .reflect-grid li b{color:var(--ink);font-weight:600}
+
+  /* Next case */
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+</style>
+
+
+
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="../assets/images/case-enercon-01.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="work.html">Work</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state"><span class="dot"></span>Available · 2026</span>
+      <a class="btn btn-sm btn-accent" href="contact.html">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb reveal" aria-label="Breadcrumb">
+        <a href="work.html">Work</a>
+        <span class="sep">/</span>
+        <span>ENERCON</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)">Customer Portal</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s">Case Study · 2025 – 2026</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner">Redesigning the</span></span>
+        <span class="line"><span class="line-inner">operator portal for</span></span>
+        <span class="line"><span class="line-inner">wind‑park monitoring</span></span>
+        <span class="line"><span class="line-inner">&amp;&nbsp;service.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.4s">
+        ENERCON, one of the world's leading wind‑turbine manufacturers, operated fragmented, siloed tools for monitoring, service orders and spare parts. We unified them into one portal with a single sign‑on entry point, designed across desktop, tablet and mobile.
+      </p>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l">Client</div><div class="v">ENERCON</div></div>
+        <div class="meta-cell"><div class="l">Role</div><div class="v">UX / UI Design</div></div>
+        <div class="meta-cell"><div class="l">Year</div><div class="v">2025 – 2026</div></div>
+        <div class="meta-cell"><div class="l">Tools</div><div class="v">Figma</div></div>
+        <div class="meta-cell"><div class="l">Scope</div><div class="v">MVP · SSO</div></div>
+        <div class="meta-cell"><div class="l">Platforms</div><div class="v">Desktop · Tablet · Mobile</div></div>
+      </div>
+
+      <div class="cr-grid reveal">
+        <div class="cr-cell">
+          <span class="eyebrow ev">Challenge</span>
+          <h3>Fragmented tool landscape</h3>
+          <p>SIP, ETC and eShop existed as <b>separate access points</b> with no shared context. Operators switched between systems just to build a complete picture of their portfolio.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev">My Role</span>
+          <h3>UX &amp; UI Design</h3>
+          <p>Responsible for <b>UX and UI design</b> within the project team, from research and concept through to the final design system and developer handoff.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev">Outcome</span>
+          <h3>One portal, one entry point</h3>
+          <p>A unified operator portal with <b>single sign‑on</b>, consolidating monitoring, service management and spare‑parts ordering across all device types.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CHALLENGE ===== -->
+  <section class="challenge" data-screen-label="02 Challenge">
+    <div class="container">
+      <span class="sec-eyebrow">01 · Problem Space</span>
+      <h2 class="sec-h">The Challenge</h2>
+      <div class="pain-grid">
+        <div class="pain">
+          <div class="pn">Pain Point 01</div>
+          <h4>Fragmented tool landscape</h4>
+          <p>SIP, ETC and eShop existed as separate access points with no shared context. Operators switched between systems just to build a complete picture of their portfolio.</p>
+        </div>
+        <div class="pain">
+          <div class="pn">Pain Point 02</div>
+          <h4>No central monitoring</h4>
+          <p>Performance data, fault alerts and service orders lived in different places. Issues were noticed late, or only after contact with the service team, never proactively.</p>
+        </div>
+        <div class="pain">
+          <div class="pn">Pain Point 03</div>
+          <h4>Manual status tracking</h4>
+          <p>Service orders were tracked by email and phone. No structured overview showed status, responsibility and progress in one place across devices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH ===== -->
+  <section class="research" data-screen-label="03 Research">
+    <div class="container">
+      <span class="sec-eyebrow">02 · Research &amp; Insights</span>
+      <h2 class="sec-h">What operators actually need</h2>
+      <p class="sec-intro">Through stakeholder interviews, field observation and analysis of the existing tools, the core needs of three user types surfaced. The findings directly shaped every structural and visual decision in the design.</p>
+
+      <div class="steps-strip">
+        <div class="step-cell"><div class="sk">Step 01</div><h5>Stakeholder Interviews</h5><p>Operators, field technicians, account managers</p></div>
+        <div class="step-cell"><div class="sk">Step 02</div><h5>Jobs to be Done</h5><p>Core tasks mapped per user type</p></div>
+        <div class="step-cell"><div class="sk">Step 03</div><h5>Information Architecture</h5><p>Hierarchy: Portfolio · Park · Turbine</p></div>
+        <div class="step-cell"><div class="sk">Step 04</div><h5>Lo-Fi Wireframes</h5><p>Iterative sketches, card-sorting sessions</p></div>
+        <div class="step-cell"><div class="sk">Step 05</div><h5>Usability Testing</h5><p>Prototype feedback across all three platforms</p></div>
+      </div>
+
+      <div class="insight-grid" style="margin-top:var(--s-3xl)">
+        <div class="insight">
+          <div class="iw">Insight · Operator</div>
+          <q>In the morning I want to know in two minutes whether everything is running, without clicking through menus.</q>
+          <div class="ir"><b>Requirement:</b> Aggregated portfolio status as the first view</div>
+        </div>
+        <div class="insight">
+          <div class="iw">Insight · Operator</div>
+          <q>When there's a fault report I never know who is responsible right now or what the current status is.</q>
+          <div class="ir"><b>Requirement:</b> Transparent service-order overview with clear status indicators</div>
+        </div>
+        <div class="insight">
+          <div class="iw">Insight · Field Technician</div>
+          <q>Sometimes I drive to the park and the job is already done because someone else picked it up. No one told me.</q>
+          <div class="ir"><b>Requirement:</b> Clear contractor assignment and status badges on every order</div>
+        </div>
+        <div class="insight">
+          <div class="iw">Insight · Multi-Park Operator</div>
+          <q>I manage four parks spread across northern Germany. I want to see on a map where the problems are.</q>
+          <div class="ir"><b>Requirement:</b> Map view as an alternative representation of the park list</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFORMATION ARCHITECTURE ===== -->
+  <section class="ia" data-screen-label="04 IA">
+    <div class="container">
+      <span class="sec-eyebrow">03 · Information Architecture</span>
+      <h2 class="sec-h">Structure and navigation</h2>
+      <p class="sec-intro">A clear three‑level hierarchy emerged from the research: Portfolio · Park · Turbine. Service orders are reachable at every level, because their relevance shifts with the operator's current context. The navigation works consistently across desktop, tablet and mobile.</p>
+
+      <div class="ia-tree">
+        <div class="ia-root">
+          <span class="t">Dashboard · Portfolio</span>
+          <span class="s">Entry point after login</span>
+        </div>
+        <div class="ia-branches">
+          <div class="ia-col">
+            <div class="node">Wind Parks (List)</div>
+            <div class="leaf">Park · Performance</div>
+            <div class="leaf">Park · Service</div>
+            <div class="leaf">Map View</div>
+          </div>
+          <div class="ia-col">
+            <div class="node">Turbine Detail</div>
+            <div class="leaf">7-Day View</div>
+            <div class="leaf">60-Day View</div>
+            <div class="leaf">Service Orders</div>
+          </div>
+          <div class="ia-col">
+            <div class="node">Service Orders</div>
+            <div class="leaf">Overview</div>
+            <div class="leaf">Detail</div>
+          </div>
+          <div class="ia-col">
+            <div class="node">Apps · SIP / ETC / eShop</div>
+            <div class="leaf">External jump via SSO</div>
+          </div>
+          <div class="ia-col">
+            <div class="node">Notifications</div>
+            <div class="leaf">Faults · Updates · Maintenance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESIGN DERIVATION — STICKY SCROLL ===== -->
+  <section data-screen-label="05 Design Derivation">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="sec-eyebrow" style="display:block">04 · Wireframes &amp; Rationale</span>
+        <h2 class="sec-h">Design derivation</h2>
+        <p>Lo-fi wireframes with decision annotations. Every UI choice is traceable to a specific research insight, validated across desktop, tablet and mobile before moving to high-fidelity.&nbsp;</p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+
+            <!-- Panel 1 · Dashboard -->
+            <div class="panel visible" data-panel="1">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#F4F6F5"></rect>
+                <!-- sidebar -->
+                <rect x="0" y="0" width="168" height="600" fill="#0C3B2B"></rect>
+                <rect x="22" y="30" width="92" height="11" rx="2" fill="#34D399"></rect>
+                <rect x="22" y="74" width="120" height="9" rx="2" fill="#fff" opacity=".9"></rect>
+                <rect x="22" y="104" width="96" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <rect x="22" y="126" width="108" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <rect x="22" y="148" width="80" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <rect x="14" y="186" width="3" height="16" rx="1" fill="#34D399"></rect>
+                <rect x="22" y="188" width="96" height="8" rx="2" fill="#34D399"></rect>
+                <text x="22" y="250" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="1" fill="#fff" opacity=".4">TOOLS</text>
+                <rect x="22" y="262" width="100" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <rect x="22" y="284" width="84" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <!-- header -->
+                <text x="196" y="52" font-family="DM Sans,sans-serif" font-size="22" font-weight="600" fill="#0A0A0A">Dashboard</text>
+                <rect x="636" y="28" width="140" height="56" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                <text x="706" y="58" font-family="DM Sans,sans-serif" font-size="22" font-weight="600" fill="#138A5E" text-anchor="middle">5.5</text>
+                <text x="706" y="74" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing="1" fill="#8A8A8A" text-anchor="middle">TOTAL OUTPUT MW</text>
+                <!-- notifications -->
+                <rect x="196" y="100" width="580" height="92" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                <text x="212" y="124" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="1.4" fill="#8A8A8A">NOTIFICATIONS</text>
+                <g>
+                  <rect x="212" y="136" width="128" height="44" rx="5" fill="#FBF7EC"></rect><rect x="212" y="136" width="3" height="44" fill="#C08A3B"></rect>
+                  <rect x="224" y="148" width="60" height="7" rx="1" fill="#0A0A0A"></rect><rect x="224" y="162" width="96" height="6" rx="1" fill="#A9A9A9"></rect>
+                  <rect x="348" y="136" width="128" height="44" rx="5" fill="#FBEEEC"></rect><rect x="348" y="136" width="3" height="44" fill="#C0463B"></rect>
+                  <rect x="360" y="148" width="64" height="7" rx="1" fill="#0A0A0A"></rect><rect x="360" y="162" width="92" height="6" rx="1" fill="#A9A9A9"></rect>
+                  <rect x="484" y="136" width="128" height="44" rx="5" fill="#EEF1F0"></rect><rect x="484" y="136" width="3" height="44" fill="#8FA6A0"></rect>
+                  <rect x="496" y="148" width="58" height="7" rx="1" fill="#0A0A0A"></rect><rect x="496" y="162" width="90" height="6" rx="1" fill="#A9A9A9"></rect>
+                  <rect x="620" y="136" width="128" height="44" rx="5" fill="#EEF1F0"></rect><rect x="620" y="136" width="3" height="44" fill="#8FA6A0"></rect>
+                  <rect x="632" y="148" width="58" height="7" rx="1" fill="#0A0A0A"></rect><rect x="632" y="162" width="90" height="6" rx="1" fill="#A9A9A9"></rect>
+                </g>
+                <!-- park cards -->
+                <text x="196" y="226" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A">Wind Parks</text>
+                <g>
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Vespan</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"></circle>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#C0463B" stroke-width="6" stroke-dasharray="60 200" transform="rotate(-90 265 318)"></circle>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">0.6</text>
+                  <circle cx="212" cy="372" r="4" fill="#C0463B"></circle><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#C0463B">Fault active</text>
+                </g>
+                <g transform="translate(146,0)">
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Muschelthal</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"></circle>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#138A5E" stroke-width="6" stroke-dasharray="120 200" transform="rotate(-90 265 318)"></circle>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">1.2</text>
+                  <circle cx="212" cy="372" r="4" fill="#138A5E"></circle><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#138A5E">Productive</text>
+                </g>
+                <g transform="translate(292,0)">
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Kleinbuch</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"></circle>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#138A5E" stroke-width="6" stroke-dasharray="140 200" transform="rotate(-90 265 318)"></circle>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">1.6</text>
+                  <circle cx="212" cy="372" r="4" fill="#138A5E"></circle><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#138A5E">Productive</text>
+                </g>
+                <g transform="translate(438,0)">
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Guckedu</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"></circle>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#138A5E" stroke-width="6" stroke-dasharray="160 200" transform="rotate(-90 265 318)"></circle>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">2.1</text>
+                  <circle cx="212" cy="372" r="4" fill="#138A5E"></circle><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#138A5E">Productive</text>
+                </g>
+                <!-- my apps -->
+                <text x="196" y="430" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A">My Apps</text>
+                <rect x="196" y="444" width="80" height="34" rx="6" fill="#DCEFE6"></rect><text x="236" y="465" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#138A5E" text-anchor="middle">SIP</text>
+                <rect x="288" y="444" width="80" height="34" rx="6" fill="#DCEFE6"></rect><text x="328" y="465" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#138A5E" text-anchor="middle">ETC</text>
+                <rect x="380" y="444" width="90" height="34" rx="6" fill="#DCEFE6"></rect><text x="425" y="465" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#138A5E" text-anchor="middle">eShop</text>
+                <text x="196" y="556" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" fill="#8A8A8A">SCREEN 01 · DASHBOARD — PORTFOLIO ENTRY</text>
+              </svg>
+            </div>
+
+            <!-- Panel 2 · All Wind Parks -->
+            <div class="panel" data-panel="2">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#F4F6F5"></rect>
+                <rect x="0" y="0" width="168" height="600" fill="#0C3B2B"></rect>
+                <rect x="22" y="30" width="92" height="11" rx="2" fill="#34D399"></rect>
+                <rect x="22" y="74" width="100" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <rect x="14" y="102" width="3" height="16" rx="1" fill="#34D399"></rect>
+                <rect x="22" y="104" width="96" height="8" rx="2" fill="#34D399"></rect>
+                <rect x="22" y="130" width="84" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <rect x="22" y="152" width="92" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <!-- header + time toggle -->
+                <text x="196" y="52" font-family="DM Sans,sans-serif" font-size="22" font-weight="600" fill="#0A0A0A">All Wind Parks</text>
+                <g font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="1">
+                  <text x="556" y="40" fill="#8A8A8A">24h</text>
+                  <text x="600" y="40" fill="#138A5E" font-weight="500">7 Days</text>
+                  <text x="664" y="40" fill="#8A8A8A">30 Days</text>
+                  <text x="734" y="40" fill="#8A8A8A">Map</text>
+                </g>
+                <!-- tabs -->
+                <text x="196" y="92" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#138A5E">Performance Overview</text>
+                <rect x="196" y="100" width="150" height="2" fill="#138A5E"></rect>
+                <text x="370" y="92" font-family="DM Sans,sans-serif" font-size="13" fill="#8A8A8A">Service Orders</text>
+                <line x1="196" y1="102" x2="776" y2="102" stroke="#E2E6E4"></line>
+                <!-- park rows -->
+                <g>
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <circle cx="222" cy="153" r="6" fill="#C0463B"></circle>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Vespan</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#F0E7E6"></rect>
+                  <rect x="420" y="146" width="62" height="14" rx="7" fill="#C0463B"></rect>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#C0463B" text-anchor="end">0.6 MW</text>
+                </g>
+                <g transform="translate(0,74)">
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <circle cx="222" cy="153" r="6" fill="#138A5E"></circle>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Muschelthal</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#E1F0EA"></rect>
+                  <rect x="420" y="146" width="120" height="14" rx="7" fill="#138A5E"></rect>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A" text-anchor="end">1.2 MW</text>
+                </g>
+                <g transform="translate(0,148)">
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <circle cx="222" cy="153" r="6" fill="#138A5E"></circle>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Kleinbuch</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#E1F0EA"></rect>
+                  <rect x="420" y="146" width="160" height="14" rx="7" fill="#138A5E"></rect>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A" text-anchor="end">1.6 MW</text>
+                </g>
+                <g transform="translate(0,222)">
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"></rect>
+                  <circle cx="222" cy="153" r="6" fill="#138A5E"></circle>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Guckedu</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#E1F0EA"></rect>
+                  <rect x="420" y="146" width="210" height="14" rx="7" fill="#138A5E"></rect>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A" text-anchor="end">2.1 MW</text>
+                </g>
+                <text x="196" y="556" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" fill="#8A8A8A">SCREEN 02 · ALL WIND PARKS — COMPARE &amp; FILTER</text>
+              </svg>
+            </div>
+
+            <!-- Panel 3 · Turbine Service Orders -->
+            <div class="panel" data-panel="3">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#F4F6F5"></rect>
+                <rect x="0" y="0" width="168" height="600" fill="#0C3B2B"></rect>
+                <rect x="22" y="30" width="92" height="11" rx="2" fill="#34D399"></rect>
+                <rect x="14" y="74" width="3" height="16" rx="1" fill="#34D399"></rect>
+                <rect x="22" y="76" width="96" height="8" rx="2" fill="#34D399"></rect>
+                <rect x="22" y="102" width="80" height="8" rx="2" fill="#fff" opacity=".45"></rect>
+                <!-- breadcrumb top bar -->
+                <text x="636" y="40" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="1" fill="#8A8A8A" text-anchor="end">Vespan / Turbine 1</text>
+                <text x="196" y="52" font-family="DM Sans,sans-serif" font-size="21" font-weight="600" fill="#0A0A0A">Turbine 1 · Enercon E-101</text>
+                <text x="196" y="74" font-family="DM Sans,sans-serif" font-size="12" fill="#8A8A8A">1.4 MW current output</text>
+                <!-- tabs -->
+                <text x="196" y="108" font-family="DM Sans,sans-serif" font-size="12" fill="#8A8A8A">Performance</text>
+                <text x="320" y="108" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#138A5E">Service Orders</text>
+                <rect x="320" y="116" width="110" height="2" fill="#138A5E"></rect>
+                <line x1="196" y1="118" x2="776" y2="118" stroke="#E2E6E4"></line>
+                <!-- table header -->
+                <g font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="1" fill="#8A8A8A">
+                  <text x="206" y="146">DATE</text><text x="300" y="146">ORDER NO.</text><text x="420" y="146">TASK</text><text x="600" y="146">CONTRACTOR</text><text x="710" y="146">STATUS</text>
+                </g>
+                <line x1="196" y1="156" x2="776" y2="156" stroke="#E2E6E4"></line>
+                <!-- rows -->
+                <g font-family="DM Sans,sans-serif" font-size="12" fill="#0A0A0A">
+                  <text x="206" y="186">02.04.25</text><text x="300" y="186" fill="#4A4A4A">0071236644</text><text x="420" y="186">Maintenance inspection</text><text x="600" y="186" fill="#4A4A4A">Enercon</text>
+                  <rect x="710" y="174" width="70" height="18" rx="9" fill="#E6EDFB"></rect><text x="745" y="187" font-size="10" fill="#2A5BD0" text-anchor="middle">In Progress</text>
+                  <line x1="196" y1="204" x2="776" y2="204" stroke="#F0F2F1"></line>
+
+                  <text x="206" y="232">31.11.25</text><text x="300" y="232" fill="#4A4A4A">4.0</text><text x="420" y="232">UPS temperature sensor</text><text x="600" y="232" fill="#4A4A4A">WindGroup AG</text>
+                  <rect x="710" y="220" width="70" height="18" rx="9" fill="#FBEEEC"></rect><text x="745" y="233" font-size="10" fill="#C0463B" text-anchor="middle">Critical</text>
+                  <line x1="196" y1="250" x2="776" y2="250" stroke="#F0F2F1"></line>
+
+                  <text x="206" y="278">28.11.25</text><text x="300" y="278" fill="#4A4A4A">9834064478</text><text x="420" y="278">Azimuth alignment</text><text x="600" y="278" fill="#4A4A4A">Milergy Group</text>
+                  <rect x="710" y="266" width="70" height="18" rx="9" fill="#E6EDFB"></rect><text x="745" y="279" font-size="10" fill="#2A5BD0" text-anchor="middle">In Progress</text>
+                  <line x1="196" y1="296" x2="776" y2="296" stroke="#F0F2F1"></line>
+
+                  <text x="206" y="324">28.11.25</text><text x="300" y="324" fill="#4A4A4A">9348609234</text><text x="420" y="324">Transformer inspection</text><text x="600" y="324" fill="#4A4A4A">Milergy Group</text>
+                  <rect x="710" y="312" width="70" height="18" rx="9" fill="#EEF1F0"></rect><text x="745" y="325" font-size="10" fill="#5C6B66" text-anchor="middle">Accepted</text>
+                </g>
+                <text x="196" y="556" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" fill="#8A8A8A">SCREEN 03 · TURBINE — SERVICE ORDERS</text>
+              </svg>
+            </div>
+
+          </div>
+
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label">Dashboard · Portfolio entry point</span>
+            <span class="pc-prog" id="pc-prog">01 / 03</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="prog"></div></div>
+        </div>
+
+        <!-- RIGHT — RATIONALE -->
+        <div class="sticky-right">
+
+          <article class="step active" data-panel="1" data-prog="33" data-label="Dashboard · Portfolio entry point">
+            <div class="ss-num">Screen 01 · Dashboard</div>
+            <h3>The aggregated portfolio view, the moment you log in.</h3>
+            <div class="rat">
+              <div class="rat-item"><span class="rat-num">1</span><div class="rt"><b>Aggregated KPI, top right</b><span>Total output across all parks is visible immediately — no scrolling, no drill-down for the single most important number.</span></div></div>
+              <div class="rat-item"><span class="rat-num">2</span><div class="rt"><b>Notifications as a fixed content block</b><span>Three severities — warning, critical, info — each with a coloured left border. Urgency is scannable without reading the text.</span></div></div>
+              <div class="rat-item"><span class="rat-num">3</span><div class="rt"><b>Donut + sparkline per park card</b><span>The donut shows output relative to rated capacity; status reads as "healthy vs. unhealthy" at a glance.</span></div></div>
+
+            </div>
+          </article>
+
+          <article class="step" data-panel="2" data-prog="66" data-label="All Wind Parks · Compare &amp; filter">
+            <div class="ss-num">Screen 02 · All Wind Parks</div>
+            <h3>One list, two modes, a global time switch.</h3>
+            <div class="rat">
+              <div class="rat-item"><span class="rat-num">5</span><div class="rt"><b>Time range toggle in the top bar</b><span>24h / 7 Days / 30 Days / Map as a global context switch — always visible, applied to all parks at once without extra interaction.</span></div></div>
+              <div class="rat-item"><span class="rat-num">6</span><div class="rt"><b>Performance vs. Service Orders tabs</b><span>Same list, two modes. A tab pattern prevents context loss when switching between operational and service views.</span></div></div>
+              <div class="rat-item"><span class="rat-num">7</span><div class="rt"><b>Map as the fourth tab option</b><span>The map isn't a separate screen — it's an alternative view of the same dataset. Park rows stay listed below it.</span></div></div>
+            </div>
+          </article>
+
+          <article class="step" data-panel="3" data-prog="100" data-label="Turbine · Service Orders">
+            <div class="ss-num">Screen 03 · Turbine Service Orders</div>
+            <h3>Per-turbine status, responsibility and progress in one table.</h3>
+            <div class="rat">
+              <div class="rat-item"><span class="rat-num">8</span><div class="rt"><b>Status badges with colour semantics</b><span>Red = critical / open, blue = in progress, grey = accepted. Colour communicates urgency before the operator reads a single word.</span></div></div>
+              <div class="rat-item"><span class="rat-num">9</span><div class="rt"><b>Contractor column always visible</b><span>Many operators work with external service partners. Clear assignment on every row removes double-booking and miscommunication.</span></div></div>
+              <div class="rat-item"><span class="rat-num">10</span><div class="rt"><b>Breadcrumb context in the top bar</b><span>"Vespan / Turbine 1" persists in the header. In a deep hierarchy, operators always know where they are without a separate step.</span></div></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIX DECISIONS ===== -->
+  <section class="decisions" data-screen-label="06 Decisions">
+    <div class="container">
+      <span class="sec-eyebrow">05 · Key Design Decisions</span>
+      <h2 class="sec-h">Three decisions that made the difference</h2>
+      <p class="sec-intro">Each of these was contested at some point. Here's the reasoning behind every choice, and which alternatives were ruled out, and why.</p>
+
+      <div class="dec-grid">
+        <div class="dec">
+          <div class="dec-head"><div class="dl">Decision 01</div><h4>Map as a tab state, not a separate page</h4></div>
+          <div class="dec-body">
+            <div class="dec-row prob"><div class="k">Problem</div><p>An earlier version had the map as a standalone nav item. Clicking a park pin on the map lost the list context entirely.</p></div>
+            <div class="dec-row dec-d"><div class="k">Decision</div><p>The map is a tab state within Wind Parks. Same dataset, different visualisation; the park list stays visible below it.</p></div>
+          </div>
+        </div>
+        <div class="dec">
+          <div class="dec-head"><div class="dl">Decision 02</div><h4>Notifications in the dashboard, not an overlay</h4></div>
+          <div class="dec-body">
+            <div class="dec-row prob"><div class="k">Problem</div><p>A notification-bell icon was consistently overlooked. Operators didn't realise critical alerts were waiting.</p></div>
+            <div class="dec-row dec-d"><div class="k">Decision</div><p>Notifications as a fixed block in the dashboard. Always visible on first load — no click required to see what needs attention.</p></div>
+          </div>
+        </div>
+        <div class="dec">
+          <div class="dec-head"><div class="dl">Decision 03</div><h4>Consistent card pattern at every level</h4></div>
+          <div class="dec-body">
+            <div class="dec-row prob"><div class="k">Problem</div><p>Dashboard, park overview and turbine detail looked completely different. Users had to re-learn the interface at every level.</p></div>
+            <div class="dec-row dec-d"><div class="k">Decision</div><p>Donut + sparkline + status dot as one card pattern at every hierarchy level. The mental model is learned once, applies everywhere.</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOWCASE ===== -->
+  <section class="showcase" data-screen-label="07 Final Design">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="sec-eyebrow">06 · Final Design</span>
+          <h2 class="sec-h" style="margin-bottom:0">The portal, delivered</h2>
+        </div>
+        <div class="aside" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7">
+          <b>Dashboard · Map</b><br>Multi-device · Design System
+        </div>
+      </div>
+
+      <div class="sc-poster">
+        <img src="../assets/images/case-enercon-03.jpg" alt="ENERCON Customer Portal · Dashboard, Hi-Fi">
+      </div>
+      <p class="sc-cap" style="margin-bottom:var(--s-lg)">Dashboard · aggregated portfolio view with notifications, park cards &amp; My Apps</p>
+
+      <div class="sc-row">
+        <div>
+          <div class="sc-cell"><img src="../assets/images/case-enercon-04.jpg" alt="ENERCON me · responsive across laptop, tablet and mobile"></div>
+          <p class="sc-cap">Responsive · desktop, tablet &amp; mobile with map view</p>
+        </div>
+        <div>
+          <div class="sc-cell"><img src="../assets/images/case-enercon-02.jpg" alt="ENERCON portal design system · components, colours, anatomy"></div>
+          <p class="sc-cap">Design system · component anatomy, colour primitives &amp; tokens</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WALKTHROUGH ===== -->
+  <section class="walk" data-screen-label="08 Walkthrough">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="sec-eyebrow">07 · Prototype</span>
+          <h2 class="sec-h" style="margin-bottom:0">The portal in motion</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7">
+          <b>Clickable Prototype</b><br>Dashboard → Park → Turbine
+        </div>
+      </div>
+      <div class="walk-main">
+        <video src="../assets/videos/case-enercon-05.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+      </div>
+      <p class="sc-cap" style="margin-top:var(--s-md)">Interactive prototype · the critical path from portfolio to a single service order</p>
+    </div>
+  </section>
+
+  <!-- ===== CRITICAL PATH ===== -->
+  <section class="flow" data-screen-label="09 User Flow">
+    <div class="container">
+      <span class="sec-eyebrow">08 · Primary User Flow</span>
+      <h2 class="sec-h">The critical path</h2>
+      <p class="sec-intro">The most frequent task: an operator opens the portal in the morning, spots a fault notification and traces it through to the relevant service order — on any device, in four clicks.</p>
+
+      <div class="flow-track">
+        <div class="flow-node start"><div class="fn">Login</div><div class="fd">SSO</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node on"><div class="fn">Dashboard</div><div class="fd">Fault visible</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="fn">Notification</div><div class="fd">Click</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="fn">Park · Vespan</div><div class="fd">Details</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="fn">Turbine 1</div><div class="fd">Performance</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node on"><div class="fn">Service Orders</div><div class="fd">Check status</div></div>
+      </div>
+
+      <div class="flow-foot">
+        <div>
+          <h5>What makes this flow work</h5>
+          <ul>
+            <li>The fault is <b>colour-coded on step one</b>, no hunting required</li>
+            <li>Tapping a notification jumps directly to the affected turbine</li>
+            <li>Service Orders lives at turbine level, not park level. Orders are turbine-specific</li>
+            <li>The entire flow takes <b>at most four clicks</b> on all three platforms</li>
+          </ul>
+        </div>
+        <div class="ruled">
+          <h5 style="color:var(--ink-3)">Alternatives tested &amp; ruled out</h5>
+          <ul>
+            <li>Service orders only at portfolio level. Too far removed from turbine context</li>
+            <li>Direct link from notification to order list. Skipped important performance data</li>
+            <li>Fault alert as a modal overlay. Blocked context; operators wanted to keep navigating</li>
+            <li>Notification bell instead of a card. Consistently overlooked in testing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REFLECTIONS ===== -->
+  <section class="reflect" data-screen-label="10 Reflections">
+    <div class="container">
+      <span class="sec-eyebrow">09 · Reflections</span>
+      <h2 class="sec-h">What I'd carry forward</h2>
+      <div class="reflect-grid">
+        <div>
+          <h3>What worked</h3>
+          <ul>
+            <li><b>Insight-traceable decisions</b>: Every UI choice mapped back to a research quote. In reviews, "why is this here?" always had an answer that wasn't taste.</li>
+            <li><b>One card pattern, every level</b>: Donut + sparkline + status dot learned once and reused at portfolio, park and turbine level kept the MVP fast to build and easy to learn.</li>
+            <li><b>SSO framed as content, not nav</b>: Treating SIP / ETC / eShop as a "My Apps" launcher resolved the internal-vs-external confusion that earlier versions kept hitting.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What I'd change</h3>
+          <ul>
+            <li><b>Map view earlier</b>: The multi-park operator's map need surfaced mid-research. Bringing it into IA from day one would have saved a restructuring pass.</li>
+            <li><b>Define the post-MVP backlog up front</b>: BESS Value Modelling and Training Center were scoped late. A clearer phase-2 line would have sharpened the MVP cut.</li>
+            <li><b>Instrument the critical path</b>: The four-click flow is validated qualitatively; baseline analytics from launch would let phase 2 prove it quantitatively.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEXT CASE ===== -->
+  <section class="next-case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)">More projects</p>
+      <div class="next-links">
+        <a href="case-mapal.html">
+          <div>
+            <span class="lbl">Case Study</span>
+            <div class="nm">MAPAL · Configuration Platform</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-schunk.html">
+          <div>
+            <span class="lbl">Case Study</span>
+            <div class="nm">FANUC · Portal &amp; eShop</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5>Pages</h5><ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5>Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span>© 2026 Johannes Reichard</span>
+      </div>
+      <span>Last updated · June 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html">Home</a>
+    <a class="nm-link" href="work.html">Work</a>
+    <a class="nm-link" href="about.html">About</a>
+    <a class="nm-link" href="contact.html">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="contact.html">Get in touch →</a>
+  </div>
+</div>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 10); }, {passive:true});
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  // Sticky scroll sync
+  const steps      = document.querySelectorAll('.step');
+  const panels     = document.querySelectorAll('.panel');
+  const prog       = document.getElementById('prog');
+  const pcNum      = document.getElementById('pc-num');
+  const pcLabel    = document.getElementById('pc-label');
+  const pcProg     = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total      = steps.length;
+  let lastIdx      = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector('.panel[data-panel="' + (idx + 1) + '"]');
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)   prog.style.width = pct + '%';
+    if(pcNum)  pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.innerHTML = steps[idx]?.dataset.label || '';
+    if(pcProg) pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 920){ activateIdx(0); return; }
+      const rect  = stickyWrap.getBoundingClientRect();
+      const sH    = stickyWrap.offsetHeight;
+      const vH    = window.innerHeight;
+      const range = sH - vH;
+      if(range <= 0) return;
+      const scrolled = Math.max(0, Math.min(range, -rect.top));
+      const progress = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script src="../assets/js/case-enercon-06.js"></script>
+
+
+</body></html>
