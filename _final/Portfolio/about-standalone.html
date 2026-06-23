@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>About · Johannes Reichard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* System font override for standalone */
+  :root {
+    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+    --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+  }
+<style>
+  /* About-specific */
+  .about-hero{
+    padding:var(--s-5xl) 0 var(--s-4xl);
+    position:relative;overflow:hidden;
+  }
+  .about-hero .container{
+    display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s-4xl);align-items:stretch;
+  }
+  @media (max-width:900px){
+    .about-hero{padding:var(--s-3xl) 0 var(--s-2xl)}
+    .about-hero .container{grid-template-columns:1fr;gap:var(--s-2xl)}
+  }
+  .about-hero h1{margin-bottom:var(--s-lg)}
+  .about-hero .lede{margin-bottom:var(--s-xl)}
+
+  .portrait{
+    background:var(--bg-2);border-radius:var(--radius-lg);overflow:hidden;
+    position:relative;border:1px solid var(--rule);
+    display:flex;align-items:center;justify-content:center;
+    align-self:stretch;
+  }
+  .portrait img{
+    width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block;
+  }
+  .portrait .ph-label{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3);text-align:center;line-height:1.6;padding:var(--s-md);
+  }
+  .portrait::before{
+    content:"";position:absolute;inset:0;
+    background:repeating-linear-gradient(45deg, transparent 0 14px, rgba(0,0,0,.025) 14px 15px);
+  }
+
+  /* Stats */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:0;
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);
+    margin:var(--s-3xl) 0;
+  }
+  @media (max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+  .stat{padding:var(--s-xl) var(--s-lg) var(--s-xl) 0;border-right:1px solid var(--rule)}
+  .stat:not(:first-child){padding-left:var(--s-lg)}
+  .stat:last-child{border-right:none}
+  @media (max-width:720px){
+    .stat:nth-child(2){border-right:none;padding-right:0}
+    .stat:nth-child(3){padding-left:0;border-top:1px solid var(--rule)}
+    .stat:nth-child(4){border-right:none;border-top:1px solid var(--rule)}
+  }
+  .stat .v{font-size:clamp(28px,3.5vw,44px);font-weight:500;letter-spacing:-.02em;color:var(--ink);line-height:1;margin-bottom:var(--s-md)}
+  .stat .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);line-height:1.5}
+
+  /* Bio + lists split */
+  .bio-grid{
+    display:grid;grid-template-columns:1.2fr 1fr;gap:var(--s-4xl);align-items:start;
+  }
+  @media (max-width:900px){.bio-grid{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .bio p{font-size:17px;line-height:1.7;color:var(--ink-2)}
+  .bio p + p{margin-top:var(--s-lg)}
+  .bio p b, .bio p strong{color:var(--ink);font-weight:500}
+
+  /* Quick facts */
+  .facts{display:flex;flex-direction:column;gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden}
+  .fact{
+    display:grid;grid-template-columns:120px 1fr;gap:var(--s-lg);
+    padding:var(--s-lg);border-bottom:1px solid var(--rule);align-items:start;
+  }
+  .fact:last-child{border-bottom:none}
+  .fact dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding-top:2px}
+  .fact dd{font-size:14px;color:var(--ink);line-height:1.5}
+  .fact dd a{color:var(--accent);transition:color var(--t-fast)}
+  .fact dd a:hover{color:var(--accent-hov)}
+
+  /* Process — Stacked sticky cards */
+  /* Process — static phase list */
+  .process{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  @media(max-width:780px){.process{padding:var(--s-3xl) 0}}
+  .process-head{
+    display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:end;margin-bottom:var(--s-3xl);
+  }
+  @media (max-width:780px){.process-head{grid-template-columns:1fr;gap:var(--s-lg)}}
+  .process-head h2{max-width:14ch}
+  .process-head p{font-size:16px;line-height:1.6;color:var(--ink-2);max-width:48ch}
+
+  /* Phase list block */
+  .phase-list{
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+    overflow:hidden;
+  }
+  .phase-row{
+    display:grid;
+    grid-template-columns:72px 64px 1fr auto;
+    gap:var(--s-xl);
+    align-items:center;
+    padding:var(--s-xl) var(--s-2xl);
+    border-bottom:1px solid var(--rule);
+    cursor:default;
+    transition:background .25s var(--ease);
+    position:relative;
+  }
+  .phase-row:last-child{border-bottom:none}
+  .phase-row:hover{background:linear-gradient(135deg,rgba(31,80,255,.04) 0%,rgba(123,92,240,.04) 100%)}
+  @media (max-width:780px){
+    .phase-row{grid-template-columns:48px 48px 1fr;gap:var(--s-md);padding:var(--s-lg)}
+    .pr-out{display:none}
+  }
+
+  /* Number */
+  .pr-num{
+    font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:-.02em;
+    color:var(--ink-4);line-height:1;
+    transition:color .25s var(--ease);
+  }
+  .phase-row:hover .pr-num{color:var(--accent)}
+
+  /* Icon box */
+  .pr-icon{
+    width:48px;height:48px;border-radius:10px;
+    background:var(--tag-bg);border:1px solid var(--rule);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+    transition:background .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
+  }
+  .pr-icon svg{
+    width:22px;height:22px;
+    transition:stroke .3s var(--ease), fill .3s var(--ease);
+  }
+  .phase-row:hover .pr-icon{
+    background:linear-gradient(135deg,#1F50FF 0%,#7B5CF0 100%);
+    border-color:transparent;
+    box-shadow:0 6px 18px -6px rgba(31,80,255,.45);
+  }
+  .phase-row:hover .pr-icon svg{stroke:#fff;fill:none}
+  .phase-row:hover .pr-icon svg .fill-icon{fill:#fff;stroke:none}
+
+  /* Body */
+  .pr-body{}
+  .pr-name{font-size:16px;font-weight:600;letter-spacing:-.008em;color:var(--ink);margin-bottom:4px;transition:color .2s}
+  .phase-row:hover .pr-name{color:var(--accent)}
+  .pr-desc{font-size:13.5px;line-height:1.55;color:var(--ink-2);max-width:54ch}
+
+  /* Output pill */
+  .pr-out{
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--ink-3);background:var(--tag-bg);border-radius:999px;
+    padding:5px 10px;white-space:nowrap;flex-shrink:0;
+    transition:background .25s var(--ease),color .25s var(--ease);
+  }
+  .phase-row:hover .pr-out{
+    background:var(--accent-soft);color:var(--accent);
+  }
+
+  /* Skills */
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-xl);
+  }
+  @media (max-width:780px){.skills-grid{grid-template-columns:1fr}}
+  .skill-block{
+    padding:var(--s-xl);border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--card);
+    transition:background .3s var(--ease), border-color .3s var(--ease), box-shadow .3s var(--ease);
+    cursor:default;
+  }
+  .skill-block:hover{
+    background:linear-gradient(135deg,rgba(31,80,255,.04) 0%,rgba(123,92,240,.04) 100%);
+    border-color:rgba(31,80,255,.2);
+    box-shadow:0 6px 24px -8px rgba(31,80,255,.12);
+  }
+  .skill-block h4{
+    font-size:16px;font-weight:600;margin-bottom:var(--s-md);
+    display:flex;align-items:center;gap:10px;
+    transition:color .25s var(--ease);
+  }
+  .skill-block:hover h4{color:var(--accent)}
+  .skill-block h4::before{
+    content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);
+    flex-shrink:0;
+    transition:transform .3s var(--ease), box-shadow .3s var(--ease);
+  }
+  .skill-block:hover h4::before{
+    transform:scale(1.4);
+    box-shadow:0 0 0 4px rgba(31,80,255,.15);
+  }
+  .skill-list{display:flex;flex-wrap:wrap;gap:6px}
+  .skill-list .tag{
+    cursor:default;
+    transition:background .2s var(--ease), color .2s var(--ease);
+  }
+  .skill-block:hover .skill-list .tag{
+    background:var(--accent-soft);color:var(--accent);
+  }
+
+  /* Experience timeline */
+  .exp-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--ink)}
+  .exp-row{
+    display:grid;grid-template-columns:120px 1.4fr 1fr 140px;gap:var(--s-xl);align-items:start;
+    padding:var(--s-xl) 0;border-bottom:1px solid var(--rule);
+  }
+  @media (max-width:780px){
+    .exp-row{grid-template-columns:1fr;gap:var(--s-xs)}
+    .exp-row .year{order:-1;font-size:12px}
+  }
+  .exp-row .year{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-3);font-weight:500}
+  .exp-row .role{font-size:18px;font-weight:600;letter-spacing:-.005em}
+  .exp-row .role .co{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-top:4px}
+  .exp-row .desc{font-size:14px;color:var(--ink-2);line-height:1.55;text-align:left;align-self:start}
+  .exp-row .loc{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right}
+  @media (max-width:780px){.exp-row .loc{text-align:left;margin-top:var(--s-xs)}}
+
+</style>
+</head>
+<template id="__bundler_thumbnail" data-bg-color="#0d0d0d">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <!-- Nav bar -->
+    <rect x="0" y="0" width="1200" height="56" fill="#141414"/>
+    <rect x="48" y="20" width="72" height="16" rx="4" fill="#1F50FF" opacity=".9"/>
+    <rect x="440" y="22" width="48" height="12" rx="3" fill="#333"/>
+    <rect x="508" y="22" width="48" height="12" rx="3" fill="#333"/>
+    <rect x="576" y="22" width="48" height="12" rx="3" fill="#333"/>
+    <!-- Hero -->
+    <rect x="48" y="100" width="14" height="14" rx="7" fill="#1F50FF"/>
+    <rect x="70" y="102" width="120" height="10" rx="3" fill="#1F50FF" opacity=".6"/>
+    <rect x="48" y="132" width="420" height="38" rx="6" fill="#fff" opacity=".85"/>
+    <rect x="48" y="182" width="360" height="38" rx="6" fill="#fff" opacity=".85"/>
+    <rect x="48" y="240" width="340" height="14" rx="3" fill="#555"/>
+    <rect x="48" y="262" width="300" height="14" rx="3" fill="#555"/>
+    <rect x="48" y="284" width="280" height="14" rx="3" fill="#555"/>
+    <!-- Portrait -->
+    <rect x="720" y="88" width="432" height="540" rx="16" fill="#222"/>
+    <rect x="720" y="88" width="432" height="540" rx="16" fill="#1F50FF" opacity=".15"/>
+    <ellipse cx="936" cy="280" rx="90" ry="90" fill="#333"/>
+    <rect x="856" y="390" width="160" height="200" rx="80" fill="#2a2a2a"/>
+    <!-- Stats bar -->
+    <rect x="48" y="680" width="1104" height="1" fill="#333"/>
+    <rect x="48" y="700" width="60" height="28" rx="4" fill="#1F50FF" opacity=".8"/>
+    <rect x="340" y="700" width="60" height="28" rx="4" fill="#333" opacity=".6"/>
+    <rect x="632" y="700" width="60" height="28" rx="4" fill="#333" opacity=".6"/>
+    <rect x="924" y="700" width="60" height="28" rx="4" fill="#333" opacity=".6"/>
+  </svg>
+</template>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="#" data-i18n="nav.home">Home</a>
+      <a class="nav-link" href="#" data-i18n="nav.work">Work</a>
+      <a class="nav-link active" href="#" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="#" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+  <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="about-hero" data-screen-label="01 About Hero">
+    <div class="container">
+    <div>
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s" data-i18n="a.eyebrow">/01 · About</span>
+      <h1 class="h1 text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="a.h1.l1">UX/UI designer,</span></span>
+        <span class="line"><span class="line-inner" data-i18n="a.h1.l2">user-centred to the core.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.3s" data-i18n="a.lede1">
+        I'm a Senior UI/UX Designer &amp; Consultant with six years across B2B and industrial digital products. Portals, eShops, fleet &amp; machine-management platforms for clients like Schunk, Fanuc, Enercon and Mapal.
+      </p>
+      <p class="lede" data-i18n="a.lede2">
+        I started in a Vienna agency, learned the craft against tight client deadlines, and have spent the last years leading UX from <b>Phase 0</b> through Scrum delivery in interdisciplinary teams.
+      </p>
+      <div style="display:flex;gap:var(--s-md);flex-wrap:wrap;margin-top:var(--s-xl)">
+        <a class="btn btn-accent" href="#" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="#" data-i18n="a.viewwork">View work</a>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="uploads/portrait-optimized.jpg" alt="Johannes Reichard" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block">
+    </div>
+    </div>
+  </section>
+  <section class="container">
+    <div class="stats">
+      <div class="stat"><div class="v">06</div><div class="l" data-i18n="a.stat1">Years of practice</div></div>
+      <div class="stat"><div class="v">12+</div><div class="l" data-i18n="a.stat2">B2B platforms shipped</div></div>
+      <div class="stat"><div class="v">BA</div><div class="l" data-i18n="a.stat3">Interaction Design</div></div>
+      <div class="stat"><div class="v">EN · DE</div><div class="l" data-i18n="a.stat4">Working languages</div></div>
+    </div>
+  </section>
+
+  <!-- BIO + FACTS -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="bio-grid">
+        <div class="bio">
+          <span class="eyebrow ev" style="margin-bottom:var(--s-md);display:inline-flex" data-i18n="a.bio.ey">/02 · Bio</span>
+          <h2 class="h3" style="margin-bottom:var(--s-lg);max-width:18ch" data-i18n="a.bio.h">From agency floor to senior consultant.</h2>
+          <p data-i18n="a.bio.p1">
+            My focus sits in <b>eCommerce</b>, SAP Commerce, customer portals, fleet and machine management platforms. I work best in interdisciplinary teams alongside internal and external developers, where strong communication is the difference between a good design and one that actually ships.
+          </p>
+          <p data-i18n="a.bio.p2">
+            I own the whole UX path: <b>client communication, research, workshops, wireframes, testing, alignment, and delivery</b>. I speak the language of PO/PL stakeholders just as well as the dev team on the other side of the handover.
+          </p>
+          <p data-i18n="a.bio.p3">
+            I also run <b>internal UX training sessions</b> — presenting what user-centred design actually means and why it matters, especially for developers, project leads and product owners. The goal: put the user front and centre across every role in a project.
+          </p>
+          <p data-i18n="a.bio.p4">
+            AI is changing how we design, and I lean into that. I use it across the entire workflow, from research synthesis to prototyping to delivery. Not as a shortcut, but as a <b>tool that makes every phase faster and sharper</b>. Better iterations, better insights, better outcomes for the team and the end user.
+          </p>
+        </div>
+        <aside style="height: 430px">
+          <span class="eyebrow muted ev" style="margin-bottom:var(--s-md);display:inline-flex" data-i18n="a.facts.ey">Quick facts</span>
+          <dl class="facts">
+            <div class="fact"><dt data-i18n="a.f1.t">Currently</dt><dd data-i18n="a.f1.d">UI/UX Consultant</dd></div>
+            <div class="fact"><dt data-i18n="a.f2.t">Previously</dt><dd data-i18n="a.f2.d">Agency, Vienna · 5 years</dd></div>
+            <div class="fact"><dt data-i18n="a.f3.t">Education</dt><dd data-i18n="a.f3.d">BA Interaction Design</dd></div>
+            <div class="fact"><dt data-i18n="a.f4.t">Based in</dt><dd>Villingen-Schwenningen</dd></div>
+            <div class="fact"><dt data-i18n="a.f5.t">Languages</dt><dd data-i18n="a.f5.d">English · German (native)</dd></div>
+            <div class="fact"><dt data-i18n="a.f6.t">Focus</dt><dd data-i18n="a.f6.d">B2B-Plattformen · Commerce · Experten-Tools · Fleet-Management · Corporate-Portale</dd></div>
+            <div class="fact"><dt data-i18n="a.f7.t">Available</dt><dd><span style="color:var(--ok);display:inline-flex;align-items:center;gap:6px"><span style="width:7px;height:7px;border-radius:50%;background:var(--ok);display:inline-block"></span><span data-i18n="a.f7.d">Senior roles · 2026</span></span></dd></div>
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS — static list -->
+  <section class="process" data-screen-label="03 Process">
+    <div class="container">
+      <div class="process-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="a.proc.ey">/03 · Process</span>
+          <h2 class="h2" style="margin-top:var(--s-md)" data-i18n="a.proc.h">Phase&nbsp;0 → Delivery.</h2>
+        </div>
+
+      </div>
+
+      <div class="phase-list">
+
+        <div class="phase-row">
+          <span class="pr-num">00</span>
+          <div class="pr-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="9"/>
+              <path d="M7 11h8M11 7l4 4-4 4"/>
+            </svg>
+          </div>
+          <div class="pr-body">
+            <div class="pr-name" data-i18n="a.ph0.n">Phase 0: Alignment</div>
+            <div class="pr-desc" data-i18n="a.ph0.d">Kickoff workshops with PO &amp; PL. Stakeholder map, success metrics, working agreement. Before any design work begins.</div>
+          </div>
+          <span class="pr-out" data-i18n="a.ph0.o">Stakeholder map · Metrics</span>
+        </div>
+
+        <div class="phase-row">
+          <span class="pr-num">01</span>
+          <div class="pr-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="9.5" cy="9.5" r="6"/>
+              <path d="M20 20l-4.35-4.35"/>
+              <path d="M7 9.5h5M9.5 7v5"/>
+            </svg>
+          </div>
+          <div class="pr-body">
+            <div class="pr-name" data-i18n="a.ph1.n">Research &amp; Audit</div>
+            <div class="pr-desc" data-i18n="a.ph1.d">Heuristic evaluation, user interviews across primary personas, pain-point maps and journey maps to surface where the real breaks are.</div>
+          </div>
+          <span class="pr-out" data-i18n="a.ph1.o">Personas · Journey maps</span>
+        </div>
+
+        <div class="phase-row">
+          <span class="pr-num">02</span>
+          <div class="pr-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+              <rect x="12" y="3" width="7" height="4" rx="1.5"/>
+              <rect x="12" y="10" width="7" height="9" rx="1.5"/>
+              <rect x="3" y="13" width="7" height="6" rx="1.5"/>
+            </svg>
+          </div>
+          <div class="pr-body">
+            <div class="pr-name" data-i18n="a.ph2.n">Wireframes &amp; IA</div>
+            <div class="pr-desc" data-i18n="a.ph2.d">Lo-fi wireframes in Balsamiq, three review rounds. Sitemaps that collapse legacy complexity before a pixel is drawn.</div>
+          </div>
+          <span class="pr-out" data-i18n="a.ph2.o">Sitemap · WF v1–v3</span>
+        </div>
+
+        <div class="phase-row">
+          <span class="pr-num">03</span>
+          <div class="pr-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12l4 4 8-9"/>
+              <circle cx="11" cy="11" r="9"/>
+            </svg>
+          </div>
+          <div class="pr-body">
+            <div class="pr-name" data-i18n="a.ph3.n">Testing</div>
+            <div class="pr-desc" data-i18n="a.ph3.d">Moderated usability tests with 6–10 real users on the v3 wireframes. No design ships without test evidence and measurable deltas.</div>
+          </div>
+          <span class="pr-out" data-i18n="a.ph3.o">Protocols · Findings</span>
+        </div>
+
+        <div class="phase-row">
+          <span class="pr-num">04</span>
+          <div class="pr-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="13" width="18" height="7" rx="2"/>
+              <rect x="5" y="7" width="12" height="6" rx="1.5"/>
+              <rect x="8" y="2" width="6" height="5" rx="1"/>
+            </svg>
+          </div>
+          <div class="pr-body">
+            <div class="pr-name" data-i18n="a.ph4.n">Hi-Fi &amp; Component Library</div>
+            <div class="pr-desc" data-i18n="a.ph4.d">Final design in Sketch or Figma. Component library aligned with platform conventions, co-authored with dev leads.</div>
+          </div>
+          <span class="pr-out" data-i18n="a.ph4.o">Hi-Fi · Spec doc</span>
+        </div>
+
+        <div class="phase-row">
+          <span class="pr-num">05</span>
+          <div class="pr-icon">
+            <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C8 2 5 6 5 10c0 2.5 1.2 4.7 3 6.1V19h6v-2.9c1.8-1.4 3-3.6 3-6.1 0-4-3-8-5-8z"/>
+              <path d="M9 19h4M10 22h2"/>
+            </svg>
+          </div>
+          <div class="pr-body">
+            <div class="pr-name" data-i18n="a.ph5.n">Scrum Delivery</div>
+            <div class="pr-desc" data-i18n="a.ph5.d">Embedded UX in 2-week sprints. Every standup, refinement, review. Continuous QA through acceptance. Zero design-vs-build disputes.</div>
+          </div>
+          <span class="pr-out" data-i18n="a.ph5.o">Live since launch</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="a.skills.ey">/04 · Skills</span>
+          <h2 class="h3" data-i18n="a.skills.h">Tools, methods, mindset.</h2>
+        </div>
+        <div class="aside" data-i18n="a.skills.aside">
+          <b>T-shaped</b><br>
+          Deep · B2B platform UX<br>
+          Wide · workshops, research, delivery
+        </div>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-block">
+          <h4 data-i18n="a.sk1.h">Design Tools</h4>
+          <div class="skill-list">
+            <span class="tag">Figma</span>
+            <span class="tag">Sketch</span>
+            <span class="tag">Balsamiq</span>
+            <span class="tag">FigJam</span>
+            <span class="tag">Miro</span>
+            <span class="tag">Framer</span>
+            <span class="tag">Adobe Cloud</span>
+            <span class="tag">Microsoft Office</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h4 data-i18n="a.sk2.h">Research &amp; Strategy</h4>
+          <div class="skill-list">
+            <span class="tag">User Interviews</span>
+            <span class="tag">Heuristic Eval.</span>
+            <span class="tag">Personas</span>
+            <span class="tag">Journey Mapping</span>
+            <span class="tag">Usability Testing</span>
+            <span class="tag">Stakeholder Workshops</span>
+          </div>
+        </div>
+        <div class="skill-block">
+          <h4 data-i18n="a.sk3.h">Delivery</h4>
+          <div class="skill-list">
+            <span class="tag">Scrum</span>
+            <span class="tag">SAP Commerce</span>
+            <span class="tag">Design Systems</span>
+            <span class="tag">Styleguide</span>
+            <span class="tag">Dev Handoff</span>
+            <span class="tag">Co-design</span>
+            <span class="tag">Component Specs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section-sm">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="a.exp.ey">/05 · Experience</span>
+          <h2 class="h3" data-i18n="a.exp.h">The path so far.</h2>
+        </div>
+      </div>
+
+      <div class="exp-list">
+        <div class="exp-row">
+          <span class="year">2013 – 2016</span>
+          <div class="role" data-i18n="a.e1.r">Bachelor<span class="co">HfG Schwäbisch-Gmünd</span></div>
+          <div class="desc" data-i18n="a.e1.d">Interaction Design degree focused on user-centred design, prototyping and visual language. Thesis on workshop methods for industrial software product teams.</div>
+          <div class="loc">Schwäbisch-Gmünd</div>
+        </div>
+        <div class="exp-row">
+          <span class="year">2016</span>
+          <div class="role" data-i18n="a.e2.r">Internships<span class="co">Berlin</span></div>
+          <div class="desc" data-i18n="a.e2.d">Hands-on experience in UI and graphic design at Berlin studios. First projects in digital products, brand identities and web UI.</div>
+          <div class="loc">Berlin</div>
+        </div>
+        <div class="exp-row">
+          <span class="year">2017</span>
+          <div class="role" data-i18n="a.e3.r">UI/UX Design<span class="co">Agency Stellar</span></div>
+          <div class="desc" data-i18n="a.e3.d">UI/UX design for automotive and navigation projects at agency level. Concept and hi-fi screens for in-vehicle systems in direct client collaboration.</div>
+          <div class="loc">Ulm</div>
+        </div>
+        <div class="exp-row">
+          <span class="year" data-i18n="a.e4.y">Oct. 2017 – June 2021</span>
+          <div class="role" data-i18n="a.e4.r">UI/UX Designer<span class="co">Scoop&amp;Spoon</span></div>
+          <div class="desc" data-i18n="a.e4.d">UI/UX design for web applications and digital marketing campaigns. End-to-end design across client projects within a cross-functional team.</div>
+          <div class="loc">Vienna<br>Vorarlberg</div>
+        </div>
+        <div class="exp-row">
+          <span class="year" data-i18n="a.e5.y">Oct. 2021 – Now</span>
+          <div class="role" data-i18n="a.e5.r">UI/UX Designer<span class="co">Sybit GmbH</span></div>
+          <div class="desc" data-i18n="a.e5.d">UX consulting for SAP-based B2B platforms in the industrial sector. Full-cycle design from research to hi-fi handover. Clients include Schunk, Wagner and FANUC.</div>
+          <div class="loc">Radolfzell</div>
+        </div>
+        <div class="exp-row">
+          <span class="year">2022</span>
+          <div class="role" data-i18n="a.e6.r">CPUX-F<span class="co">UXQB®</span></div>
+          <div class="desc" data-i18n="a.e6.d">UXQB® certified as a Certified Professional for Usability and UserExperience Foundation Level, a standardised benchmark for UX methodology and practice.</div>
+          <div class="loc"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5 data-i18n="foot.pages">Pages</h5><ul>
+        <li><a href="#" data-i18n="nav.home">Home</a></li><li><a href="#" data-i18n="nav.work">Work</a></li>
+        <li><a href="#" data-i18n="nav.about">About</a></li><li><a href="#" data-i18n="nav.contact">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 data-i18n="foot.contact">Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="#" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="#" data-i18n="nav.work">Work</a>
+    <a class="nm-link active" href="#" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="#" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    // close on link click
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "Über mich · Johannes Reichard",
+  "a.eyebrow": "/01 · Über mich",
+  "a.h1.l1": "UX/UI-Designer,",
+  "a.h1.l2": "konsequent nutzerzentriert.",
+  "a.lede1": "Ich bin Senior UI/UX Designer &amp; Consultant mit sechs Jahren Erfahrung in B2B- und industriellen digitalen Produkten. Portale, eShops, Fleet- &amp; Maschinenmanagement-Plattformen für Kunden wie Schunk, Fanuc, Enercon und Mapal.",
+  "a.lede2": "Begonnen habe ich in einer Wiener Agentur, habe das Handwerk unter engen Kunden-Deadlines gelernt und in den letzten Jahren UX von <b>Phase 0</b> bis zur Scrum-Auslieferung in interdisziplinären Teams geführt.",
+  "a.viewwork": "Arbeiten ansehen",
+  "a.portrait": "Porträt<br>Durch Foto ersetzen<br>4:5 · &asymp; 1080 &times; 1350",
+  "a.stat1": "Jahre Praxis",
+  "a.stat2": "Ausgelieferte B2B-Plattformen",
+  "a.stat3": "Interaction Design",
+  "a.stat4": "Arbeitssprachen",
+  "a.bio.ey": "/02 · Bio",
+  "a.bio.h": "Vom Agentur-Alltag zum Senior Consultant.",
+  "a.bio.p1": "Mein Fokus liegt auf <b>eCommerce</b>, SAP Commerce, Kundenportalen sowie Fleet- und Maschinenmanagement-Plattformen. Am besten arbeite ich in interdisziplinären Teams mit internen und externen Entwicklern – dort, wo gute Kommunikation den Unterschied zwischen einem guten Design und einem, das wirklich live geht, ausmacht.",
+  "a.bio.p2": "Ich verantworte den gesamten UX-Weg: <b>Kundenkommunikation, Research, Workshops, Wireframes, Testing, Abstimmung und Delivery</b>. Ich spreche die Sprache der PO/PL-Stakeholder genauso wie die des Dev-Teams auf der anderen Seite der Übergabe.",
+  "a.bio.p3": "Außerdem halte ich <b>interne UX-Schulungen</b> – dabei zeige ich, was nutzerzentriertes Design wirklich bedeutet und warum es zählt, besonders für Entwickler, Projektleiter und Product Owner. Das Ziel: den Nutzer in jeder Rolle eines Projekts in den Mittelpunkt zu stellen.",
+  "a.bio.p4": "KI verändert, wie wir gestalten, und das nutze ich bewusst. Ich setze sie über den gesamten Workflow ein – von der Research-Synthese über das Prototyping bis zur Delivery. Nicht als Abkürzung, sondern als <b>Werkzeug, das jede Phase schneller und schärfer macht</b>. Bessere Iterationen, bessere Insights, bessere Ergebnisse für das Team und den Endnutzer.",
+  "a.facts.ey": "Auf einen Blick",
+  "a.f1.t": "Aktuell", "a.f1.d": "UI/UX Consultant",
+  "a.f2.t": "Zuvor", "a.f2.d": "Agentur, Wien · 5 Jahre",
+  "a.f3.t": "Ausbildung", "a.f3.d": "BA Interaction Design",
+  "a.f4.t": "Ansässig in",
+  "a.f5.t": "Sprachen", "a.f5.d": "Englisch · Deutsch (Muttersprache)",
+  "a.f6.t": "Fokus", "a.f6.d": "B2B-Plattformen · Commerce · Experten-Tools · Fleet-Management · Corporate-Portale",
+  "a.f7.t": "Verfügbar", "a.f7.d": "Senior-Rollen · 2026",
+  "a.proc.ey": "/03 · Prozess",
+  "a.proc.h": "Phase&nbsp;0 → Delivery.",
+  "a.proc.p": "Sechs Schritte. Jedes Projekt, dasselbe Rückgrat. An den Kontext angepasst, nie übersprungen.",
+  "a.ph0.n": "Phase 0: Alignment",
+  "a.ph0.d": "Kickoff-Workshops mit PO &amp; PL. Stakeholder-Map, Erfolgskennzahlen, Working Agreement. Bevor die Designarbeit beginnt.",
+  "a.ph0.o": "Stakeholder-Map · Kennzahlen",
+  "a.ph1.n": "Research &amp; Audit",
+  "a.ph1.d": "Heuristische Evaluation, User-Interviews über die primären Personas, Pain-Point- und Journey-Maps, um aufzudecken, wo es wirklich hakt.",
+  "a.ph1.o": "Personas · Journey-Maps",
+  "a.ph2.n": "Wireframes &amp; IA",
+  "a.ph2.d": "Lo-Fi-Wireframes in Balsamiq, drei Review-Runden. Sitemaps, die Altkomplexität auflösen, bevor ein Pixel entsteht.",
+  "a.ph2.o": "Sitemap · WF v1–v3",
+  "a.ph3.n": "Testing",
+  "a.ph3.d": "Moderierte Usability-Tests mit 6–10 echten Nutzern auf den v3-Wireframes. Kein Design geht ohne Test-Evidenz und messbare Verbesserungen live.",
+  "a.ph3.o": "Protokolle · Findings",
+  "a.ph4.n": "Hi-Fi &amp; Component Library",
+  "a.ph4.d": "Finales Design in Sketch oder Figma. Component-Library im Einklang mit Plattformkonventionen, gemeinsam mit den Dev-Leads erarbeitet.",
+  "a.ph4.o": "Hi-Fi · Spec-Dokument",
+  "a.ph5.n": "Scrum Delivery",
+  "a.ph5.d": "Eingebettete UX in 2-Wochen-Sprints. Jedes Standup, Refinement, Review. Kontinuierliche QA bis zur Abnahme. Null Design-vs-Build-Streit.",
+  "a.ph5.o": "Live seit Launch",
+  "a.skills.ey": "/04 · Fähigkeiten",
+  "a.skills.h": "Tools, Methoden, Mindset.",
+  "a.skills.aside": "<b>T-shaped</b><br>Tief · B2B-Plattform-UX<br>Breit · Workshops, Research, Delivery",
+  "a.sk1.h": "Design-Tools",
+  "a.sk2.h": "Research &amp; Strategie",
+  "a.sk3.h": "Delivery",
+  "a.exp.ey": "/05 · Werdegang",
+  "a.exp.h": "Der Weg bisher.",
+  "a.e1.r": "Bachelor<span class=\"co\">HfG Schwäbisch-Gmünd</span>",
+  "a.e1.d": "Interaction-Design-Studium mit Fokus auf nutzerzentriertes Design, Prototyping und visuelle Sprache. Abschlussarbeit über Workshop-Methoden für industrielle Software-Produktteams.",
+  "a.e2.r": "Praktika<span class=\"co\">Berlin</span>",
+  "a.e2.d": "Praktische Erfahrung in UI- und Grafikdesign in Berliner Studios. Erste Projekte in digitalen Produkten, Markenidentitäten und Web-UI.",
+  "a.e3.r": "UI/UX Design<span class=\"co\">Agency Stellar</span>",
+  "a.e3.d": "UI/UX-Design für Automotive- und Navigationsprojekte auf Agenturebene. Konzept und Hi-Fi-Screens für Fahrzeugsysteme in direkter Kundenzusammenarbeit.",
+  "a.e4.y": "Okt. 2017 – Juni 2021",
+  "a.e4.r": "UI/UX Designer<span class=\"co\">Scoop&amp;Spoon</span>",
+  "a.e4.d": "UI/UX-Design für Webanwendungen und digitale Marketingkampagnen. End-to-End-Design über Kundenprojekte hinweg in einem cross-funktionalen Team.",
+  "a.e5.y": "Okt. 2021 – Heute",
+  "a.e5.r": "UI/UX Designer<span class=\"co\">Sybit GmbH</span>",
+  "a.e5.d": "UX-Beratung für SAP-basierte B2B-Plattformen im Industriesektor. Full-Cycle-Design von der Research bis zur Hi-Fi-Übergabe. Zu den Kunden zählen Schunk, Wagner und FANUC.",
+  "a.e6.r": "CPUX-F<span class=\"co\">UXQB®</span>",
+  "a.e6.d": "UXQB®-zertifiziert als Certified Professional for Usability and User Experience – Foundation Level, ein standardisierter Maßstab für UX-Methodik und -Praxis."
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+</body>
+</html>

@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Johannes Reichard · Senior UI/UX Designer &amp; Consultant</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Senior UI/UX Designer &amp; Consultant. Six years designing complex B2B platforms end-to-end, for Schunk, Fanuc, Enercon and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ===== HOME — specific ===== */
+  .hero-home{padding:var(--s-5xl) 0 var(--s-4xl);position:relative;overflow:hidden}
+  .hero-home h1{
+    font-size:clamp(44px,7.2vw,96px);
+    line-height:.98;letter-spacing:-.03em;font-weight:500;
+    text-wrap:balance;max-width:18ch;margin-bottom:var(--s-2xl);
+  }
+  .hero-home h1 .accent{color:var(--accent)}
+  .hero-home p.lede{margin-bottom:var(--s-2xl);max-width:48ch}
+  .hero-actions{display:flex;gap:var(--s-md);flex-wrap:wrap;align-items:center}
+  .hero-meta{margin-top:var(--s-4xl);padding-top:var(--s-xl);border-top:1px solid var(--rule)}
+
+  /* Featured Work — card grid like Contentful's case study cards */
+  .featured-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:var(--s-xl);
+    margin-top:var(--s-lg);
+  }
+  @media (max-width:780px){.featured-grid{grid-template-columns:1fr}}
+
+  .fc{
+    display:flex;flex-direction:column;
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+    overflow:hidden;
+    transition:transform var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+    text-decoration:none;color:inherit;
+  }
+  .fc:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .fc-media{
+    aspect-ratio:16/10;
+    background:linear-gradient(135deg, var(--bg-2), var(--card));
+    border-bottom:1px solid var(--rule);
+    position:relative;overflow:hidden;
+  }
+  .fc-media svg{width:100%;height:100%;display:block}
+  .fc-body{padding:var(--s-2xl)}
+  .fc-meta{
+    display:flex;justify-content:space-between;align-items:center;gap:var(--s-md);
+    margin-bottom:var(--s-md);
+  }
+  .fc-meta .client{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;
+  }
+  .fc-meta .year{
+    font-family:var(--mono);font-size:11px;color:var(--ink-3);letter-spacing:.04em;
+  }
+  .fc h3{font-size:clamp(22px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;line-height:1.2;margin-bottom:var(--s-md);text-wrap:balance}
+  .fc p{font-size:14px;line-height:1.55;color:var(--ink-2);margin-bottom:var(--s-lg)}
+  .fc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:var(--s-lg)}
+  .fc-cta{
+    display:flex;align-items:center;gap:6px;
+    font-family:var(--sans);font-size:13px;font-weight:500;color:var(--accent);
+  }
+  .fc-cta .arr{transition:transform var(--t-fast) var(--ease)}
+  .fc:hover .fc-cta .arr{transform:translateX(4px)}
+
+  /* Clients strip */
+  .clients-strip{padding:var(--s-3xl) 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);overflow:hidden}
+  .clients-strip .lead{
+    text-align:center;margin-bottom:var(--s-2xl);
+  }
+  .clients-marquee{
+    position:relative;width:100%;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+  }
+  .clients-track{
+    display:flex;width:max-content;
+    animation:clients-scroll 42s linear infinite;
+  }
+  .clients-marquee:hover .clients-track{animation-play-state:paused}
+  .client-item{
+    display:inline-flex;align-items:center;
+    padding-right:44px;
+  }
+  .client-item .logo{
+    height:80px;display:inline-flex;align-items:center;justify-content:center;
+    padding:0 34px;background:#fff;
+    border:1px solid var(--rule);border-radius:16px;
+  }
+  .client-item .logo img{
+    max-height:44px;max-width:156px;width:auto;
+    object-fit:contain;display:block;
+  }
+  @keyframes clients-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){
+    .clients-track{animation:none;flex-wrap:wrap;justify-content:center;width:100%;gap:20px}
+    .client-item{padding:0}
+  }
+
+  /* Approach — Sticky-scroll phases */
+  .approach-intro{
+    display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:end;margin-bottom:var(--s-3xl);
+  }
+  @media (max-width:900px){.approach-intro{grid-template-columns:1fr;gap:var(--s-lg)}}
+  .approach-intro h2{max-width:14ch}
+  .approach-intro p{font-size:17px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+
+  .approach-sticky-grid{
+    position:relative;
+    display:grid;grid-template-columns:340px 1fr;gap:0;align-items:stretch;width:100%;
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+    box-shadow:var(--shadow);
+    height:640px;max-height:calc(100vh - 200px);min-height:520px;
+    overflow:hidden;
+  }
+  @media (max-width:900px){
+    .approach-sticky-grid{
+      grid-template-columns:1fr;height:auto;max-height:none;min-height:0;overflow:visible;
+      background:transparent;border:none;box-shadow:none;
+    }
+  }
+
+  /* Scrollytelling — tall scroller + sticky pin */
+  .approach-scroller{position:relative;height:280vh}
+  @media (max-width:900px){.approach-scroller{height:auto}}
+
+  .approach-pin{
+    position:sticky;top:80px;
+    height:calc(100vh - 80px);min-height:560px;max-height:880px;
+    display:flex;align-items:center;
+    padding:var(--s-xl) 0 var(--s-3xl);
+  }
+  .approach-pin > .container{width:100%;flex:1 1 auto;min-width:0}
+  @media (max-width:900px){
+    .approach-pin{position:relative;top:auto;height:auto;min-height:0;max-height:none;padding:0;display:block}
+  }
+
+  .approach-sticky-left{
+    display:flex;align-items:center;justify-content:center;
+    padding:var(--s-3xl) var(--s-xl);
+    border-right:1px solid var(--rule);
+    background:var(--bg);
+  }
+  @media (max-width:900px){
+    .approach-sticky-left{display:none}
+  }
+
+  .phase-spine{
+    position:relative;width:100%;max-width:320px;
+    padding:0 0 0 48px;
+    background:transparent;border:none;box-shadow:none;
+  }
+  @media (max-width:900px){.phase-spine{max-width:none}}
+  .phase-spine .spine-head{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);padding-left:0;
+  }
+  .spine-track{
+    position:absolute;left:39px;top:36px;bottom:0;width:2px;
+    background:var(--rule);border-radius:1px;overflow:hidden;
+  }
+  .spine-track-fill{
+    position:absolute;left:0;right:0;top:0;
+    height:8%;background:var(--accent);border-radius:1px;
+    transition:height .5s var(--ease);
+  }
+
+  .spine-nodes{display:flex;flex-direction:column;gap:0}
+  .spine-node{
+    display:grid;grid-template-columns:32px 1fr;gap:14px;
+    align-items:center;padding:10px 0;position:relative;
+    cursor:pointer;border:none;background:transparent;width:100%;text-align:left;
+    font-family:inherit;
+    transition:opacity .3s var(--ease), transform .2s var(--ease);
+  }
+  .spine-node:hover{transform:translateX(2px)}
+  .spine-node:hover .sn-dot{border-color:var(--accent);color:var(--accent)}
+  .spine-node.past:hover .sn-dot,
+  .spine-node.active:hover .sn-dot{border-color:var(--accent);color:#fff}
+  .spine-node:focus-visible{outline:none}
+  .spine-node:focus-visible .sn-dot{box-shadow:0 0 0 4px rgba(31,80,255,.25)}
+  .spine-node:not(.active):not(.past){opacity:.45}
+  .sn-dot{
+    width:32px;height:32px;border-radius:50%;
+    background:var(--card);border:2px solid var(--rule);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:11px;font-weight:600;color:var(--ink-3);
+    z-index:2;position:relative;
+    transition:all .3s var(--ease);
+  }
+  .spine-node.past .sn-dot{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+  }
+  .spine-node.active .sn-dot{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+    box-shadow:0 0 0 6px rgba(31,80,255,.15);
+    transform:scale(1.08);
+  }
+  .sn-name{font-size:14px;font-weight:500;color:var(--ink);letter-spacing:-.005em;line-height:1.3}
+  .sn-sub{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);margin-top:3px;font-weight:500}
+  .spine-node.active .sn-sub{color:var(--accent)}
+
+  /* Right deck — transparent column inside the unified card; abs-positioned phases */
+  .approach-deck{
+    position:relative;
+    background:transparent;border:none;box-shadow:none;
+    height:auto;max-height:none;
+    overflow:hidden;
+  }
+  @media (max-width:900px){
+    .approach-deck{
+      display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;gap:var(--s-md);
+      padding-bottom:var(--s-md);scrollbar-width:none;
+    }
+    .approach-deck::-webkit-scrollbar{display:none}
+  }
+
+  .deck-progress-bar{
+    position:absolute;left:0;right:0;top:0;height:3px;background:var(--rule);z-index:4;
+  }
+  .deck-progress-fill{
+    height:100%;background:var(--accent);width:16.67%;
+    transition:width .55s cubic-bezier(.4,0,.2,1);
+  }
+  .deck-counter{
+    position:absolute;top:var(--s-lg);right:var(--s-xl);z-index:4;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;
+  }
+  .deck-counter b{color:var(--accent);font-weight:500}
+  @media (max-width:900px){.deck-progress-bar,.deck-counter{display:none}}
+
+  .phase-card{
+    position:absolute;inset:0;
+    padding:var(--s-3xl);padding-top:var(--s-4xl);padding-right:var(--s-4xl);
+    display:flex;flex-direction:column;justify-content:center;
+    background:var(--card);
+    transform:translateY(100%);
+    transition:transform .7s cubic-bezier(.4,0,.2,1), box-shadow .4s var(--ease);
+    pointer-events:none;
+    will-change:transform;
+  }
+  /* Stack hierarchy — phase 0 at the bottom, phase 5 on top */
+  .phase-card[data-phase="0"]{z-index:1;transform:translateY(0)}
+  .phase-card[data-phase="1"]{z-index:2}
+  .phase-card[data-phase="2"]{z-index:3}
+  .phase-card[data-phase="3"]{z-index:4}
+  .phase-card[data-phase="4"]{z-index:5}
+  .phase-card[data-phase="5"]{z-index:6}
+  .phase-card.reached{
+    transform:translateY(0);
+    pointer-events:auto;
+    box-shadow:0 -12px 32px -16px rgba(10,10,10,.08);
+  }
+  .phase-card[data-phase="0"].reached{box-shadow:none}
+  @media (max-width:900px){
+    .phase-card{position:relative;inset:auto;padding:var(--s-xl);
+      background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+      margin-bottom:0;transform:none;pointer-events:auto;
+      box-shadow:none;
+      flex:0 0 85vw;scroll-snap-align:center;
+      min-width:0;max-width:85vw;
+    }
+    .phase-card.reached{transform:none;box-shadow:none}
+    .phase-card[data-phase="0"]{transform:none}
+  }
+
+  /* Mobile carousel dots */
+  .mob-carousel-dots{display:none}
+  @media (max-width:900px){
+    .mob-carousel-dots{
+      display:flex;justify-content:center;gap:8px;padding:var(--s-lg) 0 0;
+    }
+    .mob-carousel-dots .dot-item{
+      width:8px;height:8px;border-radius:50%;background:var(--rule);
+      border:none;padding:0;cursor:pointer;transition:all .3s var(--ease);
+    }
+    .mob-carousel-dots .dot-item.active{
+      background:var(--accent);width:24px;border-radius:4px;
+    }
+  }
+  .phase-card .pc-ix{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;margin-bottom:var(--s-md);
+  }
+  .phase-card .pc-ix::before{
+    content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);
+  }
+  .phase-card h3{
+    font-size:clamp(24px,2.8vw,38px);font-weight:500;letter-spacing:-.018em;
+    line-height:1.1;margin-bottom:var(--s-lg);max-width:22ch;
+  }
+  .phase-card p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:46ch}
+  .phase-card p + p{margin-top:var(--s-md)}
+  .phase-card p b{color:var(--ink);font-weight:500}
+  .phase-card .pc-out{
+    display:inline-flex;align-items:center;gap:8px;margin-top:var(--s-lg);align-self:flex-start;
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;padding:6px 12px;background:var(--accent-soft);border-radius:999px;
+  }
+  .phase-card .pc-out::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
+
+  /* CTA section */
+  .cta-section{
+    background:#3A3D4A;color:#fff;border-radius:var(--radius-lg);
+    padding:var(--s-4xl) var(--s-3xl);
+    display:grid;grid-template-columns:1.4fr 1fr;gap:var(--s-2xl);align-items:center;
+    position:relative;overflow:hidden;
+  }
+  @media (max-width:780px){.cta-section{grid-template-columns:1fr;padding:var(--s-2xl)}}
+  .cta-section::before{
+    content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background:
+      radial-gradient(ellipse 60% 80% at 100% 100%, rgba(31,80,255,.4), transparent 70%);
+  }
+  .cta-section h2{font-size:clamp(28px,4vw,44px);line-height:1.05;letter-spacing:-.02em;font-weight:500;color:#fff;margin-bottom:var(--s-md);text-wrap:balance;max-width:18ch;position:relative}
+  .cta-section p{color:rgba(255,255,255,.7);font-size:16px;line-height:1.5;max-width:42ch;position:relative}
+  .cta-actions{display:flex;flex-direction:column;gap:var(--s-md);align-items:flex-start;position:relative}
+  .cta-actions .email{
+    font-family:var(--mono);font-size:14px;letter-spacing:.04em;color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.4);padding-bottom:3px;
+    transition:border-color var(--t-fast) var(--ease);
+  }
+  .cta-actions .email:hover{border-bottom-color:#fff}
+  .cta-section .btn-accent:hover{background:#fff;color:var(--ink)}
+
+</style>
+</head>
+<body>
+
+<!-- ========================== NAV ========================== -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html" aria-label="Home">
+      <img class="brand-logo" src="assets/logo.svg" alt="reichard">
+    </a>
+    <div class="nav-center">
+      <a class="nav-link active" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+  <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ========================== HERO ========================== -->
+  <section class="hero-home" data-screen-label="01 Hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow" data-i18n="home.eyebrow">Senior UI/UX Designer &amp; Consultant</span>
+      </div>
+
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="home.h1.l1">Turning complex problems</span></span>
+        <span class="line"><span class="line-inner" data-i18n="home.h1.l2">into clear, usable</span></span>
+        <span class="line"><span class="line-inner accent" data-i18n="home.h1.l3">digital products.</span></span>
+      </h1>
+
+      <p class="lede reveal" style="transition-delay:.35s" data-i18n="home.lede">
+        Six years designing end&#8209;to&#8209;end solutions for B2B and industrial clients, from stakeholder alignment and research to design systems, prototypes and production&#8209;ready UI.
+      </p>
+
+      <div class="hero-actions reveal" style="transition-delay:.5s">
+        <a class="btn btn-accent btn-lg" href="work.html" data-i18n="home.cta1">View selected work <span class="arr">→</span></a>
+        <a class="btn btn-ghost btn-lg" href="about.html" data-i18n="home.cta2">About me</a>
+      </div>
+
+      <div class="hero-meta">
+        <span class="hero-meta-item" data-i18n="home.meta1"><b>10</b> Years experience</span>
+        <span class="hero-meta-item" data-i18n="home.meta2"><b>12+</b> Platforms &amp; Shops</span>
+        <span class="hero-meta-item" data-i18n="home.meta3">Based in <b>Villingen-Schwenningen</b></span>
+        <span class="hero-meta-item" data-i18n="home.meta4">Open for <b>Senior roles</b></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== CLIENTS STRIP ========================== -->
+  <section class="clients-strip" data-screen-label="02 Clients">
+    <div class="container">
+      <div class="lead">
+        <span class="eyebrow muted" data-i18n="home.clients">Selected clients</span>
+      </div>
+      <div class="clients-marquee">
+        <div class="clients-track">
+          <span class="client-item"><span class="logo"><img src="uploads/Geiger-Logo-600x192.png" alt="Geiger"></span></span>
+          <span class="client-item"><span class="logo"><img src="uploads/IN-TR_Logo_100mm_rgb300dpi.jpg" alt="INDEX-TRAUB"></span></span>
+          <span class="client-item"><span class="logo"><img src="uploads/68b9ab672fd3b1b556b0a97f_ENC_Wort-Bildmarke_gruen_transparent_SCREEN.png" alt="ENERCON"></span></span>
+          <span class="client-item"><span class="logo"><img src="uploads/idUwE6mhti_1781765871240.jpeg" alt="MAPAL"></span></span>
+          <span class="client-item"><span class="logo"><img src="uploads/wagner__08208.jpg" alt="WAGNER"></span></span>
+          <span class="client-item"><span class="logo"><img src="uploads/Schunk_logo.svg" alt="SCHUNK"></span></span>
+          <span class="client-item"><span class="logo"><img src="uploads/Kistler-Logo.svg" alt="Kistler"></span></span>
+          <span class="client-item"><span class="logo"><img src="uploads/csm_AVL_Logo_neu169_bc7e8b5f8e.jpg" alt="AVL"></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/Geiger-Logo-600x192.png" alt=""></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/IN-TR_Logo_100mm_rgb300dpi.jpg" alt=""></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/68b9ab672fd3b1b556b0a97f_ENC_Wort-Bildmarke_gruen_transparent_SCREEN.png" alt=""></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/idUwE6mhti_1781765871240.jpeg" alt=""></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/wagner__08208.jpg" alt=""></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/Schunk_logo.svg" alt=""></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/Kistler-Logo.svg" alt=""></span></span>
+          <span class="client-item" aria-hidden="true"><span class="logo"><img src="uploads/csm_AVL_Logo_neu169_bc7e8b5f8e.jpg" alt=""></span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== FEATURED WORK ========================== -->
+  <section class="section" data-screen-label="03 Featured Work">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="home.fw.eyebrow">/01 · Selected Work</span>
+          <h2 class="h2" data-i18n="home.fw.h2">Recent case studies.</h2>
+        </div>
+        <div class="aside" data-i18n="home.fw.aside">
+          <b>2021 – 2026</b><br>
+          eCommerce · Portals · Fleet<br>
+          SAP &amp; Composable
+        </div>
+      </div>
+
+      <div class="featured-grid">
+
+        <!-- card 1 -->
+        <a class="fc" href="case-schunk.html">
+          <div class="fc-media" style="background:#c8d4de">
+            <img src="uploads/maschine.jpg" alt="Portal & eShop · FANUC Maschinenanlage" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block">
+          </div>
+          <div class="fc-body">
+            <div class="fc-meta">
+              <span class="client">FANUC</span>
+              <span class="year">2023–2024</span>
+            </div>
+            <h3 data-i18n="home.c1.h">Portal &amp; eShop. One place for the customer</h3>
+            <p data-i18n="home.c1.p">Replaced four disconnected systems with a single SAP-Commerce portal. End-to-end UX from stakeholder workshop through Scrum delivery.</p>
+            <div class="fc-tags">
+              <span class="tag">eShop</span>
+              <span class="tag">Portal</span>
+              <span class="tag">Fleet</span>
+              <span class="tag tag-accent">SAP Commerce</span>
+            </div>
+            <span class="fc-cta" data-i18n="card.read">Read case study <span class="arr">→</span></span>
+          </div>
+        </a>
+
+        <!-- card 2 -->
+        <a class="fc" href="case-index.html">
+          <div class="fc-media" style="background:#dde4eb">
+            <img src="uploads/MachinenPortal_Mockup.jpg" alt="INDEX-TRAUB iXworld Portal" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block">
+          </div>
+          <div class="fc-body">
+            <div class="fc-meta">
+              <span class="client">INDEX-TRAUB</span>
+              <span class="year">2023</span>
+            </div>
+            <h3 data-i18n="home.c2.h">iXworld. Machine Management, eShop &amp; Expert Tool</h3>
+            <p data-i18n="home.c2.p">From the machine overview to the spare-parts shop: one portal, three products, one login. Designed for machine operators, maintenance and procurement.</p>
+            <div class="fc-tags">
+              <span class="tag">Maschinenmanagement</span>
+              <span class="tag">eShop</span>
+              <span class="tag tag-accent">iXworld</span>
+            </div>
+            <span class="fc-cta" data-i18n="card.read">Read case study <span class="arr">→</span></span>
+          </div>
+        </a>
+
+        <!-- card 3 -->
+        <a class="fc" href="case-geiger.html">
+          <div class="fc-media" style="background:#e2e0dc">
+            <img src="uploads/Mockup_Detailspage.jpg" alt="Geiger Sales Rep Platform · Product Configuration" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block">
+          </div>
+          <div class="fc-body">
+            <div class="fc-meta">
+              <span class="client">Geiger</span>
+              <span class="year">2025–2026</span>
+            </div>
+            <h3 data-i18n="home.c3.h">Sales Rep Platform. Configuration &amp; quoting</h3>
+            <p data-i18n="home.c3.p">Redesigning the Sales Rep experience for the world's largest promotional products company. SAP Commerce, product configuration and quoting.</p>
+            <div class="fc-tags">
+              <span class="tag">eCommerce</span>
+              <span class="tag">Configuration</span>
+              <span class="tag tag-accent">SAP Commerce</span>
+            </div>
+            <span class="fc-cta" data-i18n="card.read">Read case study <span class="arr">→</span></span>
+          </div>
+        </a>
+
+        <!-- card 4 -->
+        <a class="fc" href="case-enercon.html">
+          <div class="fc-media" style="background:#dfe4e7">
+            <img src="uploads/Enercon-me.jpg" alt="ENERCON Customer Portal · responsive across laptop, tablet and mobile" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block">
+          </div>
+          <div class="fc-body">
+            <div class="fc-meta">
+              <span class="client">Enercon</span>
+              <span class="year">2025–2026</span>
+            </div>
+            <h3 data-i18n="home.c4.h">ENERCON Customer Portal</h3>
+            <p data-i18n="home.c4.p">One unified SSO portal replacing SIP, ETC &amp; eShop. Portfolio, park &amp; turbine-level monitoring with service-order tracking across desktop, tablet and mobile.</p>
+            <div class="fc-tags">
+              <span class="tag">Dashboard</span>
+              <span class="tag">Monitoring</span>
+              <span class="tag tag-accent">SSO Portal</span>
+            </div>
+            <span class="fc-cta" data-i18n="card.read">Read case study <span class="arr">→</span></span>
+          </div>
+        </a>
+
+
+
+      </div>
+
+      <div style="margin-top:var(--s-2xl);display:flex;justify-content:center">
+        <a class="btn btn-ghost btn-lg" href="work.html" data-i18n="home.viewall">View all work <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== APPROACH · STICKY SCROLL ========================== -->
+  <section class="section" style="background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)" data-screen-label="04 Approach">
+
+    <div class="container">
+      <div class="approach-intro">
+        <div>
+          <span class="eyebrow ev" data-i18n="home.ap.eyebrow">/02 · Approach</span>
+          <h2 class="h2" style="margin-top:var(--s-md)" data-i18n="home.ap.h2">Phase&nbsp;0 → Delivery.<br>The whole path.</h2>
+        </div>
+        <p data-i18n="home.ap.p">
+          I own the full UX path: client communication, research, workshops, wireframes, testing, and Scrum delivery with internal &amp; external dev teams. <b style="color:var(--ink)">Scroll through the six phases below.</b>
+        </p>
+      </div>
+    </div>
+
+    <div class="approach-scroller">
+      <div class="approach-pin">
+        <div class="container">
+          <div class="approach-sticky-grid">
+
+            <!-- Unified card-level progress + counter -->
+            <div class="deck-progress-bar"><div class="deck-progress-fill" id="deckFill"></div></div>
+            <div class="deck-counter"><b id="deckCounter">01</b> / 06</div>
+
+            <!-- LEFT · STICKY SPINE -->
+            <div class="approach-sticky-left">
+              <div class="phase-spine">
+                <div class="spine-track"><div class="spine-track-fill" id="spineFill"></div></div>
+                <div class="spine-nodes">
+                  <button type="button" class="spine-node active" data-phase="0" aria-label="Go to Phase 0 · Alignment">
+                    <span class="sn-dot">00</span>
+                    <div><div class="sn-name" data-i18n="home.sp0.n">Alignment</div><div class="sn-sub" data-i18n="home.sp0.s">Phase 0</div></div>
+                  </button>
+                  <button type="button" class="spine-node" data-phase="1" aria-label="Go to Phase 1 · Research and Audit">
+                    <span class="sn-dot">01</span>
+                    <div><div class="sn-name" data-i18n="home.sp1.n">Research &amp; Audit</div><div class="sn-sub" data-i18n="home.sp1.s">Discovery</div></div>
+                  </button>
+                  <button type="button" class="spine-node" data-phase="2" aria-label="Go to Phase 2 · Wireframes and IA">
+                    <span class="sn-dot">02</span>
+                    <div><div class="sn-name" data-i18n="home.sp2.n">Wireframes &amp; IA</div><div class="sn-sub" data-i18n="home.sp2.s">Structure</div></div>
+                  </button>
+                  <button type="button" class="spine-node" data-phase="3" aria-label="Go to Phase 3 · Testing">
+                    <span class="sn-dot">03</span>
+                    <div><div class="sn-name" data-i18n="home.sp3.n">Testing</div><div class="sn-sub" data-i18n="home.sp3.s">Validation</div></div>
+                  </button>
+                  <button type="button" class="spine-node" data-phase="4" aria-label="Go to Phase 4 · Hi-Fi and Components">
+                    <span class="sn-dot">04</span>
+                    <div><div class="sn-name" data-i18n="home.sp4.n">Hi-Fi &amp; Components</div><div class="sn-sub" data-i18n="home.sp4.s">Design</div></div>
+                  </button>
+                  <button type="button" class="spine-node" data-phase="5" aria-label="Go to Phase 5 · Scrum Delivery">
+                    <span class="sn-dot">05</span>
+                    <div><div class="sn-name" data-i18n="home.sp5.n">Scrum Delivery</div><div class="sn-sub" data-i18n="home.sp5.s">Ship it</div></div>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT · SINGLE DECK — ONE PHASE VISIBLE AT A TIME -->
+            <div class="approach-deck">
+
+              <article class="phase-card active" data-phase="0">
+                <div class="pc-ix" data-i18n="home.pc0.ix">Phase 0 · Alignment</div>
+                <h3 data-i18n="home.pc0.h">Get everyone on the same page first.</h3>
+                <p data-i18n="home.pc0.p1">Kickoff workshop with PO, PL and key stakeholders. We clarify the big picture: project scope, timeline, success metrics, and align on how the project will run. Who owns what, how we communicate, what the milestones look like.</p>
+                <p data-i18n="home.pc0.p2">A shared understanding at the start saves time later. This is where the foundation for smooth collaboration is set.</p>
+                <span class="pc-out" data-i18n="home.pc0.out">Output · Stakeholder map · Success metrics · Working agreement</span>
+              </article>
+
+              <article class="phase-card" data-phase="1">
+                <div class="pc-ix" data-i18n="home.pc1.ix">/01 · Research &amp; Audit</div>
+                <h3 data-i18n="home.pc1.h">Understand who the users actually are.</h3>
+                <p data-i18n="home.pc1.p1">Research into the people behind the product, building out <b>relevant personas</b> and choosing the methods that fit each project. Findings are synthesised into pain-point and journey maps, distilling the most actionable insights to guide every decision downstream.</p>
+                <span class="pc-out" data-i18n="home.pc1.out">Output · Audit doc · Personas · Journey maps</span>
+              </article>
+
+              <article class="phase-card" data-phase="2">
+                <div class="pc-ix" data-i18n="home.pc2.ix">/02 · Wireframes &amp; IA</div>
+                <h3 data-i18n="home.pc2.h">Structure before aesthetics.</h3>
+                <p data-i18n="home.pc2.p1">Lo-fi wireframes in Balsamiq. Iterative review rounds with the PO before pixel work begins. Sitemap usually collapses to <b>half the legacy size</b>. Most savings come from merging duplicate flows.</p>
+                <p data-i18n="home.pc2.p2">Every decision argued, never decorative. The point is to ship the right structure, not the prettiest one.</p>
+                <span class="pc-out" data-i18n="home.pc2.out">Output · Sitemap · Wireframes v1 / v2 / v3</span>
+              </article>
+
+              <article class="phase-card" data-phase="3">
+                <div class="pc-ix" data-i18n="home.pc3.ix">/03 · Testing</div>
+                <h3 data-i18n="home.pc3.h">Validate, don't assume.</h3>
+                <p data-i18n="home.pc3.p1">Moderated usability tests with real users on wireframes and lo-fi prototypes. Findings feed straight into the next iteration loop, so every design decision is grounded in evidence, not guesswork.</p>
+                <span class="pc-out" data-i18n="home.pc3.out">Output · Test protocols · Findings deck</span>
+              </article>
+
+              <article class="phase-card" data-phase="4">
+                <div class="pc-ix" data-i18n="home.pc4.ix">/04 · Hi-Fi &amp; Component Library</div>
+                <h3 data-i18n="home.pc4.h">From research to final design.</h3>
+                <p data-i18n="home.pc4.p1">Final design in Sketch or Figma, grounded in the preceding research phases. Built around <b>client-specific design guidelines, CI/CD, and technical requirements</b>, respecting platform conventions and commerce-project constraints.</p>
+                <p data-i18n="home.pc4.p2">Close alignment with developers ensures feasibility throughout the project.</p>
+                <span class="pc-out" data-i18n="home.pc4.out">Output · Hi-Fi screens · Component spec</span>
+              </article>
+
+              <article class="phase-card" data-phase="5">
+                <div class="pc-ix" data-i18n="home.pc5.ix">/05 · Scrum Delivery</div>
+                <h3 data-i18n="home.pc5.h">Embedded UX through release.</h3>
+                <p data-i18n="home.pc5.p1">Close collaboration with developers in an agile Scrum process, tailored to each project's needs. <b>Design and development move in lockstep</b>, eliminating redundant alignment rounds and keeping the project on track.</p>
+                <p data-i18n="home.pc5.p2">The result: faster delivery without wasting time or budget on avoidable miscommunication.</p>
+                <span class="pc-out" data-i18n="home.pc5.out">Output · Shipping product · Live since launch</span>
+              </article>
+            </div>
+
+            <!-- MOBILE CAROUSEL DOTS -->
+            <div class="mob-carousel-dots" id="mobDots"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="text-align:center;margin-top:var(--s-xl)">
+      <a class="link-arrow" href="about.html" data-i18n="home.ap.more">More about my approach <span class="arr">→</span></a>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- ========================== FOOTER ========================== -->
+<footer class="foot" style="background-color: #FFFFFF">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot.pages">Pages</h5>
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot.contact">Contact</h5>
+        <ul>
+          <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    // close on link click
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal,.text-reveal').forEach(el => io.observe(el));
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+    });
+  }); });
+
+  // Approach · scrollytelling (sticky pin + single-card deck)
+  const approachScroller = document.querySelector('.approach-scroller');
+  const phaseCards = document.querySelectorAll('.phase-card');
+  const spineNodes = document.querySelectorAll('.spine-node');
+  const spineFill = document.getElementById('spineFill');
+  const deckFill = document.getElementById('deckFill');
+  const deckCounter = document.getElementById('deckCounter');
+  const approachDeck = document.querySelector('.approach-deck');
+  const mobDotsWrap = document.getElementById('mobDots');
+  const phaseTotal = phaseCards.length || 6;
+
+  // Create mobile dots
+  phaseCards.forEach((_,i) => {
+    const d = document.createElement('button');
+    d.className = 'dot-item' + (i === 0 ? ' active' : '');
+    d.setAttribute('aria-label', 'Phase ' + i);
+    d.addEventListener('click', () => {
+      if(approachDeck && window.innerWidth <= 900){
+        const card = phaseCards[i];
+        if(card) approachDeck.scrollTo({left: card.offsetLeft - (approachDeck.offsetWidth - card.offsetWidth) / 2, behavior:'smooth'});
+      }
+    });
+    mobDotsWrap.appendChild(d);
+  });
+  const mobDots = mobDotsWrap.querySelectorAll('.dot-item');
+
+  // Mobile carousel scroll listener
+  if(approachDeck){
+    let mobRaf = false;
+    approachDeck.addEventListener('scroll', () => {
+      if(mobRaf || window.innerWidth > 900) return;
+      mobRaf = true;
+      requestAnimationFrame(() => {
+        mobRaf = false;
+        const scrollL = approachDeck.scrollLeft;
+        const deckW = approachDeck.offsetWidth;
+        let closest = 0, minDist = Infinity;
+        phaseCards.forEach((c,i) => {
+          const cardCenter = c.offsetLeft + c.offsetWidth / 2;
+          const dist = Math.abs(cardCenter - scrollL - deckW / 2);
+          if(dist < minDist){ minDist = dist; closest = i; }
+        });
+        mobDots.forEach((d,i) => d.classList.toggle('active', i === closest));
+      });
+    }, {passive:true});
+  }
+
+  let lastPhaseIdx = -1;
+  function setPhase(idx){
+    if(idx === lastPhaseIdx) return;
+    lastPhaseIdx = idx;
+    phaseCards.forEach((c,i) => {
+      c.classList.toggle('reached', i <= idx);
+      c.classList.toggle('active', i === idx);
+    });
+    spineNodes.forEach((n,i) => {
+      n.classList.toggle('active', i === idx);
+      n.classList.toggle('past', i < idx);
+    });
+    const pct = ((idx + 1) / phaseTotal) * 100;
+    if(spineFill) spineFill.style.height = pct + '%';
+    if(deckFill) deckFill.style.width = pct + '%';
+    if(deckCounter) deckCounter.textContent = String(idx + 1).padStart(2,'0');
+  }
+
+  let rafPending = false;
+  function approachUpdate(){
+    if(!approachScroller) return;
+    if(window.innerWidth <= 900) return; // mobile uses carousel
+    const rect = approachScroller.getBoundingClientRect();
+    const sH = approachScroller.offsetHeight;
+    const vH = window.innerHeight;
+    const totalRange = sH - vH;
+    if(totalRange <= 0) return;
+    const scrolled = Math.max(0, Math.min(totalRange, -rect.top));
+    const progress = scrolled / totalRange;
+    let idx = Math.floor(progress * phaseTotal);
+    if(idx >= phaseTotal) idx = phaseTotal - 1;
+    if(idx < 0) idx = 0;
+    setPhase(idx);
+  }
+  function onApproachScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => { rafPending = false; approachUpdate(); });
+  }
+  if(approachScroller){
+    window.addEventListener('scroll', onApproachScroll, {passive:true});
+    window.addEventListener('resize', onApproachScroll);
+    approachUpdate();
+
+    // Click-to-navigate on spine nodes
+    spineNodes.forEach(node => {
+      node.addEventListener('click', () => {
+        const idx = parseInt(node.dataset.phase, 10);
+        if(isNaN(idx)) return;
+        const sH = approachScroller.offsetHeight;
+        const vH = window.innerHeight;
+        const totalRange = sH - vH;
+        if(totalRange <= 0) return;
+        // Center each phase in its range: progress = (idx + 0.5) / phaseTotal
+        const targetProgress = (idx + 0.5) / phaseTotal;
+        const scrollerTop = approachScroller.getBoundingClientRect().top + window.scrollY;
+        const targetY = scrollerTop + targetProgress * totalRange;
+        window.scrollTo({ top: targetY, behavior: 'smooth' });
+      });
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "Johannes Reichard · Senior UI/UX Designer & Consultant",
+  "__desc": "Senior UI/UX Designer & Consultant. Sechs Jahre Erfahrung im End-to-End-Design komplexer B2B-Plattformen – für Schunk, Fanuc, Enercon und weitere.",
+  "home.eyebrow": "Senior UI/UX Designer &amp; Consultant",
+  "home.h1.l1": "Komplexe Probleme",
+  "home.h1.l2": "in klare, nutzbare",
+  "home.h1.l3": "digitale Produkte.",
+  "home.lede": "Sechs Jahre End&#8209;to&#8209;End-Design für B2B- und Industriekunden – von der Stakeholder-Abstimmung und Research über Designsysteme und Prototypen bis zur produktionsreifen UI.",
+  "home.cta1": 'Ausgewählte Arbeiten ansehen <span class="arr">→</span>',
+  "home.cta2": "Über mich",
+  "home.meta1": "<b>10</b> Jahre Erfahrung",
+  "home.meta2": "<b>12+</b> Plattformen &amp; Shops",
+  "home.meta3": "Ansässig in <b>Villingen-Schwenningen</b>",
+  "home.meta4": "Offen für <b>Senior-Rollen</b>",
+  "home.clients": "Ausgewählte Kunden",
+  "home.fw.eyebrow": "/01 · Ausgewählte Arbeiten",
+  "home.fw.h2": "Aktuelle Fallstudien.",
+  "home.fw.aside": "<b>2021 – 2026</b><br>eCommerce · Portale · Fleet<br>SAP &amp; Composable",
+  "home.c1.h": "Portal &amp; eShop. Ein Ort für den Kunden",
+  "home.c1.p": "Vier getrennte Systeme ersetzt durch ein einziges SAP-Commerce-Portal. End-to-End-UX vom Stakeholder-Workshop bis zur Scrum-Auslieferung.",
+  "home.c2.h": "iXworld. Maschinenmanagement, eShop &amp; Expertentool",
+  "home.c2.p": "Vom Maschinenüberblick bis zum Ersatzteil-Shop: ein Portal, drei Produkte, ein Login. Konzipiert für Maschinenbediener, Instandhaltung und Einkauf.",
+  "home.c3.h": "Sales-Rep-Plattform. Konfiguration &amp; Angebotserstellung",
+  "home.c3.p": "Neugestaltung der Sales-Rep-Experience für den weltgrößten Anbieter von Werbeartikeln. SAP Commerce, Produktkonfiguration und Angebotserstellung.",
+  "home.c4.h": "ENERCON Kundenportal",
+  "home.c4.p": "Ein einheitliches SSO-Portal als Ablösung von SIP, ETC &amp; eShop. Portfolio-, Park- und Turbinen-Monitoring mit Serviceauftrags-Tracking über Desktop, Tablet und Mobile.",
+  "home.viewall": 'Alle Arbeiten ansehen <span class="arr">→</span>',
+  "home.ap.eyebrow": "/02 · Vorgehen",
+  "home.ap.h2": "Phase&nbsp;0 → Delivery.<br>Der ganze Weg.",
+  "home.ap.p": "Ich verantworte den gesamten UX-Weg: Kundenkommunikation, Research, Workshops, Wireframes, Testing und Scrum-Delivery mit internen &amp; externen Dev-Teams. <b style=\"color:var(--ink)\">Scrolle durch die sechs Phasen.</b>",
+  "home.sp0.n": "Alignment", "home.sp0.s": "Phase 0",
+  "home.sp1.n": "Research &amp; Audit", "home.sp1.s": "Discovery",
+  "home.sp2.n": "Wireframes &amp; IA", "home.sp2.s": "Struktur",
+  "home.sp3.n": "Testing", "home.sp3.s": "Validierung",
+  "home.sp4.n": "Hi-Fi &amp; Components", "home.sp4.s": "Design",
+  "home.sp5.n": "Scrum Delivery", "home.sp5.s": "Ship it",
+  "home.pc0.ix": "Phase 0 · Alignment",
+  "home.pc0.h": "Erst alle auf einen Stand bringen.",
+  "home.pc0.p1": "Kickoff-Workshop mit PO, PL und den wichtigsten Stakeholdern. Wir klären das große Ganze: Projektumfang, Zeitplan, Erfolgskennzahlen – und stimmen ab, wie das Projekt läuft. Wer verantwortet was, wie kommunizieren wir, wie sehen die Meilensteine aus.",
+  "home.pc0.p2": "Ein gemeinsames Verständnis am Anfang spart später Zeit. Hier wird das Fundament für reibungslose Zusammenarbeit gelegt.",
+  "home.pc0.out": "Output · Stakeholder-Map · Erfolgskennzahlen · Working Agreement",
+  "home.pc1.ix": "/01 · Research &amp; Audit",
+  "home.pc1.h": "Verstehen, wer die Nutzer wirklich sind.",
+  "home.pc1.p1": "Research zu den Menschen hinter dem Produkt, Aufbau <b>relevanter Personas</b> und Auswahl der Methoden, die zum jeweiligen Projekt passen. Erkenntnisse werden in Pain-Point- und Journey-Maps verdichtet – die handlungsrelevantesten Insights leiten jede nachgelagerte Entscheidung.",
+  "home.pc1.out": "Output · Audit-Dokument · Personas · Journey-Maps",
+  "home.pc2.ix": "/02 · Wireframes &amp; IA",
+  "home.pc2.h": "Struktur vor Ästhetik.",
+  "home.pc2.p1": "Lo-Fi-Wireframes in Balsamiq. Iterative Review-Runden mit dem PO, bevor die Pixelarbeit beginnt. Die Sitemap schrumpft meist auf <b>die Hälfte der Altgröße</b>. Die größten Einsparungen entstehen durch das Zusammenlegen doppelter Flows.",
+  "home.pc2.p2": "Jede Entscheidung begründet, nie dekorativ. Es geht darum, die richtige Struktur auszuliefern – nicht die hübscheste.",
+  "home.pc2.out": "Output · Sitemap · Wireframes v1 / v2 / v3",
+  "home.pc3.ix": "/03 · Testing",
+  "home.pc3.h": "Validieren, nicht annehmen.",
+  "home.pc3.p1": "Moderierte Usability-Tests mit echten Nutzern auf Wireframes und Lo-Fi-Prototypen. Erkenntnisse fließen direkt in die nächste Iterationsschleife – jede Design-Entscheidung beruht auf Evidenz, nicht auf Vermutungen.",
+  "home.pc3.out": "Output · Testprotokolle · Findings-Deck",
+  "home.pc4.ix": "/04 · Hi-Fi &amp; Component Library",
+  "home.pc4.h": "Von der Research zum finalen Design.",
+  "home.pc4.p1": "Finales Design in Sketch oder Figma, fundiert durch die vorangegangenen Research-Phasen. Aufgebaut auf <b>kundenspezifischen Designrichtlinien, CI/CD und technischen Anforderungen</b> – unter Beachtung von Plattformkonventionen und Commerce-Projekt-Vorgaben.",
+  "home.pc4.p2": "Enge Abstimmung mit den Entwicklern sichert die Machbarkeit über das gesamte Projekt hinweg.",
+  "home.pc4.out": "Output · Hi-Fi-Screens · Component-Spec",
+  "home.pc5.ix": "/05 · Scrum Delivery",
+  "home.pc5.h": "Eingebettete UX bis zum Release.",
+  "home.pc5.p1": "Enge Zusammenarbeit mit den Entwicklern in einem agilen Scrum-Prozess, zugeschnitten auf die Bedürfnisse jedes Projekts. <b>Design und Entwicklung gehen Hand in Hand</b>, vermeiden überflüssige Abstimmungsrunden und halten das Projekt auf Kurs.",
+  "home.pc5.p2": "Das Ergebnis: schnellere Auslieferung, ohne Zeit oder Budget für vermeidbare Missverständnisse zu verschwenden.",
+  "home.pc5.out": "Output · Ausgeliefertes Produkt · Live seit Launch",
+  "home.ap.more": 'Mehr über mein Vorgehen <span class="arr">→</span>'
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+</body>
+</html>

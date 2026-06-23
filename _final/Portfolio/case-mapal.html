@@ -1,0 +1,1040 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Configuration Platform · MAPAL · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(36px,5.2vw,66px);line-height:1.04;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:20ch;margin-bottom:var(--s-xl)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:62ch}
+
+  .hero-art{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow)}
+  .hero-art svg{width:100%;height:100%;display:block}
+  .hero-art img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  @media(max-width:520px){.meta-cell:nth-child(odd){border-right:1px solid var(--rule)}.meta-cell:nth-child(even){border-right:none}.meta-cell{border-bottom:1px solid var(--rule)!important}.meta-cell:nth-last-child(-n+2){border-bottom:none!important}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  .hero-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-xl)}
+
+  /* Chapter head — left aligned */
+  .chap{padding:var(--s-5xl) 0 var(--s-xl)}
+  .chap .ev{margin-bottom:var(--s-md)}
+  .chap h2{max-width:20ch}
+  .chap p.intro{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:64ch;margin-top:var(--s-lg)}
+
+  /* Context — complexity / goal */
+  .cg-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-xl)}
+  @media(max-width:780px){.cg-grid{grid-template-columns:1fr}}
+  .cg-card{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .cg-card .cg-head{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-lg)}
+  .cg-list{display:flex;flex-direction:column}
+  .cg-item{display:grid;grid-template-columns:24px 1fr;gap:var(--s-md);align-items:start;padding:var(--s-md) 0;border-top:1px solid var(--rule-2)}
+  .cg-item:first-child{border-top:none;padding-top:0}
+  .cg-ico{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+  .cg-ico svg{width:11px;height:11px;display:block}
+  .cg-ico.bad{background:#FBEAE6}
+  .cg-ico.go{background:var(--accent-soft)}
+  .cg-item p{font-size:15px;line-height:1.5;color:var(--ink);font-weight:500}
+
+  /* Method cards */
+  .method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-xl)}
+  @media(max-width:820px){.method-grid{grid-template-columns:1fr}}
+  .method-card{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .method-card .mc-n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-lg)}
+  .method-card .mc-t{display:flex;align-items:center;gap:10px;margin-bottom:var(--s-md)}
+  .method-card .mc-t .mc-ico{width:26px;height:26px;border-radius:7px;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .method-card .mc-t .mc-ico svg{width:14px;height:14px;display:block}
+  .method-card .mc-t h3{font-size:18px;font-weight:600;letter-spacing:-.01em}
+  .method-card p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+
+  /* Findings panel */
+  .findings{margin-top:var(--s-lg);background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .findings .f-head{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-lg)}
+  .findings .f-chips{display:flex;gap:8px;flex-wrap:wrap}
+  .f-chip{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:8px 14px}
+  .f-chip::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--warn);flex-shrink:0}
+
+  /* IA navigation diagram */
+  .ia-wrap{margin-top:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl) var(--s-2xl) var(--s-3xl)}
+  .ia-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .ia-root{display:flex;justify-content:flex-start;margin-bottom:var(--s-lg)}
+  .ia-node{display:inline-flex;align-items:center;font-size:14px;font-weight:600;letter-spacing:-.01em;border-radius:8px;padding:10px 18px;line-height:1}
+  .ia-node.root{background:var(--accent);color:#fff;box-shadow:var(--shadow)}
+  .ia-cols{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-xl);position:relative}
+  @media(max-width:820px){.ia-cols{grid-template-columns:1fr;gap:var(--s-lg)}}
+  .ia-col{display:flex;flex-direction:column;gap:10px}
+  .ia-col .ia-section{align-self:flex-start;background:var(--accent-soft);color:var(--accent);border:1px solid #cdd9ff;font-weight:600;font-size:13px;border-radius:7px;padding:9px 15px;margin-bottom:6px}
+  .ia-child{font-size:13px;font-weight:500;color:var(--ink-2);background:var(--bg);border:1px solid var(--rule);border-radius:7px;padding:9px 14px;position:relative}
+  .ia-child::before{content:"";position:absolute;left:-13px;top:50%;width:13px;height:1px;background:var(--ink-4)}
+  .ia-col .ia-stack{display:flex;flex-direction:column;gap:8px;padding-left:13px;border-left:1px solid var(--ink-4);margin-left:6px}
+
+  /* Core user flow */
+  .flow-wrap{margin-top:var(--s-lg);background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .flow-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .flow-steps{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .flow-pill{display:inline-flex;align-items:center;font-size:14px;font-weight:500;color:var(--ink);background:var(--card);border:1px solid var(--rule);border-radius:999px;padding:10px 16px;line-height:1}
+  .flow-pill.start{border-color:var(--accent);color:var(--accent);font-weight:600}
+  .flow-pill.end{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .flow-arrow{font-family:var(--mono);color:var(--ink-4);font-size:15px}
+
+  /* Sticky scroll — solution */
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-xl);text-align:center}
+  @media(max-width:780px){.chapter-head{padding:var(--s-3xl) 0 var(--s-md)}}
+  .chapter-head .ev{margin-bottom:var(--s-md)}
+  .chapter-head h2{margin:0 auto;max-width:20ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:56ch;margin:var(--s-lg) auto 0}
+
+  .sticky-wrap{height:560vh;padding-bottom:0}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .sticky-left{height:auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:4/3;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease)}
+  .panel.visible{opacity:1}
+  .panel svg{width:100%;height:100%;display:block}
+  .panel img{width:100%;height:100%;object-fit:cover;display:block}
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:20%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:900px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;min-height:0}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px);transition-delay:0s}
+  @media(max-width:900px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-md);max-width:22ch}
+  .step p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .step p+p{margin-top:var(--s-md)}
+  .step .ss-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-lg)}
+
+  /* Outcomes */
+  .outcome{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .out-head{margin-bottom:var(--s-2xl);text-align:center}
+  .out-head .ev{margin-bottom:var(--s-md);justify-content:center}
+  .out-head h2{margin:0 auto;max-width:18ch}
+  .out-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:56ch;margin:var(--s-lg) auto 0}
+  .out-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:780px){.out-grid{grid-template-columns:1fr}}
+  .out-card{border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .out-card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .out-card.t-blue{background:var(--accent-tint);border-color:#dbe3ff}
+  .out-card.t-green{background:#F1F8F4;border-color:#d6ebde}
+  .out-card.t-amber{background:#FBF6EE;border-color:#eedfc7}
+  .out-card.t-slate{background:#F4F5F7;border-color:#e2e5ea}
+  .out-card .oc-t{display:flex;align-items:center;gap:10px;margin-bottom:var(--s-md)}
+  .out-card .oc-ico{width:28px;height:28px;border-radius:7px;background:#fff;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .out-card .oc-ico svg{width:15px;height:15px;display:block}
+  .out-card h3{font-size:18px;font-weight:600;letter-spacing:-.01em}
+  .out-card p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+
+  .phases{margin-top:var(--s-lg);background:var(--ink);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .phases .ph-label{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:500;margin-bottom:var(--s-lg)}
+  .phases .ph-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .ph-pill{display:inline-flex;align-items:center;font-size:14px;font-weight:500;color:#fff;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:9px 16px;line-height:1}
+  .ph-arrow{font-family:var(--mono);color:rgba(255,255,255,.35);font-size:15px}
+
+  /* Reflections */
+  .reflect{padding:var(--s-5xl) 0;
+  }
+  @media(max-width:780px){.reflect{padding:var(--s-3xl) 0}
+  }
+  .reflect-PLACEHOLDER{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .reflect .r-head{text-align:left;margin-bottom:var(--s-xl);max-width:60ch}
+  .reflect .r-head .ev{margin-bottom:var(--s-md)}
+  .reflect .r-head p{font-size:17px;line-height:1.6;color:var(--ink-2);margin-top:var(--s-md)}
+  .learn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg)}
+  @media(max-width:820px){.learn-grid{grid-template-columns:1fr}}
+  .learn-card{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .learn-card .lc-n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md)}
+  .learn-card h3{font-size:20px;font-weight:600;letter-spacing:-.012em;margin-bottom:var(--s-md)}
+  .learn-card p{font-size:14px;line-height:1.65;color:var(--ink-2)}
+
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link active" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="work.html" data-i18n="nav.work">Work</a>
+        <span class="sep">/</span>
+        <span>MAPAL Group</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)" data-i18n="mp.crumb">Configuration Platform</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s" data-i18n="mp.eyebrow">UX Case Study · Admin Tooling · SAP BTP</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="mp.h1.l1">Replacing a legacy expert</span></span>
+        <span class="line"><span class="line-inner" data-i18n="mp.h1.l2">tool with a purpose-built</span></span>
+        <span class="line"><span class="line-inner" data-i18n="mp.h1.l3">configuration platform.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.35s" data-i18n="mp.lede">
+        MAPAL, a global precision tooling manufacturer, managed their cutting-tool configurator logic through a third-party admin backend Zoovu. I led the UX to replace it with a custom-built SAP BTP application, purpose-designed for expert users, not borrowed from a vendor.
+      </p>
+
+      <div class="hero-art reveal" style="transition-delay:.45s">
+        <img src="uploads/Mockup_screen.jpg" alt="MAPAL Configuration Platform · Solution Expert">
+      </div>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l" data-i18n="cs.client">Client</div><div class="v">MAPAL Group</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.platform">Platform</div><div class="v">SAP BTP · Custom</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.myrole">My role</div><div class="v" data-i18n="mp.m.role">Lead UX Designer &amp; Consultant</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.scope">Scope</div><div class="v" data-i18n="mp.m.scope">Discovery → Dev Handoff</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="mp.m.domain">Domain</div><div class="v" data-i18n="mp.m.domainv">B2B Precision Tooling</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.year">Year</div><div class="v">2024 – 2025</div></div>
+      </div>
+
+      <div class="hero-tags">
+        <span class="tag" data-i18n="mp.tag1">Expert-tool UX</span>
+        <span class="tag" data-i18n="mp.tag2">Complex configuration</span>
+        <span class="tag" data-i18n="mp.tag3">Admin interface</span>
+        <span class="tag" data-i18n="mp.tag4">Flow-step architecture</span>
+        <span class="tag tag-accent" data-i18n="mp.tag5">Cross-functional workshops</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 01 · CONTEXT & CHALLENGE -->
+  <section data-screen-label="02 Context &amp; Challenge">
+    <div class="container">
+      <div class="chap">
+        <span class="eyebrow ev" data-i18n="mp.c1.ey">/01 · Context &amp; Challenge</span>
+        <h2 class="h2" data-i18n="mp.c1.h">A powerful tool that had outgrown itself.</h2>
+        <p class="intro" data-i18n="mp.c1.p">MAPAL managed the logic of their product configurator, used by customers globally, through an admin backend called Zoovu. As the catalog grew to 100+ configurators and complex dependency trees, the tool became a bottleneck. Expert users had the power they needed, but no structure to wield it.</p>
+      </div>
+
+      <div class="cg-grid">
+        <div class="cg-card">
+          <div class="cg-head" data-i18n="mp.cx.head">Core complexity</div>
+          <div class="cg-list">
+            <div class="cg-item">
+              <span class="cg-ico bad"><svg viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#C0392B" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <p data-i18n="mp.cx1">Multi-level flow-step hierarchies with parent / child dependencies</p>
+            </div>
+            <div class="cg-item">
+              <span class="cg-ico bad"><svg viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#C0392B" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <p data-i18n="mp.cx2">Product mapping rules using boolean attribute conditions</p>
+            </div>
+            <div class="cg-item">
+              <span class="cg-ico bad"><svg viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#C0392B" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <p data-i18n="mp.cx3">ERP synchronization status spread across multiple views</p>
+            </div>
+            <div class="cg-item">
+              <span class="cg-ico bad"><svg viewBox="0 0 12 12" fill="none"><path d="M3 3l6 6M9 3l-6 6" stroke="#C0392B" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <p data-i18n="mp.cx4">No clear information hierarchy. Experts got lost navigating</p>
+            </div>
+          </div>
+        </div>
+        <div class="cg-card">
+          <div class="cg-head" data-i18n="mp.bg.head">Business goal</div>
+          <div class="cg-list">
+            <div class="cg-item">
+              <span class="cg-ico go"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="#1F50FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p data-i18n="mp.bg1">Migrate off third-party Zoovu dependency</p>
+            </div>
+            <div class="cg-item">
+              <span class="cg-ico go"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="#1F50FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p data-i18n="mp.bg2">Reduce time-to-configure for new product lines</p>
+            </div>
+            <div class="cg-item">
+              <span class="cg-ico go"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="#1F50FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p data-i18n="mp.bg3">Make system state (ERP, KB, live) transparent at a glance</p>
+            </div>
+            <div class="cg-item">
+              <span class="cg-ico go"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="#1F50FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <p data-i18n="mp.bg4">Enable future extensibility without tool-vendor lock-in</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 · DISCOVERY & RESEARCH -->
+  <section data-screen-label="03 Discovery">
+    <div class="container">
+      <div class="chap">
+        <span class="eyebrow ev" data-i18n="mp.d.ey">/02 · Discovery &amp; Research</span>
+        <h2 class="h2" data-i18n="mp.d.h">Understanding complexity before designing solutions.</h2>
+        <p class="intro" data-i18n="mp.d.p">Discovery combined a hands-on audit of the existing Suvo tool with structured workshops to capture mental models, pain points and expert workflows across three distinct user groups.</p>
+      </div>
+
+      <div class="method-grid">
+        <div class="method-card">
+          <div class="mc-n" data-i18n="mp.me1.n">Method 1</div>
+          <div class="mc-t">
+            <span class="mc-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M1 8s2.5-4.5 7-4.5S15 8 15 8s-2.5 4.5-7 4.5S1 8 1 8z" stroke="#1F50FF" stroke-width="1.3"/><circle cx="8" cy="8" r="2" stroke="#1F50FF" stroke-width="1.3"/></svg></span>
+            <h3 data-i18n="mp.me1.t">Heuristic audit</h3>
+          </div>
+          <p data-i18n="mp.me1.p">Systematic walkthrough of Suvo, cataloguing navigation issues, inconsistent terminology, missing status transparency and cognitive overload in product mapping.</p>
+        </div>
+        <div class="method-card">
+          <div class="mc-n" data-i18n="mp.me2.n">Method 2</div>
+          <div class="mc-t">
+            <span class="mc-ico"><svg viewBox="0 0 16 16" fill="none"><circle cx="5.5" cy="5.5" r="2.2" stroke="#1F50FF" stroke-width="1.3"/><circle cx="11" cy="6.5" r="1.8" stroke="#1F50FF" stroke-width="1.3"/><path d="M2 13c0-2 1.6-3.2 3.5-3.2S9 11 9 13M9.5 12c.2-1.4 1.3-2.3 2.8-2.3S14.8 10.7 15 12" stroke="#1F50FF" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+            <h3 data-i18n="mp.me2.t">Expert workshops</h3>
+          </div>
+          <p data-i18n="mp.me2.p">Co-design sessions with Solution Experts, Component Experts and Configuration Managers. Real workflows and edge cases captured through job shadowing and scenario walkthroughs.</p>
+        </div>
+        <div class="method-card">
+          <div class="mc-n" data-i18n="mp.me3.n">Method 3</div>
+          <div class="mc-t">
+            <span class="mc-ico"><svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="3" r="1.8" stroke="#1F50FF" stroke-width="1.3"/><circle cx="3.5" cy="12" r="1.8" stroke="#1F50FF" stroke-width="1.3"/><circle cx="12.5" cy="12" r="1.8" stroke="#1F50FF" stroke-width="1.3"/><path d="M8 4.8v3M7 7.5L4.4 10.4M9 7.5l2.6 2.9" stroke="#1F50FF" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+            <h3 data-i18n="mp.me3.t">Data &amp; flow mapping</h3>
+          </div>
+          <p data-i18n="mp.me3.p">Mapped the full flow-step hierarchy, ERP configuration states and product-attribute dependency logic to expose structural complexity for the new design system.</p>
+        </div>
+      </div>
+
+      <div class="findings">
+        <div class="f-head" data-i18n="mp.f.head">Key findings</div>
+        <div class="f-chips">
+          <span class="f-chip" data-i18n="mp.f1">Too many unused features</span>
+          <span class="f-chip" data-i18n="mp.f2">Users felt lost and insecure</span>
+          <span class="f-chip" data-i18n="mp.f3">Flow-step connections not visualized</span>
+          <span class="f-chip" data-i18n="mp.f4">Product mapping rules were confusing</span>
+          <span class="f-chip" data-i18n="mp.f5">Sorting logic buried in nested menus</span>
+          <span class="f-chip" data-i18n="mp.f6">Recommendations view missing key columns</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 · INFORMATION ARCHITECTURE & FLOWS -->
+  <section data-screen-label="04 IA &amp; Flows">
+    <div class="container">
+      <div class="chap">
+        <span class="eyebrow ev" data-i18n="mp.ia.ey">/03 · Information Architecture &amp; Flows</span>
+        <h2 class="h2" data-i18n="mp.ia.h">Structuring complexity into a navigable system.</h2>
+        <p class="intro" data-i18n="mp.ia.p">The new IA separates <b style="color:var(--ink);font-weight:600">Configuration Maintenance</b> (catalog level), <b style="color:var(--ink);font-weight:600">Solution Expert</b> (flow logic) and <b style="color:var(--ink);font-weight:600">Component Expert</b> (parts &amp; attributes), matching how expert users actually think, not how the system was technically structured.</p>
+      </div>
+
+      <div class="ia-wrap">
+        <div class="ia-label" data-i18n="mp.ia.nav">Navigation architecture</div>
+        <div class="ia-root"><span class="ia-node root">MAPAL Configurator</span></div>
+        <div class="ia-cols">
+          <div class="ia-col">
+            <span class="ia-section">Configuration Maintenance</span>
+            <div class="ia-stack">
+              <span class="ia-child" data-i18n="mp.ia.c1a">Catalogs</span>
+              <span class="ia-child" data-i18n="mp.ia.c1b">Configurators</span>
+              <span class="ia-child" data-i18n="mp.ia.c1c">Flow Steps</span>
+              <span class="ia-child" data-i18n="mp.ia.c1d">Synchronize</span>
+            </div>
+          </div>
+          <div class="ia-col">
+            <span class="ia-section">Solution Expert</span>
+            <div class="ia-stack">
+              <span class="ia-child" data-i18n="mp.ia.c2a">Products</span>
+              <span class="ia-child" data-i18n="mp.ia.c2b">Flow Steps</span>
+              <span class="ia-child" data-i18n="mp.ia.c2c">General Sorting</span>
+            </div>
+          </div>
+          <div class="ia-col">
+            <span class="ia-section">Component Expert</span>
+            <div class="ia-stack">
+              <span class="ia-child" data-i18n="mp.ia.c3a">Components</span>
+              <span class="ia-child" data-i18n="mp.ia.c3b">Features</span>
+              <span class="ia-child" data-i18n="mp.ia.c3c">Machine Steps</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flow-wrap">
+        <div class="flow-label" data-i18n="mp.fl.label">Core user flow: configuring a flow step</div>
+        <div class="flow-steps">
+          <span class="flow-pill start" data-i18n="mp.fl.1">Select Catalog</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill" data-i18n="mp.fl.2">Open Flow Step</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill" data-i18n="mp.fl.3">Set Connections</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill" data-i18n="mp.fl.4">Map Products</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill" data-i18n="mp.fl.5">Add Image</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill" data-i18n="mp.fl.6">Define Sorting</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-pill end" data-i18n="mp.fl.7">Synchronize</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 · THE SOLUTION — STICKY SCROLL -->
+  <section data-screen-label="05 The Solution">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="eyebrow ev" data-i18n="mp.s.ey">/04 · The Solution</span>
+        <h2 class="h2" data-i18n="mp.s.h">The system, screen by screen.</h2>
+        <p data-i18n="mp.s.p">Five core surfaces carry the redesign, from catalog-level transparency down to the boolean logic of a single product mapping. The screen on the left changes as you scroll.</p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY VISUAL STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+
+            <!-- Panel 1: Catalog & ERP status -->
+            <div class="panel visible" data-panel="1">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#FAFAF7"/>
+                <rect x="0" y="0" width="800" height="40" fill="#0A0A0A"/>
+                <rect x="20" y="15" width="92" height="10" rx="2" fill="#fff"/>
+                <circle cx="772" cy="20" r="7" fill="#1F50FF"/>
+                <text x="40" y="78" font-family="DM Sans,sans-serif" font-size="16" font-weight="600" fill="#0A0A0A">Configurators</text>
+                <text x="40" y="98" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">CONFIGURATION MAINTENANCE</text>
+                <rect x="620" y="62" width="140" height="32" rx="16" fill="#1F50FF"/>
+                <text x="652" y="82" font-family="DM Sans,sans-serif" font-size="12" fill="#fff" font-weight="600">+ New configurator</text>
+                <rect x="40" y="120" width="720" height="448" rx="10" fill="#fff" stroke="#ECEAE3"/>
+                <line x1="40" y1="158" x2="760" y2="158" stroke="#ECEAE3"/>
+                <text x="60" y="144" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">CONFIGURATOR</text>
+                <text x="430" y="144" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">ERP SYNC</text>
+                <text x="560" y="144" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">KB</text>
+                <text x="668" y="144" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">STATUS</text>
+                <!-- rows -->
+                <g font-family="DM Sans,sans-serif">
+                  <rect x="60" y="178" width="190" height="10" rx="2" fill="#0A0A0A"/>
+                  <rect x="60" y="195" width="110" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="436" cy="186" r="4.5" fill="#2E8B5F"/><text x="448" y="190" font-size="12" fill="#2E8B5F" font-weight="500">Synced</text>
+                  <rect x="560" y="180" width="60" height="7" rx="3.5" fill="#E9E7E0"/><rect x="560" y="180" width="56" height="7" rx="3.5" fill="#2E8B5F"/>
+                  <rect x="668" y="177" width="66" height="20" rx="10" fill="#E8EEFF"/><text x="680" y="191" font-size="11" fill="#1F50FF" font-weight="600">Active</text>
+                  <line x1="40" y1="220" x2="760" y2="220" stroke="#F4F2EC"/>
+                </g>
+                <g font-family="DM Sans,sans-serif" transform="translate(0,58)">
+                  <rect x="60" y="178" width="220" height="10" rx="2" fill="#0A0A0A"/>
+                  <rect x="60" y="195" width="96" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="436" cy="186" r="4.5" fill="#C08A3B"/><text x="448" y="190" font-size="12" fill="#C08A3B" font-weight="500">Pending</text>
+                  <rect x="560" y="180" width="60" height="7" rx="3.5" fill="#E9E7E0"/><rect x="560" y="180" width="38" height="7" rx="3.5" fill="#C08A3B"/>
+                  <rect x="668" y="177" width="66" height="20" rx="10" fill="#E8EEFF"/><text x="680" y="191" font-size="11" fill="#1F50FF" font-weight="600">Active</text>
+                  <line x1="40" y1="220" x2="760" y2="220" stroke="#F4F2EC"/>
+                </g>
+                <g font-family="DM Sans,sans-serif" transform="translate(0,116)">
+                  <rect x="60" y="178" width="170" height="10" rx="2" fill="#0A0A0A"/>
+                  <rect x="60" y="195" width="120" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="436" cy="186" r="4.5" fill="#2E8B5F"/><text x="448" y="190" font-size="12" fill="#2E8B5F" font-weight="500">Synced</text>
+                  <rect x="560" y="180" width="60" height="7" rx="3.5" fill="#E9E7E0"/><rect x="560" y="180" width="60" height="7" rx="3.5" fill="#2E8B5F"/>
+                  <rect x="668" y="177" width="62" height="20" rx="10" fill="#F1EFE8"/><text x="680" y="191" font-size="11" fill="#8A8A8A" font-weight="600">Draft</text>
+                  <line x1="40" y1="220" x2="760" y2="220" stroke="#F4F2EC"/>
+                </g>
+                <g font-family="DM Sans,sans-serif" transform="translate(0,174)">
+                  <rect x="60" y="178" width="206" height="10" rx="2" fill="#0A0A0A"/>
+                  <rect x="60" y="195" width="104" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="436" cy="186" r="4.5" fill="#2E8B5F"/><text x="448" y="190" font-size="12" fill="#2E8B5F" font-weight="500">Synced</text>
+                  <rect x="560" y="180" width="60" height="7" rx="3.5" fill="#E9E7E0"/><rect x="560" y="180" width="48" height="7" rx="3.5" fill="#2E8B5F"/>
+                  <rect x="668" y="177" width="66" height="20" rx="10" fill="#E8EEFF"/><text x="680" y="191" font-size="11" fill="#1F50FF" font-weight="600">Active</text>
+                  <line x1="40" y1="220" x2="760" y2="220" stroke="#F4F2EC"/>
+                </g>
+                <g font-family="DM Sans,sans-serif" transform="translate(0,232)">
+                  <rect x="60" y="178" width="150" height="10" rx="2" fill="#0A0A0A"/>
+                  <rect x="60" y="195" width="118" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="436" cy="186" r="4.5" fill="#C8C8C8"/><text x="448" y="190" font-size="12" fill="#8A8A8A" font-weight="500">Not set</text>
+                  <rect x="560" y="180" width="60" height="7" rx="3.5" fill="#E9E7E0"/><rect x="560" y="180" width="22" height="7" rx="3.5" fill="#C08A3B"/>
+                  <rect x="668" y="177" width="62" height="20" rx="10" fill="#F1EFE8"/><text x="680" y="191" font-size="11" fill="#8A8A8A" font-weight="600">Draft</text>
+                  <line x1="40" y1="220" x2="760" y2="220" stroke="#F4F2EC"/>
+                </g>
+                <g font-family="DM Sans,sans-serif" transform="translate(0,290)">
+                  <rect x="60" y="178" width="186" height="10" rx="2" fill="#0A0A0A"/>
+                  <rect x="60" y="195" width="100" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="436" cy="186" r="4.5" fill="#2E8B5F"/><text x="448" y="190" font-size="12" fill="#2E8B5F" font-weight="500">Synced</text>
+                  <rect x="560" y="180" width="60" height="7" rx="3.5" fill="#E9E7E0"/><rect x="560" y="180" width="52" height="7" rx="3.5" fill="#2E8B5F"/>
+                  <rect x="668" y="177" width="66" height="20" rx="10" fill="#E8EEFF"/><text x="680" y="191" font-size="11" fill="#1F50FF" font-weight="600">Active</text>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Panel 2: Flow-step hierarchy -->
+            <div class="panel" data-panel="2">
+              <img src="uploads/Wireframe_example.png" alt="MAPAL · Flow Step Editor & Product Mapping Wireframe">
+            </div>
+
+            <!-- Panel 3: Flow-step connections -->
+            <div class="panel" data-panel="3">
+              <img src="uploads/Wireframe_Koncept.png" alt="MAPAL · Configurator Concept & User Flows">
+            </div>
+
+            <!-- Panel 4: Boolean product mapping -->
+            <div class="panel" data-panel="4">
+              <img src="uploads/Wireframe_NewRule.png" alt="MAPAL · Neue Regel erstellen · Rule Editor Wireframe">
+            </div>
+
+            <!-- Panel 5: Dev handoff spec -->
+            <div class="panel" data-panel="5">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#FAFAF7"/>
+                <rect x="0" y="0" width="800" height="40" fill="#0A0A0A"/>
+                <rect x="20" y="15" width="92" height="10" rx="2" fill="#fff"/>
+                <text x="40" y="78" font-family="DM Sans,sans-serif" font-size="16" font-weight="600" fill="#0A0A0A">Dev Handoff</text>
+                <text x="40" y="98" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">ANNOTATED SPEC · SAP BTP</text>
+                <!-- wireframe -->
+                <rect x="40" y="120" width="430" height="448" rx="10" fill="#fff" stroke="#ECEAE3"/>
+                <rect x="40" y="120" width="430" height="40" rx="10" fill="#FAFAF7"/>
+                <rect x="60" y="134" width="120" height="11" rx="2" fill="#0A0A0A"/>
+                <rect x="60" y="184" width="390" height="40" rx="6" fill="#F4F2EC"/>
+                <rect x="60" y="236" width="390" height="34" rx="6" fill="#FAFAF7" stroke="#ECEAE3"/>
+                <rect x="60" y="280" width="390" height="34" rx="6" fill="#FAFAF7" stroke="#ECEAE3"/>
+                <rect x="60" y="324" width="390" height="34" rx="6" fill="#FAFAF7" stroke="#ECEAE3"/>
+                <rect x="60" y="500" width="120" height="44" rx="22" fill="#1F50FF"/>
+                <!-- callout markers -->
+                <g font-family="JetBrains Mono,monospace" font-weight="600">
+                  <circle cx="450" cy="204" r="13" fill="#1F50FF"/><text x="450" y="209" font-size="13" fill="#fff" text-anchor="middle">1</text>
+                  <circle cx="450" cy="253" r="13" fill="#1F50FF"/><text x="450" y="258" font-size="13" fill="#fff" text-anchor="middle">2</text>
+                  <circle cx="180" cy="522" r="13" fill="#1F50FF"/><text x="180" y="527" font-size="13" fill="#fff" text-anchor="middle">3</text>
+                </g>
+                <!-- spec list -->
+                <text x="510" y="142" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">INTERACTION SPECS</text>
+                <g font-family="DM Sans,sans-serif">
+                  <circle cx="516" cy="176" r="11" fill="#1F50FF"/><text x="516" y="181" font-family="JetBrains Mono,monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">1</text>
+                  <rect x="538" y="166" width="160" height="9" rx="2" fill="#0A0A0A"/>
+                  <rect x="538" y="182" width="200" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="516" cy="226" r="11" fill="#1F50FF"/><text x="516" y="231" font-family="JetBrains Mono,monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">2</text>
+                  <rect x="538" y="216" width="190" height="9" rx="2" fill="#0A0A0A"/>
+                  <rect x="538" y="232" width="150" height="7" rx="2" fill="#C2C2C2"/>
+                  <circle cx="516" cy="276" r="11" fill="#1F50FF"/><text x="516" y="281" font-family="JetBrains Mono,monospace" font-size="11" fill="#fff" text-anchor="middle" font-weight="600">3</text>
+                  <rect x="538" y="266" width="170" height="9" rx="2" fill="#0A0A0A"/>
+                  <rect x="538" y="282" width="180" height="7" rx="2" fill="#C2C2C2"/>
+                </g>
+                <text x="510" y="334" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1">STATES DELIVERED</text>
+                <g font-family="DM Sans,sans-serif" font-size="11" font-weight="500">
+                  <rect x="510" y="350" width="104" height="26" rx="13" fill="#F1EFE8"/><text x="524" y="367" fill="#4A4A4A">Accordion</text>
+                  <rect x="622" y="350" width="92" height="26" rx="13" fill="#F1EFE8"/><text x="636" y="367" fill="#4A4A4A">Empty</text>
+                  <rect x="510" y="384" width="96" height="26" rx="13" fill="#FBF3E6"/><text x="524" y="401" fill="#C08A3B">Warning</text>
+                  <rect x="614" y="384" width="100" height="26" rx="13" fill="#F1EFE8"/><text x="628" y="401" fill="#4A4A4A">Paginate</text>
+                  <rect x="510" y="418" width="120" height="26" rx="13" fill="#E8EEFF"/><text x="524" y="435" fill="#1F50FF">Sorting order</text>
+                </g>
+                <rect x="510" y="470" width="228" height="76" rx="10" fill="#F4F6FF" stroke="#dbe3ff"/>
+                <text x="528" y="500" font-family="JetBrains Mono,monospace" font-size="10" fill="#1F50FF" letter-spacing="1">READY FOR DEV</text>
+                <text x="528" y="522" font-family="DM Sans,sans-serif" font-size="12" fill="#0A0A0A">Full specs, every state</text>
+                <text x="528" y="538" font-family="DM Sans,sans-serif" font-size="12" fill="#0A0A0A">documented for SAP BTP.</text>
+              </svg>
+            </div>
+
+          </div>
+
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label" data-i18n="mp.p1.label">Catalog &amp; ERP status</span>
+            <span class="pc-prog" id="pc-prog">01 / 05</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="prog"></div></div>
+        </div>
+
+        <!-- RIGHT — SCROLLING NARRATIVE -->
+        <div class="sticky-right">
+
+          <article class="step active" data-panel="1" data-label="Catalog &amp; ERP status" data-i18n-attr="data-label:mp.p1.label">
+            <div class="ss-num" data-i18n="mp.st1.num">/01 · System state at a glance</div>
+            <h3 data-i18n="mp.st1.h">Make ERP, KB and live status visible. Inline.</h3>
+            <p data-i18n="mp.st1.p1">The catalog and configurator lists now surface <b>ERP sync state, knowledge-base completeness and "active" status</b> directly in the table. The single biggest source of confusion in the legacy tool.</p>
+            <p data-i18n="mp.st1.p2">Experts no longer click into each item to learn whether it's safe to publish. The system tells them, at the list level.</p>
+            <div class="ss-tags">
+              <span class="tag">ERP sync</span><span class="tag">KB status</span>
+              <span class="tag tag-accent">Inline transparency</span>
+            </div>
+          </article>
+
+          <article class="step" data-panel="2" data-label="Flow-step hierarchy" data-i18n-attr="data-label:mp.p2.label">
+            <div class="ss-num" data-i18n="mp.st2.num">/02 · Flow-step architecture</div>
+            <h3 data-i18n="mp.st2.h">A navigable hierarchy for parent / child dependencies.</h3>
+            <p data-i18n="mp.st2.p1">Multi-level flow steps are expressed as an <b>accordion tree</b>. Each parent shows its child count and mapping status; expanding reveals the structure without losing the user's place.</p>
+            <p data-i18n="mp.st2.p2">Complexity stays. It's simply organised, so experts can reason about a configurator's logic top-down.</p>
+            <div class="ss-tags">
+              <span class="tag">Accordion</span><span class="tag">Parent / child</span>
+              <span class="tag tag-accent">Hierarchy</span>
+            </div>
+          </article>
+
+          <article class="step" data-panel="3" data-label="Set connections" data-i18n-attr="data-label:mp.p3.label">
+            <div class="ss-num" data-i18n="mp.st3.num">/03 · Connections, visualized</div>
+            <h3 data-i18n="mp.st3.h">Dependencies you can see, not hunt for.</h3>
+            <p data-i18n="mp.st3.p1">Setting a flow step's <b>predecessors and successors</b> is now a visual act. Connections render around the current step instead of hiding in nested menus.</p>
+            <p data-i18n="mp.st3.p2">This was a top finding in discovery. The legacy tool never showed how flow steps related to one another.</p>
+            <div class="ss-tags">
+              <span class="tag">Dependency graph</span><span class="tag">Predecessors</span>
+              <span class="tag tag-accent">Successors</span>
+            </div>
+          </article>
+
+          <article class="step" data-panel="4" data-label="Map products" data-i18n-attr="data-label:mp.p4.label">
+            <div class="ss-num" data-i18n="mp.st4.num">/04 · Product mapping</div>
+            <h3 data-i18n="mp.st4.h">Boolean logic, made readable.</h3>
+            <p data-i18n="mp.st4.p1">Product mapping rules are expressed through <b>labeled condition blocks</b> (attribute → operator → value) joined with explicit AND / OR connectors and a live count of matched products.</p>
+            <p data-i18n="mp.st4.p2">Rules that were once opaque are now auditable by any expert, not just whoever wrote them.</p>
+            <div class="ss-tags">
+              <span class="tag">Conditions</span><span class="tag">AND / OR</span>
+              <span class="tag tag-accent">Live match count</span>
+            </div>
+          </article>
+
+          <article class="step" data-panel="5" data-label="Dev handoff" data-i18n-attr="data-label:mp.p5.label">
+            <div class="ss-num" data-i18n="mp.st5.num">/05 · Dev handoff</div>
+            <h3 data-i18n="mp.st5.h">Specs ready for SAP BTP development.</h3>
+            <p data-i18n="mp.st5.p1">Every screen shipped with <b>full interaction specs</b>: accordion states, empty states, warning badges, pagination and sorting-rule ordering, annotated and traceable.</p>
+            <p data-i18n="mp.st5.p2">Close collaboration and co-development with the engineering team throughout the entire process.</p>
+            <div class="ss-tags">
+              <span class="tag">Interaction specs</span><span class="tag">All states</span>
+              <span class="tag tag-accent">SAP BTP</span>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · OUTCOMES & IMPACT -->
+  <section class="outcome" data-screen-label="06 Outcomes">
+    <div class="container">
+      <div class="out-head">
+        <span class="eyebrow ev" data-i18n="mp.o.ey">/05 · Outcomes &amp; Impact</span>
+        <h2 class="h2" data-i18n="mp.o.h">A system experts could trust and navigate.</h2>
+        <p data-i18n="mp.o.p">The new application replaced a third-party dependency with a purpose-built internal tool. Expert users validated the structure across two workshop rounds before dev handoff.</p>
+      </div>
+
+      <div class="out-grid">
+        <div class="out-card t-blue">
+          <div class="oc-t">
+            <span class="oc-ico"><svg viewBox="0 0 16 16" fill="none"><rect x="2" y="2" width="5" height="5" rx="1" stroke="#1F50FF" stroke-width="1.3"/><rect x="9" y="2" width="5" height="5" rx="1" stroke="#1F50FF" stroke-width="1.3"/><rect x="2" y="9" width="5" height="5" rx="1" stroke="#1F50FF" stroke-width="1.3"/><rect x="9" y="9" width="5" height="5" rx="1" stroke="#1F50FF" stroke-width="1.3"/></svg></span>
+            <h3 data-i18n="mp.o1.h">Clearer navigation model</h3>
+          </div>
+          <p data-i18n="mp.o1.p">Three distinct expert roles now have dedicated navigation contexts. No more shared, undifferentiated menus. Role-appropriate entry points reduce cognitive load.</p>
+        </div>
+        <div class="out-card t-green">
+          <div class="oc-t">
+            <span class="oc-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M2 13V7M6 13V3M10 13V8M14 13V5" stroke="#2E8B5F" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+            <h3 data-i18n="mp.o2.h">ERP status transparency</h3>
+          </div>
+          <p data-i18n="mp.o2.p">Catalog and configurator lists now surface ERP sync state, KB completeness and "active" status inline, reducing the need to click into each item individually.</p>
+        </div>
+        <div class="out-card t-amber">
+          <div class="oc-t">
+            <span class="oc-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M2 3h12l-4.5 5.5V13L6.5 11.5V8.5L2 3z" stroke="#C08A3B" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+            <h3 data-i18n="mp.o3.h">Structured product mapping</h3>
+          </div>
+          <p data-i18n="mp.o3.p">Boolean attribute logic is now expressed through labeled condition blocks (attribute → operator → value), making complex rules readable and auditable by any expert.</p>
+        </div>
+        <div class="out-card t-slate">
+          <div class="oc-t">
+            <span class="oc-ico"><svg viewBox="0 0 16 16" fill="none"><path d="M5.5 4.5L2 8l3.5 3.5M10.5 4.5L14 8l-3.5 3.5" stroke="#4A4A4A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <h3 data-i18n="mp.o4.h">Clean dev handoff</h3>
+          </div>
+          <p data-i18n="mp.o4.p">Wireframes delivered with full interaction specs: accordion states, empty states, warning badges, pagination and sorting-rule ordering. Ready for SAP BTP development.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 06 · REFLECTION & LEARNINGS -->
+  <section class="reflect" data-screen-label="07 Reflections">
+    <div class="container">
+      <div class="r-head">
+        <span class="eyebrow ev" data-i18n="mp.r.ey">/06 · Reflection &amp; Learnings</span>
+        <h2 class="h3" data-i18n="mp.r.h">What this project taught me about designing for experts.</h2>
+        <p data-i18n="mp.r.p">Complex admin tooling demands a different design mindset than consumer UX. The goal isn't simplification. It's the right abstraction level for expert users who need power and clarity simultaneously.</p>
+      </div>
+      <div class="learn-grid">
+        <div class="learn-card">
+          <div class="lc-n" data-i18n="mp.l1.n">Learning 1</div>
+          <h3 data-i18n="mp.l1.h">Don't simplify, structure</h3>
+          <p data-i18n="mp.l1.p">Expert users need all the complexity. They just need it organised. Accordion panels and role-based navigation gave experts full access without overwhelming newcomers.</p>
+        </div>
+        <div class="learn-card">
+          <div class="lc-n" data-i18n="mp.l2.n">Learning 2</div>
+          <h3 data-i18n="mp.l2.h">Data visibility is UX</h3>
+          <p data-i18n="mp.l2.p">Adding ERP / KB status columns to list views was a pure UX win. No extra interaction, just making existing system state readable. Often the best improvements are subtractive.</p>
+        </div>
+        <div class="learn-card">
+          <div class="lc-n" data-i18n="mp.l3.n">Learning 3</div>
+          <h3 data-i18n="mp.l3.h">Workshops as design tools</h3>
+          <p data-i18n="mp.l3.p">The most important design decisions happened in workshops, not in Figma. Co-creation with domain experts surfaced requirements no brief could have captured.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT CASE -->
+  <section class="next-case" data-screen-label="08 Next">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)" data-i18n="cs.more">More projects</p>
+      <div class="next-links">
+        <a href="case-schunk.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">FANUC · Portal &amp; eShop</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-uip.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">User Intelligence Platform</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)" data-i18n="cs.backtop">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5 data-i18n="foot.pages">Pages</h5><ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 data-i18n="foot.contact">Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · June 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Sticky scroll sync
+  const steps      = document.querySelectorAll('.step');
+  const panels     = document.querySelectorAll('.panel');
+  const prog       = document.getElementById('prog');
+  const pcNum      = document.getElementById('pc-num');
+  const pcLabel    = document.getElementById('pc-label');
+  const pcProg     = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total      = steps.length;
+  let lastIdx      = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector('.panel[data-panel="' + (idx + 1) + '"]');
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)   prog.style.width = pct + '%';
+    if(pcNum)  pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.innerHTML = steps[idx]?.dataset.label || '';
+    if(pcProg) pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 900){ activateIdx(0); return; }
+      const rect   = stickyWrap.getBoundingClientRect();
+      const sH     = stickyWrap.offsetHeight;
+      const vH     = window.innerHeight;
+      const range  = sH - vH;
+      if(range <= 0) return;
+      const scrolled  = Math.max(0, Math.min(range, -rect.top));
+      const progress  = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "Configuration Platform · MAPAL · Case Study",
+  "foot.updated": "Zuletzt aktualisiert · Juni 2026",
+  "mp.crumb": "Configuration Platform",
+  "mp.eyebrow": "UX Case Study · Admin-Tooling · SAP BTP",
+  "mp.h1.l1": "Ablösung eines Legacy-",
+  "mp.h1.l2": "Expertentools durch eine",
+  "mp.h1.l3": "maßgeschneiderte Plattform.",
+  "mp.lede": "MAPAL, ein globaler Hersteller von Präzisionswerkzeugen, verwaltete die Logik seines Werkzeug-Konfigurators über ein Admin-Backend eines Drittanbieters (Zoovu). Ich führte die UX, um es durch eine maßgeschneiderte SAP-BTP-Anwendung zu ersetzen, gezielt für Expertennutzer gestaltet, nicht von einem Anbieter geliehen.",
+  "mp.m.role": "Lead UX Designer &amp; Consultant",
+  "mp.m.scope": "Discovery → Dev-Handoff",
+  "mp.m.domain": "Domäne", "mp.m.domainv": "B2B-Präzisionswerkzeuge",
+  "mp.tag1": "Expertentool-UX",
+  "mp.tag2": "Komplexe Konfiguration",
+  "mp.tag3": "Admin-Oberfläche",
+  "mp.tag4": "Flow-Step-Architektur",
+  "mp.tag5": "Cross-funktionale Workshops",
+  "mp.c1.ey": "/01 · Kontext &amp; Herausforderung",
+  "mp.c1.h": "Ein mächtiges Tool, das sich selbst entwachsen war.",
+  "mp.c1.p": "MAPAL verwaltete die Logik seines weltweit von Kunden genutzten Produkt-Konfigurators über ein Admin-Backend namens Zoovu. Als der Katalog auf 100+ Konfiguratoren und komplexe Abhängigkeitsbäume wuchs, wurde das Tool zum Engpass. Expertennutzer hatten die nötige Mächtigkeit, aber keine Struktur, um sie zu nutzen.",
+  "mp.cx.head": "Kernkomplexität",
+  "mp.cx1": "Mehrstufige Flow-Step-Hierarchien mit Parent-/Child-Abhängigkeiten",
+  "mp.cx2": "Produkt-Mapping-Regeln mit booleschen Attributbedingungen",
+  "mp.cx3": "ERP-Synchronisationsstatus über mehrere Ansichten verteilt",
+  "mp.cx4": "Keine klare Informationshierarchie. Experten verloren beim Navigieren die Orientierung",
+  "mp.bg.head": "Geschäftsziel",
+  "mp.bg1": "Ablösung der Drittanbieter-Abhängigkeit von Zoovu",
+  "mp.bg2": "Time-to-Configure für neue Produktlinien reduzieren",
+  "mp.bg3": "Systemzustand (ERP, KB, live) auf einen Blick transparent machen",
+  "mp.bg4": "Künftige Erweiterbarkeit ohne Tool-Anbieter-Lock-in ermöglichen",
+  "mp.d.ey": "/02 · Discovery &amp; Research",
+  "mp.d.h": "Komplexität verstehen, bevor Lösungen entstehen.",
+  "mp.d.p": "Die Discovery kombinierte ein praxisnahes Audit des bestehenden Suvo-Tools mit strukturierten Workshops, um mentale Modelle, Pain Points und Experten-Workflows über drei unterschiedliche Nutzergruppen hinweg zu erfassen.",
+  "mp.me1.n": "Methode 1", "mp.me1.t": "Heuristisches Audit",
+  "mp.me1.p": "Systematischer Walkthrough von Suvo, mit Katalogisierung von Navigationsproblemen, inkonsistenter Terminologie, fehlender Status-Transparenz und kognitiver Überlastung im Produkt-Mapping.",
+  "mp.me2.n": "Methode 2", "mp.me2.t": "Experten-Workshops",
+  "mp.me2.p": "Co-Design-Sessions mit Solution Experts, Component Experts und Configuration Managern. Echte Workflows und Edge Cases via Job-Shadowing und Szenario-Walkthroughs erfasst.",
+  "mp.me3.n": "Methode 3", "mp.me3.t": "Daten- &amp; Flow-Mapping",
+  "mp.me3.p": "Abbildung der vollständigen Flow-Step-Hierarchie, der ERP-Konfigurationszustände und der Produkt-Attribut-Abhängigkeitslogik, um die strukturelle Komplexität für das neue Designsystem offenzulegen.",
+  "mp.f.head": "Zentrale Erkenntnisse",
+  "mp.f1": "Zu viele ungenutzte Funktionen",
+  "mp.f2": "Nutzer fühlten sich verloren und unsicher",
+  "mp.f3": "Flow-Step-Verbindungen nicht visualisiert",
+  "mp.f4": "Produkt-Mapping-Regeln waren verwirrend",
+  "mp.f5": "Sortierlogik in verschachtelten Menüs vergraben",
+  "mp.f6": "Empfehlungsansicht ohne wichtige Spalten",
+  "mp.ia.ey": "/03 · Informationsarchitektur &amp; Flows",
+  "mp.ia.h": "Komplexität in ein navigierbares System bringen.",
+  "mp.ia.p": "Die neue IA trennt <b style=\"color:var(--ink);font-weight:600\">Configuration Maintenance</b> (Katalogebene), <b style=\"color:var(--ink);font-weight:600\">Solution Expert</b> (Flow-Logik) und <b style=\"color:var(--ink);font-weight:600\">Component Expert</b> (Teile &amp; Attribute) — passend dazu, wie Expertennutzer tatsächlich denken, nicht wie das System technisch strukturiert war.",
+  "mp.ia.nav": "Navigationsarchitektur",
+  "mp.ia.c1a": "Kataloge", "mp.ia.c1b": "Konfiguratoren", "mp.ia.c1c": "Flow Steps", "mp.ia.c1d": "Synchronisieren",
+  "mp.ia.c2a": "Produkte", "mp.ia.c2b": "Flow Steps", "mp.ia.c2c": "Allgemeine Sortierung",
+  "mp.ia.c3a": "Komponenten", "mp.ia.c3b": "Features", "mp.ia.c3c": "Maschinen-Steps",
+  "mp.fl.label": "Kern-User-Flow: einen Flow Step konfigurieren",
+  "mp.fl.1": "Katalog wählen", "mp.fl.2": "Flow Step öffnen", "mp.fl.3": "Verbindungen setzen", "mp.fl.4": "Produkte mappen", "mp.fl.5": "Bild hinzufügen", "mp.fl.6": "Sortierung definieren", "mp.fl.7": "Synchronisieren",
+  "mp.s.ey": "/04 · Die Lösung",
+  "mp.s.h": "Das System, Screen für Screen.",
+  "mp.s.p": "Fünf Kernoberflächen tragen das Redesign, von der Transparenz auf Katalogebene bis zur booleschen Logik eines einzelnen Produkt-Mappings. Der Screen links ändert sich beim Scrollen.",
+  "mp.p1.label": "Katalog &amp; ERP-Status",
+  "mp.p2.label": "Flow-Step-Hierarchie",
+  "mp.p3.label": "Verbindungen setzen",
+  "mp.p4.label": "Produkte mappen",
+  "mp.p5.label": "Dev-Handoff",
+  "mp.st1.num": "/01 · Systemzustand auf einen Blick",
+  "mp.st1.h": "ERP-, KB- und Live-Status sichtbar machen. Inline.",
+  "mp.st1.p1": "Die Katalog- und Konfigurator-Listen zeigen jetzt <b>ERP-Sync-Status, Knowledge-Base-Vollständigkeit und „Aktiv“-Status</b> direkt in der Tabelle. Die größte Verwirrungsquelle im Altsystem.",
+  "mp.st1.p2": "Experten klicken nicht mehr in jedes Element, um zu erfahren, ob es sicher veröffentlicht werden kann. Das System sagt es ihnen, auf Listenebene.",
+  "mp.st2.num": "/02 · Flow-Step-Architektur",
+  "mp.st2.h": "Eine navigierbare Hierarchie für Parent-/Child-Abhängigkeiten.",
+  "mp.st2.p1": "Mehrstufige Flow Steps werden als <b>Accordion-Baum</b> dargestellt. Jeder Parent zeigt seine Child-Anzahl und seinen Mapping-Status; das Aufklappen offenbart die Struktur, ohne dass der Nutzer die Orientierung verliert.",
+  "mp.st2.p2": "Die Komplexität bleibt. Sie ist nur organisiert, sodass Experten die Logik eines Konfigurators top-down durchdenken können.",
+  "mp.st3.num": "/03 · Verbindungen, visualisiert",
+  "mp.st3.h": "Abhängigkeiten, die man sieht, statt sucht.",
+  "mp.st3.p1": "Das Setzen von <b>Vorgängern und Nachfolgern</b> eines Flow Steps ist jetzt ein visueller Akt. Verbindungen werden rund um den aktuellen Step dargestellt, statt sich in verschachtelten Menüs zu verstecken.",
+  "mp.st3.p2": "Das war eine der wichtigsten Erkenntnisse der Discovery. Das Altsystem zeigte nie, wie Flow Steps zueinander in Beziehung standen.",
+  "mp.st4.num": "/04 · Produkt-Mapping",
+  "mp.st4.h": "Boolesche Logik, lesbar gemacht.",
+  "mp.st4.p1": "Produkt-Mapping-Regeln werden durch <b>beschriftete Bedingungsblöcke</b> (Attribut → Operator → Wert) ausgedrückt, verbunden mit expliziten UND-/ODER-Konnektoren und einer Live-Zählung der getroffenen Produkte.",
+  "mp.st4.p2": "Regeln, die einst undurchsichtig waren, sind jetzt von jedem Experten prüfbar, nicht nur von dem, der sie geschrieben hat.",
+  "mp.st5.num": "/05 · Dev-Handoff",
+  "mp.st5.h": "Specs bereit für die SAP-BTP-Entwicklung.",
+  "mp.st5.p1": "Jeder Screen wurde mit <b>vollständigen Interaktions-Specs</b> ausgeliefert: Accordion-States, Empty States, Warn-Badges, Pagination und Sortierregel-Reihenfolge, annotiert und nachvollziehbar.",
+  "mp.st5.p2": "Enge Zusammenarbeit und Co-Entwicklung mit dem Engineering-Team über den gesamten Prozess hinweg.",
+  "mp.o.ey": "/05 · Ergebnisse &amp; Impact",
+  "mp.o.h": "Ein System, dem Experten vertrauen und in dem sie navigieren konnten.",
+  "mp.o.p": "Die neue Anwendung ersetzte eine Drittanbieter-Abhängigkeit durch ein maßgeschneidertes internes Tool. Expertennutzer validierten die Struktur über zwei Workshop-Runden vor dem Dev-Handoff.",
+  "mp.o1.h": "Klareres Navigationsmodell",
+  "mp.o1.p": "Drei unterschiedliche Expertenrollen haben jetzt dedizierte Navigationskontexte. Keine geteilten, undifferenzierten Menüs mehr. Rollengerechte Einstiegspunkte reduzieren die kognitive Last.",
+  "mp.o2.h": "ERP-Status-Transparenz",
+  "mp.o2.p": "Katalog- und Konfigurator-Listen zeigen jetzt ERP-Sync-Status, KB-Vollständigkeit und „Aktiv“-Status inline und reduzieren so die Notwendigkeit, in jedes Element einzeln zu klicken.",
+  "mp.o3.h": "Strukturiertes Produkt-Mapping",
+  "mp.o3.p": "Boolesche Attributlogik wird jetzt durch beschriftete Bedingungsblöcke (Attribut → Operator → Wert) ausgedrückt, was komplexe Regeln für jeden Experten lesbar und prüfbar macht.",
+  "mp.o4.h": "Sauberer Dev-Handoff",
+  "mp.o4.p": "Wireframes ausgeliefert mit vollständigen Interaktions-Specs: Accordion-States, Empty States, Warn-Badges, Pagination und Sortierregel-Reihenfolge. Bereit für die SAP-BTP-Entwicklung.",
+  "mp.r.ey": "/06 · Reflexion &amp; Learnings",
+  "mp.r.h": "Was mich dieses Projekt über Design für Experten gelehrt hat.",
+  "mp.r.p": "Komplexes Admin-Tooling verlangt ein anderes Design-Mindset als Consumer-UX. Das Ziel ist nicht Vereinfachung. Es ist das richtige Abstraktionsniveau für Expertennutzer, die Mächtigkeit und Klarheit gleichzeitig brauchen.",
+  "mp.l1.n": "Learning 1", "mp.l1.h": "Nicht vereinfachen, strukturieren",
+  "mp.l1.p": "Expertennutzer brauchen die ganze Komplexität. Sie brauchen sie nur organisiert. Accordion-Panels und rollenbasierte Navigation gaben Experten vollen Zugriff, ohne Neulinge zu überfordern.",
+  "mp.l2.n": "Learning 2", "mp.l2.h": "Datensichtbarkeit ist UX",
+  "mp.l2.p": "ERP-/KB-Status-Spalten zu Listenansichten hinzuzufügen, war ein reiner UX-Gewinn. Keine zusätzliche Interaktion, nur den bestehenden Systemzustand lesbar gemacht. Oft sind die besten Verbesserungen subtraktiv.",
+  "mp.l3.n": "Learning 3", "mp.l3.h": "Workshops als Design-Werkzeug",
+  "mp.l3.p": "Die wichtigsten Design-Entscheidungen fielen in Workshops, nicht in Figma. Die Co-Creation mit Domänenexperten brachte Anforderungen zutage, die kein Briefing hätte erfassen können."
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+</body>
+</html>

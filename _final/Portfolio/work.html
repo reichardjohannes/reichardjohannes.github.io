@@ -1,0 +1,871 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Work · Johannes Reichard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ===== Work page — Oimachi-pattern ===== */
+
+  /* Full-bleed layout: left dark sidebar + right content */
+  .work-layout{
+    display:grid;
+    grid-template-columns:380px 1fr;
+    min-height:100vh;
+    align-items:start;
+  }
+  @media (max-width:900px){
+    .work-layout{grid-template-columns:1fr}
+  }
+
+  /* ===== LEFT SIDEBAR ===== */
+  .work-sidebar{
+    position:sticky;top:0;
+    height:100vh;
+    background:#EEF0F6;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+  }
+  @media (max-width:900px){
+    .work-sidebar{position:relative;height:auto}
+  }
+
+  .sidebar-head{
+    padding:var(--s-xl) var(--s-2xl) var(--s-lg);
+    border-bottom:1px solid var(--rule);
+    flex-shrink:0;
+  }
+  .sidebar-name{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;margin-bottom:var(--s-sm);
+  }
+  .sidebar-title{
+    font-size:22px;font-weight:600;letter-spacing:-.015em;color:var(--ink);line-height:1.2;
+  }
+
+  /* Filter chips */
+  .sidebar-filters{
+    display:flex;flex-wrap:wrap;gap:6px;
+    padding:var(--s-lg) var(--s-2xl);
+    border-bottom:1px solid var(--rule);
+    flex-shrink:0;
+  }
+  .filter-btn{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-2);background:transparent;
+    border:1px solid var(--rule);border-radius:999px;
+    padding:5px 12px;cursor:pointer;font-weight:500;
+    transition:all var(--t-fast) var(--ease);
+  }
+  .filter-btn:hover{background:var(--card);color:var(--ink);border-color:var(--ink-4)}
+  .filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* Project list */
+  .project-list{
+    flex:1;overflow-y:auto;
+    scrollbar-width:thin;scrollbar-color:var(--ink-4) transparent;
+  }
+  .project-list::-webkit-scrollbar{width:3px}
+  .project-list::-webkit-scrollbar-thumb{background:var(--ink-4);border-radius:2px}
+
+  .proj-item{
+    display:flex;flex-direction:column;
+    padding:var(--s-xl) var(--s-2xl);
+    border-bottom:1px solid var(--rule);
+    cursor:pointer;
+    transition:background .2s var(--ease);
+    position:relative;
+  }
+  .proj-item:hover{background:rgba(0,0,0,.03)}
+  .proj-item.active{background:var(--card)}
+  .proj-item.active::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:2px;
+    background:var(--accent);
+  }
+
+  .proj-top{
+    display:flex;align-items:center;justify-content:space-between;
+    margin-bottom:var(--s-sm);
+  }
+  .proj-industry{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);font-weight:500;
+  }
+  .proj-item.active .proj-industry{color:var(--accent)}
+  .proj-arrow{
+    font-family:var(--mono);font-size:12px;color:var(--ink-4);
+    opacity:0;transition:opacity .2s,transform .2s var(--ease);
+    transform:translateX(-4px);
+  }
+  .proj-item:hover .proj-arrow,.proj-item.active .proj-arrow{
+    opacity:1;transform:translateX(0);color:var(--ink-2);
+  }
+  .proj-item.active .proj-arrow{color:var(--accent)}
+  .proj-name{
+    font-size:18px;font-weight:500;color:var(--ink);letter-spacing:-.01em;line-height:1.2;
+    margin-bottom:6px;
+  }
+  .proj-desc{
+    font-size:13px;line-height:1.5;color:var(--ink-2);max-width:28ch;
+  }
+
+  /* Sidebar footer */
+  .sidebar-footer{
+    padding:var(--s-lg) var(--s-2xl);
+    border-top:1px solid var(--rule);
+    flex-shrink:0;
+  }
+  .sf-count{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .sf-count b{color:var(--ink-2);font-weight:500}
+
+  /* ===== RIGHT PANEL ===== */
+  .work-panel{
+    position:sticky;top:0;
+    height:100vh;
+    display:flex;flex-direction:column;
+    overflow:hidden;
+    background:var(--bg);
+  }
+  @media (max-width:900px){
+    .work-panel{position:relative;height:auto;min-height:0}
+  }
+
+  /* Panel inner — all panels stacked, only active visible */
+  .panel-inner{
+    position:relative;flex:1;overflow:hidden;
+  }
+
+  .panel-item{
+    position:absolute;inset:0;
+    display:flex;flex-direction:column;
+    opacity:0;transform:translateY(16px);
+    transition:opacity .45s cubic-bezier(.4,0,.2,1), transform .55s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+    padding:var(--s-xl) var(--s-xl) 0;
+  }
+  .panel-item.active{
+    opacity:1;transform:translateY(0);
+    pointer-events:auto;
+    transition-delay:.04s;
+  }
+  .panel-item.past{
+    opacity:0;transform:translateY(-16px);
+    transition-delay:0s;
+  }
+
+  /* Visual — teaser stage: media floats at its natural proportions on a soft backdrop */
+  .panel-visual{
+    flex:1;min-height:0;
+    background:
+      radial-gradient(130% 110% at 100% 0%, rgba(31,80,255,.06), transparent 58%),
+      linear-gradient(176deg, var(--card) 0%, var(--bg-2) 100%);
+    border:1px solid var(--rule);border-radius:var(--radius-lg);
+    overflow:hidden;position:relative;
+    margin-bottom:var(--s-xl);
+    max-height:calc(100vh - 280px);
+    display:flex;align-items:center;justify-content:center;
+    padding:clamp(22px,3.4vw,52px);
+  }
+  /* Photographic device mockups — keep aspect, float as a card */
+  .panel-visual img{
+    position:static;inset:auto;
+    max-width:100%;max-height:100%;
+    width:auto;height:auto;
+    object-fit:contain;display:block;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+  }
+  /* Flat UI mockups (inline SVG) — present as a floating app window */
+  .panel-visual svg{
+    position:static;inset:auto;
+    width:100%;height:auto;max-height:100%;
+    aspect-ratio:1100/680;display:block;
+    background:#fff;
+    border:1px solid var(--rule);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-lg);
+    overflow:hidden;
+  }
+
+  /* Panel meta row */
+  .panel-meta{
+    display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);
+    padding:0 0 var(--s-xl);flex-shrink:0;
+    border-top:1px solid var(--rule);padding-top:var(--s-lg);
+  }
+  .pm-left{}
+  .pm-client{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;margin-bottom:4px;
+  }
+  .pm-title{font-size:20px;font-weight:500;letter-spacing:-.012em;color:var(--ink)}
+  .pm-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-sm)}
+  .pm-right{display:flex;align-items:center;gap:var(--s-md);flex-shrink:0}
+
+  /* ===== MOBILE: full card list ===== */
+  .mobile-stack{
+    display:none;flex-direction:column;gap:0;
+    padding-top:0;
+  }
+  @media (max-width:900px){
+    .work-layout{display:none}
+    .work-sidebar,.work-panel{display:none}
+    .mobile-stack{display:flex}
+  }
+  .mob-header{
+    background:#EEF0F6;padding:var(--s-3xl) var(--s-xl) var(--s-xl);
+  }
+  .mob-header h1{font-size:32px;font-weight:500;letter-spacing:-.02em;color:var(--ink);margin-bottom:var(--s-md)}
+  .mob-header p{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+  .mob-filters{
+    display:flex;gap:6px;flex-wrap:wrap;
+    padding:var(--s-lg) var(--s-xl);
+    background:#EEF0F6;
+    border-bottom:1px solid var(--rule);
+  }
+  .mob-filter-btn{
+    font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-2);background:transparent;
+    border:1px solid var(--rule);border-radius:999px;
+    padding:5px 12px;cursor:pointer;font-weight:500;
+    transition:all var(--t-fast);
+  }
+  .mob-filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .mob-card{
+    display:flex;flex-direction:column;
+    border-bottom:1px solid var(--rule);
+    background:var(--bg);
+    text-decoration:none;color:inherit;
+    transition:background var(--t-fast);
+  }
+  .mob-card:hover{background:var(--card)}
+  .mob-visual{
+    width:100%;aspect-ratio:16/9;
+    overflow:hidden;position:relative;
+    background:var(--card);border-bottom:1px solid var(--rule);
+  }
+  .mob-visual svg{width:100%;height:100%;display:block;position:absolute;inset:0}
+  .mob-body{padding:var(--s-xl)}
+  .mob-client{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:4px}
+  .mob-title{font-size:20px;font-weight:500;letter-spacing:-.012em;margin-bottom:var(--s-sm)}
+  .mob-desc{font-size:14px;line-height:1.55;color:var(--ink-2);margin-bottom:var(--s-lg)}
+  .mob-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:var(--s-lg)}
+  .mob-cta{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  .mob-cta .arr{transition:transform var(--t-fast) var(--ease)}
+  .mob-card:hover .mob-cta .arr{transform:translateX(4px)}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link active" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+  <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+<div class="work-layout">
+
+  <!-- ===== LEFT SIDEBAR ===== -->
+  <aside class="work-sidebar">
+
+    <div class="sidebar-filters">
+      <button class="filter-btn active" data-filter="all" data-i18n="f.all">All</button>
+      <button class="filter-btn" data-filter="portal">Portal</button>
+      <button class="filter-btn" data-filter="ecommerce">eCommerce</button>
+      <button class="filter-btn" data-filter="ai">AI</button>
+    </div>
+
+    <div class="project-list" id="projectList">
+
+      <div class="proj-item active" data-index="0" data-tags="ecommerce portal" data-href="case-schunk.html">
+        <div class="proj-top">
+          <span class="proj-industry">SAP Commerce · B2B</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">FANUC Portal &amp; eShop</div>
+        <div class="proj-desc" data-i18n="w.p0.d">One portal replacing four disconnected systems for FANUC's customers.</div>
+      </div>
+
+      <div class="proj-item" data-index="1" data-tags="ecommerce portal" data-href="case-geiger.html">
+        <div class="proj-top">
+          <span class="proj-industry">SAP Commerce · B2B</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">Geiger Sales Rep Platform</div>
+        <div class="proj-desc" data-i18n="w.p1.d">Redesigning the Sales Rep experience for the world's largest promo company.</div>
+      </div>
+
+      <div class="proj-item" data-index="2" data-tags="fleet portal" data-href="case-index.html">
+        <div class="proj-top">
+          <span class="proj-industry" data-i18n="w.p2.i">Fleet Operations</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name" data-i18n="w.p2.n">Machine Management</div>
+        <div class="proj-desc" data-i18n="w.p2.d">Single dashboard for three roles managing global machine fleets.</div>
+      </div>
+
+      <div class="proj-item" data-index="3" data-tags="monitoring portal" data-href="case-enercon.html">
+        <div class="proj-top">
+          <span class="proj-industry" data-i18n="w.p3.i">Monitoring · Energy</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">ENERCON Customer Portal</div>
+        <div class="proj-desc" data-i18n="w.p3.d">One unified portal monitoring distributed wind parks, turbines &amp; service.</div>
+      </div>
+
+      <div class="proj-item" data-tags="cpq portal" data-href="case-mapal.html">
+        <div class="proj-top">
+          <span class="proj-industry" data-i18n="w.p4.i">Admin Tooling · SAP BTP</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">MAPAL Configuration Platform</div>
+        <div class="proj-desc" data-i18n="w.p4.d">Replacing a legacy expert tool with a purpose-built SAP BTP configurator backend.</div>
+      </div>
+
+      <div class="proj-item" data-index="5" data-tags="ecommerce commerce rebranding" data-href="case-wagner.html">
+        <div class="proj-top">
+          <span class="proj-industry">SAP Commerce · B2B</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">Wagner eShop &amp; Titan Tools</div>
+        <div class="proj-desc" data-i18n="w.p5.d">SAP Spartacus B2B shop for spray systems, plus US rebranding.</div>
+      </div>
+
+      <div class="proj-item" data-index="6" data-tags="ai research saas" data-href="case-uip.html">
+        <div class="proj-top">
+          <span class="proj-industry" data-i18n="w.p6.i">AI · UX Research</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">User Intelligence Platform</div>
+        <div class="proj-desc" data-i18n="w.p6.d">Static personas become living AI research companions you can talk to.</div>
+      </div>
+
+      <div class="proj-item" data-index="7" data-tags="portal sales" data-href="case-whitelabel.html">
+        <div class="proj-top">
+          <span class="proj-industry" data-i18n="w.p7.i">Sales Enablement · SAP BTP</span>
+          <span class="proj-arrow">→</span>
+        </div>
+        <div class="proj-name">White-Label Portals</div>
+        <div class="proj-desc" data-i18n="w.p7.d">Configurable portal demos that turn pitches into projects.</div>
+      </div>
+
+    </div>
+
+    <div class="sidebar-footer">
+      <div class="sf-count"><b id="visibleCount">08</b> <span data-i18n="w.count">Projects · Phase 0 → Delivery</span></div>
+    </div>
+  </aside>
+
+  <!-- ===== RIGHT PANEL ===== -->
+  <div class="work-panel">
+    <div class="panel-inner" id="panelInner">
+
+      <!-- 0: FANUC -->
+      <div class="panel-item active" data-panel="0">
+        <div class="panel-visual">
+          <img src="uploads/Macbook_Air_M2_Mockup_3.jpg" alt="FANUC Portal & eShop · Product Detail View">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">FANUC · 2023–2024</div>
+            <div class="pm-title" data-i18n="w.m0.t">Portal &amp; eShop. One place for the customer</div>
+            <div class="pm-tags">
+              <span class="tag">eShop</span><span class="tag">Portal</span>
+              <span class="tag">Fleet</span><span class="tag tag-accent">SAP Commerce</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-schunk.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1: GEIGER -->
+      <div class="panel-item" data-panel="1">
+        <div class="panel-visual">
+          <img src="uploads/Mockup_Detailspage.jpg" alt="Geiger Sales Rep Platform · Product Configuration">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">Geiger US · 2025–2026</div>
+            <div class="pm-title" data-i18n="w.m1.t">Sales Rep Platform. Redesigned for configuration &amp; quoting</div>
+            <div class="pm-tags">
+              <span class="tag">eCommerce</span><span class="tag">Configuration</span>
+              <span class="tag tag-accent">SAP Commerce</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-geiger.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: INDEX-TRAUB -->
+      <div class="panel-item" data-panel="2">
+        <div class="panel-visual">
+          <img src="uploads/MachinenPortal_Mockup.jpg" alt="INDEX-TRAUB iXworld Portal">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">INDEX-TRAUB · 2023</div>
+            <div class="pm-title">iXworld Portal &amp; CycletimePro</div>
+            <div class="pm-tags">
+              <span class="tag">Maschinenmanagement</span><span class="tag">eShop</span>
+              <span class="tag tag-accent">iXworld</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-ghost" href="case-index.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: ENERCON -->
+      <div class="panel-item" data-panel="3">
+        <div class="panel-visual">
+          <img src="uploads/Enercon-me.jpg" alt="ENERCON Customer Portal · responsive across laptop, tablet and mobile">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">ENERCON · 2025–2026</div>
+            <div class="pm-title">ENERCON Customer Portal</div>
+            <div class="pm-tags">
+              <span class="tag">Dashboard</span><span class="tag">Monitoring</span>
+              <span class="tag tag-accent">SSO Portal</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-enercon.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+      <!-- 4: MAPAL CONFIGURATION PLATFORM (admin tooling) -->
+      <div class="panel-item" data-panel="4b">
+        <div class="panel-visual">
+          <img src="uploads/Mockup_screen.jpg" alt="MAPAL Configuration Platform · Solution Expert">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">MAPAL · 2024–2025</div>
+            <div class="pm-title" data-i18n="w.m4.t">Configuration Platform. Legacy expert-tool replacement</div>
+            <div class="pm-tags">
+              <span class="tag">Admin Tooling</span><span class="tag">Flow Steps</span>
+              <span class="tag tag-accent">SAP BTP</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-mapal.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: TITAN WAGNER -->
+      <div class="panel-item" data-panel="5">
+        <div class="panel-visual">
+          <img src="uploads/Wagner_PDP_Mockup.jpg" alt="Wagner eShop · Product Detail Page Multi-Device Mockup">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client">J. Wagner GmbH · 2022–2023</div>
+            <div class="pm-title" data-i18n="w.m5.t">Wagner eShop &amp; Titan Tools Rebranding</div>
+            <div class="pm-tags">
+              <span class="tag">SAP Spartacus</span><span class="tag">eCommerce</span>
+              <span class="tag tag-accent">US Rebranding</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-wagner.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6: USER INTELLIGENCE PLATFORM -->
+      <div class="panel-item" data-panel="6">
+        <div class="panel-visual">
+          <img src="uploads/Persona_Application_Chat.png" alt="User Intelligence Platform · Persona Chat interface">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client" data-i18n="w.m6.c">Internal Innovation · Product Concept</div>
+            <div class="pm-title">User Intelligence Platform</div>
+            <div class="pm-tags">
+              <span class="tag">AI</span><span class="tag">UX Research</span>
+              <span class="tag tag-accent">Product Strategy</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-uip.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- 7: WHITE-LABEL PORTALS -->
+      <div class="panel-item" data-panel="7">
+        <div class="panel-visual">
+          <img src="uploads/Whitelabel_mockup.jpg" alt="White-Label Portal · Sybit Customer Dashboard">
+        </div>
+        <div class="panel-meta">
+          <div class="pm-left">
+            <div class="pm-client" data-i18n="w.m7.c">Sybit · Internal · 2024–2025</div>
+            <div class="pm-title" data-i18n="w.m7.t">White-Label Portals. From concept to customer in days</div>
+            <div class="pm-tags">
+              <span class="tag">Sales Enablement</span><span class="tag">White-Label</span>
+              <span class="tag tag-accent">SAP BTP</span>
+            </div>
+          </div>
+          <div class="pm-right">
+            <a class="btn btn-accent" href="case-whitelabel.html" data-i18n="btn.case">Case study <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.panel-inner -->
+  </div><!-- /.work-panel -->
+
+</div><!-- /.work-layout -->
+
+<!-- 16px gap between desktop sidebar items -->
+<style>
+  .proj-item + .proj-item { margin-top: 0; }
+  .project-list { gap: 0; }
+  .proj-item { border-bottom: none; position: relative; }
+  .proj-item::after {
+    content:"";
+    display:block;
+    height:1px;
+    background:var(--rule);
+    position:absolute;
+    left:var(--s-2xl);right:var(--s-2xl);bottom:0;
+  }
+</style>
+
+
+<div class="mobile-stack">
+
+  <div class="mob-header">
+    <h1 data-i18n="w.mob.h">Selected Work</h1>
+    <p data-i18n="w.mob.sub">2021 – 2024 · Phase 0 → Delivery</p>
+  </div>
+
+  <div class="mob-filters">
+    <button class="mob-filter-btn active" data-mfilter="all" data-i18n="f.all">All</button>
+    <button class="mob-filter-btn" data-mfilter="portal">Portal</button>
+    <button class="mob-filter-btn" data-mfilter="ecommerce">eCommerce</button>
+    <button class="mob-filter-btn" data-mfilter="ai">AI</button>
+  </div>
+
+  <a class="mob-card" href="case-schunk.html" data-mtags="ecommerce portal">
+    <div class="mob-visual">
+      <img src="uploads/Macbook_Air_M2_Mockup_3.jpg" alt="FANUC Portal & eShop" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">FANUC · SAP Commerce · 2023–2024</div>
+      <div class="mob-title" data-i18n="w.mc0.t">Portal &amp; eShop. One place for the customer</div>
+      <div class="mob-desc" data-i18n="w.mc0.d">Replaced four disconnected systems with a single SAP-Commerce portal.</div>
+      <div class="mob-tags"><span class="tag">eShop</span><span class="tag">Portal</span><span class="tag tag-accent">SAP Commerce</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-geiger.html" data-mtags="ecommerce portal">
+    <div class="mob-visual">
+      <img src="uploads/Mockup_Detailspage.jpg" alt="Geiger Sales Rep Platform" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">Geiger US · SAP Commerce · 2025–2026</div>
+      <div class="mob-title">Sales Rep Platform</div>
+      <div class="mob-desc" data-i18n="w.mc1.d">Redesigning the Sales Rep experience for the world's largest promo company.</div>
+      <div class="mob-tags"><span class="tag">eCommerce</span><span class="tag">Configuration</span><span class="tag tag-accent">SAP Commerce</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-index.html" data-mtags="fleet portal">
+    <div class="mob-visual">
+      <img src="uploads/MachinenPortal_Mockup.jpg" alt="INDEX-TRAUB iXworld Portal" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">Index-Traub · Fleet Operations · 2023</div>
+      <div class="mob-title" data-i18n="w.mc2.t">Machine Management Platform</div>
+      <div class="mob-desc" data-i18n="w.mc2.d">Single dashboard, three roles managing global machine fleets.</div>
+      <div class="mob-tags"><span class="tag">Fleet</span><span class="tag">Platform</span><span class="tag tag-accent">Multi-role</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-enercon.html" data-mtags="monitoring portal">
+    <div class="mob-visual">
+      <img src="uploads/Enercon-me.jpg" alt="ENERCON Customer Portal" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">ENERCON · Monitoring · 2025–2026</div>
+      <div class="mob-title">ENERCON Customer Portal</div>
+      <div class="mob-desc" data-i18n="w.mc3.d">One unified SSO portal monitoring distributed wind parks, turbines &amp; service.</div>
+      <div class="mob-tags"><span class="tag">Dashboard</span><span class="tag tag-accent">SSO Portal</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-mapal.html" data-mtags="cpq portal">
+    <div class="mob-visual">
+      <img src="uploads/Mockup_screen.jpg" alt="MAPAL Configuration Platform" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">MAPAL · Admin Tooling · 2024–2025</div>
+      <div class="mob-title">MAPAL Configuration Platform</div>
+      <div class="mob-desc" data-i18n="w.mc4.d">Replacing a legacy expert tool (Zoovu/Suvo) with a purpose-built SAP BTP configurator backend.</div>
+      <div class="mob-tags"><span class="tag">Flow Steps</span><span class="tag tag-accent">SAP BTP</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-wagner.html" data-mtags="ecommerce commerce rebranding">
+    <div class="mob-visual">
+      <img src="uploads/Wagner_PDP_Mockup.jpg" alt="Wagner eShop" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client">J. Wagner GmbH · 2022–2023</div>
+      <div class="mob-title">Wagner eShop &amp; Titan Tools</div>
+      <div class="mob-desc" data-i18n="w.mc5.d">SAP Spartacus B2B shop for spray systems, plus US rebranding as Titan Tools.</div>
+      <div class="mob-tags"><span class="tag">SAP Spartacus</span><span class="tag tag-accent">US Rebranding</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-uip.html" data-mtags="ai research saas">
+    <div class="mob-visual">
+      <img src="uploads/Persona_Application_Chat.png" alt="User Intelligence Platform · Persona Chat interface" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client" data-i18n="w.mc6.c">Internal Innovation · Concept</div>
+      <div class="mob-title">User Intelligence Platform</div>
+      <div class="mob-desc" data-i18n="w.mc6.d">Static personas become living AI research companions you can talk to.</div>
+      <div class="mob-tags"><span class="tag">AI</span><span class="tag tag-accent">UX Research</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+  <a class="mob-card" href="case-whitelabel.html" data-mtags="portal sales">
+    <div class="mob-visual">
+      <img src="uploads/Whitelabel_mockup.jpg" alt="White-Label Portal · Sybit Customer Dashboard" style="width:100%;height:100%;object-fit:cover;object-position:center top">
+    </div>
+    <div class="mob-body">
+      <div class="mob-client" data-i18n="w.mc7.c">Sybit · Internal · 2024–2025</div>
+      <div class="mob-title">White-Label Portals</div>
+      <div class="mob-desc" data-i18n="w.mc7.d">Configurable portal demos on SAP BTP that turn pitches into projects.</div>
+      <div class="mob-tags"><span class="tag">Sales Enablement</span><span class="tag tag-accent">SAP BTP</span></div>
+      <span class="mob-cta" data-i18n="btn.case">Case study <span class="arr">→</span></span>
+    </div>
+  </a>
+
+
+
+</div>
+</main>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link active" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    // close on link click
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  const items   = document.querySelectorAll('.proj-item');
+  const panels  = document.querySelectorAll('.panel-item');
+  const filters = document.querySelectorAll('.filter-btn');
+  const countEl = document.getElementById('visibleCount');
+
+  let activeIdx = 0;
+  let prevIdx   = -1;
+
+  function activateProject(idx, skipScroll){
+    if(idx === activeIdx && prevIdx !== -1) return;
+    prevIdx = activeIdx;
+    activeIdx = idx;
+
+    items.forEach((it, i)  => it.classList.toggle('active', i === idx));
+    panels.forEach((p, i)  => {
+      p.classList.toggle('active', i === idx);
+      p.classList.toggle('past',   i === prevIdx && i !== idx);
+    });
+    if(!skipScroll){
+      items[idx]?.scrollIntoView({block:'nearest', behavior:'smooth'});
+    }
+  }
+
+  items.forEach((item, i) => {
+    item.addEventListener('mouseenter', () => activateProject(i));
+    item.addEventListener('click', () => {
+      const href = item.dataset.href;
+      if(href){ window.location.href = href; }
+      else { activateProject(i); }
+    });
+  });
+
+  // Filter
+  filters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      let visible = 0;
+      items.forEach((item, i) => {
+        const tags = (item.dataset.tags || '').split(' ');
+        const show = f === 'all' || tags.includes(f);
+        item.style.display = show ? '' : 'none';
+        if(show){ visible++; }
+      });
+      countEl.textContent = String(visible).padStart(2,'0');
+      // Activate first visible
+      const first = [...items].findIndex(it => it.style.display !== 'none');
+      if(first !== -1) activateProject(first, true);
+    });
+  });
+
+  activateProject(0, true);
+
+  // Mobile filters
+  const mobFilters = document.querySelectorAll('.mob-filter-btn');
+  const mobCards   = document.querySelectorAll('.mob-card');
+  mobFilters.forEach(btn => {
+    btn.addEventListener('click', () => {
+      mobFilters.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.mfilter;
+      mobCards.forEach(card => {
+        const tags = (card.dataset.mtags || '').split(' ');
+        card.style.display = (f === 'all' || tags.includes(f)) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "Arbeiten · Johannes Reichard",
+  "f.all": "Alle",
+  "w.p0.d": "Ein Portal als Ablösung für vier getrennte Systeme der FANUC-Kunden.",
+  "w.p1.d": "Neugestaltung der Sales-Rep-Experience für den weltgrößten Werbeartikel-Anbieter.",
+  "w.p2.i": "Fleet Operations",
+  "w.p2.n": "Maschinenmanagement",
+  "w.p2.d": "Ein Dashboard für drei Rollen zur Verwaltung globaler Maschinenflotten.",
+  "w.p3.i": "Monitoring · Energie",
+  "w.p3.d": "Ein einheitliches Portal zur Überwachung verteilter Windparks, Turbinen &amp; Service.",
+  "w.p4.i": "Admin-Tooling · SAP BTP",
+  "w.p4.d": "Ablösung eines Legacy-Expertentools durch ein maßgeschneidertes SAP-BTP-Konfigurator-Backend.",
+  "w.p5.d": "SAP-Spartacus-B2B-Shop für Sprühsysteme, plus US-Rebranding.",
+  "w.p6.i": "KI · UX-Research",
+  "w.p6.d": "Aus statischen Personas werden lebendige KI-Research-Begleiter zum Sprechen.",
+  "w.p7.i": "Sales Enablement · SAP BTP",
+  "w.p7.d": "Konfigurierbare Portal-Demos, die aus Pitches Projekte machen.",
+  "w.count": "Projekte · Phase 0 → Delivery",
+  "w.m0.t": "Portal &amp; eShop. Ein Ort für den Kunden",
+  "w.m1.t": "Sales-Rep-Plattform. Neugestaltet für Konfiguration &amp; Angebote",
+  "w.m4.t": "Configuration Platform. Ablösung des Legacy-Expertentools",
+  "w.m5.t": "Wagner eShop &amp; Titan Tools Rebranding",
+  "w.m6.c": "Interne Innovation · Produktkonzept",
+  "w.m7.c": "Sybit · Intern · 2024–2025",
+  "w.m7.t": "White-Label-Portale. Vom Konzept zum Kunden in Tagen",
+  "w.mob.h": "Ausgewählte Arbeiten",
+  "w.mob.sub": "2021 – 2024 · Phase 0 → Delivery",
+  "w.mc0.t": "Portal &amp; eShop. Ein Ort für den Kunden",
+  "w.mc0.d": "Vier getrennte Systeme ersetzt durch ein einziges SAP-Commerce-Portal.",
+  "w.mc1.d": "Neugestaltung der Sales-Rep-Experience für den weltgrößten Werbeartikel-Anbieter.",
+  "w.mc2.t": "Maschinenmanagement-Plattform",
+  "w.mc2.d": "Ein Dashboard, drei Rollen zur Verwaltung globaler Maschinenflotten.",
+  "w.mc3.d": "Ein einheitliches SSO-Portal zur Überwachung verteilter Windparks, Turbinen &amp; Service.",
+  "w.mc4.d": "Ablösung eines Legacy-Expertentools (Zoovu/Suvo) durch ein maßgeschneidertes SAP-BTP-Konfigurator-Backend.",
+  "w.mc5.d": "SAP-Spartacus-B2B-Shop für Sprühsysteme, plus US-Rebranding als Titan Tools.",
+  "w.mc6.c": "Interne Innovation · Konzept",
+  "w.mc6.d": "Aus statischen Personas werden lebendige KI-Research-Begleiter zum Sprechen.",
+  "w.mc7.c": "Sybit · Intern · 2024–2025",
+  "w.mc7.d": "Konfigurierbare Portal-Demos auf SAP BTP, die aus Pitches Projekte machen."
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+
+</body>
+</html>

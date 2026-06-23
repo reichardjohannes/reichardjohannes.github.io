@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>White-Label Portals · Sales Enablement · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:20ch;margin-bottom:var(--s-xl)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:60ch}
+
+  .hero-art{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);aspect-ratio:16/9;overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow)}
+  .hero-art img,.hero-art video{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  @media(max-width:520px){.meta-cell:nth-child(odd){border-right:1px solid var(--rule)}.meta-cell:nth-child(even){border-right:none}.meta-cell{border-bottom:1px solid var(--rule)!important}.meta-cell:nth-last-child(-n+2){border-bottom:none!important}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  .cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-2xl)}
+  @media(max-width:900px){.cr-grid{grid-template-columns:1fr}}
+  .cr-cell{padding:var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  .cr-cell .ev{margin-bottom:var(--s-md)}
+  .cr-cell h3{font-size:18px;font-weight:600;letter-spacing:-.005em;margin-bottom:var(--s-sm)}
+  .cr-cell p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .cr-cell p b{color:var(--ink);font-weight:500}
+
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-xl);text-align:center}
+  @media(max-width:780px){.chapter-head{padding:var(--s-3xl) 0 var(--s-md)}}
+  .chapter-head .ev{margin-bottom:var(--s-md)}
+  .chapter-head h2{margin:0 auto;max-width:20ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:54ch;margin:var(--s-lg) auto 0}
+
+  /* Showcase */
+  .showcase{padding:var(--s-4xl) 0}
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:780px){.showcase-grid{grid-template-columns:1fr}}
+  .sc-full{grid-column:1/-1;border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-full img,.sc-full video{width:100%;display:block;max-height:600px;object-fit:cover;object-position:center}
+  .sc-half{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-half img,.sc-half video{width:100%;display:block;object-fit:cover}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* Example block */
+  .example-block{padding:var(--s-5xl) 0;border-top:1px solid var(--rule)}
+  .example-head{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:end;margin-bottom:var(--s-3xl)}
+  @media(max-width:780px){.example-head{grid-template-columns:1fr;gap:var(--s-lg)}}
+  .example-head h2{max-width:16ch}
+  .example-head p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .example-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px}
+  .example-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+
+  /* Walkthrough */
+  .walkthrough{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .wt-grid{margin-top:var(--s-3xl);display:flex;flex-direction:column;gap:var(--s-lg)}
+  .wt-main{border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);line-height:0;position:relative}
+  .wt-main video{width:100%;display:block;max-height:620px;object-fit:contain;background:#111}
+  .wt-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* Outcome */
+  .outcome{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .out-head{margin-bottom:var(--s-3xl);text-align:center}
+  .out-head .ev{margin-bottom:var(--s-md)}
+  .out-head h2{margin:0 auto;max-width:20ch}
+  .out-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-bottom:var(--s-3xl)}
+  @media(max-width:720px){.out-stats{grid-template-columns:1fr}}
+  .out-stat{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl);position:relative;overflow:hidden;transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .out-stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .out-stat.accent{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .out-stat.accent::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:radial-gradient(ellipse 80% 80% at 100% 100%,rgba(31,80,255,.4),transparent 70%)}
+  .out-stat .sl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);position:relative}
+  .out-stat.accent .sl{color:rgba(255,255,255,.5)}
+  .out-stat .sv{font-size:clamp(36px,5vw,56px);font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink);position:relative}
+  .out-stat.accent .sv{color:#fff}
+  .out-stat .sn{font-size:13px;color:var(--ink-3);margin-top:var(--s-md);position:relative}
+  .out-stat.accent .sn{color:rgba(255,255,255,.55)}
+
+  /* Reflections */
+  .reflect{padding:var(--s-5xl) 0}
+  @media(max-width:780px){.reflect{padding:var(--s-3xl) 0}}
+  .reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start}
+  @media(max-width:780px){.reflect-grid{grid-template-columns:1fr;gap:var(--s-xl)}}
+  .reflect-grid h3{font-size:24px;font-weight:500;letter-spacing:-.012em;margin-bottom:var(--s-md)}
+  .reflect-grid ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .reflect-grid li{padding-left:24px;position:relative;font-size:15px;line-height:1.6;color:var(--ink-2)}
+  .reflect-grid li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .reflect-grid li b{color:var(--ink);font-weight:500}
+
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link active" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="work.html" data-i18n="nav.work">Work</a>
+        <span class="sep">/</span>
+        <span>Sybit · Internal</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)" data-i18n="wl.crumb">White-Label Portals</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s" data-i18n="wl.eyebrow">Case Study · 2024 – 2025</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="wl.h1.l1">White-Label Portals —</span></span>
+        <span class="line"><span class="line-inner" data-i18n="wl.h1.l2">from concept to customer</span></span>
+        <span class="line"><span class="line-inner" data-i18n="wl.h1.l3">in&nbsp;days.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.35s" data-i18n="wl.lede">
+        Configurable portal templates on SAP BTP that let the sales team show prospects a fully branded, interactive demo, not a slide deck. Two live examples built to lower the first barrier and turn interest into project commitment.
+      </p>
+
+      <div class="hero-art reveal" style="transition-delay:.45s">
+        <video src="uploads/whitelabel_video.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+      <div class="case-meta">
+        <div class="meta-cell"><div class="l" data-i18n="cs.client">Client</div><div class="v">Sybit · Internal</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.role">Role</div><div class="v" data-i18n="wl.m.role">UI/UX Design Lead</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.year">Year</div><div class="v">2024 – 2025</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.platform">Platform</div><div class="v">SAP BTP</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.focus">Focus</div><div class="v" data-i18n="wl.m.focus">Sales Enablement</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="wl.m.status">Status</div><div class="v" data-i18n="wl.m.statusv">Live · Editable</div></div>
+      </div>
+
+      <div class="cr-grid">
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.challenge">Challenge</span>
+          <h3 data-i18n="wl.cr1.h">Slides don't sell portals</h3>
+          <p data-i18n="wl.cr1.p">Prospects needed to <b>see and feel</b> what their future customer portal could look like, but building individual demos for each pitch was too slow and too expensive.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.myrole">My role</span>
+          <h3 data-i18n="wl.cr2.h">Design, build, enable</h3>
+          <p data-i18n="wl.cr2.p">Responsible for <b>UI/UX design, visual direction and template architecture</b>. Created reusable portal templates that the sales team can rebrand and present live without design or dev support.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.outcome">Outcome</span>
+          <h3 data-i18n="wl.cr3.h">Show, don't tell</h3>
+          <p data-i18n="wl.cr3.p">Two fully functional white-label portals live on SAP BTP. <b>Sales uses them in every pitch prospects see their brand on a working product within minutes.</b></p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- EXAMPLE · IQONY -->
+  <section class="example-block" data-screen-label="02 Example · Iqony">
+    <div class="container">
+      <div class="example-head">
+        <div>
+          <div class="example-num" data-i18n="wl.ex1.num">Example 01 · Iqony</div>
+          <h2 class="h2" data-i18n="wl.ex1.h">Energy customer portal. Desktop &amp; mobile.</h2>
+        </div>
+        <p data-i18n="wl.ex1.p">
+          A white-label portal designed for energy providers. Dashboard, meter readings, invoices, consumption charts everything a residential customer needs, branded to Iqony within hours. Built responsive from the start.
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="showcase-grid">
+        <div class="sc-full">
+          <img src="uploads/Desktop_Design_Iqony.png" alt="Iqony White-Label Portal · Desktop Design · Dashboard, Login, Consumption View">
+        </div>
+        <div class="sc-full">
+          <img src="uploads/Mobile_Design_Iqony.png" alt="Iqony White-Label Portal · Mobile Design · Three iOS screens showing meter reading, dashboard and payments">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALKTHROUGH · IQONY VIDEO -->
+  <section class="walkthrough" data-screen-label="03 Walkthrough · Iqony">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="wl.wt.ey">/03 · Walkthrough</span>
+          <h2 class="h3" data-i18n="wl.wt.h">Iqony portal in action.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="wl.wt.aside">
+          <b>Live Demo</b><br>
+          SAP BTP · White-Label
+        </div>
+      </div>
+      <div class="wt-grid">
+        <div class="wt-main">
+          <video src="uploads/Iqony (1).mp4" autoplay muted loop playsinline></video>
+        </div>
+        <p class="wt-cap" data-i18n="wl.wt.cap">Iqony Portal · Dashboard, Navigation, Meter Reading Flow</p>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <!-- NEXT CASE -->
+  <section class="next-case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)" data-i18n="cs.more">More projects</p>
+      <div class="next-links">
+        <a href="case-geiger.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">Geiger · Sales Rep Platform</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-enercon.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">ENERCON · Customer Portal</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)" data-i18n="cs.backtop">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5 data-i18n="foot.pages">Pages</h5><ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 data-i18n="foot.contact">Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "White-Label-Portale · Sales Enablement · Case Study",
+  "wl.crumb": "White-Label-Portale",
+  "wl.eyebrow": "Case Study · 2024 – 2025",
+  "wl.h1.l1": "White-Label-Portale —",
+  "wl.h1.l2": "vom Konzept zum Kunden",
+  "wl.h1.l3": "in Tagen.",
+  "wl.lede": "Konfigurierbare Portal-Templates auf SAP BTP, mit denen das Vertriebsteam Interessenten eine vollständig gebrandete, interaktive Demo zeigen kann – kein Folien-Deck. Zwei Live-Beispiele, die die erste Hürde senken und Interesse in Projektengagement umwandeln.",
+  "wl.m.role": "UI/UX Design Lead",
+  "wl.m.focus": "Sales Enablement",
+  "wl.m.status": "Status",
+  "wl.m.statusv": "Live · Bearbeitbar",
+  "wl.cr1.h": "Folien verkaufen keine Portale",
+  "wl.cr1.p": "Interessenten mussten <b>sehen und spüren</b>, wie ihr künftiges Kundenportal aussehen könnte, aber individuelle Demos für jeden Pitch waren zu langsam und zu teuer.",
+  "wl.cr2.h": "Gestalten, bauen, befähigen",
+  "wl.cr2.p": "Verantwortlich für <b>UI/UX-Design, visuelle Ausrichtung und Template-Architektur</b>. Wiederverwendbare Portal-Templates erstellt, die das Vertriebsteam selbst umbranden und live präsentieren kann – ohne Design- oder Dev-Unterstützung.",
+  "wl.cr3.h": "Zeigen, nicht erzählen",
+  "wl.cr3.p": "Zwei voll funktionsfähige White-Label-Portale live auf SAP BTP. <b>Der Vertrieb setzt sie bei jedem Pitch ein – Interessenten sehen ihre Marke auf einem funktionierenden Produkt in Minuten.</b>",
+  "wl.ex1.num": "Beispiel 01 · Iqony",
+  "wl.ex1.h": "Energie-Kundenportal. Desktop &amp; Mobile.",
+  "wl.ex1.p": "Ein White-Label-Portal für Energieversorger. Dashboard, Zählermesswerte, Rechnungen, Verbrauchsdiagramme – alles, was ein Privatkunde braucht, innerhalb von Stunden auf Iqony gebrandet. Von Anfang an responsiv gebaut.",
+  "wl.wt.ey": "/03 · Walkthrough",
+  "wl.wt.h": "Iqony-Portal in Aktion.",
+  "wl.wt.aside": "<b>Live Demo</b><br>SAP BTP · White-Label",
+  "wl.wt.cap": "Iqony-Portal · Dashboard, Navigation, Zählerablesungs-Flow"
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+</body>
+</html>

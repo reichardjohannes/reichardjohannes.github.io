@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portal &amp; eShop · FANUC · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:18ch;margin-bottom:var(--s-xl)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:60ch}
+
+  .hero-art{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);aspect-ratio:16/9;overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow)}
+  .hero-art img,.hero-art video{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  @media(max-width:520px){.meta-cell:nth-child(odd){border-right:1px solid var(--rule)}.meta-cell:nth-child(even){border-right:none}.meta-cell{border-bottom:1px solid var(--rule)!important}.meta-cell:nth-last-child(-n+2){border-bottom:none!important}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  .cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-2xl)}
+  @media(max-width:900px){.cr-grid{grid-template-columns:1fr}}
+  .cr-cell{padding:var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  .cr-cell .ev{margin-bottom:var(--s-md)}
+  .cr-cell h3{font-size:18px;font-weight:600;letter-spacing:-.005em;margin-bottom:var(--s-sm)}
+  .cr-cell p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .cr-cell p b{color:var(--ink);font-weight:500}
+
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-xl);text-align:center}
+  @media(max-width:780px){.chapter-head{padding:var(--s-3xl) 0 var(--s-md)}}
+  .chapter-head .ev{margin-bottom:var(--s-md)}
+  .chapter-head h2{margin:0 auto;max-width:18ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:54ch;margin:var(--s-lg) auto 0}
+
+  .sticky-wrap{height:600vh;padding-bottom:0}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+
+  .sticky-left{height:auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:4/3;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease);display:flex;align-items:center;justify-content:center}
+  .panel.visible{opacity:1}
+  .panel svg{width:100%;height:100%;display:block}
+  .panel img,.panel video{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:16%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:900px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;min-height:0}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px);transition-delay:0s}
+  @media(max-width:900px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-md);max-width:22ch}
+  .step p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .step p+p{margin-top:var(--s-md)}
+  .step .ss-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-lg)}
+  .step .ss-artifact{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s-lg);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:6px 12px;background:var(--tag-bg);border-radius:999px}
+  .step .ss-artifact::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink-3)}
+
+  /* Showcase */
+  .showcase{padding:var(--s-4xl) 0}
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:780px){.showcase-grid{grid-template-columns:1fr}}
+  .sc-full{grid-column:1/-1;border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-full img,.sc-full video{width:100%;display:block;max-height:600px;object-fit:cover;object-position:center}
+  .sc-half{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-half img{width:100%;display:block;object-fit:cover}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* Walkthrough */
+  .walkthrough{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .wt-grid{margin-top:var(--s-3xl);display:flex;flex-direction:column;gap:var(--s-lg)}
+  .wt-main{border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);line-height:0;position:relative}
+  .wt-main video{width:100%;display:block;max-height:620px;object-fit:contain;background:#111}
+  .wt-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:720px){.wt-row{grid-template-columns:1fr}}
+  .wt-item{border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);line-height:0}
+  .wt-item video{width:100%;display:block;object-fit:contain;background:#111}
+  .wt-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+  .wt-testing{max-width:640px;border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);line-height:0}
+  .wt-testing video{width:100%;display:block;max-height:420px;object-fit:contain;background:#111}
+  .wt-sub-label{display:flex;align-items:center;gap:10px;margin-bottom:var(--s-sm)}
+  .wt-sub-label .wl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .wt-sub-label .wl-num{color:var(--accent)}
+  .wt-sub-desc{font-size:14px;line-height:1.6;color:var(--ink-2);max-width:58ch;margin-bottom:var(--s-lg)}
+  .wt-sep{height:1px;background:var(--rule);margin:var(--s-3xl) 0}
+
+  /* Outcome */
+  .outcome{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .out-head{margin-bottom:var(--s-3xl);text-align:center}
+  .out-head .ev{margin-bottom:var(--s-md)}
+  .out-head h2{margin:0 auto;max-width:20ch}
+  .out-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-bottom:var(--s-3xl)}
+  @media(max-width:720px){.out-stats{grid-template-columns:1fr}}
+  .out-stat{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl);position:relative;overflow:hidden;transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .out-stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .out-stat.accent{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .out-stat.accent::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:radial-gradient(ellipse 80% 80% at 100% 100%,rgba(31,80,255,.4),transparent 70%)}
+  .out-stat .sl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);position:relative}
+  .out-stat.accent .sl{color:rgba(255,255,255,.5)}
+  .out-stat .sv{font-size:clamp(36px,5vw,56px);font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink);position:relative}
+  .out-stat.accent .sv{color:#fff}
+  .out-stat .sn{font-size:13px;color:var(--ink-3);margin-top:var(--s-md);position:relative}
+  .out-stat.accent .sn{color:rgba(255,255,255,.55)}
+
+  .quote-block{background:var(--accent-tint);border:1px solid var(--accent-soft);border-radius:var(--radius-lg);padding:var(--s-3xl);text-align:center}
+  .quote-mark{font-size:48px;line-height:1;color:var(--accent);margin-bottom:var(--s-md)}
+  .quote-text{font-size:clamp(22px,2.6vw,32px);line-height:1.3;letter-spacing:-.015em;font-weight:500;color:var(--ink);max-width:32ch;margin:0 auto var(--s-lg);text-wrap:balance}
+  .quote-cite{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+
+  .reflect{padding:var(--s-5xl) 0;
+  }
+  @media(max-width:780px){.reflect{padding:var(--s-3xl) 0}
+  }
+  .reflect-PLACEHOLDER{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start}
+  @media(max-width:780px){.reflect-grid{grid-template-columns:1fr;gap:var(--s-xl)}}
+  .reflect-grid h3{font-size:24px;font-weight:500;letter-spacing:-.012em;margin-bottom:var(--s-md)}
+  .reflect-grid ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .reflect-grid li{padding-left:24px;position:relative;font-size:15px;line-height:1.6;color:var(--ink-2)}
+  .reflect-grid li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .reflect-grid li b{color:var(--ink);font-weight:500}
+
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+
+  /* Volvo Spin-off */
+  .spinoff{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .spinoff-inner{display:grid;grid-template-columns:1fr 1.7fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.spinoff-inner{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .spinoff-pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-lg);padding:5px 12px 5px 8px;border:1px solid var(--rule);border-radius:999px;background:var(--card)}
+  .spinoff-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .spinoff-title{font-size:clamp(26px,3.2vw,40px);font-weight:500;letter-spacing:-.018em;line-height:1.1;margin-bottom:var(--s-xl);max-width:18ch}
+  .spinoff-body{font-size:15px;line-height:1.65;color:var(--ink-2);max-width:50ch}
+  .spinoff-body+.spinoff-body{margin-top:var(--s-md)}
+  .spinoff-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-xl)}
+  .spinoff-img-wrap{border-radius:var(--radius-lg);overflow:hidden;background:#ebebea;border:1px solid var(--rule);box-shadow:var(--shadow-lg);line-height:0}
+  .spinoff-img-wrap img{width:100%;display:block}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link active" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="work.html" data-i18n="nav.work">Work</a>
+        <span class="sep">/</span>
+        <span>FANUC</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)" data-i18n="sk.crumb">Portal &amp; eShop</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s" data-i18n="sk.eyebrow">Case Study · 2023 – 2024</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="sk.h1.l1">Portal &amp;&nbsp;eShop —</span></span>
+        <span class="line"><span class="line-inner" data-i18n="sk.h1.l2">one place for every</span></span>
+        <span class="line"><span class="line-inner" data-i18n="sk.h1.l3">customer need.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.35s" data-i18n="sk.lede">
+        A globally leading industrial robotics manufacturer operated eShop, machine fleet, maintenance and benefits across four disconnected systems. We replaced them all with a single integrated portal — designed end&#8209;to&#8209;end, from the first stakeholder workshop through Scrum delivery.
+      </p>
+
+      <div class="hero-art reveal" style="transition-delay:.45s">
+        <video src="uploads/Bildschirmaufnahme%202026-05-22%20um%2009.17.39_cut.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l" data-i18n="cs.client">Client</div><div class="v">FANUC</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.role">Role</div><div class="v" data-i18n="sk.m.role">End-to-End UX Lead</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.year">Year</div><div class="v">2023 – 2024</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.tools">Tools</div><div class="v">Balsamiq · Sketch · Figma</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.method">Method</div><div class="v" data-i18n="sk.m.method">Research-Led · Scrum</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.team">Team</div><div class="v" data-i18n="sk.m.team">Cross-functional</div></div>
+      </div>
+
+      <div class="cr-grid">
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.challenge">Challenge</span>
+          <h3 data-i18n="sk.cr1.h">No portal. Four isolated systems</h3>
+          <p data-i18n="sk.cr1.p">Customers managed eShop, machine registry, maintenance history and service benefits across <b>four separate frontends</b>. No shared identity, no shared navigation, no single sign-on.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.myrole">My role</span>
+          <h3 data-i18n="sk.cr2.h">Full ownership, Phase 0 to launch</h3>
+          <p data-i18n="sk.cr2.p">Responsible for <b>all UX deliverables</b>: client communication, stakeholder workshops, research, wireframes, usability testing, Hi-Fi, Dev-Handoff and Scrum-embedded quality assurance.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.outcome">Outcome</span>
+          <h3 data-i18n="sk.cr3.h">One sign-on, one portal. Live</h3>
+          <p data-i18n="sk.cr3.p">A fully integrated portal for eShop, machine management, maintenance and benefits. <b>All originally defined vision components delivered.</b> High user acceptance across all three target groups.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS — STICKY SCROLL -->
+  <section data-screen-label="02 Process">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="eyebrow ev" data-i18n="sk.proc.ey">/02 · Process</span>
+        <h2 class="h2" data-i18n="sk.proc.h">Six phases, one throughline.</h2>
+        <p data-i18n="sk.proc.p">From heuristic audit to Scrum sprint, each phase produced artefacts that drove the next decision. The image on the left changes as you scroll.</p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY VISUAL STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+
+            <!-- Panel 1: Expert Review -->
+            <div class="panel visible" data-panel="1">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#FAFAF7"/>
+                <rect x="40" y="40" width="720" height="40" rx="6" fill="#0A0A0A"/>
+                <rect x="60" y="56" width="120" height="10" rx="2" fill="#fff"/>
+                <rect x="40" y="100" width="720" height="440" rx="8" fill="#fff" stroke="#ECEAE3"/>
+                <rect x="64" y="124" width="220" height="16" rx="2" fill="#8A8A8A"/>
+                <rect x="64" y="148" width="160" height="10" rx="2" fill="#C2C2C2"/>
+                <rect x="64" y="178" width="672" height="118" rx="6" fill="#F4F2EC"/>
+                <rect x="64" y="318" width="216" height="118" rx="6" fill="#F4F2EC"/>
+                <rect x="292" y="318" width="216" height="118" rx="6" fill="#F4F2EC"/>
+                <rect x="520" y="318" width="216" height="118" rx="6" fill="#F4F2EC"/>
+                <g>
+                  <circle cx="120" cy="198" r="16" fill="#C08A3B"/>
+                  <text x="120" y="204" font-family="JetBrains Mono,monospace" font-size="14" fill="#fff" text-anchor="middle" font-weight="600">1</text>
+                  <line x1="136" y1="198" x2="216" y2="198" stroke="#C08A3B" stroke-width="1.5"/>
+                  <rect x="216" y="182" width="210" height="32" rx="4" fill="#fff" stroke="#C08A3B"/>
+                  <text x="230" y="202" font-family="DM Sans,sans-serif" font-size="12" fill="#0A0A0A" font-weight="500">Unclear CTA hierarchy</text>
+                </g>
+                <g>
+                  <circle cx="658" cy="378" r="16" fill="#C08A3B"/>
+                  <text x="658" y="384" font-family="JetBrains Mono,monospace" font-size="14" fill="#fff" text-anchor="middle" font-weight="600">2</text>
+                  <line x1="642" y1="378" x2="570" y2="378" stroke="#C08A3B" stroke-width="1.5"/>
+                  <rect x="358" y="362" width="212" height="32" rx="4" fill="#fff" stroke="#C08A3B"/>
+                  <text x="372" y="382" font-family="DM Sans,sans-serif" font-size="12" fill="#0A0A0A" font-weight="500">No machine–order link</text>
+                </g>
+                <g>
+                  <circle cx="120" cy="378" r="16" fill="#C08A3B"/>
+                  <text x="120" y="384" font-family="JetBrains Mono,monospace" font-size="14" fill="#fff" text-anchor="middle" font-weight="600">3</text>
+                  <line x1="136" y1="378" x2="200" y2="378" stroke="#C08A3B" stroke-width="1.5"/>
+                  <rect x="200" y="362" width="200" height="32" rx="4" fill="#fff" stroke="#C08A3B"/>
+                  <text x="214" y="382" font-family="DM Sans,sans-serif" font-size="12" fill="#0A0A0A" font-weight="500">Missing self-service flows</text>
+                </g>
+                <text x="40" y="570" font-family="JetBrains Mono,monospace" font-size="11" fill="#8A8A8A" letter-spacing="1.5" font-weight="500">EXPERT REVIEW · EXISTING ESHOP</text>
+                <text x="620" y="570" font-family="JetBrains Mono,monospace" font-size="11" fill="#1F50FF" letter-spacing="1.5" font-weight="500">23 ISSUES</text>
+              </svg>
+            </div>
+
+            <!-- Panel 2: Personas -->
+            <div class="panel" data-panel="2">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#FAFAF7"/>
+                <g transform="translate(36,60)">
+                  <rect width="220" height="460" rx="12" fill="#fff" stroke="#ECEAE3"/>
+                  <circle cx="110" cy="84" r="38" fill="#F4F2EC"/>
+                  <rect x="50" y="140" width="120" height="14" rx="2" fill="#0A0A0A"/>
+                  <text x="110" y="176" font-family="JetBrains Mono,monospace" font-size="10" fill="#1F50FF" text-anchor="middle" letter-spacing="1.5" font-weight="500">THE BUYER</text>
+                  <line x1="24" y1="196" x2="196" y2="196" stroke="#ECEAE3"/>
+                  <rect x="24" y="216" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="24" y="234" width="172" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="250" width="148" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="278" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="24" y="296" width="160" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="312" width="130" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="340" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="24" y="358" width="150" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="374" width="110" height="6" rx="1" fill="#C2C2C2"/>
+                </g>
+                <g transform="translate(284,60)">
+                  <rect width="232" height="460" rx="12" fill="#fff" stroke="#ECEAE3"/>
+                  <circle cx="116" cy="84" r="38" fill="#F4F2EC"/>
+                  <rect x="40" y="140" width="152" height="14" rx="2" fill="#0A0A0A"/>
+                  <text x="116" y="176" font-family="JetBrains Mono,monospace" font-size="10" fill="#1F50FF" text-anchor="middle" letter-spacing="1.5" font-weight="500">MACHINE ADMIN</text>
+                  <line x1="24" y1="196" x2="208" y2="196" stroke="#ECEAE3"/>
+                  <rect x="24" y="216" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="24" y="234" width="158" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="250" width="180" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="278" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="24" y="296" width="168" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="312" width="132" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="24" y="340" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="24" y="358" width="158" height="6" rx="1" fill="#C2C2C2"/>
+                </g>
+                <g transform="translate(544,60)">
+                  <rect width="220" height="460" rx="12" fill="#fff" stroke="#ECEAE3"/>
+                  <circle cx="110" cy="84" r="38" fill="#F4F2EC"/>
+                  <rect x="20" y="140" width="180" height="14" rx="2" fill="#0A0A0A"/>
+                  <text x="110" y="176" font-family="JetBrains Mono,monospace" font-size="10" fill="#1F50FF" text-anchor="middle" letter-spacing="1.5" font-weight="500">SERVICE TECHNICIAN</text>
+                  <line x1="22" y1="196" x2="198" y2="196" stroke="#ECEAE3"/>
+                  <rect x="22" y="216" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="22" y="234" width="158" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="22" y="250" width="172" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="22" y="278" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="22" y="296" width="148" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="22" y="312" width="124" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="22" y="340" width="70" height="7" rx="2" fill="#8A8A8A"/>
+                  <rect x="22" y="358" width="162" height="6" rx="1" fill="#C2C2C2"/>
+                </g>
+                <text x="36" y="572" font-family="JetBrains Mono,monospace" font-size="11" fill="#8A8A8A" letter-spacing="1.5" font-weight="500">3 PERSONAS · STAKEHOLDER WORKSHOPS · JOURNEY MAPS</text>
+              </svg>
+            </div>
+
+            <!-- Panel 3: Wireframes -->
+            <div class="panel" data-panel="3">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#FAFAF7"/>
+                <g transform="translate(40,40)">
+                  <rect width="336" height="238" rx="8" fill="#fff" stroke="#C2C2C2" stroke-width="1.5"/>
+                  <rect x="18" y="18" width="100" height="10" rx="2" fill="#8A8A8A"/>
+                  <line x1="18" y1="44" x2="318" y2="44" stroke="#ECEAE3"/>
+                  <rect x="18" y="58" width="78" height="158" rx="4" fill="#F4F2EC"/>
+                  <rect x="108" y="58" width="210" height="40" rx="4" fill="#F4F2EC"/>
+                  <rect x="108" y="108" width="100" height="50" rx="4" fill="#F4F2EC"/>
+                  <rect x="218" y="108" width="100" height="50" rx="4" fill="#F4F2EC"/>
+                  <rect x="108" y="168" width="210" height="48" rx="4" fill="#F4F2EC"/>
+                  <text x="18" y="258" font-family="JetBrains Mono,monospace" font-size="10" fill="#8A8A8A" letter-spacing="1.5" font-weight="500">LO-FI V1 · BALSAMIQ</text>
+                </g>
+                <g transform="translate(424,40)">
+                  <rect width="336" height="238" rx="8" fill="#fff" stroke="#1F50FF" stroke-width="1.5"/>
+                  <rect x="18" y="18" width="120" height="10" rx="2" fill="#0A0A0A"/>
+                  <line x1="18" y1="44" x2="318" y2="44" stroke="#ECEAE3"/>
+                  <rect x="18" y="58" width="60" height="158" rx="4" fill="#F4F2EC"/>
+                  <rect x="90" y="58" width="226" height="30" rx="4" fill="#0A0A0A"/>
+                  <rect x="90" y="98" width="110" height="56" rx="4" fill="#F4F2EC"/>
+                  <rect x="210" y="98" width="106" height="56" rx="4" fill="#F4F2EC"/>
+                  <rect x="90" y="164" width="226" height="52" rx="4" fill="#F4F2EC"/>
+                  <text x="18" y="258" font-family="JetBrains Mono,monospace" font-size="10" fill="#1F50FF" letter-spacing="1.5" font-weight="500">MID-FI V3 · APPROVED</text>
+                </g>
+                <g transform="translate(40,314)">
+                  <rect width="720" height="236" rx="8" fill="#fff" stroke="#ECEAE3"/>
+                  <rect x="20" y="20" width="180" height="10" rx="2" fill="#8A8A8A"/>
+                  <rect x="20" y="50" width="640" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="20" y="66" width="580" height="6" rx="1" fill="#C2C2C2"/>
+                  <rect x="20" y="82" width="620" height="6" rx="1" fill="#C2C2C2"/>
+                  <line x1="20" y1="108" x2="700" y2="108" stroke="#F4F2EC"/>
+                  <g>
+                    <circle cx="32" cy="128" r="6" fill="#1F50FF"/>
+                    <rect x="48" y="124" width="200" height="6" rx="1" fill="#8A8A8A"/>
+                    <rect x="48" y="138" width="320" height="6" rx="1" fill="#C2C2C2"/>
+                  </g>
+                  <g transform="translate(0,32)">
+                    <circle cx="32" cy="128" r="6" fill="#1F50FF"/>
+                    <rect x="48" y="124" width="240" height="6" rx="1" fill="#8A8A8A"/>
+                    <rect x="48" y="138" width="380" height="6" rx="1" fill="#C2C2C2"/>
+                  </g>
+                  <g transform="translate(0,64)">
+                    <circle cx="32" cy="128" r="6" fill="#1F50FF"/>
+                    <rect x="48" y="124" width="180" height="6" rx="1" fill="#8A8A8A"/>
+                    <rect x="48" y="138" width="340" height="6" rx="1" fill="#C2C2C2"/>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Panel 4: Usability Testing -->
+            <div class="panel" data-panel="4">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#FAFAF7"/>
+                <g transform="translate(40,40)">
+                  <rect width="720" height="518" rx="8" fill="#fff" stroke="#ECEAE3"/>
+                  <rect x="24" y="24" width="240" height="14" rx="2" fill="#0A0A0A"/>
+                  <text x="24" y="58" font-family="JetBrains Mono,monospace" font-size="11" fill="#8A8A8A" letter-spacing="1.5" font-weight="500">MODERATED SESSIONS · WIREFRAME V3</text>
+                  <line x1="24" y1="78" x2="696" y2="78" stroke="#ECEAE3"/>
+                  <text x="24" y="106" font-family="JetBrains Mono,monospace" font-size="11" fill="#8A8A8A" letter-spacing="1.5" font-weight="500">TASK</text>
+                  <text x="400" y="106" font-family="JetBrains Mono,monospace" font-size="11" fill="#8A8A8A" letter-spacing="1.5" font-weight="500">COMPLETION</text>
+                  <text x="640" y="106" font-family="JetBrains Mono,monospace" font-size="11" fill="#8A8A8A" letter-spacing="1.5" font-weight="500">STATUS</text>
+                  <g transform="translate(0,126)">
+                    <text x="24" y="16" font-family="DM Sans,sans-serif" font-size="14" fill="#0A0A0A" font-weight="500">eShop ordering process</text>
+                    <rect x="400" y="5" width="200" height="14" rx="7" fill="#F4F2EC"/>
+                    <rect x="400" y="5" width="178" height="14" rx="7" fill="#1F50FF"/>
+                    <text x="608" y="18" font-family="JetBrains Mono,monospace" font-size="12" fill="#0A0A0A" font-weight="600">89%</text>
+                    <line x1="24" y1="40" x2="696" y2="40" stroke="#F4F2EC"/>
+                  </g>
+                  <g transform="translate(0,182)">
+                    <text x="24" y="16" font-family="DM Sans,sans-serif" font-size="14" fill="#0A0A0A" font-weight="500">Machine registration</text>
+                    <rect x="400" y="5" width="200" height="14" rx="7" fill="#F4F2EC"/>
+                    <rect x="400" y="5" width="170" height="14" rx="7" fill="#1F50FF"/>
+                    <text x="608" y="18" font-family="JetBrains Mono,monospace" font-size="12" fill="#0A0A0A" font-weight="600">85%</text>
+                    <line x1="24" y1="40" x2="696" y2="40" stroke="#F4F2EC"/>
+                  </g>
+                  <g transform="translate(0,238)">
+                    <text x="24" y="16" font-family="DM Sans,sans-serif" font-size="14" fill="#0A0A0A" font-weight="500">Access maintenance overview</text>
+                    <rect x="400" y="5" width="200" height="14" rx="7" fill="#F4F2EC"/>
+                    <rect x="400" y="5" width="148" height="14" rx="7" fill="#C08A3B"/>
+                    <text x="608" y="18" font-family="JetBrains Mono,monospace" font-size="12" fill="#C08A3B" font-weight="600">74%</text>
+                    <line x1="24" y1="40" x2="696" y2="40" stroke="#F4F2EC"/>
+                  </g>
+                  <g transform="translate(0,294)">
+                    <text x="24" y="16" font-family="DM Sans,sans-serif" font-size="14" fill="#0A0A0A" font-weight="500">Benefits & Services aufrufen</text>
+                    <rect x="400" y="5" width="200" height="14" rx="7" fill="#F4F2EC"/>
+                    <rect x="400" y="5" width="160" height="14" rx="7" fill="#1F50FF"/>
+                    <text x="608" y="18" font-family="JetBrains Mono,monospace" font-size="12" fill="#0A0A0A" font-weight="600">80%</text>
+                  </g>
+                  <g transform="translate(24,430)">
+                    <rect width="672" height="56" rx="6" fill="#E8EEFF"/>
+                    <text x="16" y="22" font-family="JetBrains Mono,monospace" font-size="11" fill="#1F50FF" letter-spacing="1.5" font-weight="500">FINDING</text>
+                    <text x="16" y="42" font-family="DM Sans,sans-serif" font-size="13" fill="#0A0A0A">Maintenance overview flow reworked in iteration 3, approved before Hi-Fi.</text>
+                  </g>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Panel 5: Final Design — real asset -->
+            <div class="panel" data-panel="5">
+              <img src="uploads/FANUC/PSD_01.jpg" alt="Final Design · eShop across all devices">
+            </div>
+
+            <!-- Panel 6: Live / Scrum — real asset -->
+            <div class="panel" data-panel="6">
+              <img src="uploads/FANUC/Macbook_Air_M2_Mockup_3.jpg" alt="Live Portal · Machine Detail View">
+            </div>
+
+          </div>
+
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label" data-i18n="sk.s1.label">Expert Review · Heuristic Evaluation</span>
+            <span class="pc-prog" id="pc-prog">01 / 06</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="prog"></div></div>
+        </div>
+
+        <!-- RIGHT — SCROLLING NARRATIVE -->
+        <div class="sticky-right">
+
+          <article class="step active" data-panel="1" data-prog="16" data-label="Expert Review · Heuristic Evaluation" data-i18n-attr="data-label:sk.s1.label">
+            <div class="ss-num" data-i18n="sk.s1.num">/01 · Expert Review</div>
+            <h3 data-i18n="sk.s1.h">Audit the status quo before touching a single pixel.</h3>
+            <p data-i18n="sk.s1.p1">Heuristic evaluation of the existing eShop using Nielsen's 10 Heuristics, adapted for B2B and industrial-workflow context. Every issue was documented with a screenshot, a severity rating and a rationale.</p>
+            <p data-i18n="sk.s1.p2"><b>23 critical usability problems</b> surfaced. Categorised into Critical, Major, Minor. The resulting prioritisation matrix became the evidence base every later design decision argued from.</p>
+            <div class="ss-tags">
+              <span class="tag">Heuristic Eval.</span>
+              <span class="tag">Nielsen 10</span>
+              <span class="tag tag-accent">23 Issues</span>
+            </div>
+            <div class="ss-artifact" data-i18n="sk.s1.art">Artefact · Expert Review Document · Prioritisation Matrix</div>
+          </article>
+
+          <article class="step" data-panel="2" data-prog="33" data-label="Research · 3 Personas · Journey Maps" data-i18n-attr="data-label:sk.s2.label">
+            <div class="ss-num" data-i18n="sk.s2.num">/02 · Research &amp; Workshops</div>
+            <h3 data-i18n="sk.s2.h">Understand who the users actually are.</h3>
+            <p data-i18n="sk.s2.p1">Two half-day on-site stakeholder workshops with PO &amp; PL defined project goals, scope and success criteria. From there, three user personas were developed: <b>The Buyer</b>, <b>The Machine Admin</b>, <b>The Service Technician</b>.</p>
+            <p data-i18n="sk.s2.p2">The journey maps revealed a critical gap: Service Technicians thought in <b>physical machines and serial numbers</b>, not order IDs. The entire legacy backend had it the other way around.</p>
+            <div class="ss-tags">
+              <span class="tag">Workshops</span>
+              <span class="tag">3 Personas</span>
+              <span class="tag">Journey Maps</span>
+              <span class="tag tag-accent">Stakeholder Alignment</span>
+            </div>
+            <div class="ss-artifact" data-i18n="sk.s2.art">Artefact · Workshop Protocols · Personas PDF · Journey Maps</div>
+          </article>
+
+          <article class="step" data-panel="3" data-prog="50" data-label="Wireframes · Lo-Fi → Mid-Fi · 3 Iterations" data-i18n-attr="data-label:sk.s3.label">
+            <div class="ss-num" data-i18n="sk.s3.num">/03 · Wireframes</div>
+            <h3 data-i18n="sk.s3.h">Structure before aesthetics.</h3>
+            <p data-i18n="sk.s3.p1">Three full iteration cycles in Balsamiq, from quick Lo-Fi sketches to annotated Mid-Fi wireframes. Each cycle reviewed with PO and PL before the next started. Held the line against pressure to skip to Hi-Fi.</p>
+            <p data-i18n="sk.s3.p2">Key structural decisions: <b>Single Entry Point</b> dashboard, clear navigation split between eShop context and machine context, <b>Progressive Disclosure</b> for complex machine data.</p>
+            <div class="ss-tags">
+              <span class="tag">Balsamiq</span>
+              <span class="tag">Lo-Fi → Mid-Fi</span>
+              <span class="tag">3 Review Cycles</span>
+              <span class="tag tag-accent">V3 Approved</span>
+            </div>
+            <div class="ss-artifact" data-i18n="sk.s3.art">Artefact · Wireframes V1 / V2 / V3 · Annotations · Protocols</div>
+          </article>
+
+          <article class="step" data-panel="4" data-prog="66" data-label="Usability Testing · All 3 Target Groups" data-i18n-attr="data-label:sk.s4.label">
+            <div class="ss-num" data-i18n="sk.s4.num">/04 · Usability Testing</div>
+            <h3 data-i18n="sk.s4.h">Validate with real users on real wireframes.</h3>
+            <p data-i18n="sk.s4.p1">Moderated usability tests with representatives of all three target groups, conducted on Mid-Fi wireframes, not mockups. Scenarios were grounded in the most frequent user tasks per persona.</p>
+            <p data-i18n="sk.s4.p2">Findings fed directly into the next iteration cycle. The maintenance overview flow required a dedicated third iteration before it cleared the completion threshold. <b>No screen reached Hi-Fi without a passing test as evidence.</b></p>
+            <div class="ss-tags">
+              <span class="tag">Moderated Tests</span>
+              <span class="tag">All 3 Groups</span>
+              <span class="tag tag-accent">Multiple Iterations</span>
+            </div>
+            <div class="ss-artifact" data-i18n="sk.s4.art">Artefact · Test Protocols · Iteration Log · Revised Wireframes</div>
+          </article>
+
+          <article class="step" data-panel="5" data-prog="83" data-label="Hi-Fi Design · Sketch · Component Library" data-i18n-attr="data-label:sk.s5.label">
+            <div class="ss-num" data-i18n="sk.s5.num">/05 · Hi-Fi &amp; Dev-Handoff</div>
+            <h3 data-i18n="sk.s5.h">From validated wireframe to pixel-precise delivery.</h3>
+            <p data-i18n="sk.s5.p1">Final design in Sketch. A <b>full component library</b> was built alongside. Every element specified, every interaction described. Multiple client review rounds before sign-off.</p>
+            <p data-i18n="sk.s5.p2">Dev-Handoff included specifications, interaction descriptions and component documentation. Embedded in the Scrum team from day one of development — every standup, every refinement, every sprint review.</p>
+            <div class="ss-tags">
+              <span class="tag">Sketch</span>
+              <span class="tag">Component Library</span>
+              <span class="tag">Dev-Handoff</span>
+              <span class="tag tag-accent">Client Sign-off</span>
+            </div>
+            <div class="ss-artifact" data-i18n="sk.s5.art">Artefact · Sketch Files · Final Screens · Component Spec</div>
+          </article>
+
+          <article class="step" data-panel="6" data-prog="100" data-label="Scrum Development · QA · Launch" data-i18n-attr="data-label:sk.s6.label">
+            <div class="ss-num" data-i18n="sk.s6.num">/06 · Scrum &amp; Launch</div>
+            <h3 data-i18n="sk.s6.h">Embedded through every sprint, every review.</h3>
+            <p data-i18n="sk.s6.p1">Implementation in 2-week Scrum sprints with an interdisciplinary team of internal and external developers. Continuous design QA on staging. Every sprint, not just at the end.</p>
+            <p data-i18n="sk.s6.p2">Sprint reviews with the client kept feedback loops short. All originally defined vision components were delivered in scope. <b>Final project acceptance by the client.</b></p>
+            <div class="ss-tags">
+              <span class="tag">2-Week Sprints</span>
+              <span class="tag">Continuous QA</span>
+              <span class="tag">Sprint Reviews</span>
+              <span class="tag tag-accent">Approved</span>
+            </div>
+            <div class="ss-artifact" data-i18n="sk.s6.art">Artefact · Sprint Documentation · QA Protocols · Acceptance Document</div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SHOWCASE -->
+  <section class="showcase" data-screen-label="03 Final Design">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="sk.sc.ey">/03 · Final Design</span>
+          <h2 class="h3" data-i18n="sk.sc.h">The portal, delivered.</h2>
+        </div>
+        <div class="aside" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="sk.sc.aside">
+          <b>eShop · Dashboard</b><br>
+          Machine Overview · Product Detail
+        </div>
+      </div>
+      <div class="showcase-grid">
+        <div class="sc-full">
+          <img src="uploads/FANUC/PSD_01.jpg" alt="eShop · Responsive across Laptop, Tablet, Mobile">
+        </div>
+        <div>
+          <div class="sc-half">
+            <img src="uploads/FANUC/Macbook_Air_M2_Mockup_2.jpg" alt="Portal Dashboard">
+          </div>
+          <p class="sc-cap" data-i18n="sk.sc.cap1">Portal Dashboard · Single Entry Point</p>
+        </div>
+        <div>
+          <div class="sc-half">
+            <img src="uploads/FANUC/Macbook_Air_M2_Mockup_3.jpg" alt="Machine Detail View">
+          </div>
+          <p class="sc-cap" data-i18n="sk.sc.cap2">Machine Detail View · Progressive Disclosure</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALKTHROUGH VIDEOS -->
+  <section class="walkthrough" data-screen-label="04 Walkthrough">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="sk.wt.ey">/04 · Walkthrough</span>
+          <h2 class="h3" data-i18n="sk.wt.h">Testing &amp; Delivery in motion.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="sk.wt.aside">
+          <b>Usability Testing</b><br>
+          Screen Recordings · Finales Design
+        </div>
+      </div>
+      <div class="wt-grid">
+
+        <!-- A: Wireframe / Usability Testing -->
+        <div class="wt-sub-label">
+          <span class="wl wl-num">/A</span>
+          <span class="wl" data-i18n="sk.wt.la">Usability Testing · Wireframe Tests</span>
+        </div>
+        <p class="wt-sub-desc" data-i18n="sk.wt.da">Moderated sessions based on the created Mid-Fi wireframes, conducted with representatives of all three target groups, before transitioning to Hi-Fi design.</p>
+        <div class="wt-testing">
+          <video src="uploads/FANUC/Bildschirmaufnahme%202026-05-22%20um%2013.54.46.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <p class="wt-cap" data-i18n="sk.wt.capA">Moderated Usability Test · Mid-Fi Wireframe Prototype</p>
+
+        <div class="wt-sep"></div>
+
+        <!-- B: Final portal screen recordings -->
+        <div class="wt-sub-label">
+          <span class="wl wl-num">/B</span>
+          <span class="wl" data-i18n="sk.wt.lb">Style Guide · Interactive Overview</span>
+        </div>
+        <div class="wt-row">
+          <div>
+            <div class="wt-item">
+              <video src="uploads/FANUC/Bildschirmaufnahme%202026-05-22%20um%2010.08.00.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <p class="wt-cap" data-i18n="sk.wt.capB1">eShop · Product Catalogue &amp; Ordering</p>
+          </div>
+          <div>
+            <div class="wt-item">
+              <video src="uploads/FANUC/Bildschirmaufnahme%202026-05-22%20um%2010.27.08.mp4" autoplay muted loop playsinline></video>
+            </div>
+            <p class="wt-cap" data-i18n="sk.wt.capB2">Machine Overview &amp; Detail View</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="outcome" data-screen-label="05 Outcome">
+    <div class="container">
+      <div class="out-head">
+        <span class="eyebrow ev" data-i18n="sk.out.ey">/05 · Impact</span>
+        <h2 class="h2" data-i18n="sk.out.h">One sign-on, one navigation,<br>one identity.</h2>
+      </div>
+
+      <div class="out-stats">
+        <div class="out-stat">
+          <div class="sl" data-i18n="sk.st1.l">Usability Issues · Audit</div>
+          <div class="sv">23</div>
+          <div class="sn" data-i18n="sk.st1.n">Identified, prioritised, resolved</div>
+        </div>
+        <div class="out-stat accent">
+          <div class="sl" data-i18n="sk.st2.l">All Vision Components</div>
+          <div class="sv">100%</div>
+          <div class="sn" data-i18n="sk.st2.n">Delivered. Client Feedback PO &amp; PL</div>
+        </div>
+        <div class="out-stat">
+          <div class="sl" data-i18n="sk.st3.l">Project Phases · End-to-End</div>
+          <div class="sv">6</div>
+          <div class="sn" data-i18n="sk.st3.n">From Audit to Scrum Launch</div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-mark">"</div>
+        <div class="quote-text" data-i18n="sk.quote">More usable and faster to the goal.</div>
+        <div class="quote-cite" data-i18n="sk.cite">— Direct Client Feedback · FANUC · 2024</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTIONS -->
+  <section class="reflect" data-screen-label="06 Reflections">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:var(--s-2xl)">
+        <div>
+          <span class="eyebrow ev" data-i18n="sk.rf.ey">/06 · Reflections</span>
+          <h2 class="h3" data-i18n="sk.rf.h">What I'd carry forward.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="sk.rf.aside">
+          <b>Notes to self</b><br>for the next platform
+        </div>
+      </div>
+      <div class="reflect-grid">
+        <div>
+          <h3 data-i18n="sk.rf.w.h">What worked</h3>
+          <ul>
+            <li data-i18n="sk.rf.w1"><b>Research before wireframes</b>: The persona + journey-map phase surfaced the machine/order mismatch early. If that had surfaced in Hi-Fi, rework would have been significant.</li>
+            <li data-i18n="sk.rf.w2"><b>Lo-fi testing</b>: Holding the line against "let's just see Hi-Fi" kept iterations cheap and changes honest. Every failed test on a wireframe was a saved sprint of rework.</li>
+            <li data-i18n="sk.rf.w3"><b>Embedded delivery</b>: Being present in every standup paid off by sprint two. Design decisions made in the room are better than decisions made in a comment thread.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 data-i18n="sk.rf.c.h">What I'd change</h3>
+          <ul>
+            <li data-i18n="sk.rf.c1"><b>Co-design with dev earlier</b>: We started pairing in week 14. Platform and SAP constraints I learned then should have been inputs to the wireframe phase, not corrections in sprint.</li>
+            <li data-i18n="sk.rf.c2"><b>Quantitative baseline before launch</b>: The qualitative outcome is clear, but instrumentation on the legacy system was too patchy for a clean before/after number. Better baseline tracking from day one next time.</li>
+            <li data-i18n="sk.rf.c3"><b>Earlier iteration on maintenance overview</b>: This flow needed the most testing cycles. In retrospect it should have been treated as the highest-risk flow from the Research phase onward.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLVO SPIN-OFF -->
+  <section class="spinoff" data-screen-label="07 Spin-off · Volvo">
+    <div class="container">
+      <div class="spinoff-inner">
+        <div>
+          <div class="spinoff-pill" data-i18n="sk.so.pill">Related Project · Spin-off</div>
+          <h2 class="spinoff-title" data-i18n="sk.so.h">Machine Fleet Configuration for Volvo.</h2>
+          <p class="spinoff-body" data-i18n="sk.so.p1">Volvo operates entire FANUC machine fleets for the production of complete vehicles. For optimal use of these systems, FANUC needed dedicated configuration software, developed within the existing portal and closely aligned with its design language.</p>
+          <p class="spinoff-body" data-i18n="sk.so.p2">The software allows Volvo employees to select machine units, define F-Pack data, assemble configurations step by step and submit them internally for approval, seamlessly integrated into the familiar portal workflow.</p>
+          <div class="spinoff-tags">
+            <span class="tag">Automotive</span>
+            <span class="tag">Machine Fleet</span>
+            <span class="tag">Configuration</span>
+            <span class="tag">Volvo</span>
+            <span class="tag tag-accent">Portal Spin-off</span>
+          </div>
+        </div>
+        <div class="spinoff-img-wrap">
+          <img src="uploads/Mockup-3.jpg" alt="Machine Fleet-Configuration · Volvo · FANUC Portal Spin-off">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT CASE -->
+  <section class="next-case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)" data-i18n="cs.more">More projects</p>
+      <div class="next-links">
+        <a href="case-uip.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">User Intelligence Platform</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-wagner.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">Wagner · eShop &amp; Titan Tools</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)" data-i18n="cs.backtop">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5 data-i18n="foot.pages">Pages</h5><ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 data-i18n="foot.contact">Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Sticky scroll sync
+  const steps     = document.querySelectorAll('.step');
+  const panels    = document.querySelectorAll('.panel');
+  const prog      = document.getElementById('prog');
+  const pcNum     = document.getElementById('pc-num');
+  const pcLabel   = document.getElementById('pc-label');
+  const pcProg    = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total     = steps.length;
+  let lastIdx     = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector(`.panel[data-panel="${idx + 1}"]`);
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)   prog.style.width = pct + '%';
+    if(pcNum)  pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.textContent = steps[idx]?.dataset.label || '';
+    if(pcProg) pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / 06';
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 900){ activateIdx(0); return; }
+      const rect   = stickyWrap.getBoundingClientRect();
+      const sH     = stickyWrap.offsetHeight;
+      const vH     = window.innerHeight;
+      const range  = sH - vH;
+      if(range <= 0) return;
+      const scrolled  = Math.max(0, Math.min(range, -rect.top));
+      const progress  = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "Portal & eShop · FANUC · Case Study",
+  "sk.crumb": "Portal &amp; eShop",
+  "sk.eyebrow": "Case Study · 2023 – 2024",
+  "sk.h1.l1": "Portal &amp;&nbsp;eShop \u2014",
+  "sk.h1.l2": "ein Ort für jedes",
+  "sk.h1.l3": "Kundenbedürfnis.",
+  "sk.lede": "Ein weltweit führender Hersteller von Industrierobotik betrieb eShop, Maschinenflotte, Wartung und Benefits über vier getrennte Systeme. Wir ersetzten sie alle durch ein einziges integriertes Portal \u2014 end&#8209;to&#8209;end gestaltet, vom ersten Stakeholder-Workshop bis zur Scrum-Auslieferung.",
+  "sk.m.role": "End-to-End-UX-Lead",
+  "sk.m.method": "Research-getrieben · Scrum",
+  "sk.m.team": "Cross-funktional",
+  "sk.cr1.h": "Kein Portal. Vier isolierte Systeme",
+  "sk.cr1.p": "Kunden verwalteten eShop, Maschinenregister, Wartungshistorie und Service-Benefits über <b>vier separate Frontends</b>. Keine gemeinsame Identität, keine gemeinsame Navigation, kein Single Sign-on.",
+  "sk.cr2.h": "Volle Verantwortung, Phase 0 bis Launch",
+  "sk.cr2.p": "Verantwortlich für <b>alle UX-Deliverables</b>: Kundenkommunikation, Stakeholder-Workshops, Research, Wireframes, Usability-Tests, Hi-Fi, Dev-Handoff und Scrum-integrierte Qualitätssicherung.",
+  "sk.cr3.h": "Ein Login, ein Portal. Live",
+  "sk.cr3.p": "Ein vollständig integriertes Portal für eShop, Maschinenmanagement, Wartung und Benefits. <b>Alle ursprünglich definierten Vision-Komponenten ausgeliefert.</b> Hohe Nutzerakzeptanz über alle drei Zielgruppen.",
+  "sk.proc.ey": "/02 · Prozess",
+  "sk.proc.h": "Sechs Phasen, ein roter Faden.",
+  "sk.proc.p": "Vom heuristischen Audit bis zum Scrum-Sprint brachte jede Phase Artefakte hervor, die die nächste Entscheidung trugen. Das Bild links ändert sich beim Scrollen.",
+  "sk.s1.label": "Expert Review · Heuristische Evaluation",
+  "sk.s1.num": "/01 · Expert Review",
+  "sk.s1.h": "Den Status quo prüfen, bevor ein einziges Pixel entsteht.",
+  "sk.s1.p1": "Heuristische Evaluation des bestehenden eShops mit Nielsens 10 Heuristiken, angepasst an den B2B- und Industrie-Workflow-Kontext. Jedes Problem wurde mit Screenshot, Schweregrad und Begründung dokumentiert.",
+  "sk.s1.p2": "<b>23 kritische Usability-Probleme</b> kamen ans Licht. Kategorisiert in Critical, Major, Minor. Die resultierende Priorisierungsmatrix wurde zur Evidenzbasis, aus der jede spätere Design-Entscheidung argumentierte.",
+  "sk.s1.art": "Artefakt · Expert-Review-Dokument · Priorisierungsmatrix",
+  "sk.s2.label": "Research · 3 Personas · Journey-Maps",
+  "sk.s2.num": "/02 · Research &amp; Workshops",
+  "sk.s2.h": "Verstehen, wer die Nutzer wirklich sind.",
+  "sk.s2.p1": "Zwei halbtägige Vor-Ort-Stakeholder-Workshops mit PO &amp; PL definierten Projektziele, Scope und Erfolgskriterien. Daraus wurden drei User-Personas entwickelt: <b>Der Einkäufer</b>, <b>Der Maschinen-Admin</b>, <b>Der Servicetechniker</b>.",
+  "sk.s2.p2": "Die Journey-Maps deckten eine kritische Lücke auf: Servicetechniker dachten in <b>physischen Maschinen und Seriennummern</b>, nicht in Bestell-IDs. Das gesamte Alt-Backend hatte es genau umgekehrt.",
+  "sk.s2.art": "Artefakt · Workshop-Protokolle · Personas-PDF · Journey-Maps",
+  "sk.s3.label": "Wireframes · Lo-Fi \u2192 Mid-Fi · 3 Iterationen",
+  "sk.s3.num": "/03 · Wireframes",
+  "sk.s3.h": "Struktur vor Ästhetik.",
+  "sk.s3.p1": "Drei vollständige Iterationszyklen in Balsamiq, von schnellen Lo-Fi-Skizzen bis zu annotierten Mid-Fi-Wireframes. Jeder Zyklus mit PO und PL reviewt, bevor der nächste begann. Dem Druck, direkt zu Hi-Fi zu springen, standgehalten.",
+  "sk.s3.p2": "Wichtige strukturelle Entscheidungen: <b>Single Entry Point</b>-Dashboard, klare Navigationstrennung zwischen eShop-Kontext und Maschinenkontext, <b>Progressive Disclosure</b> für komplexe Maschinendaten.",
+  "sk.s3.art": "Artefakt · Wireframes V1 / V2 / V3 · Annotationen · Protokolle",
+  "sk.s4.label": "Usability Testing · Alle 3 Zielgruppen",
+  "sk.s4.num": "/04 · Usability Testing",
+  "sk.s4.h": "Mit echten Nutzern an echten Wireframes validieren.",
+  "sk.s4.p1": "Moderierte Usability-Tests mit Vertretern aller drei Zielgruppen, durchgeführt auf Mid-Fi-Wireframes, nicht auf Mockups. Die Szenarien basierten auf den häufigsten Nutzeraufgaben je Persona.",
+  "sk.s4.p2": "Erkenntnisse flossen direkt in den nächsten Iterationszyklus. Der Wartungsübersichts-Flow brauchte eine eigene dritte Iteration, bevor er die Erfolgsschwelle erreichte. <b>Kein Screen erreichte Hi-Fi ohne einen bestandenen Test als Beleg.</b>",
+  "sk.s4.art": "Artefakt · Testprotokolle · Iterations-Log · Überarbeitete Wireframes",
+  "sk.s5.label": "Hi-Fi Design · Sketch · Component Library",
+  "sk.s5.num": "/05 · Hi-Fi &amp; Dev-Handoff",
+  "sk.s5.h": "Vom validierten Wireframe zur pixelgenauen Auslieferung.",
+  "sk.s5.p1": "Finales Design in Sketch. Parallel entstand eine <b>vollständige Component Library</b>. Jedes Element spezifiziert, jede Interaktion beschrieben. Mehrere Kunden-Review-Runden vor dem Sign-off.",
+  "sk.s5.p2": "Der Dev-Handoff umfasste Spezifikationen, Interaktionsbeschreibungen und Komponenten-Dokumentation. Vom ersten Entwicklungstag an im Scrum-Team eingebettet \u2014 jedes Standup, jedes Refinement, jeder Sprint Review.",
+  "sk.s5.art": "Artefakt · Sketch-Dateien · Finale Screens · Component-Spec",
+  "sk.s6.label": "Scrum-Entwicklung · QA · Launch",
+  "sk.s6.num": "/06 · Scrum &amp; Launch",
+  "sk.s6.h": "Eingebettet durch jeden Sprint, jeden Review.",
+  "sk.s6.p1": "Umsetzung in 2-Wochen-Scrum-Sprints mit einem interdisziplinären Team aus internen und externen Entwicklern. Kontinuierliche Design-QA auf Staging. Jeden Sprint, nicht erst am Ende.",
+  "sk.s6.p2": "Sprint Reviews mit dem Kunden hielten die Feedback-Schleifen kurz. Alle ursprünglich definierten Vision-Komponenten wurden im Scope ausgeliefert. <b>Finale Projektabnahme durch den Kunden.</b>",
+  "sk.s6.art": "Artefakt · Sprint-Dokumentation · QA-Protokolle · Abnahmedokument",
+  "sk.sc.ey": "/03 · Finales Design",
+  "sk.sc.h": "Das Portal, ausgeliefert.",
+  "sk.sc.aside": "<b>eShop · Dashboard</b><br>Maschinenübersicht · Produktdetail",
+  "sk.sc.cap1": "Portal-Dashboard · Single Entry Point",
+  "sk.sc.cap2": "Maschinen-Detailansicht · Progressive Disclosure",
+  "sk.wt.ey": "/04 · Walkthrough",
+  "sk.wt.h": "Testing &amp; Delivery in Bewegung.",
+  "sk.wt.aside": "<b>Usability Testing</b><br>Screen Recordings · Finales Design",
+  "sk.wt.la": "Usability Testing · Wireframe-Tests",
+  "sk.wt.da": "Moderierte Sessions auf Basis der erstellten Mid-Fi-Wireframes, durchgeführt mit Vertretern aller drei Zielgruppen, vor dem Übergang zum Hi-Fi-Design.",
+  "sk.wt.capA": "Moderierter Usability-Test · Mid-Fi-Wireframe-Prototyp",
+  "sk.wt.lb": "Style Guide · Interaktive Übersicht",
+  "sk.wt.capB1": "eShop · Produktkatalog &amp; Bestellung",
+  "sk.wt.capB2": "Maschinenübersicht &amp; Detailansicht",
+  "sk.out.ey": "/05 · Impact",
+  "sk.out.h": "Ein Login, eine Navigation,<br>eine Identität.",
+  "sk.st1.l": "Usability-Probleme · Audit",
+  "sk.st1.n": "Identifiziert, priorisiert, behoben",
+  "sk.st2.l": "Alle Vision-Komponenten",
+  "sk.st2.n": "Ausgeliefert. Kundenfeedback PO &amp; PL",
+  "sk.st3.l": "Projektphasen · End-to-End",
+  "sk.st3.n": "Vom Audit bis zum Scrum-Launch",
+  "sk.quote": "Nutzbarer und schneller am Ziel.",
+  "sk.cite": "— Direktes Kundenfeedback · FANUC · 2024",
+  "sk.rf.ey": "/06 · Reflexionen",
+  "sk.rf.h": "Was ich mitnehmen würde.",
+  "sk.rf.aside": "<b>Notizen an mich</b><br>für die nächste Plattform",
+  "sk.rf.w.h": "Was funktioniert hat",
+  "sk.rf.w1": "<b>Research vor Wireframes</b>: Die Persona- + Journey-Map-Phase deckte den Maschinen/Bestell-Mismatch früh auf. Wäre das erst in Hi-Fi aufgetaucht, wäre der Rework erheblich gewesen.",
+  "sk.rf.w2": "<b>Lo-Fi-Testing</b>: Dem „lass uns einfach Hi-Fi sehen“ standzuhalten, hielt Iterationen günstig und Änderungen ehrlich. Jeder gescheiterte Test an einem Wireframe war ein gesparter Rework-Sprint.",
+  "sk.rf.w3": "<b>Eingebettete Delivery</b>: In jedem Standup präsent zu sein, zahlte sich ab Sprint zwei aus. Im Raum getroffene Design-Entscheidungen sind besser als solche in einem Kommentar-Thread.",
+  "sk.rf.c.h": "Was ich ändern würde",
+  "sk.rf.c1": "<b>Co-Design mit Dev früher</b>: Wir begannen das Pairing in Woche 14. Plattform- und SAP-Constraints, die ich da lernte, hätten Inputs für die Wireframe-Phase sein sollen, nicht Korrekturen im Sprint.",
+  "sk.rf.c2": "<b>Quantitative Baseline vor dem Launch</b>: Das qualitative Ergebnis ist klar, aber die Instrumentierung des Altsystems war zu lückenhaft für eine saubere Vorher/Nachher-Zahl. Beim nächsten Mal besseres Baseline-Tracking von Tag eins.",
+  "sk.rf.c3": "<b>Frühere Iteration der Wartungsübersicht</b>: Dieser Flow brauchte die meisten Testzyklen. Rückblickend hätte er ab der Research-Phase als risikoreichster Flow behandelt werden sollen.",
+  "sk.so.pill": "Verwandtes Projekt · Spin-off",
+  "sk.so.h": "Maschinenflotten-Konfiguration für Volvo.",
+  "sk.so.p1": "Volvo betreibt ganze FANUC-Maschinenflotten für die Produktion kompletter Fahrzeuge. Für die optimale Nutzung dieser Anlagen brauchte FANUC eine eigene Konfigurationssoftware, entwickelt innerhalb des bestehenden Portals und eng an dessen Designsprache angelehnt.",
+  "sk.so.p2": "Die Software erlaubt es Volvo-Mitarbeitern, Maschineneinheiten auszuwählen, F-Pack-Daten zu definieren, Konfigurationen Schritt für Schritt zusammenzustellen und intern zur Freigabe einzureichen \u2014 nahtlos in den vertrauten Portal-Workflow integriert."
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+</body>
+</html>

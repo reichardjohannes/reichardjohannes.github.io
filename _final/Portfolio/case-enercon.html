@@ -1,0 +1,1146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ENERCON Customer Portal · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:18ch;margin-bottom:var(--s-xl)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:60ch}
+
+  .hero-art{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);aspect-ratio:16/9;overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow)}
+  .hero-art img,.hero-art video{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  @media(max-width:520px){.meta-cell:nth-child(odd){border-right:1px solid var(--rule)}.meta-cell:nth-child(even){border-right:none}.meta-cell{border-bottom:1px solid var(--rule)!important}.meta-cell:nth-last-child(-n+2){border-bottom:none!important}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  .cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-2xl)}
+  @media(max-width:900px){.cr-grid{grid-template-columns:1fr}}
+  .cr-cell{padding:var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  .cr-cell .ev{margin-bottom:var(--s-md)}
+  .cr-cell h3{font-size:18px;font-weight:600;letter-spacing:-.005em;margin-bottom:var(--s-sm)}
+  .cr-cell p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .cr-cell p b{color:var(--ink);font-weight:500}
+
+  /* ===== Section scaffolding ===== */
+  .sec-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;display:block;margin-bottom:var(--s-lg)}
+  .sec-h{font-size:clamp(30px,3.6vw,46px);line-height:1.04;letter-spacing:-.022em;font-weight:500;margin-bottom:var(--s-lg)}
+
+  .sec-intro{font-size:17px;line-height:1.6;color:var(--ink-2);max-width:62ch}
+
+  /* Challenge */
+  .challenge{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:880px){.pain-grid{grid-template-columns:1fr}}
+  .pain{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl)}
+  .pain .pn{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-lg)}
+  .pain h4{font-size:18px;font-weight:600;letter-spacing:-.008em;margin-bottom:var(--s-sm)}
+  .pain p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+
+  /* Research */
+  .research{padding:var(--s-4xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .steps-strip{display:grid;grid-template-columns:repeat(5,1fr);margin-top:var(--s-3xl);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;background:var(--card)}
+  @media(max-width:880px){.steps-strip{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps-strip{grid-template-columns:1fr}}
+  .step-cell{padding:var(--s-xl);border-right:1px solid var(--rule);position:relative}
+  .step-cell:last-child{border-right:none}
+  @media(max-width:880px){.step-cell{border-bottom:1px solid var(--rule)}}
+  .step-cell .sk{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .step-cell h5{font-size:15px;font-weight:600;letter-spacing:-.006em;margin-bottom:6px}
+  .step-cell p{font-size:13px;line-height:1.5;color:var(--ink-3)}
+
+  .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-lg)}
+  @media(max-width:880px){.insight-grid{grid-template-columns:1fr}}
+  .insight{background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:var(--radius);padding:var(--s-xl) var(--s-2xl)}
+  .insight .iw{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .insight q{display:block;font-size:16px;line-height:1.5;color:var(--ink);font-style:italic;letter-spacing:-.006em;margin-bottom:var(--s-md);quotes:"\201C" "\201D"}
+  .insight .ir{font-size:13px;line-height:1.5;color:var(--ink-3)}
+  .insight .ir b{color:var(--ink-2);font-weight:500}
+
+  /* IA */
+  .ia{padding:var(--s-5xl) 0}
+  .ia-tree{margin-top:var(--s-3xl);border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--card);padding:var(--s-3xl) var(--s-2xl) var(--s-2xl)}
+  .ia-root{display:inline-flex;flex-direction:column;background:var(--accent);color:#fff;border-radius:var(--radius);padding:var(--s-md) var(--s-xl);margin-bottom:var(--s-xl)}
+  .ia-root .t{font-size:15px;font-weight:600;letter-spacing:-.006em}
+  .ia-root .s{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-top:3px}
+  .ia-branches{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-lg);border-top:1px solid var(--rule);padding-top:var(--s-xl)}
+  @media(max-width:880px){.ia-branches{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.ia-branches{grid-template-columns:1fr}}
+  .ia-col .node{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius);padding:11px 14px;font-size:14px;font-weight:500;color:var(--ink);margin-bottom:8px}
+  .ia-col .leaf{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);padding:8px 14px;border:1px dashed var(--rule);border-radius:var(--radius);margin-bottom:6px;text-transform:uppercase}
+
+  /* Chapter head */
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-md);text-align:left}
+  .chapter-head .sec-h{margin:0;max-width:20ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:56ch;margin:var(--s-lg) 0 0}
+
+  /* ===== Sticky scroll process (Design Derivation) ===== */
+  .sticky-wrap{height:300vh}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:920px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .sticky-left{display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:4/3;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease)}
+  .panel.visible{opacity:1}
+  .panel svg{width:100%;height:100%;display:block}
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:33%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:920px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px)}
+  @media(max-width:920px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,30px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-lg);max-width:22ch}
+  .rat{display:flex;flex-direction:column;gap:var(--s-md);max-width:50ch}
+  .rat-item{display:grid;grid-template-columns:22px 1fr;gap:var(--s-md);align-items:start}
+  .rat-num{width:22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .rat-item .rt b{font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.006em}
+  .rat-item .rt span{display:block;font-size:14px;line-height:1.55;color:var(--ink-2);margin-top:2px}
+
+  /* ===== Six decisions ===== */
+  .decisions{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .dec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:920px){.dec-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:620px){.dec-grid{grid-template-columns:1fr}}
+  .dec{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column}
+  .dec-head{background:var(--accent);color:#fff;padding:var(--s-lg) var(--s-xl)}
+  .dec-head .dl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:6px}
+  .dec-head h4{font-size:17px;font-weight:600;letter-spacing:-.008em;line-height:1.25}
+  .dec-body{padding:var(--s-xl);display:flex;flex-direction:column;gap:var(--s-lg)}
+  .dec-row .k{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px;display:flex;align-items:center;gap:7px}
+  .dec-row.prob .k::before{content:"";width:10px;height:2px;background:#C0463B;border-radius:2px}
+  .dec-row.dec-d .k::before{content:"";width:10px;height:2px;background:var(--accent);border-radius:2px}
+  .dec-row p{font-size:14px;line-height:1.55;color:var(--ink-2)}
+
+  /* ===== Showcase ===== */
+  .showcase{padding:var(--s-5xl) 0}
+  .sc-poster{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0;margin-top:var(--s-3xl);box-shadow:var(--shadow)}
+  .sc-poster img{width:100%;display:block}
+  .sc-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-lg)}
+  @media(max-width:780px){.sc-row{grid-template-columns:1fr}}
+  .sc-cell{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-cell img{width:100%;display:block}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* ===== Walkthrough ===== */
+  .walk{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .walk-main{border-radius:var(--radius-lg);overflow:hidden;background:#0A1410;border:1px solid var(--rule);line-height:0;margin-top:var(--s-2xl);box-shadow:var(--shadow)}
+  .walk-main video{width:100%;display:block;max-height:660px;object-fit:contain;background:#0A1410}
+
+  /* ===== Critical path ===== */
+  .flow{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .flow-track{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin-top:var(--s-3xl)}
+  .flow-node{flex:1;min-width:120px;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);padding:var(--s-lg);text-align:left}
+  .flow-node.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .flow-node.start{background:var(--accent-soft);border-color:var(--accent-soft)}
+  .flow-node .fn{font-size:15px;font-weight:600;letter-spacing:-.008em;margin-bottom:4px}
+  .flow-node .fd{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3)}
+  .flow-node.on .fd{color:rgba(255,255,255,.7)}
+  .flow-arrow{display:flex;align-items:center;justify-content:center;font-family:var(--mono);color:var(--ink-4);font-size:18px;padding:0 6px}
+  @media(max-width:780px){.flow-node{flex:1 1 100%}.flow-arrow{transform:rotate(90deg);padding:8px 0}}
+  .flow-foot{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);margin-top:var(--s-3xl);padding:var(--s-2xl) var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  @media(max-width:780px){.flow-foot{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .flow-foot h5{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-lg)}
+  .flow-foot ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .flow-foot li{padding-left:22px;position:relative;font-size:14px;line-height:1.55;color:var(--ink-2)}
+  .flow-foot li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .flow-foot .ruled li::before{background:var(--ink-4)}
+  .flow-foot li b{color:var(--ink);font-weight:600}
+
+  /* ===== Reflections ===== */
+  .reflect{padding:var(--s-5xl) 0}
+  .reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start;margin-top:var(--s-2xl)}
+  @media(max-width:780px){.reflect-grid{grid-template-columns:1fr;gap:var(--s-xl)}}
+  .reflect-grid h3{font-size:22px;font-weight:600;letter-spacing:-.012em;margin-bottom:var(--s-lg)}
+  .reflect-grid ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .reflect-grid li{padding-left:24px;position:relative;font-size:15px;line-height:1.6;color:var(--ink-2)}
+  .reflect-grid li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .reflect-grid li b{color:var(--ink);font-weight:600}
+
+  /* Next case */
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link active" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb reveal" aria-label="Breadcrumb">
+        <a href="work.html" data-i18n="nav.work">Work</a>
+        <span class="sep">/</span>
+        <span>ENERCON</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)" data-i18n="en.crumb">Customer Portal</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s" data-i18n="en.eyebrow">Case Study · 2025 – 2026</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="en.h1.l1">Redesigning the</span></span>
+        <span class="line"><span class="line-inner" data-i18n="en.h1.l2">operator portal for</span></span>
+        <span class="line"><span class="line-inner" data-i18n="en.h1.l3">wind&#8209;park monitoring</span></span>
+        <span class="line"><span class="line-inner" data-i18n="en.h1.l4">&amp;&nbsp;service.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.4s" data-i18n="en.lede">
+        ENERCON, one of the world's leading wind&#8209;turbine manufacturers, operated fragmented, siloed tools for monitoring, service orders and spare parts. We unified them into one portal with a single sign&#8209;on entry point, designed across desktop, tablet and mobile.
+      </p>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l" data-i18n="cs.client">Client</div><div class="v">ENERCON</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.role">Role</div><div class="v">UX / UI Design</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.year">Year</div><div class="v">2025 – 2026</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.tools">Tools</div><div class="v">Figma</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.scope">Scope</div><div class="v">MVP · SSO</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="en.m.plat">Platforms</div><div class="v" data-i18n="en.m.platv">Desktop · Tablet · Mobile</div></div>
+      </div>
+
+      <div class="cr-grid reveal">
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.challenge">Challenge</span>
+          <h3 data-i18n="en.cr1.h">Fragmented tool landscape</h3>
+          <p data-i18n="en.cr1.p">SIP, ETC and eShop existed as <b>separate access points</b> with no shared context. Operators switched between systems just to build a complete picture of their portfolio.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.myrole">My Role</span>
+          <h3 data-i18n="en.cr2.h">UX &amp; UI Design</h3>
+          <p data-i18n="en.cr2.p">Responsible for <b>UX and UI design</b> within the project team, from research and concept through to the final design system and developer handoff.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.outcome">Outcome</span>
+          <h3 data-i18n="en.cr3.h">One portal, one entry point</h3>
+          <p data-i18n="en.cr3.p">A unified operator portal with <b>single sign&#8209;on</b>, consolidating monitoring, service management and spare&#8209;parts ordering across all device types.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== CHALLENGE ===== -->
+  <section class="challenge" data-screen-label="02 Challenge">
+    <div class="container">
+      <span class="sec-eyebrow" data-i18n="en.ch.ey">01 · Problem Space</span>
+      <h2 class="sec-h" data-i18n="en.ch.h">The Challenge</h2>
+      <div class="pain-grid">
+        <div class="pain">
+          <div class="pn" data-i18n="en.pp1.k">Pain Point 01</div>
+          <h4 data-i18n="en.pp1.h">Fragmented tool landscape</h4>
+          <p data-i18n="en.pp1.p">SIP, ETC and eShop existed as separate access points with no shared context. Operators switched between systems just to build a complete picture of their portfolio.</p>
+        </div>
+        <div class="pain">
+          <div class="pn" data-i18n="en.pp2.k">Pain Point 02</div>
+          <h4 data-i18n="en.pp2.h">No central monitoring</h4>
+          <p data-i18n="en.pp2.p">Performance data, fault alerts and service orders lived in different places. Issues were noticed late, or only after contact with the service team, never proactively.</p>
+        </div>
+        <div class="pain">
+          <div class="pn" data-i18n="en.pp3.k">Pain Point 03</div>
+          <h4 data-i18n="en.pp3.h">Manual status tracking</h4>
+          <p data-i18n="en.pp3.p">Service orders were tracked by email and phone. No structured overview showed status, responsibility and progress in one place across devices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== RESEARCH ===== -->
+  <section class="research" data-screen-label="03 Research">
+    <div class="container">
+      <span class="sec-eyebrow" data-i18n="en.rs.ey">02 · Research &amp; Insights</span>
+      <h2 class="sec-h" data-i18n="en.rs.h">What operators actually need</h2>
+      <p class="sec-intro" data-i18n="en.rs.intro">Through stakeholder interviews, field observation and analysis of the existing tools, the core needs of three user types surfaced. The findings directly shaped every structural and visual decision in the design.</p>
+
+      <div class="steps-strip">
+        <div class="step-cell"><div class="sk" data-i18n="en.rs.s1k">Step 01</div><h5 data-i18n="en.rs.s1h">Stakeholder Interviews</h5><p data-i18n="en.rs.s1p">Operators, field technicians, account managers</p></div>
+        <div class="step-cell"><div class="sk" data-i18n="en.rs.s2k">Step 02</div><h5 data-i18n="en.rs.s2h">Jobs to be Done</h5><p data-i18n="en.rs.s2p">Core tasks mapped per user type</p></div>
+        <div class="step-cell"><div class="sk" data-i18n="en.rs.s3k">Step 03</div><h5 data-i18n="en.rs.s3h">Information Architecture</h5><p data-i18n="en.rs.s3p">Hierarchy: Portfolio · Park · Turbine</p></div>
+        <div class="step-cell"><div class="sk" data-i18n="en.rs.s4k">Step 04</div><h5 data-i18n="en.rs.s4h">Lo-Fi Wireframes</h5><p data-i18n="en.rs.s4p">Iterative sketches, card-sorting sessions</p></div>
+        <div class="step-cell"><div class="sk" data-i18n="en.rs.s5k">Step 05</div><h5 data-i18n="en.rs.s5h">Usability Testing</h5><p data-i18n="en.rs.s5p">Prototype feedback across all three platforms</p></div>
+      </div>
+
+      <div class="insight-grid" style="margin-top:var(--s-3xl)">
+        <div class="insight">
+          <div class="iw" data-i18n="en.in1.w">Insight · Operator</div>
+          <q data-i18n="en.in1.q">In the morning I want to know in two minutes whether everything is running, without clicking through menus.</q>
+          <div class="ir" data-i18n="en.in1.r"><b>Requirement:</b> Aggregated portfolio status as the first view</div>
+        </div>
+        <div class="insight">
+          <div class="iw" data-i18n="en.in2.w">Insight · Operator</div>
+          <q data-i18n="en.in2.q">When there's a fault report I never know who is responsible right now or what the current status is.</q>
+          <div class="ir" data-i18n="en.in2.r"><b>Requirement:</b> Transparent service-order overview with clear status indicators</div>
+        </div>
+        <div class="insight">
+          <div class="iw" data-i18n="en.in3.w">Insight · Field Technician</div>
+          <q data-i18n="en.in3.q">Sometimes I drive to the park and the job is already done because someone else picked it up. No one told me.</q>
+          <div class="ir" data-i18n="en.in3.r"><b>Requirement:</b> Clear contractor assignment and status badges on every order</div>
+        </div>
+        <div class="insight">
+          <div class="iw" data-i18n="en.in4.w">Insight · Multi-Park Operator</div>
+          <q data-i18n="en.in4.q">I manage four parks spread across northern Germany. I want to see on a map where the problems are.</q>
+          <div class="ir" data-i18n="en.in4.r"><b>Requirement:</b> Map view as an alternative representation of the park list</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INFORMATION ARCHITECTURE ===== -->
+  <section class="ia" data-screen-label="04 IA">
+    <div class="container">
+      <span class="sec-eyebrow" data-i18n="en.ia.ey">03 · Information Architecture</span>
+      <h2 class="sec-h" data-i18n="en.ia.h">Structure and navigation</h2>
+      <p class="sec-intro" data-i18n="en.ia.intro">A clear three&#8209;level hierarchy emerged from the research: Portfolio · Park · Turbine. Service orders are reachable at every level, because their relevance shifts with the operator's current context. The navigation works consistently across desktop, tablet and mobile.</p>
+
+      <div class="ia-tree">
+        <div class="ia-root">
+          <span class="t" data-i18n="en.ia.root.t">Dashboard · Portfolio</span>
+          <span class="s" data-i18n="en.ia.root.s">Entry point after login</span>
+        </div>
+        <div class="ia-branches">
+          <div class="ia-col">
+            <div class="node" data-i18n="en.ia.n1">Wind Parks (List)</div>
+            <div class="leaf" data-i18n="en.ia.n1a">Park · Performance</div>
+            <div class="leaf" data-i18n="en.ia.n1b">Park · Service</div>
+            <div class="leaf" data-i18n="en.ia.n1c">Map View</div>
+          </div>
+          <div class="ia-col">
+            <div class="node" data-i18n="en.ia.n2">Turbine Detail</div>
+            <div class="leaf" data-i18n="en.ia.n2a">7-Day View</div>
+            <div class="leaf" data-i18n="en.ia.n2b">60-Day View</div>
+            <div class="leaf" data-i18n="en.ia.n2c">Service Orders</div>
+          </div>
+          <div class="ia-col">
+            <div class="node" data-i18n="en.ia.n3">Service Orders</div>
+            <div class="leaf" data-i18n="en.ia.n3a">Overview</div>
+            <div class="leaf" data-i18n="en.ia.n3b">Detail</div>
+          </div>
+          <div class="ia-col">
+            <div class="node">Apps · SIP / ETC / eShop</div>
+            <div class="leaf" data-i18n="en.ia.n4a">External jump via SSO</div>
+          </div>
+          <div class="ia-col">
+            <div class="node" data-i18n="en.ia.n5">Notifications</div>
+            <div class="leaf" data-i18n="en.ia.n5a">Faults · Updates · Maintenance</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESIGN DERIVATION — STICKY SCROLL ===== -->
+  <section data-screen-label="05 Design Derivation">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="sec-eyebrow" style="display:block" data-i18n="en.dd.ey">04 · Wireframes &amp; Rationale</span>
+        <h2 class="sec-h" data-i18n="en.dd.h">Design derivation</h2>
+        <p data-i18n="en.dd.p">Lo-fi wireframes with decision annotations. Every UI choice is traceable to a specific research insight, validated across desktop, tablet and mobile before moving to high-fidelity. </p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+
+            <!-- Panel 1 · Dashboard -->
+            <div class="panel visible" data-panel="1">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#F4F6F5"/>
+                <!-- sidebar -->
+                <rect x="0" y="0" width="168" height="600" fill="#0C3B2B"/>
+                <rect x="22" y="30" width="92" height="11" rx="2" fill="#34D399"/>
+                <rect x="22" y="74" width="120" height="9" rx="2" fill="#fff" opacity=".9"/>
+                <rect x="22" y="104" width="96" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <rect x="22" y="126" width="108" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <rect x="22" y="148" width="80" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <rect x="14" y="186" width="3" height="16" rx="1" fill="#34D399"/>
+                <rect x="22" y="188" width="96" height="8" rx="2" fill="#34D399"/>
+                <text x="22" y="250" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="1" fill="#fff" opacity=".4">TOOLS</text>
+                <rect x="22" y="262" width="100" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <rect x="22" y="284" width="84" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <!-- header -->
+                <text x="196" y="52" font-family="DM Sans,sans-serif" font-size="22" font-weight="600" fill="#0A0A0A">Dashboard</text>
+                <rect x="636" y="28" width="140" height="56" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                <text x="706" y="58" font-family="DM Sans,sans-serif" font-size="22" font-weight="600" fill="#138A5E" text-anchor="middle">5.5</text>
+                <text x="706" y="74" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing="1" fill="#8A8A8A" text-anchor="middle">TOTAL OUTPUT MW</text>
+                <!-- notifications -->
+                <rect x="196" y="100" width="580" height="92" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                <text x="212" y="124" font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="1.4" fill="#8A8A8A">NOTIFICATIONS</text>
+                <g>
+                  <rect x="212" y="136" width="128" height="44" rx="5" fill="#FBF7EC"/><rect x="212" y="136" width="3" height="44" fill="#C08A3B"/>
+                  <rect x="224" y="148" width="60" height="7" rx="1" fill="#0A0A0A"/><rect x="224" y="162" width="96" height="6" rx="1" fill="#A9A9A9"/>
+                  <rect x="348" y="136" width="128" height="44" rx="5" fill="#FBEEEC"/><rect x="348" y="136" width="3" height="44" fill="#C0463B"/>
+                  <rect x="360" y="148" width="64" height="7" rx="1" fill="#0A0A0A"/><rect x="360" y="162" width="92" height="6" rx="1" fill="#A9A9A9"/>
+                  <rect x="484" y="136" width="128" height="44" rx="5" fill="#EEF1F0"/><rect x="484" y="136" width="3" height="44" fill="#8FA6A0"/>
+                  <rect x="496" y="148" width="58" height="7" rx="1" fill="#0A0A0A"/><rect x="496" y="162" width="90" height="6" rx="1" fill="#A9A9A9"/>
+                  <rect x="620" y="136" width="128" height="44" rx="5" fill="#EEF1F0"/><rect x="620" y="136" width="3" height="44" fill="#8FA6A0"/>
+                  <rect x="632" y="148" width="58" height="7" rx="1" fill="#0A0A0A"/><rect x="632" y="162" width="90" height="6" rx="1" fill="#A9A9A9"/>
+                </g>
+                <!-- park cards -->
+                <text x="196" y="226" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A">Wind Parks</text>
+                <g>
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Vespan</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"/>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#C0463B" stroke-width="6" stroke-dasharray="60 200" transform="rotate(-90 265 318)"/>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">0.6</text>
+                  <circle cx="212" cy="372" r="4" fill="#C0463B"/><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#C0463B">Fault active</text>
+                </g>
+                <g transform="translate(146,0)">
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Muschelthal</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"/>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#138A5E" stroke-width="6" stroke-dasharray="120 200" transform="rotate(-90 265 318)"/>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">1.2</text>
+                  <circle cx="212" cy="372" r="4" fill="#138A5E"/><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#138A5E">Productive</text>
+                </g>
+                <g transform="translate(292,0)">
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Kleinbuch</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"/>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#138A5E" stroke-width="6" stroke-dasharray="140 200" transform="rotate(-90 265 318)"/>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">1.6</text>
+                  <circle cx="212" cy="372" r="4" fill="#138A5E"/><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#138A5E">Productive</text>
+                </g>
+                <g transform="translate(438,0)">
+                  <rect x="196" y="240" width="138" height="150" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <text x="212" y="266" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A">Guckedu</text>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#EEE" stroke-width="6"/>
+                  <circle cx="265" cy="318" r="26" fill="none" stroke="#138A5E" stroke-width="6" stroke-dasharray="160 200" transform="rotate(-90 265 318)"/>
+                  <text x="265" y="322" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#0A0A0A" text-anchor="middle">2.1</text>
+                  <circle cx="212" cy="372" r="4" fill="#138A5E"/><text x="224" y="376" font-family="DM Sans,sans-serif" font-size="10" fill="#138A5E">Productive</text>
+                </g>
+                <!-- my apps -->
+                <text x="196" y="430" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A">My Apps</text>
+                <rect x="196" y="444" width="80" height="34" rx="6" fill="#DCEFE6"/><text x="236" y="465" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#138A5E" text-anchor="middle">SIP</text>
+                <rect x="288" y="444" width="80" height="34" rx="6" fill="#DCEFE6"/><text x="328" y="465" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#138A5E" text-anchor="middle">ETC</text>
+                <rect x="380" y="444" width="90" height="34" rx="6" fill="#DCEFE6"/><text x="425" y="465" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#138A5E" text-anchor="middle">eShop</text>
+                <text x="196" y="556" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" fill="#8A8A8A">SCREEN 01 · DASHBOARD — PORTFOLIO ENTRY</text>
+              </svg>
+            </div>
+
+            <!-- Panel 2 · All Wind Parks -->
+            <div class="panel" data-panel="2">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#F4F6F5"/>
+                <rect x="0" y="0" width="168" height="600" fill="#0C3B2B"/>
+                <rect x="22" y="30" width="92" height="11" rx="2" fill="#34D399"/>
+                <rect x="22" y="74" width="100" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <rect x="14" y="102" width="3" height="16" rx="1" fill="#34D399"/>
+                <rect x="22" y="104" width="96" height="8" rx="2" fill="#34D399"/>
+                <rect x="22" y="130" width="84" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <rect x="22" y="152" width="92" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <!-- header + time toggle -->
+                <text x="196" y="52" font-family="DM Sans,sans-serif" font-size="22" font-weight="600" fill="#0A0A0A">All Wind Parks</text>
+                <g font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="1">
+                  <text x="556" y="40" fill="#8A8A8A">24h</text>
+                  <text x="600" y="40" fill="#138A5E" font-weight="500">7 Days</text>
+                  <text x="664" y="40" fill="#8A8A8A">30 Days</text>
+                  <text x="734" y="40" fill="#8A8A8A">Map</text>
+                </g>
+                <!-- tabs -->
+                <text x="196" y="92" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#138A5E">Performance Overview</text>
+                <rect x="196" y="100" width="150" height="2" fill="#138A5E"/>
+                <text x="370" y="92" font-family="DM Sans,sans-serif" font-size="13" fill="#8A8A8A">Service Orders</text>
+                <line x1="196" y1="102" x2="776" y2="102" stroke="#E2E6E4"/>
+                <!-- park rows -->
+                <g>
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <circle cx="222" cy="153" r="6" fill="#C0463B"/>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Vespan</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#F0E7E6"/>
+                  <rect x="420" y="146" width="62" height="14" rx="7" fill="#C0463B"/>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#C0463B" text-anchor="end">0.6 MW</text>
+                </g>
+                <g transform="translate(0,74)">
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <circle cx="222" cy="153" r="6" fill="#138A5E"/>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Muschelthal</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#E1F0EA"/>
+                  <rect x="420" y="146" width="120" height="14" rx="7" fill="#138A5E"/>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A" text-anchor="end">1.2 MW</text>
+                </g>
+                <g transform="translate(0,148)">
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <circle cx="222" cy="153" r="6" fill="#138A5E"/>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Kleinbuch</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#E1F0EA"/>
+                  <rect x="420" y="146" width="160" height="14" rx="7" fill="#138A5E"/>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A" text-anchor="end">1.6 MW</text>
+                </g>
+                <g transform="translate(0,222)">
+                  <rect x="196" y="122" width="580" height="62" rx="8" fill="#fff" stroke="#E2E6E4"/>
+                  <circle cx="222" cy="153" r="6" fill="#138A5E"/>
+                  <text x="244" y="158" font-family="DM Sans,sans-serif" font-size="14" font-weight="600" fill="#0A0A0A">Guckedu</text>
+                  <rect x="420" y="146" width="240" height="14" rx="7" fill="#E1F0EA"/>
+                  <rect x="420" y="146" width="210" height="14" rx="7" fill="#138A5E"/>
+                  <text x="752" y="158" font-family="DM Sans,sans-serif" font-size="13" font-weight="600" fill="#0A0A0A" text-anchor="end">2.1 MW</text>
+                </g>
+                <text x="196" y="556" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" fill="#8A8A8A">SCREEN 02 · ALL WIND PARKS — COMPARE &amp; FILTER</text>
+              </svg>
+            </div>
+
+            <!-- Panel 3 · Turbine Service Orders -->
+            <div class="panel" data-panel="3">
+              <svg viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+                <rect width="800" height="600" fill="#F4F6F5"/>
+                <rect x="0" y="0" width="168" height="600" fill="#0C3B2B"/>
+                <rect x="22" y="30" width="92" height="11" rx="2" fill="#34D399"/>
+                <rect x="14" y="74" width="3" height="16" rx="1" fill="#34D399"/>
+                <rect x="22" y="76" width="96" height="8" rx="2" fill="#34D399"/>
+                <rect x="22" y="102" width="80" height="8" rx="2" fill="#fff" opacity=".45"/>
+                <!-- breadcrumb top bar -->
+                <text x="636" y="40" font-family="JetBrains Mono,monospace" font-size="11" letter-spacing="1" fill="#8A8A8A" text-anchor="end">Vespan / Turbine 1</text>
+                <text x="196" y="52" font-family="DM Sans,sans-serif" font-size="21" font-weight="600" fill="#0A0A0A">Turbine 1 · Enercon E-101</text>
+                <text x="196" y="74" font-family="DM Sans,sans-serif" font-size="12" fill="#8A8A8A">1.4 MW current output</text>
+                <!-- tabs -->
+                <text x="196" y="108" font-family="DM Sans,sans-serif" font-size="12" fill="#8A8A8A">Performance</text>
+                <text x="320" y="108" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="#138A5E">Service Orders</text>
+                <rect x="320" y="116" width="110" height="2" fill="#138A5E"/>
+                <line x1="196" y1="118" x2="776" y2="118" stroke="#E2E6E4"/>
+                <!-- table header -->
+                <g font-family="JetBrains Mono,monospace" font-size="9" letter-spacing="1" fill="#8A8A8A">
+                  <text x="206" y="146">DATE</text><text x="300" y="146">ORDER NO.</text><text x="420" y="146">TASK</text><text x="600" y="146">CONTRACTOR</text><text x="710" y="146">STATUS</text>
+                </g>
+                <line x1="196" y1="156" x2="776" y2="156" stroke="#E2E6E4"/>
+                <!-- rows -->
+                <g font-family="DM Sans,sans-serif" font-size="12" fill="#0A0A0A">
+                  <text x="206" y="186">02.04.25</text><text x="300" y="186" fill="#4A4A4A">0071236644</text><text x="420" y="186">Maintenance inspection</text><text x="600" y="186" fill="#4A4A4A">Enercon</text>
+                  <rect x="710" y="174" width="70" height="18" rx="9" fill="#E6EDFB"/><text x="745" y="187" font-size="10" fill="#2A5BD0" text-anchor="middle">In Progress</text>
+                  <line x1="196" y1="204" x2="776" y2="204" stroke="#F0F2F1"/>
+
+                  <text x="206" y="232">31.11.25</text><text x="300" y="232" fill="#4A4A4A">4.0</text><text x="420" y="232">UPS temperature sensor</text><text x="600" y="232" fill="#4A4A4A">WindGroup AG</text>
+                  <rect x="710" y="220" width="70" height="18" rx="9" fill="#FBEEEC"/><text x="745" y="233" font-size="10" fill="#C0463B" text-anchor="middle">Critical</text>
+                  <line x1="196" y1="250" x2="776" y2="250" stroke="#F0F2F1"/>
+
+                  <text x="206" y="278">28.11.25</text><text x="300" y="278" fill="#4A4A4A">9834064478</text><text x="420" y="278">Azimuth alignment</text><text x="600" y="278" fill="#4A4A4A">Milergy Group</text>
+                  <rect x="710" y="266" width="70" height="18" rx="9" fill="#E6EDFB"/><text x="745" y="279" font-size="10" fill="#2A5BD0" text-anchor="middle">In Progress</text>
+                  <line x1="196" y1="296" x2="776" y2="296" stroke="#F0F2F1"/>
+
+                  <text x="206" y="324">28.11.25</text><text x="300" y="324" fill="#4A4A4A">9348609234</text><text x="420" y="324">Transformer inspection</text><text x="600" y="324" fill="#4A4A4A">Milergy Group</text>
+                  <rect x="710" y="312" width="70" height="18" rx="9" fill="#EEF1F0"/><text x="745" y="325" font-size="10" fill="#5C6B66" text-anchor="middle">Accepted</text>
+                </g>
+                <text x="196" y="556" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="1.4" fill="#8A8A8A">SCREEN 03 · TURBINE — SERVICE ORDERS</text>
+              </svg>
+            </div>
+
+          </div>
+
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label" data-i18n="en.dd.p1.label">Dashboard · Portfolio entry point</span>
+            <span class="pc-prog" id="pc-prog">01 / 03</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="prog"></div></div>
+        </div>
+
+        <!-- RIGHT — RATIONALE -->
+        <div class="sticky-right">
+
+          <article class="step active" data-panel="1" data-prog="33" data-label="Dashboard · Portfolio entry point" data-i18n-attr="data-label:en.dd.p1.label">
+            <div class="ss-num" data-i18n="en.dd.s1.num">Screen 01 · Dashboard</div>
+            <h3 data-i18n="en.dd.s1.h">The aggregated portfolio view, the moment you log in.</h3>
+            <div class="rat">
+              <div class="rat-item"><span class="rat-num">1</span><div class="rt"><b data-i18n="en.dd.s1.r1b">Aggregated KPI, top right</b><span data-i18n="en.dd.s1.r1s">Total output across all parks is visible immediately — no scrolling, no drill-down for the single most important number.</span></div></div>
+              <div class="rat-item"><span class="rat-num">2</span><div class="rt"><b data-i18n="en.dd.s1.r2b">Notifications as a fixed content block</b><span data-i18n="en.dd.s1.r2s">Three severities — warning, critical, info — each with a coloured left border. Urgency is scannable without reading the text.</span></div></div>
+              <div class="rat-item"><span class="rat-num">3</span><div class="rt"><b data-i18n="en.dd.s1.r3b">Donut + sparkline per park card</b><span data-i18n="en.dd.s1.r3s">The donut shows output relative to rated capacity; status reads as "healthy vs. unhealthy" at a glance.</span></div></div>
+
+            </div>
+          </article>
+
+          <article class="step" data-panel="2" data-prog="66" data-label="All Wind Parks · Compare &amp; filter" data-i18n-attr="data-label:en.dd.p2.label">
+            <div class="ss-num" data-i18n="en.dd.s2.num">Screen 02 · All Wind Parks</div>
+            <h3 data-i18n="en.dd.s2.h">One list, two modes, a global time switch.</h3>
+            <div class="rat">
+              <div class="rat-item"><span class="rat-num">5</span><div class="rt"><b data-i18n="en.dd.s2.r1b">Time range toggle in the top bar</b><span data-i18n="en.dd.s2.r1s">24h / 7 Days / 30 Days / Map as a global context switch — always visible, applied to all parks at once without extra interaction.</span></div></div>
+              <div class="rat-item"><span class="rat-num">6</span><div class="rt"><b data-i18n="en.dd.s2.r2b">Performance vs. Service Orders tabs</b><span data-i18n="en.dd.s2.r2s">Same list, two modes. A tab pattern prevents context loss when switching between operational and service views.</span></div></div>
+              <div class="rat-item"><span class="rat-num">7</span><div class="rt"><b data-i18n="en.dd.s2.r3b">Map as the fourth tab option</b><span data-i18n="en.dd.s2.r3s">The map isn't a separate screen — it's an alternative view of the same dataset. Park rows stay listed below it.</span></div></div>
+            </div>
+          </article>
+
+          <article class="step" data-panel="3" data-prog="100" data-label="Turbine · Service Orders" data-i18n-attr="data-label:en.dd.p3.label">
+            <div class="ss-num" data-i18n="en.dd.s3.num">Screen 03 · Turbine Service Orders</div>
+            <h3 data-i18n="en.dd.s3.h">Per-turbine status, responsibility and progress in one table.</h3>
+            <div class="rat">
+              <div class="rat-item"><span class="rat-num">8</span><div class="rt"><b data-i18n="en.dd.s3.r1b">Status badges with colour semantics</b><span data-i18n="en.dd.s3.r1s">Red = critical / open, blue = in progress, grey = accepted. Colour communicates urgency before the operator reads a single word.</span></div></div>
+              <div class="rat-item"><span class="rat-num">9</span><div class="rt"><b data-i18n="en.dd.s3.r2b">Contractor column always visible</b><span data-i18n="en.dd.s3.r2s">Many operators work with external service partners. Clear assignment on every row removes double-booking and miscommunication.</span></div></div>
+              <div class="rat-item"><span class="rat-num">10</span><div class="rt"><b data-i18n="en.dd.s3.r3b">Breadcrumb context in the top bar</b><span data-i18n="en.dd.s3.r3s">"Vespan / Turbine 1" persists in the header. In a deep hierarchy, operators always know where they are without a separate step.</span></div></div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SIX DECISIONS ===== -->
+  <section class="decisions" data-screen-label="06 Decisions">
+    <div class="container">
+      <span class="sec-eyebrow" data-i18n="en.dec.ey">05 · Key Design Decisions</span>
+      <h2 class="sec-h" data-i18n="en.dec.h">Three decisions that made the difference</h2>
+      <p class="sec-intro" data-i18n="en.dec.intro">Each of these was contested at some point. Here's the reasoning behind every choice, and which alternatives were ruled out, and why.</p>
+
+      <div class="dec-grid">
+        <div class="dec">
+          <div class="dec-head"><div class="dl" data-i18n="en.dec1.l">Decision 01</div><h4 data-i18n="en.dec1.h">Map as a tab state, not a separate page</h4></div>
+          <div class="dec-body">
+            <div class="dec-row prob"><div class="k" data-i18n="en.k.prob">Problem</div><p data-i18n="en.dec1.prob">An earlier version had the map as a standalone nav item. Clicking a park pin on the map lost the list context entirely.</p></div>
+            <div class="dec-row dec-d"><div class="k" data-i18n="en.k.dec">Decision</div><p data-i18n="en.dec1.dec">The map is a tab state within Wind Parks. Same dataset, different visualisation; the park list stays visible below it.</p></div>
+          </div>
+        </div>
+        <div class="dec">
+          <div class="dec-head"><div class="dl" data-i18n="en.dec2.l">Decision 02</div><h4 data-i18n="en.dec2.h">Notifications in the dashboard, not an overlay</h4></div>
+          <div class="dec-body">
+            <div class="dec-row prob"><div class="k" data-i18n="en.k.prob">Problem</div><p data-i18n="en.dec2.prob">A notification-bell icon was consistently overlooked. Operators didn't realise critical alerts were waiting.</p></div>
+            <div class="dec-row dec-d"><div class="k" data-i18n="en.k.dec">Decision</div><p data-i18n="en.dec2.dec">Notifications as a fixed block in the dashboard. Always visible on first load — no click required to see what needs attention.</p></div>
+          </div>
+        </div>
+        <div class="dec">
+          <div class="dec-head"><div class="dl" data-i18n="en.dec3.l">Decision 03</div><h4 data-i18n="en.dec3.h">Consistent card pattern at every level</h4></div>
+          <div class="dec-body">
+            <div class="dec-row prob"><div class="k" data-i18n="en.k.prob">Problem</div><p data-i18n="en.dec3.prob">Dashboard, park overview and turbine detail looked completely different. Users had to re-learn the interface at every level.</p></div>
+            <div class="dec-row dec-d"><div class="k" data-i18n="en.k.dec">Decision</div><p data-i18n="en.dec3.dec">Donut + sparkline + status dot as one card pattern at every hierarchy level. The mental model is learned once, applies everywhere.</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SHOWCASE ===== -->
+  <section class="showcase" data-screen-label="07 Final Design">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="sec-eyebrow" data-i18n="en.sh.ey">06 · Final Design</span>
+          <h2 class="sec-h" style="margin-bottom:0" data-i18n="en.sh.h">The portal, delivered</h2>
+        </div>
+        <div class="aside" style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="en.sh.aside">
+          <b>Dashboard · Map</b><br>Multi-device · Design System
+        </div>
+      </div>
+
+      <div class="sc-poster">
+        <img src="uploads/Dashboard.jpg" alt="ENERCON Customer Portal · Dashboard, Hi-Fi">
+      </div>
+      <p class="sc-cap" style="margin-bottom:var(--s-lg)" data-i18n="en.sh.cap1">Dashboard · aggregated portfolio view with notifications, park cards &amp; My Apps</p>
+
+      <div class="sc-row">
+        <div>
+          <div class="sc-cell"><img src="uploads/Enercon-me.jpg" alt="ENERCON me · responsive across laptop, tablet and mobile"></div>
+          <p class="sc-cap" data-i18n="en.sh.cap2">Responsive · desktop, tablet &amp; mobile with map view</p>
+        </div>
+        <div>
+          <div class="sc-cell"><img src="uploads/Styleguide.jpg" alt="ENERCON portal design system · components, colours, anatomy"></div>
+          <p class="sc-cap" data-i18n="en.sh.cap3">Design system · component anatomy, colour primitives &amp; tokens</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WALKTHROUGH ===== -->
+  <section class="walk" data-screen-label="08 Walkthrough">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="sec-eyebrow" data-i18n="en.wk.ey">07 · Prototype</span>
+          <h2 class="sec-h" style="margin-bottom:0" data-i18n="en.wk.h">The portal in motion</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="en.wk.aside">
+          <b>Clickable Prototype</b><br>Dashboard → Park → Turbine
+        </div>
+      </div>
+      <div class="walk-main">
+        <video src="uploads/ENercon_protap%20Prototype.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <p class="sc-cap" style="margin-top:var(--s-md)" data-i18n="en.wk.cap">Interactive prototype · the critical path from portfolio to a single service order</p>
+    </div>
+  </section>
+
+  <!-- ===== CRITICAL PATH ===== -->
+  <section class="flow" data-screen-label="09 User Flow">
+    <div class="container">
+      <span class="sec-eyebrow" data-i18n="en.fl.ey">08 · Primary User Flow</span>
+      <h2 class="sec-h" data-i18n="en.fl.h">The critical path</h2>
+      <p class="sec-intro" data-i18n="en.fl.intro">The most frequent task: an operator opens the portal in the morning, spots a fault notification and traces it through to the relevant service order — on any device, in four clicks.</p>
+
+      <div class="flow-track">
+        <div class="flow-node start"><div class="fn" data-i18n="en.fl.n1">Login</div><div class="fd">SSO</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node on"><div class="fn" data-i18n="en.fl.n2">Dashboard</div><div class="fd" data-i18n="en.fl.n2d">Fault visible</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="fn" data-i18n="en.fl.n3">Notification</div><div class="fd" data-i18n="en.fl.n3d">Click</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="fn">Park · Vespan</div><div class="fd" data-i18n="en.fl.n4d">Details</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node"><div class="fn">Turbine 1</div><div class="fd">Performance</div></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-node on"><div class="fn" data-i18n="en.fl.n6">Service Orders</div><div class="fd" data-i18n="en.fl.n6d">Check status</div></div>
+      </div>
+
+      <div class="flow-foot">
+        <div>
+          <h5 data-i18n="en.fl.work.h">What makes this flow work</h5>
+          <ul>
+            <li data-i18n="en.fl.work1">The fault is <b>colour-coded on step one</b>, no hunting required</li>
+            <li data-i18n="en.fl.work2">Tapping a notification jumps directly to the affected turbine</li>
+            <li data-i18n="en.fl.work3">Service Orders lives at turbine level, not park level. Orders are turbine-specific</li>
+            <li data-i18n="en.fl.work4">The entire flow takes <b>at most four clicks</b> on all three platforms</li>
+          </ul>
+        </div>
+        <div class="ruled">
+          <h5 style="color:var(--ink-3)" data-i18n="en.fl.alt.h">Alternatives tested &amp; ruled out</h5>
+          <ul>
+            <li data-i18n="en.fl.alt1">Service orders only at portfolio level. Too far removed from turbine context</li>
+            <li data-i18n="en.fl.alt2">Direct link from notification to order list. Skipped important performance data</li>
+            <li data-i18n="en.fl.alt3">Fault alert as a modal overlay. Blocked context; operators wanted to keep navigating</li>
+            <li data-i18n="en.fl.alt4">Notification bell instead of a card. Consistently overlooked in testing</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== REFLECTIONS ===== -->
+  <section class="reflect" data-screen-label="10 Reflections">
+    <div class="container">
+      <span class="sec-eyebrow" data-i18n="en.rf.ey">09 · Reflections</span>
+      <h2 class="sec-h" data-i18n="en.rf.h">What I'd carry forward</h2>
+      <div class="reflect-grid">
+        <div>
+          <h3 data-i18n="en.rf.w.h">What worked</h3>
+          <ul>
+            <li data-i18n="en.rf.w1"><b>Insight-traceable decisions</b>: Every UI choice mapped back to a research quote. In reviews, "why is this here?" always had an answer that wasn't taste.</li>
+            <li data-i18n="en.rf.w2"><b>One card pattern, every level</b>: Donut + sparkline + status dot learned once and reused at portfolio, park and turbine level kept the MVP fast to build and easy to learn.</li>
+            <li data-i18n="en.rf.w3"><b>SSO framed as content, not nav</b>: Treating SIP / ETC / eShop as a "My Apps" launcher resolved the internal-vs-external confusion that earlier versions kept hitting.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 data-i18n="en.rf.c.h">What I'd change</h3>
+          <ul>
+            <li data-i18n="en.rf.c1"><b>Map view earlier</b>: The multi-park operator's map need surfaced mid-research. Bringing it into IA from day one would have saved a restructuring pass.</li>
+            <li data-i18n="en.rf.c2"><b>Define the post-MVP backlog up front</b>: BESS Value Modelling and Training Center were scoped late. A clearer phase-2 line would have sharpened the MVP cut.</li>
+            <li data-i18n="en.rf.c3"><b>Instrument the critical path</b>: The four-click flow is validated qualitatively; baseline analytics from launch would let phase 2 prove it quantitatively.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEXT CASE ===== -->
+  <section class="next-case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)" data-i18n="cs.more">More projects</p>
+      <div class="next-links">
+        <a href="case-mapal.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">MAPAL · Configuration Platform</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-schunk.html">
+          <div>
+            <span class="lbl" data-i18n="cs.casestudy">Case Study</span>
+            <div class="nm">FANUC · Portal &amp; eShop</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)" data-i18n="cs.backtop">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5 data-i18n="foot.pages">Pages</h5><ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 data-i18n="foot.contact">Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · June 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  // Sticky scroll sync
+  const steps      = document.querySelectorAll('.step');
+  const panels     = document.querySelectorAll('.panel');
+  const prog       = document.getElementById('prog');
+  const pcNum      = document.getElementById('pc-num');
+  const pcLabel    = document.getElementById('pc-label');
+  const pcProg     = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total      = steps.length;
+  let lastIdx      = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector('.panel[data-panel="' + (idx + 1) + '"]');
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)   prog.style.width = pct + '%';
+    if(pcNum)  pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.innerHTML = steps[idx]?.dataset.label || '';
+    if(pcProg) pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / ' + String(total).padStart(2,'0');
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 920){ activateIdx(0); return; }
+      const rect  = stickyWrap.getBoundingClientRect();
+      const sH    = stickyWrap.offsetHeight;
+      const vH    = window.innerHeight;
+      const range = sH - vH;
+      if(range <= 0) return;
+      const scrolled = Math.max(0, Math.min(range, -rect.top));
+      const progress = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "ENERCON Kundenportal · Case Study",
+  "foot.updated": "Zuletzt aktualisiert · Juni 2026",
+  "en.crumb": "Kundenportal",
+  "en.eyebrow": "Case Study · 2025 – 2026",
+  "en.h1.l1": "Neugestaltung des",
+  "en.h1.l2": "Betreiberportals für",
+  "en.h1.l3": "Windpark-Monitoring",
+  "en.h1.l4": "&amp;&nbsp;Service.",
+  "en.lede": "ENERCON, einer der weltweit führenden Windturbinen-Hersteller, betrieb fragmentierte, isolierte Tools für Monitoring, Serviceaufträge und Ersatzteile. Wir führten sie in einem Portal mit einem Single-Sign-on-Einstiegspunkt zusammen, gestaltet für Desktop, Tablet und Mobile.",
+  "en.m.plat": "Plattformen",
+  "en.m.platv": "Desktop · Tablet · Mobile",
+  "en.cr1.h": "Fragmentierte Tool-Landschaft",
+  "en.cr1.p": "SIP, ETC und eShop existierten als <b>separate Zugangspunkte</b> ohne gemeinsamen Kontext. Betreiber wechselten zwischen Systemen, nur um sich ein vollständiges Bild ihres Portfolios zu machen.",
+  "en.cr2.h": "UX &amp; UI Design",
+  "en.cr2.p": "Verantwortlich für <b>UX- und UI-Design</b> innerhalb des Projektteams, von Research und Konzept bis zum finalen Designsystem und der Entwickler-Übergabe.",
+  "en.cr3.h": "Ein Portal, ein Einstiegspunkt",
+  "en.cr3.p": "Ein einheitliches Betreiberportal mit <b>Single Sign-on</b>, das Monitoring, Service-Management und Ersatzteilbestellung über alle Gerätetypen hinweg zusammenführt.",
+  "en.ch.ey": "01 · Problemraum",
+  "en.ch.h": "Die Herausforderung",
+  "en.pp1.k": "Pain Point 01",
+  "en.pp1.h": "Fragmentierte Tool-Landschaft",
+  "en.pp1.p": "SIP, ETC und eShop existierten als separate Zugangspunkte ohne gemeinsamen Kontext. Betreiber wechselten zwischen Systemen, nur um sich ein vollständiges Bild ihres Portfolios zu machen.",
+  "en.pp2.k": "Pain Point 02",
+  "en.pp2.h": "Kein zentrales Monitoring",
+  "en.pp2.p": "Leistungsdaten, Störmeldungen und Serviceaufträge lagen an verschiedenen Orten. Probleme wurden spät bemerkt, oder erst nach Kontakt mit dem Serviceteam, nie proaktiv.",
+  "en.pp3.k": "Pain Point 03",
+  "en.pp3.h": "Manuelles Status-Tracking",
+  "en.pp3.p": "Serviceaufträge wurden per E-Mail und Telefon verfolgt. Keine strukturierte Übersicht zeigte Status, Verantwortlichkeit und Fortschritt an einem Ort über alle Geräte hinweg.",
+  "en.rs.ey": "02 · Research &amp; Insights",
+  "en.rs.h": "Was Betreiber wirklich brauchen",
+  "en.rs.intro": "Durch Stakeholder-Interviews, Feldbeobachtung und Analyse der bestehenden Tools traten die Kernbedürfnisse von drei Nutzertypen zutage. Die Erkenntnisse prägten jede strukturelle und visuelle Entscheidung im Design direkt.",
+  "en.rs.s1k": "Schritt 01", "en.rs.s1h": "Stakeholder-Interviews", "en.rs.s1p": "Betreiber, Servicetechniker, Account Manager",
+  "en.rs.s2k": "Schritt 02", "en.rs.s2h": "Jobs to be Done", "en.rs.s2p": "Kernaufgaben je Nutzertyp abgebildet",
+  "en.rs.s3k": "Schritt 03", "en.rs.s3h": "Informationsarchitektur", "en.rs.s3p": "Hierarchie: Portfolio · Park · Turbine",
+  "en.rs.s4k": "Schritt 04", "en.rs.s4h": "Lo-Fi-Wireframes", "en.rs.s4p": "Iterative Skizzen, Card-Sorting-Sessions",
+  "en.rs.s5k": "Schritt 05", "en.rs.s5h": "Usability Testing", "en.rs.s5p": "Prototyp-Feedback über alle drei Plattformen",
+  "en.in1.w": "Insight · Betreiber",
+  "en.in1.q": "Morgens will ich in zwei Minuten wissen, ob alles läuft, ohne mich durch Menüs zu klicken.",
+  "en.in1.r": "<b>Anforderung:</b> Aggregierter Portfolio-Status als erste Ansicht",
+  "en.in2.w": "Insight · Betreiber",
+  "en.in2.q": "Bei einer Störmeldung weiß ich nie, wer gerade zuständig ist oder wie der aktuelle Status ist.",
+  "en.in2.r": "<b>Anforderung:</b> Transparente Serviceauftrags-Übersicht mit klaren Statusindikatoren",
+  "en.in3.w": "Insight · Servicetechniker",
+  "en.in3.q": "Manchmal fahre ich zum Park und der Auftrag ist schon erledigt, weil ihn jemand anderes übernommen hat. Niemand hat mir Bescheid gegeben.",
+  "en.in3.r": "<b>Anforderung:</b> Klare Dienstleister-Zuordnung und Status-Badges auf jedem Auftrag",
+  "en.in4.w": "Insight · Multi-Park-Betreiber",
+  "en.in4.q": "Ich verwalte vier Parks in ganz Norddeutschland. Ich will auf einer Karte sehen, wo die Probleme sind.",
+  "en.in4.r": "<b>Anforderung:</b> Kartenansicht als alternative Darstellung der Park-Liste",
+  "en.ia.ey": "03 · Informationsarchitektur",
+  "en.ia.h": "Struktur und Navigation",
+  "en.ia.intro": "Aus der Research ergab sich eine klare dreistufige Hierarchie: Portfolio · Park · Turbine. Serviceaufträge sind auf jeder Ebene erreichbar, da sich ihre Relevanz mit dem aktuellen Kontext des Betreibers verschiebt. Die Navigation funktioniert konsistent über Desktop, Tablet und Mobile.",
+  "en.ia.root.t": "Dashboard · Portfolio",
+  "en.ia.root.s": "Einstiegspunkt nach Login",
+  "en.ia.n1": "Windparks (Liste)", "en.ia.n1a": "Park · Performance", "en.ia.n1b": "Park · Service", "en.ia.n1c": "Kartenansicht",
+  "en.ia.n2": "Turbinen-Detail", "en.ia.n2a": "7-Tage-Ansicht", "en.ia.n2b": "60-Tage-Ansicht", "en.ia.n2c": "Serviceaufträge",
+  "en.ia.n3": "Serviceaufträge", "en.ia.n3a": "Übersicht", "en.ia.n3b": "Detail",
+  "en.ia.n4a": "Externer Sprung via SSO",
+  "en.ia.n5": "Benachrichtigungen", "en.ia.n5a": "Störungen · Updates · Wartung",
+  "en.dd.ey": "04 · Wireframes &amp; Rationale",
+  "en.dd.h": "Design-Herleitung",
+  "en.dd.p": "Lo-Fi-Wireframes mit Entscheidungs-Annotationen. Jede UI-Entscheidung ist auf ein konkretes Research-Insight zurückführbar, validiert über Desktop, Tablet und Mobile, bevor es zu High-Fidelity ging.",
+  "en.dd.p1.label": "Dashboard · Portfolio-Einstiegspunkt",
+  "en.dd.p2.label": "Alle Windparks · Vergleichen &amp; filtern",
+  "en.dd.p3.label": "Turbine · Serviceaufträge",
+  "en.dd.s1.num": "Screen 01 · Dashboard",
+  "en.dd.s1.h": "Die aggregierte Portfolio-Ansicht, im Moment des Logins.",
+  "en.dd.s1.r1b": "Aggregierte KPI, oben rechts",
+  "en.dd.s1.r1s": "Die Gesamtleistung über alle Parks ist sofort sichtbar — kein Scrollen, kein Drill-down für die wichtigste einzelne Kennzahl.",
+  "en.dd.s1.r2b": "Benachrichtigungen als fester Content-Block",
+  "en.dd.s1.r2s": "Drei Schweregrade — Warnung, Kritisch, Info — jeweils mit farbigem linken Rand. Dringlichkeit ist scanbar, ohne den Text zu lesen.",
+  "en.dd.s1.r3b": "Donut + Sparkline pro Park-Karte",
+  "en.dd.s1.r3s": "Der Donut zeigt die Leistung relativ zur Nennkapazität; der Status liest sich auf einen Blick als „gesund vs. ungesund“.",
+  "en.dd.s2.num": "Screen 02 · Alle Windparks",
+  "en.dd.s2.h": "Eine Liste, zwei Modi, ein globaler Zeit-Schalter.",
+  "en.dd.s2.r1b": "Zeitraum-Umschalter in der oberen Leiste",
+  "en.dd.s2.r1s": "24h / 7 Tage / 30 Tage / Karte als globaler Kontextwechsel — immer sichtbar, auf alle Parks gleichzeitig angewandt ohne zusätzliche Interaktion.",
+  "en.dd.s2.r2b": "Performance- vs. Serviceauftrags-Tabs",
+  "en.dd.s2.r2s": "Dieselbe Liste, zwei Modi. Ein Tab-Muster verhindert Kontextverlust beim Wechsel zwischen Betriebs- und Service-Ansicht.",
+  "en.dd.s2.r3b": "Karte als vierte Tab-Option",
+  "en.dd.s2.r3s": "Die Karte ist kein separater Screen — sie ist eine alternative Ansicht desselben Datensatzes. Park-Zeilen bleiben darunter gelistet.",
+  "en.dd.s3.num": "Screen 03 · Turbinen-Serviceaufträge",
+  "en.dd.s3.h": "Status, Verantwortlichkeit und Fortschritt pro Turbine in einer Tabelle.",
+  "en.dd.s3.r1b": "Status-Badges mit Farbsemantik",
+  "en.dd.s3.r1s": "Rot = kritisch / offen, Blau = in Bearbeitung, Grau = abgenommen. Farbe kommuniziert Dringlichkeit, bevor der Betreiber ein einziges Wort liest.",
+  "en.dd.s3.r2b": "Dienstleister-Spalte immer sichtbar",
+  "en.dd.s3.r2s": "Viele Betreiber arbeiten mit externen Servicepartnern. Klare Zuordnung in jeder Zeile beseitigt Doppelbuchungen und Missverständnisse.",
+  "en.dd.s3.r3b": "Breadcrumb-Kontext in der oberen Leiste",
+  "en.dd.s3.r3s": "„Vespan / Turbine 1“ bleibt im Header bestehen. In einer tiefen Hierarchie wissen Betreiber immer, wo sie sind, ohne separaten Schritt.",
+  "en.dec.ey": "05 · Zentrale Design-Entscheidungen",
+  "en.dec.h": "Drei Entscheidungen, die den Unterschied machten",
+  "en.dec.intro": "Jede davon war irgendwann umstritten. Hier die Begründung hinter jeder Wahl, und welche Alternativen ausgeschlossen wurden, und warum.",
+  "en.k.prob": "Problem",
+  "en.k.dec": "Entscheidung",
+  "en.dec1.l": "Entscheidung 01",
+  "en.dec1.h": "Karte als Tab-Zustand, nicht als separate Seite",
+  "en.dec1.prob": "Eine frühere Version hatte die Karte als eigenständigen Nav-Eintrag. Ein Klick auf einen Park-Pin auf der Karte verlor den Listenkontext vollständig.",
+  "en.dec1.dec": "Die Karte ist ein Tab-Zustand innerhalb von Windparks. Derselbe Datensatz, andere Visualisierung; die Park-Liste bleibt darunter sichtbar.",
+  "en.dec2.l": "Entscheidung 02",
+  "en.dec2.h": "Benachrichtigungen im Dashboard, kein Overlay",
+  "en.dec2.prob": "Ein Glocken-Icon für Benachrichtigungen wurde durchgängig übersehen. Betreiber bemerkten nicht, dass kritische Alarme warteten.",
+  "en.dec2.dec": "Benachrichtigungen als fester Block im Dashboard. Immer beim ersten Laden sichtbar — kein Klick nötig, um zu sehen, was Aufmerksamkeit braucht.",
+  "en.dec3.l": "Entscheidung 03",
+  "en.dec3.h": "Konsistentes Karten-Muster auf jeder Ebene",
+  "en.dec3.prob": "Dashboard, Park-Übersicht und Turbinen-Detail sahen völlig unterschiedlich aus. Nutzer mussten die Oberfläche auf jeder Ebene neu lernen.",
+  "en.dec3.dec": "Donut + Sparkline + Status-Punkt als ein Karten-Muster auf jeder Hierarchieebene. Das mentale Modell wird einmal gelernt und gilt überall.",
+  "en.sh.ey": "06 · Finales Design",
+  "en.sh.h": "Das Portal, ausgeliefert",
+  "en.sh.aside": "<b>Dashboard · Karte</b><br>Multi-Device · Designsystem",
+  "en.sh.cap1": "Dashboard · aggregierte Portfolio-Ansicht mit Benachrichtigungen, Park-Karten &amp; My Apps",
+  "en.sh.cap2": "Responsive · Desktop, Tablet &amp; Mobile mit Kartenansicht",
+  "en.sh.cap3": "Designsystem · Komponenten-Anatomie, Farb-Primitive &amp; Tokens",
+  "en.wk.ey": "07 · Prototyp",
+  "en.wk.h": "Das Portal in Bewegung",
+  "en.wk.aside": "<b>Klickbarer Prototyp</b><br>Dashboard → Park → Turbine",
+  "en.wk.cap": "Interaktiver Prototyp · der kritische Pfad vom Portfolio zu einem einzelnen Serviceauftrag",
+  "en.fl.ey": "08 · Primärer User Flow",
+  "en.fl.h": "Der kritische Pfad",
+  "en.fl.intro": "Die häufigste Aufgabe: Ein Betreiber öffnet morgens das Portal, entdeckt eine Störmeldung und verfolgt sie bis zum relevanten Serviceauftrag — auf jedem Gerät, in vier Klicks.",
+  "en.fl.n1": "Login",
+  "en.fl.n2": "Dashboard", "en.fl.n2d": "Störung sichtbar",
+  "en.fl.n3": "Benachrichtigung", "en.fl.n3d": "Klick",
+  "en.fl.n4d": "Details",
+  "en.fl.n6": "Serviceaufträge", "en.fl.n6d": "Status prüfen",
+  "en.fl.work.h": "Was diesen Flow funktionieren lässt",
+  "en.fl.work1": "Die Störung ist <b>auf Schritt eins farbcodiert</b>, kein Suchen nötig",
+  "en.fl.work2": "Ein Tipp auf eine Benachrichtigung springt direkt zur betroffenen Turbine",
+  "en.fl.work3": "Serviceaufträge liegen auf Turbinen-Ebene, nicht auf Park-Ebene. Aufträge sind turbinenspezifisch",
+  "en.fl.work4": "Der gesamte Flow dauert <b>höchstens vier Klicks</b> auf allen drei Plattformen",
+  "en.fl.alt.h": "Getestete &amp; ausgeschlossene Alternativen",
+  "en.fl.alt1": "Serviceaufträge nur auf Portfolio-Ebene. Zu weit vom Turbinen-Kontext entfernt",
+  "en.fl.alt2": "Direkter Link von der Benachrichtigung zur Auftragsliste. Übersprang wichtige Leistungsdaten",
+  "en.fl.alt3": "Störmeldung als modales Overlay. Blockierte den Kontext; Betreiber wollten weiternavigieren",
+  "en.fl.alt4": "Benachrichtigungsglocke statt Karte. In Tests durchgängig übersehen",
+  "en.rf.ey": "09 · Reflexionen",
+  "en.rf.h": "Was ich mitnehmen würde",
+  "en.rf.w.h": "Was funktioniert hat",
+  "en.rf.w1": "<b>Insight-rückführbare Entscheidungen</b>: Jede UI-Entscheidung ließ sich auf ein Research-Zitat zurückführen. In Reviews hatte „Warum ist das hier?“ immer eine Antwort, die nicht Geschmackssache war.",
+  "en.rf.w2": "<b>Ein Karten-Muster, jede Ebene</b>: Donut + Sparkline + Status-Punkt einmal gelernt und auf Portfolio-, Park- und Turbinen-Ebene wiederverwendet, hielt das MVP schnell baubar und leicht erlernbar.",
+  "en.rf.w3": "<b>SSO als Content, nicht als Navigation</b>: SIP / ETC / eShop als „My Apps“-Launcher zu behandeln, löste die Intern-vs-Extern-Verwirrung, an die frühere Versionen immer wieder stießen.",
+  "en.rf.c.h": "Was ich ändern würde",
+  "en.rf.c1": "<b>Kartenansicht früher</b>: Der Kartenbedarf des Multi-Park-Betreibers tauchte mitten in der Research auf. Sie von Tag eins in die IA zu bringen, hätte eine Umstrukturierungsrunde gespart.",
+  "en.rf.c2": "<b>Post-MVP-Backlog vorab definieren</b>: BESS Value Modelling und Training Center wurden spät gescoped. Eine klarere Phase-2-Linie hätte den MVP-Schnitt geschärft.",
+  "en.rf.c3": "<b>Den kritischen Pfad instrumentieren</b>: Der Vier-Klick-Flow ist qualitativ validiert; Baseline-Analytics ab dem Launch würden es Phase 2 erlauben, ihn quantitativ zu belegen."
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+</body>
+</html>

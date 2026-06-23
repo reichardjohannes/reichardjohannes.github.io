@@ -1,0 +1,844 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>User Intelligence Platform · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* ── Uses global blue accent ── */
+  :root{
+    --violet-grad:linear-gradient(110deg,#1a3fcc 0%,#1F50FF 55%,#2b5fff 100%);
+  }
+
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:18ch;margin-bottom:var(--s-xl)}
+  .case-hero h1 .kic{color:var(--accent)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:62ch}
+
+  .hero-art{background:#0d0b18;border:1px solid var(--rule);border-radius:var(--radius-lg);aspect-ratio:16/9;overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow-lg)}
+  .hero-art video{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  /* ── Problem / Insight narrative ── */
+  .narr{padding:var(--s-5xl) 0 var(--s-3xl)}
+  .narr-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start}
+  @media(max-width:860px){.narr-grid{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .narr-block .ev{margin-bottom:var(--s-md)}
+  .narr-block h2{font-size:clamp(26px,3vw,38px);font-weight:500;letter-spacing:-.018em;line-height:1.1;margin-bottom:var(--s-lg);max-width:16ch}
+  .narr-block p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:50ch}
+  .narr-block p+p{margin-top:var(--s-md)}
+  .narr-block p b{color:var(--ink);font-weight:500}
+  .narr-questions{margin-top:var(--s-xl);display:flex;flex-direction:column;gap:var(--s-sm)}
+  .narr-q{font-size:16px;line-height:1.4;color:var(--ink);font-weight:500;padding:var(--s-md) var(--s-lg);background:var(--card);border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:var(--radius)}
+  .narr-q span{color:var(--ink-3);font-weight:400}
+
+  /* ── From / To transformation ── */
+  .shift{padding:var(--s-3xl) 0 var(--s-5xl)}
+  .shift-head{text-align:center;margin-bottom:var(--s-2xl)}
+  .shift-head .ev{margin-bottom:var(--s-md)}
+  .shift-head h2{margin:0 auto;max-width:20ch}
+  .shift-rows{max-width:920px;margin:0 auto;border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;background:var(--card)}
+  .shift-row{display:grid;grid-template-columns:1fr auto 1fr;gap:var(--s-xl);align-items:center;padding:var(--s-xl) var(--s-2xl);border-bottom:1px solid var(--rule)}
+  .shift-row:last-child{border-bottom:none}
+  @media(max-width:640px){.shift-row{grid-template-columns:1fr;gap:var(--s-sm);text-align:center}}
+  .shift-from{font-size:16px;color:var(--ink-3);text-align:right;line-height:1.4}
+  @media(max-width:640px){.shift-from{text-align:center}}
+  .shift-arrow{font-family:var(--mono);color:var(--accent);font-size:18px}
+  .shift-to{font-size:17px;color:var(--ink);font-weight:500;line-height:1.4;letter-spacing:-.01em}
+
+  /* ── Chapter head ── */
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-xl);text-align:center}
+  @media(max-width:780px){.chapter-head{padding:var(--s-3xl) 0 var(--s-md)}}
+  .chapter-head .ev{margin-bottom:var(--s-md)}
+  .chapter-head h2{margin:0 auto;max-width:20ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:56ch;margin:var(--s-lg) auto 0}
+
+  /* ── Sticky scroll walkthrough ── */
+  .sticky-wrap{height:600vh;padding-bottom:0}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1.1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+
+  .sticky-left{height:auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:1061/1104;max-height:calc(100vh - 220px);background:#eceaf4;border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease)}
+  .panel.visible{opacity:1}
+  .panel img{width:100%;height:100%;object-fit:contain;display:block}
+
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:16.6%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:900px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;min-height:0}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px);transition-delay:0s}
+  @media(max-width:900px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-md);max-width:22ch}
+  .step p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .step p+p{margin-top:var(--s-md)}
+  .step .ss-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-lg)}
+
+  /* ── Four pillars ── */
+  .pillars{padding:var(--s-4xl) 0}
+  .pillars-banner{background:var(--violet-grad);border-radius:var(--radius-lg);padding:var(--s-2xl) var(--s-3xl);display:flex;align-items:center;justify-content:space-between;gap:var(--s-xl);margin-bottom:var(--s-2xl);color:#fff;flex-wrap:wrap}
+  .pillars-banner h3{font-size:clamp(22px,2.6vw,30px);font-weight:600;letter-spacing:-.015em;margin-bottom:6px}
+  .pillars-banner p{font-size:14px;color:rgba(255,255,255,.78);font-family:var(--mono);letter-spacing:.04em}
+  .pillars-banner .count{flex-shrink:0;text-align:center;border:1px solid rgba(255,255,255,.3);border-radius:var(--radius);padding:var(--s-md) var(--s-xl);background:rgba(255,255,255,.1)}
+  .pillars-banner .count .n{font-size:40px;font-weight:600;line-height:1;letter-spacing:-.02em}
+  .pillars-banner .count .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:4px}
+  .pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-lg)}
+  @media(max-width:900px){.pillar-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.pillar-grid{grid-template-columns:1fr}}
+  .pillar{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-xl);border-top:3px solid var(--accent);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .pillar:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .pillar .pn{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .pillar h4{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:var(--s-sm)}
+  .pillar p{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+
+  /* ── Maturity feature spotlight ── */
+  .spotlight{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .spot-inner{display:grid;grid-template-columns:1fr 1.25fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.spot-inner{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .spot-copy .ev{margin-bottom:var(--s-md)}
+  .spot-copy h2{font-size:clamp(26px,3vw,40px);font-weight:500;letter-spacing:-.018em;line-height:1.08;margin-bottom:var(--s-lg);max-width:16ch}
+  .spot-copy p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .spot-copy p+p{margin-top:var(--s-md)}
+  .spot-dims{margin-top:var(--s-xl);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-md)}
+  @media(max-width:520px){.spot-dims{grid-template-columns:1fr}}
+  .spot-dim{padding:var(--s-md) var(--s-lg);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius)}
+  .spot-dim .dt{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px}
+  .spot-dim .dd{font-size:12.5px;color:var(--ink-3);line-height:1.4}
+  .spot-img{border-radius:var(--radius-lg);overflow:hidden;background:#eceaf4;border:1px solid var(--rule);box-shadow:var(--shadow-lg);line-height:0}
+  .spot-img img{width:100%;display:block}
+
+  /* ── Feature grid ── */
+  .features{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:900px){.feat-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.feat-grid{grid-template-columns:1fr}}
+  .feat{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-xl);position:relative;overflow:hidden;border-left:3px solid var(--accent);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .feat:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .feat .fk{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .feat h4{font-size:17px;font-weight:600;letter-spacing:-.008em;margin-bottom:var(--s-sm);line-height:1.2}
+  .feat p{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+
+  /* ── Showcase imagery ── */
+  .showcase{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:780px){.showcase-grid{grid-template-columns:1fr}}
+  .sc-cell{border-radius:var(--radius-lg);overflow:hidden;background:#eceaf4;border:1px solid var(--rule);line-height:0}
+  .sc-cell img{width:100%;display:block;object-fit:cover;object-position:center top}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* ── Walkthrough video ── */
+  .walkthrough{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .wt-main{margin-top:var(--s-3xl);border-radius:var(--radius-lg);overflow:hidden;background:#0d0b18;border:1px solid var(--rule);line-height:0;box-shadow:var(--shadow-lg)}
+  .wt-main video{width:100%;display:block;max-height:660px;object-fit:contain;background:#0d0b18}
+  .wt-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  /* ── Design philosophy ── */
+  .philo{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .philo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:900px){.philo-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.philo-grid{grid-template-columns:1fr}}
+  .philo-card{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-xl)}
+  .philo-card .pk{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:var(--s-md)}
+  .philo-card h4{font-size:18px;font-weight:600;letter-spacing:-.01em;line-height:1.2;margin-bottom:var(--s-sm)}
+  .philo-card p{font-size:13.5px;line-height:1.6;color:var(--ink-2)}
+
+  /* ── Outcome / opportunity ── */
+  .outcome{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .quote-block{background:var(--accent-tint);border:1px solid var(--accent-soft);border-radius:var(--radius-lg);padding:var(--s-3xl);text-align:center;max-width:880px;margin:0 auto}
+  .quote-mark{font-size:48px;line-height:1;color:var(--accent);margin-bottom:var(--s-md)}
+  .quote-text{font-size:clamp(22px,2.8vw,34px);line-height:1.25;letter-spacing:-.015em;font-weight:500;color:var(--ink);max-width:24ch;margin:0 auto var(--s-lg);text-wrap:balance}
+  .quote-cite{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+
+  .opp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:900px){.opp-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.opp-grid{grid-template-columns:1fr}}
+  .opp{padding:var(--s-xl);border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--card)}
+  .opp .ot{font-size:15px;font-weight:600;color:var(--ink);margin-bottom:6px;letter-spacing:-.008em}
+  .opp p{font-size:13px;line-height:1.55;color:var(--ink-2)}
+
+  /* ── Next case ── */
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+
+  /* ── Mobile: concept images above each step ── */
+  @media(max-width:900px){
+    .step .mob-panel-img{
+      background:#eceaf4;
+      box-shadow:var(--shadow);
+    }
+    .step .mob-panel-img img{
+      object-fit:contain;
+      max-height:360px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link active" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="work.html" data-i18n="nav.work">Work</a>
+        <span class="sep">/</span>
+        <span data-i18n="up.crumb1">Internal Innovation</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)" data-i18n="up.crumb2">User Intelligence Platform</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s" data-i18n="up.eyebrow">Case Study · Product Strategy &amp; UX Concept</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="up.h1.l1">From static personas to</span></span>
+        <span class="line"><span class="line-inner"><span class="kic" data-i18n="up.h1.l2">living AI research</span></span></span>
+        <span class="line"><span class="line-inner"><span class="kic" data-i18n="up.h1.l3a">companions.</span> <span data-i18n="up.h1.l3b">A concept.</span></span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.35s" data-i18n="up.lede">Personas are powerful but most die in a shared drive. The User Intelligence Platform replaces frozen PDF documents with interactive, data-driven personas teams can actually talk to: ask questions, test concepts, and watch them grow more precise with every interview and analytics import.</p>
+
+      <div class="hero-art reveal" style="transition-delay:.45s">
+        <video src="uploads/Persona_application.mp4" autoplay muted loop playsinline></video>
+      </div>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l" data-i18n="up.m.proj">Project</div><div class="v">User Intelligence Platform</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="up.m.type">Type</div><div class="v" data-i18n="up.m.typev">Product Strategy &amp; UX</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.role">Role</div><div class="v" data-i18n="up.m.rolev">UX Strategy · Concept</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="up.m.ctx">Context</div><div class="v" data-i18n="up.m.ctxv">Internal Innovation</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="up.m.domain">Domain</div><div class="v">AI · Research · SaaS</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="up.m.deliv">Deliverable</div><div class="v" data-i18n="up.m.delivv">Platform Concept</div></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROBLEM / INSIGHT -->
+  <section class="narr" data-screen-label="02 Problem & Insight">
+    <div class="container">
+      <div class="narr-grid">
+
+        <div class="narr-block">
+          <span class="eyebrow ev" data-i18n="up.prob.ey">The Problem</span>
+          <h2 data-i18n="up.prob.h">Personas are powerful. But they're broken.</h2>
+          <p data-i18n="up.prob.p1">Every UX team knows the ritual: weeks of workshops, a beautifully designed PDF, a launch presentation, and then nothing. The document lands in a shared drive, gets referenced once or twice, then the market shifts and the persona quietly becomes fiction.</p>
+          <p data-i18n="up.prob.p2">The core issue is <b>structural, not motivational</b>. Traditional personas are static by nature. They capture a moment in time. They cannot respond to new data, cannot be questioned, do not learn, and are disconnected from the day-to-day decisions teams actually make.</p>
+          <div class="narr-questions">
+            <div class="narr-q"><span>“</span>Would this user click on this call-to-action?<span>”</span></div>
+            <div class="narr-q"><span>“</span>How would she react to this onboarding flow?<span>”</span></div>
+            <div class="narr-q"><span>“</span>Does this feature solve a real problem, or an assumed one?<span>”</span></div>
+          </div>
+        </div>
+
+        <div class="narr-block">
+          <span class="eyebrow ev" data-i18n="up.ins.ey">The Insight</span>
+          <h2 data-i18n="up.ins.h">The gap isn't in the data. It's in the dialogue.</h2>
+          <p data-i18n="up.ins.p1">Most organisations already have fragments of user knowledge scattered across their systems: analytics dashboards, customer interviews, support tickets, usability recordings, surveys. The problem isn't a lack of data. It's a lack of <b>synthesis, accessibility, and interactivity</b>.</p>
+          <p data-i18n="up.ins.p2">So what if a persona could speak? Instead of reading a document <em>about</em> your user, you could have a conversation <em>with</em> them. Ask directly, test hypotheses in real time, watch how they respond to a new concept, a revised copy line, a restructured journey.</p>
+          <p data-i18n="up.ins.p3">That single shift, from documentation to dialogue, is the foundational insight behind the platform.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FROM / TO -->
+  <section class="shift" data-screen-label="03 The Shift">
+    <div class="container">
+      <div class="shift-head">
+        <span class="eyebrow ev" data-i18n="up.sh.ey">The Concept</span>
+        <h2 class="h2" data-i18n="up.sh.h">Three shifts the platform enables.</h2>
+      </div>
+      <div class="shift-rows">
+        <div class="shift-row">
+          <div class="shift-from" data-i18n="up.sf1.from">Static PDF document</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to" data-i18n="up.sf1.to">Living, conversational AI persona</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-from" data-i18n="up.sf2.from">Assumed user behaviour</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to" data-i18n="up.sf2.to">Simulated responses based on real data</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-from" data-i18n="up.sf3.from">One-time research artefact</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to" data-i18n="up.sf3.to">Continuously evolving intelligence layer</div>
+        </div>
+        <div class="shift-row">
+          <div class="shift-from">“Do we need UX?”</div>
+          <div class="shift-arrow">→</div>
+          <div class="shift-to">“How do we get our personas to 100%?”</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALKTHROUGH — STICKY SCROLL -->
+  <section data-screen-label="04 Concept Walkthrough">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="eyebrow ev" data-i18n="up.ch.ey">/04 · Concept Material</span>
+        <h2 class="h2" data-i18n="up.ch.h">Walk through the platform concept.</h2>
+        <p data-i18n="up.ch.p">Six concept screens translate the strategy into a tangible product, from the intelligence engine to the live persona chat. Scroll to step through each.</p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY VISUAL STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+            <div class="panel visible" data-panel="1"><img src="uploads/Persona_Application_ChatSystem.png" alt="System Architecture · AI Intelligence Engine &amp; four input pillars"></div>
+            <div class="panel" data-panel="2"><img src="uploads/Persona_Application_MaturatyIndex.png" alt="Maturity Index · completeness scoring &amp; growth path"></div>
+            <div class="panel" data-panel="3"><img src="uploads/Persona_Application_Data Flow.png" alt="Data Flow · how research enriches persona intelligence"></div>
+            <div class="panel" data-panel="4"><img src="uploads/Persona_Application_JuserJourney.png" alt="Platform User Journey · from zero to full user intelligence"></div>
+            <div class="panel" data-panel="5"><img src="uploads/Persona_Application_Architecture.png" alt="Feature Architecture · full feature map"></div>
+            <div class="panel" data-panel="6"><img src="uploads/Persona_Application_Chat.png" alt="Persona Chat Interface · conversational research companion"></div>
+          </div>
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label" data-i18n="up.s1.label">System Architecture</span>
+            <span class="pc-prog" id="pc-prog">01 / 06</span>
+          </div>
+          <div class="progress-track"><div class="progress-bar" id="prog"></div></div>
+        </div>
+
+        <!-- RIGHT — SCROLLING STEPS -->
+        <div class="sticky-right">
+
+          <div class="step active" data-label="System Architecture" data-i18n-attr="data-label:up.s1.label">
+            <span class="ss-num" data-i18n="up.s1.num">/01 · Architecture</span>
+            <h3 data-i18n="up.s1.h">An AI engine fed by four data pillars.</h3>
+            <p data-i18n="up.s1.p1">At the core sits an intelligence engine that synthesises four input layers: <b>Persona DNA</b> (the interpretive profile), <b>Real Voices</b> (qualitative depth), <b>Behavioural Scale</b> (quantitative validation), and the <b>Business Lens</b> (organisational context).</p>
+            <p data-i18n="up.s1.p2">The same user data means different things in different contexts, so the engine weights signals adaptively, flags contradictions, and improves with every new input rather than overstating certainty when data is thin.</p>
+            <div class="ss-tags">
+              <span class="tag">Persona DNA</span><span class="tag">Real Voices</span>
+              <span class="tag">Behavioural Scale</span><span class="tag tag-accent">Business Lens</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Maturity Index" data-i18n-attr="data-label:up.s2.label">
+            <span class="ss-num" data-i18n="up.s2.num">/02 · Trust Model</span>
+            <h3 data-i18n="up.s2.h">A 0–100% score that makes research quality visible.</h3>
+            <p>How do you tell a CMO their personas are built on assumptions, without making them defensive? You make the gap concrete. The Maturity Index scores each persona across <b>data depth, recency, confidence, and behavioural reach</b>.</p>
+            <p>Seeing a persona at 42% triggers a fundamentally different response than “we could do more research.” It turns an abstract methodology argument into a practical question: <b>what gets us from 42% to 80%?</b></p>
+            <div class="ss-tags">
+              <span class="tag">4-dimension model</span><span class="tag">Recency decay</span>
+              <span class="tag tag-accent">Gap-driven</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Data Flow" data-i18n-attr="data-label:up.s3.label">
+            <span class="ss-num" data-i18n="up.s3.num">/03 · Data Flow</span>
+            <h3 data-i18n="up.s3.h">Every research source raises the confidence.</h3>
+            <p>A first-draft persona from brand signals alone is assumption-based (20–30%). Add interview transcripts and responses become voice-anchored (45–60%). Layer in analytics and it's behaviourally validated (65–80%). Usability tests push it to simulation-ready (85–100%).</p>
+            <p>Qualitative depth tells you <em>why</em>; quantitative breadth tells you <em>how many</em> and <em>how often</em>. The flow makes that progression measurable and honest.</p>
+            <div class="ss-tags">
+              <span class="tag">Brand extraction</span><span class="tag">Qualitative analysis</span>
+              <span class="tag tag-accent">Behavioural validation</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Platform User Journey" data-i18n-attr="data-label:up.s4.label">
+            <span class="ss-num" data-i18n="up.s4.num">/04 · Journey</span>
+            <h3 data-i18n="up.s4.h">Value on day one. Compounding from there.</h3>
+            <p>Enter a website URL and industry, and the platform generates 5–8 personas in under five minutes. Converse immediately, value before any research is added. Then enrichment, automated artefacts, and a continuously living research asset.</p>
+            <p>The platform <b>rewards investment incrementally</b> rather than demanding a large upfront commitment before returning anything useful.</p>
+            <div class="ss-tags">
+              <span class="tag">5 min to first persona</span><span class="tag">Progressive value</span>
+              <span class="tag tag-accent">No upfront research</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Feature Architecture" data-i18n-attr="data-label:up.s5.label">
+            <span class="ss-num" data-i18n="up.s5.num">/05 · Feature Map</span>
+            <h3 data-i18n="up.s5.h">The full capability surface.</h3>
+            <p>Auto-persona generation, conversational chat, the Maturity Index, an interview analysis engine, automated UX artefacts, content &amp; concept testing, analytics integration and multi-user workspaces, organised across core, intelligence, output and platform layers.</p>
+            <p>Each capability is grounded in the same principle: <b>responses come from real data, not a language model's generic assumptions.</b></p>
+            <div class="ss-tags">
+              <span class="tag">Auto-generation</span><span class="tag">UX artefacts</span>
+              <span class="tag">Analytics</span><span class="tag tag-accent">Workspaces</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="Persona Chat Interface" data-i18n-attr="data-label:up.s6.label">
+            <span class="ss-num" data-i18n="up.s6.num">/06 · Persona Chat</span>
+            <h3 data-i18n="up.s6.h">Talk to your user, with evidence behind every word.</h3>
+            <p>Ask the persona a direct question and get a contextually grounded answer. Every message carries a confidence indicator: <b>high, medium or low</b>, and cites whether it's validated across interviews or still assumption-based.</p>
+            <p>It's a research model, not a chatbot: it refuses confident responses when data is insufficient, and flags exactly which interview question would close the gap most efficiently.</p>
+            <div class="ss-tags">
+              <span class="tag">Confidence-flagged</span><span class="tag">Context-aware</span>
+              <span class="tag tag-accent">Grounded responses</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KEY FEATURES -->
+  <section class="features" data-screen-label="07 Features">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:0">
+        <div>
+          <span class="eyebrow ev" data-i18n="up.ft.ey">/07 · Key Features</span>
+          <h2 class="h3" data-i18n="up.ft.h">What the platform enables.</h2>
+        </div>
+        <div class="aside"><b>Core · Intelligence · Output · Platform</b><br>Eight capabilities</div>
+      </div>
+
+      <div class="feat-grid">
+        <div class="feat">
+          <div class="fk" data-i18n="up.f1.k">Core · Interaction</div>
+          <h4 data-i18n="up.f1.h">Conversational Persona Chat</h4>
+          <p>Ask behavioural questions, test concepts, simulate reactions. Responses grounded in real data — “Would you buy this at this price?” “Where would you drop off?”</p>
+        </div>
+        <div class="feat">
+          <div class="fk" data-i18n="up.f2.k">Output · Artefacts</div>
+          <h4 data-i18n="up.f2.h">Automated UX Artefacts</h4>
+          <p>Journey Maps, Empathy Maps and Jobs-to-be-Done frameworks generated directly from persona data. Days of workshop facilitation become a starting point in minutes.</p>
+        </div>
+        <div class="feat">
+          <div class="fk" data-i18n="up.f3.k">Intelligence · Quality</div>
+          <h4 data-i18n="up.f3.h">Confidence Scoring per Attribute</h4>
+          <p>Every attribute carries a confidence indicator. Profile-only traits flag as low-confidence assumptions; multi-source traits as high-confidence insights. Radical transparency.</p>
+        </div>
+        <div class="feat">
+          <div class="fk" data-i18n="up.f4.k">Intelligence · Research</div>
+          <h4 data-i18n="up.f4.h">Interview Gap Detection</h4>
+          <p>Based on the current profile and data, the platform suggests which interview questions would most efficiently close the remaining gaps, turning the index into a planning tool.</p>
+        </div>
+        <div class="feat">
+          <div class="fk" data-i18n="up.f5.k">Output · Validation</div>
+          <h4 data-i18n="up.f5.h">Website &amp; Content Simulation</h4>
+          <p>Test marketing copy, landing pages and onboarding flows against a persona. The AI evaluates alignment with known motivations, concerns and communication preferences.</p>
+        </div>
+        <div class="feat">
+          <div class="fk" data-i18n="up.f6.k">Platform · Collaboration</div>
+          <h4 data-i18n="up.f6.h">Multi-User Workspaces</h4>
+          <p>Personas as shared organisational assets, accessible across product, marketing, sales and development, with role-based permissions for editing and research contribution.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN PHILOSOPHY -->
+  <section class="philo" data-screen-label="10 Philosophy">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:0">
+        <div>
+          <span class="eyebrow ev" data-i18n="up.ph.ey">/10 · Design Philosophy</span>
+          <h2 class="h3" data-i18n="up.ph.h">Principles that shaped every decision.</h2>
+        </div>
+      </div>
+      <div class="philo-grid">
+        <div class="philo-card">
+          <div class="pk" data-i18n="up.ph1.k">Honesty</div><h4 data-i18n="up.ph1.h">Transparency over confidence</h4>
+          <p>Every persona is only as good as its data. Rather than presenting AI output as ground truth, the platform surfaces uncertainty explicitly. The maturity index and confidence scores are core, not add-ons.</p>
+        </div>
+        <div class="philo-card">
+          <div class="pk" data-i18n="up.ph2.k">Interaction</div><h4 data-i18n="up.ph2.h">Dialogue over documentation</h4>
+          <p>This isn't a persona-builder with a “generate PDF” button at the end. Every feature is built around the idea that the most valuable thing you can do with a persona is ask it questions.</p>
+        </div>
+        <div class="philo-card">
+          <div class="pk" data-i18n="up.ph3.k">Value</div><h4 data-i18n="up.ph3.h">Progressive value delivery</h4>
+          <p>Genuine value on day one. A basic profile, no research needed, that compounds with every interview, integration and test. Reward investment incrementally, don't demand it upfront.</p>
+        </div>
+        <div class="philo-card">
+          <div class="pk" data-i18n="up.ph4.k">Growth</div><h4 data-i18n="up.ph4.h">Research as a growth mechanic</h4>
+          <p>The value of research is made visible not through abstract argument but through measurable improvement. Every interview moves the index. the most honest demonstration of why research matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME / OPPORTUNITY -->
+  <section class="outcome" data-screen-label="11 Opportunity">
+    <div class="container">
+      <div class="quote-block">
+        <div class="quote-mark">“</div>
+        <div class="quote-text" data-i18n="up.quote">Most personas die in shared drives. This one keeps learning.</div>
+        <div class="quote-cite" data-i18n="up.cite">— Concept Narrative · User Intelligence Platform</div>
+      </div>
+
+      <div class="section-head" style="margin:var(--s-5xl) 0 0">
+        <div>
+          <span class="eyebrow ev" data-i18n="up.opp.ey">The Broader Opportunity</span>
+          <h2 class="h3" data-i18n="up.opp.h">User intelligence as a shared resource.</h2>
+        </div>
+        <div class="aside" style="max-width:30ch" data-i18n="up.opp.aside"><b>Research becomes continuous.</b><br>Personas become organisational assets, not project deliverables.</div>
+      </div>
+
+      <div class="opp-grid">
+        <div class="opp"><div class="ot" data-i18n="up.opp1.t">Product</div><p data-i18n="up.opp1.p">Sanity-check feature decisions against real user data before a line of code is written.</p></div>
+        <div class="opp"><div class="ot" data-i18n="up.opp2.t">Marketing</div><p data-i18n="up.opp2.p">Test messaging alignment with persona motivations before a campaign launches.</p></div>
+        <div class="opp"><div class="ot" data-i18n="up.opp3.t">Sales</div><p data-i18n="up.opp3.p">Understand which persona types are underserved by the current product.</p></div>
+        <div class="opp"><div class="ot" data-i18n="up.opp4.t">Customer Success</div><p data-i18n="up.opp4.p">Identify friction patterns before they become churn signals.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT CASE -->
+  <section class="next-case" data-screen-label="12 Next Case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)" data-i18n="cs.more">More projects</p>
+      <div class="next-links">
+        <a href="case-wagner.html">
+          <div>
+            <div class="lbl" data-i18n="cs.casestudy">Case Study</div>
+            <div class="nm">Wagner · eShop &amp; Titan Tools</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-index.html">
+          <div>
+            <div class="lbl" data-i18n="cs.casestudy">Case Study</div>
+            <div class="nm">INDEX-TRAUB · iXworld Portal</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)" data-i18n="cs.backtop">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot.pages">Pages</h5>
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot.contact">Contact</h5>
+        <ul>
+          <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    const navClose = document.getElementById('navClose');
+    if(navClose){
+      navClose.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    }
+  }
+
+  const steps      = document.querySelectorAll('.step');
+  const panels     = document.querySelectorAll('.panel');
+  const prog       = document.getElementById('prog');
+  const pcNum      = document.getElementById('pc-num');
+  const pcLabel    = document.getElementById('pc-label');
+  const pcProg     = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total      = steps.length;
+  let lastIdx = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector(`.panel[data-panel="${idx + 1}"]`);
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)    prog.style.width = pct + '%';
+    if(pcNum)   pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.textContent = steps[idx]?.dataset.label || '';
+    if(pcProg)  pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / 0' + total;
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 900){ activateIdx(0); return; }
+      const rect  = stickyWrap.getBoundingClientRect();
+      const sH    = stickyWrap.offsetHeight;
+      const vH    = window.innerHeight;
+      const range = sH - vH;
+      if(range <= 0) return;
+      const scrolled = Math.max(0, Math.min(range, -rect.top));
+      const progress = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "User Intelligence Platform · Case Study",
+  "up.crumb1": "Interne Innovation",
+  "up.crumb2": "User Intelligence Platform",
+  "up.eyebrow": "Case Study · Produktstrategie &amp; UX-Konzept",
+  "up.h1.l1": "Von statischen Personas zu",
+  "up.h1.l2": "lebendigen KI-Research-",
+  "up.h1.l3a": "Begleitern.",
+  "up.h1.l3b": "Ein Konzept.",
+  "up.lede": "Personas sind mächtig, aber die meisten sterben in einem geteilten Laufwerk. Die User Intelligence Platform ersetzt eingefrorene PDF-Dokumente durch interaktive, datengetriebene Personas, mit denen Teams wirklich sprechen können: Fragen stellen, Konzepte testen und zusehen, wie sie mit jedem Interview und jedem Analytics-Import präziser werden.",
+  "up.m.proj": "Projekt",
+  "up.m.type": "Typ", "up.m.typev": "Produktstrategie &amp; UX",
+  "up.m.rolev": "UX-Strategie · Konzept",
+  "up.m.ctx": "Kontext", "up.m.ctxv": "Interne Innovation",
+  "up.m.domain": "Domäne",
+  "up.m.deliv": "Deliverable", "up.m.delivv": "Plattform-Konzept",
+  "up.prob.ey": "Das Problem",
+  "up.prob.h": "Personas sind mächtig. Aber sie sind kaputt.",
+  "up.prob.p1": "Jedes UX-Team kennt das Ritual: wochenlange Workshops, ein wunderschön gestaltetes PDF, eine Launch-Präsentation, und dann: nichts. Das Dokument landet in einem geteilten Laufwerk, wird ein- oder zweimal referenziert, dann verschiebt sich der Markt, und die Persona wird still zur Fiktion.",
+  "up.prob.p2": "Das Kernproblem ist <b>strukturell, nicht motivatorisch</b>. Traditionelle Personas sind von Natur aus statisch. Sie halten einen Moment in der Zeit fest. Sie können auf neue Daten nicht reagieren, können nicht hinterfragt werden, lernen nicht und sind losgelöst von den alltäglichen Entscheidungen, die Teams tatsächlich treffen.",
+  "up.q.open": "\u201e",
+  "up.q.close": "\u201c",
+  "up.q1": "Würde dieser Nutzer auf diesen Call-to-Action klicken?",
+  "up.q2": "Wie würde sie auf diesen Onboarding-Flow reagieren?",
+  "up.q3": "Löst dieses Feature ein echtes Problem, oder ein angenommenes?",
+  "up.ins.ey": "Die Erkenntnis",
+  "up.ins.h": "Die Lücke liegt nicht in den Daten. Sie liegt im Dialog.",
+  "up.ins.p1": "Die meisten Organisationen haben bereits Fragmente von Nutzerwissen, verstreut über ihre Systeme: Analytics-Dashboards, Kundeninterviews, Support-Tickets, Usability-Aufzeichnungen, Umfragen. Das Problem ist kein Mangel an Daten. Es ist ein Mangel an <b>Synthese, Zugänglichkeit und Interaktivität</b>.",
+  "up.ins.p2": "Was wäre, wenn eine Persona sprechen könnte? Statt ein Dokument <em>über</em> deinen Nutzer zu lesen, könntest du ein Gespräch <em>mit</em> ihm führen. Direkt fragen, Hypothesen in Echtzeit testen, beobachten, wie er auf ein neues Konzept, eine überarbeitete Textzeile oder eine umstrukturierte Journey reagiert.",
+  "up.ins.p3": "Genau diese Verschiebung – von Dokumentation zu Dialog – ist die grundlegende Erkenntnis hinter der Plattform.",
+  "up.sh.ey": "Das Konzept",
+  "up.sh.h": "Drei Verschiebungen, die die Plattform ermöglicht.",
+  "up.sf1.from": "Statisches PDF-Dokument", "up.sf1.to": "Lebendige, konversationelle KI-Persona",
+  "up.sf2.from": "Angenommenes Nutzerverhalten", "up.sf2.to": "Simulierte Antworten auf Basis echter Daten",
+  "up.sf3.from": "Einmaliges Research-Artefakt", "up.sf3.to": "Kontinuierlich wachsende Intelligence-Schicht",
+  "up.sf4.from": "\u201eBrauchen wir überhaupt UX?\u201c", "up.sf4.to": "\u201eWie bringen wir unsere Personas auf 100%?\u201c",
+  "up.ch.ey": "/04 · Konzeptmaterial",
+  "up.ch.h": "Das Plattform-Konzept Schritt für Schritt.",
+  "up.ch.p": "Sechs Konzept-Screens übersetzen die Strategie in ein greifbares Produkt – von der Intelligence-Engine bis zum Live-Persona-Chat. Scroll dich durch jeden Schritt.",
+  "up.s1.label": "Systemarchitektur",
+  "up.s1.num": "/01 · Architektur",
+  "up.s1.h": "Eine KI-Engine, gespeist von vier Datensäulen.",
+  "up.s1.p1": "Im Kern sitzt eine Intelligence-Engine, die vier Input-Schichten synthetisiert: <b>Persona DNA</b> (das interpretative Profil), <b>Real Voices</b> (qualitative Tiefe), <b>Behavioural Scale</b> (quantitative Validierung) und die <b>Business Lens</b> (organisationaler Kontext).",
+  "up.s1.p2": "Dieselben Nutzerdaten bedeuten in verschiedenen Kontexten Verschiedenes, also gewichtet die Engine Signale adaptiv, kennzeichnet Widersprüche und verbessert sich mit jedem neuen Input – statt bei dünner Datenbasis Sicherheit zu übertreiben.",
+  "up.s2.label": "Maturity Index",
+  "up.s2.num": "/02 · Trust Model",
+  "up.s2.h": "Ein 0–100%-Score, der Research-Qualität sichtbar macht.",
+  "up.s3.label": "Datenfluss",
+  "up.s3.num": "/03 · Datenfluss",
+  "up.s3.h": "Jede Research-Quelle erhöht das Vertrauen.",
+  "up.s4.label": "Plattform User Journey",
+  "up.s4.num": "/04 · Journey",
+  "up.s4.h": "Wert ab Tag eins. Wächst von da an.",
+  "up.s5.label": "Feature-Architektur",
+  "up.s5.num": "/05 · Feature Map",
+  "up.s5.h": "Die vollständige Capability-Oberfläche.",
+  "up.s6.label": "Persona-Chat-Interface",
+  "up.s6.num": "/06 · Persona Chat",
+  "up.s6.h": "Mit deinem Nutzer sprechen – mit Evidenz hinter jedem Wort.",
+  "up.ft.ey": "/07 · Kernfunktionen",
+  "up.ft.h": "Was die Plattform ermöglicht.",
+  "up.f1.k": "Core · Interaktion", "up.f1.h": "Konversationeller Persona-Chat",
+  "up.f2.k": "Output · Artefakte", "up.f2.h": "Automatisierte UX-Artefakte",
+  "up.f3.k": "Intelligence · Qualität", "up.f3.h": "Confidence-Scoring pro Attribut",
+  "up.f4.k": "Intelligence · Research", "up.f4.h": "Interview-Gap-Erkennung",
+  "up.f5.k": "Output · Validierung", "up.f5.h": "Website &amp; Content Simulation",
+  "up.f6.k": "Platform · Collaboration", "up.f6.h": "Multi-User-Workspaces",
+  "up.ph.ey": "/10 · Design-Philosophie",
+  "up.ph.h": "Prinzipien, die jede Entscheidung geprägt haben.",
+  "up.ph1.k": "Ehrlichkeit", "up.ph1.h": "Transparenz vor Vertrauen",
+  "up.ph2.k": "Interaktion", "up.ph2.h": "Dialog vor Dokumentation",
+  "up.ph3.k": "Wert", "up.ph3.h": "Progressiver Mehrwert",
+  "up.ph4.k": "Wachstum", "up.ph4.h": "Research als Wachstumsmechanik",
+  "up.quote": "Die meisten Personas sterben in geteilten Laufwerken. Diese lernt weiter.",
+  "up.cite": "— Konzept-Narrativ · User Intelligence Platform",
+  "up.opp.ey": "Die größere Chance",
+  "up.opp.h": "User Intelligence als gemeinsame Ressource.",
+  "up.opp.aside": "<b>Research wird kontinuierlich.</b><br>Personas werden zu Organisations-Assets, nicht zu Projekt-Deliverables.",
+  "up.opp1.t": "Produkt", "up.opp1.p": "Feature-Entscheidungen gegen echte Nutzerdaten prüfen, bevor eine Zeile Code geschrieben wird.",
+  "up.opp2.t": "Marketing", "up.opp2.p": "Messaging-Ausrichtung mit Persona-Motivationen testen, bevor eine Kampagne startet.",
+  "up.opp3.t": "Vertrieb", "up.opp3.p": "Verstehen, welche Persona-Typen vom aktuellen Produkt unterversorgt werden.",
+  "up.opp4.t": "Customer Success", "up.opp4.p": "Reibungsmuster erkennen, bevor sie zu Churn-Signalen werden."
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+
+</body>
+</html>

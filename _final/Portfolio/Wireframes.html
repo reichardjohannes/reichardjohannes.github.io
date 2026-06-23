@@ -1,0 +1,2165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Portfolio · Wireframes</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{
+    --bg:#f5f4f2;
+    --paper:#fff;
+    --ink:#1a1a1a;
+    --ink-2:#555;
+    --ink-3:#888;
+    --ink-4:#bbb;
+    --rule:#e0ddd8;
+    --rule-2:#ececea;
+    --box:#e8e7e4;
+    --box-2:#d4d3d0;
+    --box-dark:#aaa;
+    --accent:#1a1a1a;
+    --ok:#3fa663;
+    --warn:#c08a3b;
+    --tag-bg:#efeeea;
+    --mono:ui-monospace,"SF Mono","Menlo","Consolas",monospace;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.45;-webkit-font-smoothing:antialiased}
+  body{min-height:100vh}
+
+  /* ====================== APP SHELL ====================== */
+  .app{display:flex;flex-direction:column;min-height:100vh}
+
+  .topbar{
+    position:sticky;top:0;z-index:50;
+    background:var(--bg);
+    border-bottom:1px solid var(--rule);
+    padding:14px 24px 0;
+  }
+  .topbar-row{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-bottom:10px}
+  .brand{display:flex;align-items:baseline;gap:14px}
+  .brand-name{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+  .brand-dim{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink-3)}
+  .topbar-meta{display:flex;gap:18px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+  .topbar-meta b{color:var(--ink);font-weight:600}
+
+  .tabs{display:flex;gap:0;border-top:1px solid var(--rule);overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    appearance:none;background:none;border:none;border-right:1px solid var(--rule);
+    padding:11px 18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-3);cursor:pointer;white-space:nowrap;
+    border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .15s,background .15s
+  }
+  .tab:hover{color:var(--ink)}
+  .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink);background:var(--paper)}
+  .tab .num{color:var(--ink-4);margin-right:8px}
+  .tab[aria-selected="true"] .num{color:var(--ink-3)}
+  .tab-group-label{padding:11px 14px 11px 24px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;color:var(--ink-4);text-transform:uppercase;align-self:center;border-right:1px solid var(--rule)}
+
+  /* ====================== PAGES ====================== */
+  .page{display:none;padding:28px 24px 80px;animation:fadein .25s ease}
+  .page[data-active]{display:block}
+  @keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  .page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:18px;border-bottom:1px solid var(--rule);padding-bottom:14px}
+  .page-head h1{font-size:22px;font-weight:600;letter-spacing:-.01em}
+  .page-head .sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--ink-3);text-transform:uppercase;margin-top:4px}
+  .pill-row{display:flex;gap:6px;flex-wrap:wrap}
+  .pill{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);background:var(--tag-bg);padding:4px 8px;border-radius:2px}
+  .pill.dark{background:var(--ink);color:#fff}
+  .pill.outline{background:transparent;border:1px solid var(--rule);color:var(--ink-2)}
+
+  /* ====================== GRID LAYOUT FOR PAGES ====================== */
+  .layout-3{display:grid;grid-template-columns:340px 1fr 240px;gap:28px;align-items:flex-start}
+  .layout-2{display:grid;grid-template-columns:1fr 280px;gap:28px;align-items:flex-start}
+  @media (max-width:1100px){
+    .layout-3{grid-template-columns:1fr;}
+    .layout-2{grid-template-columns:1fr;}
+  }
+
+  .col-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--ink-4);text-transform:uppercase;margin-bottom:10px}
+
+  /* ====================== WIREFRAME PRIMITIVES ====================== */
+  .wf{background:var(--paper);border:1.5px solid #ccc;border-radius:3px;padding:0;overflow:hidden}
+  .wf + .wf{margin-top:6px}
+  .wf-h{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-bottom:1px solid var(--rule-2);background:#fafaf8}
+  .wf-name{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink);font-weight:600;text-transform:uppercase}
+  .wf-tag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;background:#eee;color:var(--ink-3);padding:2px 6px;border-radius:2px;text-transform:uppercase}
+  .wf-tag.must{background:var(--ink);color:#fff}
+  .wf-tag.high{background:#666;color:#fff}
+  .wf-tag.med{background:#ccc;color:#444}
+  .wf-tag.opt{background:transparent;border:1px solid var(--rule);color:var(--ink-3)}
+  .wf-body{padding:10px 12px}
+
+  /* boxes / placeholders */
+  .b{background:var(--box);border-radius:2px;display:block}
+  .b.dark{background:var(--box-dark)}
+  .b.light{background:#f0efec}
+  .b.h6{height:6px}.b.h8{height:8px}.b.h10{height:10px}.b.h12{height:12px}.b.h14{height:14px}.b.h18{height:18px}.b.h22{height:22px}.b.h28{height:28px}.b.h40{height:40px}.b.h60{height:60px}
+  .b.w10{width:10%}.b.w20{width:20%}.b.w30{width:30%}.b.w40{width:40%}.b.w50{width:50%}.b.w60{width:60%}.b.w65{width:65%}.b.w70{width:70%}.b.w80{width:80%}.b.w90{width:90%}.b.w100{width:100%}
+
+  .row{display:flex;gap:6px;align-items:center}
+  .row + .row{margin-top:4px}
+  .rule{height:1px;background:var(--rule-2);margin:8px 0}
+  .pill-mini{height:8px;width:42px;background:#ddd;border-radius:8px;flex-shrink:0}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);flex-shrink:0}
+  .num{font-family:var(--mono);font-size:9px;color:var(--ink-4);width:18px;flex-shrink:0;letter-spacing:.06em}
+  .arr{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--ink-4)}
+  .btn{font-family:var(--mono);font-size:9px;letter-spacing:.06em;text-transform:uppercase;background:var(--ink);color:#fff;padding:5px 10px;border-radius:2px}
+  .btn.o{background:#fff;color:var(--ink);border:1px solid #bbb}
+  .img-box{background:var(--box-2);border-radius:2px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8.5px;color:#7a7a78;letter-spacing:.04em;text-transform:uppercase;text-align:center;line-height:1.2;padding:4px}
+
+  /* nav bar inside frame */
+  .frame-nav{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;background:#ececea}
+  .nav-link{height:6px;width:32px;background:#bdbcb9;border-radius:1px}
+
+  /* annotations */
+  .notes{display:flex;flex-direction:column;gap:14px}
+  .note{}
+  .note-h{font-family:var(--mono);font-size:10px;letter-spacing:.08em;color:var(--ink);font-weight:600;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .note-h::before{content:"";width:8px;height:8px;border-radius:50%;background:#ccc}
+  .note-h.must::before{background:var(--ink)}
+  .note-h.high::before{background:#666}
+  .note-h.tip::before{background:var(--warn)}
+  .note-line{font-size:12px;color:var(--ink-2);line-height:1.55;padding-left:16px;position:relative}
+  .note-line + .note-line{margin-top:2px}
+  .note-line::before{content:"·";position:absolute;left:6px;color:var(--ink-4)}
+  .note-line.warn{color:var(--warn)}
+  .note-line.warn::before{content:"⚑";color:var(--warn)}
+
+  /* rationale column */
+  .ration{display:flex;flex-direction:column;gap:14px;font-size:12px;color:var(--ink-2)}
+  .ration-card{background:#fff;border:1px solid var(--rule);border-radius:3px;padding:12px}
+  .ration-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-bottom:6px;font-weight:600}
+  .ration-meta{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:11px}
+  .ration-meta dt{font-family:var(--mono);font-size:9.5px;color:var(--ink-4);text-transform:uppercase;letter-spacing:.06em;align-self:start;padding-top:1px}
+  .ration-meta dd{color:var(--ink-2)}
+
+  /* ====================== OVERVIEW SPECIFIC ====================== */
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  @media (max-width:1100px){.grid-2,.grid-3{grid-template-columns:1fr}}
+
+  .system-card{background:#fff;border:1px solid var(--rule);border-radius:3px;padding:18px}
+  .system-card h3{font-size:13px;font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .system-card h3 .ix{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.06em}
+  .system-card p{font-size:12px;color:var(--ink-2);line-height:1.55}
+  .system-card ul{list-style:none;font-size:12px;color:var(--ink-2);line-height:1.7}
+  .system-card ul li{padding-left:14px;position:relative}
+  .system-card ul li::before{content:"·";position:absolute;left:4px;color:var(--ink-4)}
+
+  .ia-tree{font-family:var(--mono);font-size:11px;color:var(--ink-2);line-height:1.7}
+  .ia-page{background:#f0efec;color:var(--ink);padding:4px 8px;border-radius:2px;margin-bottom:4px;font-size:11px;letter-spacing:.04em}
+  .ia-sub{padding-left:18px;position:relative}
+  .ia-sub::before{content:"└";position:absolute;left:8px;color:var(--ink-4)}
+  .ia-sep{height:8px}
+  .ia-badge{font-size:9px;background:#fff;border:1px solid var(--rule);color:var(--ink-3);padding:1px 5px;border-radius:2px;margin-left:6px;letter-spacing:.04em}
+
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .flow-box{background:#fff;border:1px solid var(--rule);border-radius:2px;padding:6px 10px;font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--ink)}
+  .flow-arr{color:var(--ink-4);font-family:var(--mono);font-size:11px}
+  .flow-box.end{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .quote{
+    border-left:2px solid var(--ink);padding:6px 0 6px 14px;
+    font-size:18px;line-height:1.4;color:var(--ink);font-weight:500;letter-spacing:-.005em
+  }
+  .quote cite{display:block;font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;font-style:normal;margin-top:8px}
+
+  .client-row{display:flex;flex-wrap:wrap;gap:8px}
+  .client-chip{font-family:var(--mono);font-size:10px;letter-spacing:.04em;background:#fff;border:1px solid var(--rule);padding:5px 9px;border-radius:2px;color:var(--ink-2)}
+
+  .priority-list{display:flex;flex-direction:column;gap:6px;font-size:12px}
+  .priority-list .row-p{display:flex;align-items:center;gap:8px}
+  .priority-list .row-p .dot-p{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+  .priority-list .row-p.must .dot-p{background:var(--ink)}
+  .priority-list .row-p.high .dot-p{background:#666}
+  .priority-list .row-p.med .dot-p{background:#bbb}
+  .priority-list .row-p.skip .dot-p{background:#ddd}
+
+  /* ====================== STICKY SCROLL DEMO ====================== */
+  .demo-wrap{background:#fff;border:1.5px solid #ccc;border-radius:3px;overflow:hidden}
+  .demo-head{padding:10px 14px;border-bottom:1px solid var(--rule);background:#fafaf8;display:flex;justify-content:space-between;align-items:center}
+  .demo-title{font-size:11px;font-weight:600}
+  .demo-sub{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+  .progress-bar{height:2px;background:#efeeea}
+  .progress-fill{height:100%;background:var(--ink);width:16%;transition:width .3s ease}
+  .demo-body{display:flex;height:380px}
+  .demo-left{width:48%;border-right:1px solid var(--rule);position:relative;overflow:hidden;background:#fafaf9}
+  .demo-right{flex:1;overflow-y:auto;scroll-behavior:smooth}
+  .demo-right::-webkit-scrollbar{width:3px}.demo-right::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
+  .img-panel{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:18px;opacity:0;transition:opacity .35s ease}
+  .img-panel.visible{opacity:1}
+  .scroll-section{padding:18px 16px;border-bottom:1px solid #f0efec;cursor:pointer;transition:background .15s}
+  .scroll-section:last-child{border-bottom:none}
+  .scroll-section:hover{background:#fafaf9}
+  .scroll-section.active{background:#f5f4f2}
+  .ss-num{font-family:var(--mono);font-size:9px;color:var(--ink-4);letter-spacing:.1em;margin-bottom:4px}
+  .ss-title{font-size:12px;font-weight:600;margin-bottom:5px;color:var(--ink)}
+  .ss-text{font-size:11px;color:var(--ink-2);line-height:1.55}
+  .ss-tags{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
+  .ss-tag{font-family:var(--mono);font-size:8.5px;color:var(--ink-3);background:var(--tag-bg);padding:2px 6px;border-radius:10px;letter-spacing:.04em;text-transform:uppercase}
+  .ss-art{font-family:var(--mono);font-size:9px;color:var(--ink-4);margin-top:6px;display:flex;align-items:center;gap:5px;letter-spacing:.04em}
+  .ss-art::before{content:"";width:5px;height:5px;border-radius:50%;background:#ccc}
+
+  /* ====================== TIMELINE (Case B) ====================== */
+  .tl{position:relative;background:#fff;border:1.5px solid #ccc;border-radius:3px;padding:18px 22px}
+  .tl::before{content:"";position:absolute;left:38px;top:30px;bottom:30px;width:1px;background:var(--rule)}
+  .tl-phase{display:grid;grid-template-columns:32px 1fr;gap:14px;padding:14px 0}
+  .tl-phase + .tl-phase{border-top:1px dashed var(--rule-2)}
+  .tl-marker{position:relative;z-index:1}
+  .tl-marker .mk{position:absolute;left:0;top:2px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid var(--ink)}
+  .tl-marker .mk.open{background:#fff;border-color:#bbb}
+  .tl-marker .ix{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--ink-4);margin-top:22px;display:block}
+  .tl-body{}
+  .tl-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:6px}
+  .tl-name{font-size:13px;font-weight:600}
+  .tl-meta{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+  .tl-text{font-size:12px;color:var(--ink-2);line-height:1.55;margin-bottom:8px}
+  .tl-artifacts{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:6px}
+  .tl-artifacts .img-box{height:54px}
+  .tl-tags{display:flex;gap:4px;flex-wrap:wrap}
+
+  /* ====================== DECISION LOG (Case C) ====================== */
+  .dlog{display:flex;flex-direction:column;gap:10px}
+  .dcard{background:#fff;border:1.5px solid #ccc;border-radius:3px;overflow:hidden}
+  .dcard-h{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:10px 14px;background:#fafaf8;border-bottom:1px solid var(--rule)}
+  .dcard-ix{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-4)}
+  .dcard-name{font-size:13px;font-weight:600}
+  .dcard-tag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:var(--ink);color:#fff;padding:2px 7px;border-radius:2px}
+  .dcard-body{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
+  @media (max-width:1100px){.dcard-body{grid-template-columns:1fr}}
+  .dcell{padding:14px;border-right:1px solid var(--rule)}
+  .dcell:last-child{border-right:none}
+  .dcell-h{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:6px}
+  .dcell p{font-size:11.5px;color:var(--ink-2);line-height:1.55}
+  .dcell .img-box{height:64px;margin-top:8px}
+
+  /* ====================== HOME B / C extras ====================== */
+  .editorial{padding:28px 22px}
+  .editorial h2{font-size:34px;line-height:1.05;font-weight:500;letter-spacing:-.02em;margin-bottom:12px;text-wrap:balance}
+  .editorial .sub{font-size:13px;color:var(--ink-2);max-width:36ch;margin-bottom:18px}
+  .editorial-meta{display:flex;gap:14px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase}
+  .editorial-rule{height:1px;background:var(--rule);margin:24px 0}
+  .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .work-cell{background:#fafaf9;border:1px solid var(--rule);border-radius:3px;padding:14px}
+  .work-cell .ix{font-family:var(--mono);font-size:9.5px;color:var(--ink-4);letter-spacing:.06em}
+  .work-cell h4{font-size:14px;font-weight:600;margin:4px 0 8px}
+  .work-cell .img-box{height:90px;margin-bottom:8px}
+  .work-cell .meta{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+
+  /* split screen */
+  .split{display:grid;grid-template-columns:42% 1fr;background:#fff;border:1.5px solid #ccc;border-radius:3px;min-height:520px;overflow:hidden}
+  .split-left{padding:22px;border-right:1px solid var(--rule);background:#fafaf8;display:flex;flex-direction:column;gap:14px}
+  .split-right{padding:16px 18px;display:flex;flex-direction:column;gap:0}
+  .split-name{font-size:18px;font-weight:600;letter-spacing:-.005em}
+  .split-role{font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.08em;text-transform:uppercase}
+  .split-bio{font-size:12px;color:var(--ink-2);line-height:1.6}
+  .split-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px}
+  .split-meta dt{font-family:var(--mono);font-size:9.5px;color:var(--ink-4);text-transform:uppercase;letter-spacing:.06em}
+  .split-meta dd{color:var(--ink);font-weight:500;margin-bottom:6px}
+  .split-availability{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-top:auto}
+  .split-availability .d{width:8px;height:8px;border-radius:50%;background:var(--ok)}
+
+  .row-item{display:grid;grid-template-columns:32px 1fr auto auto;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--rule-2);cursor:pointer;transition:padding-left .15s,background .15s}
+  .row-item:last-child{border-bottom:none}
+  .row-item:hover{padding-left:8px;background:#fafaf9}
+  .ri-ix{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.06em}
+  .ri-name{font-size:14px;font-weight:600}
+  .ri-client{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase;margin-top:3px}
+  .ri-meta{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+  .ri-arr{font-family:var(--mono);color:var(--ink-3)}
+
+  /* Fabrica-style numbered list */
+  .num-list{background:#fff;border:1.5px solid #ccc;border-radius:3px;padding:6px 22px}
+  .num-row{display:grid;grid-template-columns:42px 1fr auto auto auto;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--rule-2);cursor:pointer;transition:padding-left .15s}
+  .num-row:last-child{border-bottom:none}
+  .num-row:hover{padding-left:6px}
+  .num-row:hover .nl-arr{transform:translateX(4px)}
+  .nl-ix{font-family:var(--mono);font-size:11px;color:var(--ink-4);letter-spacing:.06em}
+  .nl-name{font-size:18px;font-weight:500;letter-spacing:-.005em}
+  .nl-client{font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+  .nl-tags{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+  .nl-year{font-family:var(--mono);font-size:10px;color:var(--ink-3);letter-spacing:.06em}
+  .nl-arr{font-family:var(--mono);color:var(--ink-3);transition:transform .15s}
+
+  /* ====================== UTILS ====================== */
+  .stack-sm{display:flex;flex-direction:column;gap:8px}
+  .stack-md{display:flex;flex-direction:column;gap:14px}
+  .stack-lg{display:flex;flex-direction:column;gap:22px}
+  .muted{color:var(--ink-3)}
+  .label-mono{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ====================== TOPBAR + TABS ====================== -->
+  <header class="topbar">
+    <div class="topbar-row">
+      <div class="brand">
+        <span class="brand-name">Portfolio · Wireframes</span>
+        <span class="brand-dim">Senior UI/UX · Lo-Fi Exploration</span>
+      </div>
+      <div class="topbar-meta">
+        <span>FIDELITY <b>LO-FI</b></span>
+        <span>LANG <b>EN</b></span>
+        <span>VARIATIONS <b>3 + 3</b></span>
+        <span>STATUS <b>DRAFT</b></span>
+      </div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Wireframes">
+      <span class="tab-group-label">00 · System</span>
+      <button class="tab" role="tab" data-tab="overview" aria-selected="true"><span class="num">00</span>Overview</button>
+      <button class="tab" role="tab" data-tab="style"><span class="num">01</span>Style Guide</button>
+      <span class="tab-group-label">Home</span>
+      <button class="tab" role="tab" data-tab="home-a"><span class="num">A</span>Text-first</button>
+      <button class="tab" role="tab" data-tab="home-b"><span class="num">B</span>Editorial</button>
+      <button class="tab" role="tab" data-tab="home-c"><span class="num">C</span>Split-Screen</button>
+      <span class="tab-group-label">Case Study</span>
+      <button class="tab" role="tab" data-tab="case-a"><span class="num">A</span>Sticky Scroll</button>
+      <button class="tab" role="tab" data-tab="case-b"><span class="num">B</span>Phased Timeline</button>
+      <button class="tab" role="tab" data-tab="case-c"><span class="num">C</span>Decision Log</button>
+    </nav>
+  </header>
+
+  <!-- ====================== PAGE: OVERVIEW ====================== -->
+  <main>
+  <section class="page" data-tab-panel="overview" data-active data-screen-label="00 Overview">
+
+    <div class="page-head">
+      <div>
+        <h1>Overview · System &amp; Direction</h1>
+        <div class="sub">00 · The plan before the pixels</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill outline">English</span>
+        <span class="pill outline">Swiss Functional</span>
+        <span class="pill outline">Lo-Fi</span>
+        <span class="pill dark">3 Home · 3 Case</span>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:22px">
+
+      <div class="system-card">
+        <h3><span class="ix">/01</span> Positioning</h3>
+        <p class="muted" style="margin-bottom:12px">A working draft of the one line everything else must reinforce. Pushback welcome.</p>
+        <div class="quote">
+          End-to-end UX ownership from Phase&nbsp;0.<br>
+          I start at the stakeholder workshop, not in Figma.
+          <cite>— Proposed Value Proposition</cite>
+        </div>
+        <div class="stack-sm" style="margin-top:14px">
+          <div class="label-mono">Why this works for a senior application</div>
+          <ul style="font-size:12px;color:var(--ink-2);line-height:1.6;list-style:none">
+            <li>· Signals <b>process maturity</b>, not just craft</li>
+            <li>· Names a concrete phase (<b>Phase&nbsp;0</b>) that hiring managers recognize</li>
+            <li>· Implies <b>client-facing</b> ability — a senior-level filter</li>
+            <li>· Differentiates from juniors who frame themselves around tools</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="system-card">
+        <h3><span class="ix">/02</span> Information Architecture</h3>
+        <p class="muted" style="margin-bottom:12px">One-pager home + dedicated case study pages. Imprint required by DSGVO.</p>
+        <div class="ia-tree">
+          <div class="ia-page">/  ·  Home (One Page)</div>
+          <div class="ia-sub">Hero</div>
+          <div class="ia-sub">Selected Work <span class="ia-badge">4–5</span></div>
+          <div class="ia-sub">Process · Phase 0 → Delivery</div>
+          <div class="ia-sub">Clients (logo wall)</div>
+          <div class="ia-sub">About · Bio · Stats · Skills</div>
+          <div class="ia-sub">Contact</div>
+          <div class="ia-sep"></div>
+          <div class="ia-page">/work/[case]  ·  Case Study Detail</div>
+          <div class="ia-sub">Hero · Client · Role · Year</div>
+          <div class="ia-sub">Challenge</div>
+          <div class="ia-sub">Process Narrative <span class="ia-badge">Sticky · Timeline · Log</span></div>
+          <div class="ia-sub">Outcome &amp; Quote</div>
+          <div class="ia-sub">Next Project →</div>
+          <div class="ia-sep"></div>
+          <div class="ia-page">/imprint  ·  /privacy <span class="ia-badge">DSGVO</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:22px">
+      <div class="system-card">
+        <h3><span class="ix">/03</span> Visual System</h3>
+        <ul>
+          <li>Swiss-functional grain — grid, hairline rules, tabular numerals</li>
+          <li>Sans body, mono for labels &amp; metadata</li>
+          <li>Off-white paper (#f5f4f2), near-black ink (#1a1a1a)</li>
+          <li>One accent: availability dot only — no decorative color</li>
+          <li>No illustrations · numbered index in every section</li>
+        </ul>
+      </div>
+      <div class="system-card">
+        <h3><span class="ix">/04</span> Sections — MUST / HIGH / SKIP</h3>
+        <div class="priority-list">
+          <div class="row-p must"><span class="dot-p"></span><b>MUST</b> · Hero · Work · Contact</div>
+          <div class="row-p must"><span class="dot-p"></span><b>MUST</b> · Case Study Detail Page</div>
+          <div class="row-p high"><span class="dot-p"></span><b>HIGH</b> · Process · About</div>
+          <div class="row-p high"><span class="dot-p"></span><b>HIGH</b> · Selected Clients</div>
+          <div class="row-p med"><span class="dot-p"></span><b>NICE</b> · Now / Currently</div>
+          <div class="row-p med"><span class="dot-p"></span><b>NICE</b> · Skills cluster</div>
+          <div class="row-p skip"><span class="dot-p"></span><b>SKIP</b> · Blog · Testimonials block · FAQ · Contact form</div>
+        </div>
+      </div>
+      <div class="system-card">
+        <h3><span class="ix">/05</span> Recruiter User Flow</h3>
+        <div class="flow">
+          <span class="flow-box">Land</span><span class="flow-arr">→</span>
+          <span class="flow-box">Read hero</span><span class="flow-arr">→</span>
+          <span class="flow-box">Scan work</span><span class="flow-arr">→</span>
+          <span class="flow-box">Open case</span><span class="flow-arr">→</span>
+          <span class="flow-box">Skim process</span><span class="flow-arr">→</span>
+          <span class="flow-box end">Email</span>
+        </div>
+        <p class="muted" style="font-size:11.5px;margin-top:12px;line-height:1.55">
+          Target time-to-contact: <b style="color:var(--ink)">&lt; 90 seconds</b>.
+          Every section must survive a scan.
+        </p>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="system-card">
+        <h3><span class="ix">/06</span> Selected Clients (real names)</h3>
+        <p class="muted" style="margin-bottom:12px">Surface these as logos/wordmarks on the home page — they do heavy lifting for trust.</p>
+        <div class="client-row">
+          <span class="client-chip">SCHUNK</span>
+          <span class="client-chip">INDEX-TRAUB</span>
+          <span class="client-chip">FANUC</span>
+          <span class="client-chip">TITAN WAGNER</span>
+          <span class="client-chip">ENERCON</span>
+          <span class="client-chip">MAPAL</span>
+          <span class="client-chip muted">+ further</span>
+        </div>
+        <div class="label-mono" style="margin-top:14px">Domain · B2B · Industrial · SAP Commerce · Fleet &amp; Machine Platforms</div>
+      </div>
+      <div class="system-card">
+        <h3><span class="ix">/07</span> Process Spine (Phase 0 → Delivery)</h3>
+        <p class="muted" style="margin-bottom:12px">Use this same six-step spine on the home Process section <i>and</i> as the narrative for case studies.</p>
+        <div class="flow" style="gap:6px">
+          <span class="flow-box">00 · Phase 0</span><span class="flow-arr">→</span>
+          <span class="flow-box">01 · Research</span><span class="flow-arr">→</span>
+          <span class="flow-box">02 · Workshops</span><span class="flow-arr">→</span>
+          <span class="flow-box">03 · Wireframes</span><span class="flow-arr">→</span>
+          <span class="flow-box">04 · Testing</span><span class="flow-arr">→</span>
+          <span class="flow-box">05 · Scrum / Dev</span>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+
+  <!-- ====================== STYLE GUIDE ====================== -->
+  <section class="page" data-tab-panel="style" data-screen-label="01 Style Guide">
+
+    <div class="page-head">
+      <div>
+        <h1>Style Guide · Visual System</h1>
+        <div class="sub">01 · The vocabulary that runs through every wireframe</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill outline">Swiss Functional</span>
+        <span class="pill outline">Lo-Fi → Hi-Fi ready</span>
+        <span class="pill dark">v0.1 Draft</span>
+      </div>
+    </div>
+
+    <!-- ============ 01 · FOUNDATIONS ============ -->
+    <div class="col-label" style="margin-bottom:14px">/01 · Foundations · Voice</div>
+    <div class="grid-2" style="margin-bottom:32px">
+      <div class="system-card">
+        <h3><span class="ix">/01.1</span> Design Principles</h3>
+        <ul>
+          <li><b>Structure before aesthetics.</b> Hierarchy first, polish second</li>
+          <li><b>Earn every element.</b> No filler, no slop, no decorative noise</li>
+          <li><b>Type carries the weight.</b> Imagery supports — never compensates</li>
+          <li><b>One accent only.</b> Color signals state, not style</li>
+          <li><b>Numbered, not bulleted.</b> Index everything · /01 · /02 · /03</li>
+          <li><b>Mono for metadata.</b> Sans for ideas, mono for measurements</li>
+        </ul>
+      </div>
+      <div class="system-card">
+        <h3><span class="ix">/01.2</span> Voice &amp; Tone</h3>
+        <p class="muted" style="margin-bottom:10px">English. Senior, direct, never marketing-y. German UI conventions translated into Swiss-modern English.</p>
+        <div class="stack-sm">
+          <div>
+            <div class="label-mono" style="color:var(--ok)">Do</div>
+            <p style="font-size:12px;color:var(--ink);line-height:1.55">“Single sign-on, single portal. Support tickets down 34%.”</p>
+          </div>
+          <div style="border-top:1px dashed var(--rule);padding-top:10px">
+            <div class="label-mono" style="color:var(--warn)">Don't</div>
+            <p style="font-size:12px;color:var(--ink-3);line-height:1.55">“I had the privilege to leverage cross-functional synergies and ideate truly delightful experiences …”</p>
+          </div>
+        </div>
+        <div class="label-mono" style="margin-top:14px">Rules</div>
+        <ul>
+          <li>Active voice · past tense for case studies</li>
+          <li>Numbers as digits (6 years · 23 issues · 89%)</li>
+          <li>Em dash for asides — sparingly</li>
+          <li>No emoji · no exclamation marks</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============ 02 · COLOR ============ -->
+    <div class="col-label" style="margin-bottom:14px">/02 · Color</div>
+    <div class="system-card" style="margin-bottom:32px">
+      <h3 style="margin-bottom:14px"><span class="ix">/02.1</span> Palette</h3>
+      <p class="muted" style="margin-bottom:18px">Five neutrals · one accent. Off-white paper, near-black ink, four grays for hierarchy. Green dot for availability state only.</p>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px">
+        <div>
+          <div style="background:#f5f4f2;height:88px;border:1px solid var(--rule);border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Paper</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#f5f4f2</div>
+          <div class="muted" style="font-size:11px">Page background</div>
+        </div>
+        <div>
+          <div style="background:#fff;height:88px;border:1px solid var(--rule);border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Card</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#ffffff</div>
+          <div class="muted" style="font-size:11px">Surface · cards</div>
+        </div>
+        <div>
+          <div style="background:#1a1a1a;height:88px;border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Ink</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#1a1a1a</div>
+          <div class="muted" style="font-size:11px">Primary text</div>
+        </div>
+        <div>
+          <div style="background:#555;height:88px;border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Ink 2</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#555555</div>
+          <div class="muted" style="font-size:11px">Body · secondary</div>
+        </div>
+        <div>
+          <div style="background:#888;height:88px;border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Ink 3</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#888888</div>
+          <div class="muted" style="font-size:11px">Mono labels</div>
+        </div>
+        <div>
+          <div style="background:#bbb;height:88px;border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Ink 4</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#bbbbbb</div>
+          <div class="muted" style="font-size:11px">Hairlines · numerals</div>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--rule);margin:22px 0"></div>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px">
+        <div>
+          <div style="background:#e0ddd8;height:64px;border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Rule</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#e0ddd8</div>
+          <div class="muted" style="font-size:11px">Dividers</div>
+        </div>
+        <div>
+          <div style="background:#e8e7e4;height:64px;border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Box</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#e8e7e4</div>
+          <div class="muted" style="font-size:11px">Wireframe boxes</div>
+        </div>
+        <div>
+          <div style="background:#efeeea;height:64px;border-radius:3px"></div>
+          <div class="label-mono" style="margin-top:8px">Tag</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#efeeea</div>
+          <div class="muted" style="font-size:11px">Pills · chips</div>
+        </div>
+        <div>
+          <div style="background: rgb(65, 211, 147); height: 64px; border-radius: 3px"></div>
+          <div class="label-mono" style="margin-top:8px">OK · Accent</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#3fa663</div>
+          <div class="muted" style="font-size:11px">Availability dot</div>
+        </div>
+        <div>
+          <div style="background: rgb(166, 107, 87); height: 64px; border-radius: 3px"></div>
+          <div class="label-mono" style="margin-top:8px">Warn</div>
+          <div style="font-size:11px;color:var(--ink-2);margin-top:2px">#c08a3b</div>
+          <div class="muted" style="font-size:11px">Annotations only</div>
+        </div>
+        <div style="grid-column:span 1">
+          <div style="height:64px;border:1px dashed var(--rule);border-radius:3px;display:flex;align-items:center;justify-content:center">
+            <span class="label-mono" style="color:var(--ink-4)">No other colors</span>
+          </div>
+          <div class="label-mono" style="margin-top:8px">Rule</div>
+          <div class="muted" style="font-size:11px;margin-top:2px">No gradients · no brand color · no per-section accents</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 03 · TYPOGRAPHY ============ -->
+    <div class="col-label" style="margin-bottom:14px">/03 · Typography</div>
+    <div class="system-card" style="margin-bottom:32px">
+      <h3 style="margin-bottom:14px"><span class="ix">/03.1</span> Type Families</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px">
+        <div style="padding:18px;border:1px solid var(--rule);border-radius:3px">
+          <div class="label-mono">Sans · Body &amp; Headings</div>
+          <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:36px;font-weight:500;letter-spacing:-.01em;margin-top:14px;line-height:1">Helvetica Neue</div>
+          <div style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:13px;color:var(--ink-2);margin-top:10px;line-height:1.5">Fallback: Helvetica, Arial, system-ui. For production, license Neue Haas Grotesk if budget allows — otherwise stick with Helvetica. Avoid Inter, Roboto, generic geometric sans.</div>
+          <div class="label-mono" style="margin-top:14px;color:var(--ink-2)">Weights · 400 · 500 · 600</div>
+        </div>
+        <div style="padding:18px;border:1px solid var(--rule);border-radius:3px">
+          <div class="label-mono">Mono · Labels &amp; Metadata</div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:34px;font-weight:500;margin-top:14px;line-height:1">ui-monospace</div>
+          <div style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:12px;color:var(--ink-2);margin-top:10px;line-height:1.5">System mono stack. For production, JetBrains Mono or IBM Plex Mono via Google Fonts is a safe upgrade.</div>
+          <div class="label-mono" style="margin-top:14px;color:var(--ink-2)">Used for · /index · YEAR · TAGS · /role · timestamps</div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:var(--rule);margin:22px 0"></div>
+      <h3 style="margin-bottom:14px"><span class="ix">/03.2</span> Type Scale</h3>
+      <div style="display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule)">
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)">
+          <span class="label-mono">Display · 56/56</span>
+          <span style="font-size:56px;line-height:1;font-weight:500;letter-spacing:-.02em">Designing complex platforms.</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Hero · Editorial home only</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)">
+          <span class="label-mono">H1 · 34/38</span>
+          <span style="font-size:34px;line-height:1.1;font-weight:500;letter-spacing:-.015em">Case Study · Schunk · Portal &amp; eShop</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Case hero · section openers</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)">
+          <span class="label-mono">H2 · 22/28</span>
+          <span style="font-size:22px;line-height:1.25;font-weight:600;letter-spacing:-.005em">Group by machine, not by order</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Decision card titles · sub-sections</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)">
+          <span class="label-mono">H3 · 14/20</span>
+          <span style="font-size:14px;line-height:1.4;font-weight:600">Work Grid · Editorial</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Card heads · inline section labels</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)">
+          <span class="label-mono">Body · 13/20</span>
+          <span style="font-size:13px;line-height:1.55;color:var(--ink-2);max-width:54ch">Six years building portals, eShops and machine-management platforms for industrial leaders — from the first stakeholder workshop to the last Scrum sprint.</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Default reading text</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)">
+          <span class="label-mono">Small · 11/16</span>
+          <span style="font-size:11px;line-height:1.5;color:var(--ink-2)">Artifact · Personas · Journey Maps · Workshop notes</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Annotations · captions</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--rule)">
+          <span class="label-mono">Mono · 10/14</span>
+          <span style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)">/01 · SCHUNK · 2024 · SAP COMMERCE</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Labels · metadata · tags</span>
+        </div>
+        <div style="display:grid;grid-template-columns:140px 1fr 220px;gap:18px;align-items:baseline;padding:14px 0">
+          <span class="label-mono">Mono · 9/12</span>
+          <span style="font-family:ui-monospace,monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)">SECTION LABEL · INDEX · OVERLINE</span>
+          <span class="label-mono" style="color:var(--ink-2);text-transform:none;letter-spacing:.04em">Tiny overlines · column heads</span>
+        </div>
+      </div>
+
+      <div style="height:1px;background:var(--rule);margin:22px 0"></div>
+      <h3 style="margin-bottom:14px"><span class="ix">/03.3</span> Rules</h3>
+      <div class="grid-2">
+        <div>
+          <div class="label-mono">Hierarchy</div>
+          <ul style="font-size:12px;color:var(--ink-2);line-height:1.7;list-style:none;margin-top:6px">
+            <li>· Display is for the home hero · once per page</li>
+            <li>· Mono labels above every section · never below</li>
+            <li>· Body never wider than 60ch · ideally 48–54ch</li>
+            <li>· tabular-nums on every number column</li>
+            <li>· Non-breaking hyphen on “end-to-end”, “SAP-Commerce”</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label-mono">Don't</div>
+          <ul style="font-size:12px;color:var(--ink-2);line-height:1.7;list-style:none;margin-top:6px">
+            <li>· Bold inside headings · type scale signals weight</li>
+            <li>· Italics for emphasis · use weight or color</li>
+            <li>· Mix sans &amp; mono mid-sentence · split into label + value</li>
+            <li>· Use mono for body copy · only labels</li>
+            <li>· Center-align body text · always left</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 04 · SPACING + GRID ============ -->
+    <div class="col-label" style="margin-bottom:14px">/04 · Spacing &amp; Grid</div>
+    <div class="grid-2" style="margin-bottom:32px">
+      <div class="system-card">
+        <h3 style="margin-bottom:12px"><span class="ix">/04.1</span> Spacing Scale · 4 px base</h3>
+        <div style="display:flex;flex-direction:column;gap:6px">
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">4 · xs</span><div style="background:var(--ink);height:14px;width:4px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">8 · sm</span><div style="background:var(--ink);height:14px;width:8px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">12 · md</span><div style="background:var(--ink);height:14px;width:12px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">16 · lg</span><div style="background:var(--ink);height:14px;width:16px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">24 · xl</span><div style="background:var(--ink);height:14px;width:24px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">32 · 2xl</span><div style="background:var(--ink);height:14px;width:32px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">48 · 3xl</span><div style="background:var(--ink);height:14px;width:48px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">72 · 4xl</span><div style="background:var(--ink);height:14px;width:72px"></div></div>
+          <div style="display:grid;grid-template-columns:64px 1fr;gap:14px;align-items:center"><span class="label-mono">120 · 5xl</span><div style="background:var(--ink);height:14px;width:120px"></div></div>
+        </div>
+        <p class="muted" style="font-size:11.5px;margin-top:14px;line-height:1.55">Use <b>only these values</b>. Section padding: 48–72 vertical, 24 horizontal on mobile. Card padding: 14–18.</p>
+      </div>
+      <div class="system-card">
+        <h3 style="margin-bottom:12px"><span class="ix">/04.2</span> Grid</h3>
+        <div style="display:grid;grid-template-columns:repeat(12,1fr);gap:6px;background:#fafaf9;border:1px solid var(--rule);padding:10px;border-radius:3px">
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+          <div style="background:#e8e7e4;height:60px;border-radius:1px"></div>
+        </div>
+        <dl class="ration-meta" style="margin-top:14px">
+          <dt>Columns</dt><dd>12 · base everywhere</dd>
+          <dt>Gutter</dt><dd>24 desktop · 16 tablet · 12 mobile</dd>
+          <dt>Max width</dt><dd>1320 px · centered</dd>
+          <dt>Side margin</dt><dd>24 desktop · 16 mobile</dd>
+          <dt>Body width</dt><dd>6 of 12 cols · max 54ch</dd>
+          <dt>Breakpoints</dt><dd>1100 · 720 · 480</dd>
+        </dl>
+      </div>
+    </div>
+
+    <!-- ============ 05 · COMPONENTS ============ -->
+    <div class="col-label" style="margin-bottom:14px">/05 · Components</div>
+
+    <div class="grid-2" style="margin-bottom:18px">
+      <div class="system-card">
+        <h3 style="margin-bottom:14px"><span class="ix">/05.1</span> Buttons</h3>
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+          <span class="btn">Primary</span>
+          <span class="btn o">Secondary</span>
+          <a href="#" style="font-family:ui-monospace,monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);padding-bottom:1px">Text link →</a>
+        </div>
+        <dl class="ration-meta">
+          <dt>Type</dt><dd>Mono · 9px · uppercase · letter-spacing .06em</dd>
+          <dt>Padding</dt><dd>5 × 10 px</dd>
+          <dt>Radius</dt><dd>2 px · everywhere</dd>
+          <dt>Hover</dt><dd>Primary → ink lightens 6% · Secondary → border darkens</dd>
+          <dt>Disabled</dt><dd>50% opacity · no shadow</dd>
+        </dl>
+      </div>
+
+      <div class="system-card">
+        <h3 style="margin-bottom:14px"><span class="ix">/05.2</span> Tags · Pills · Chips</h3>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+          <span class="pill dark">Must</span>
+          <span class="pill">High</span>
+          <span class="pill outline">Optional</span>
+          <span class="ss-tag">Personas</span>
+          <span class="ss-tag">Workshops</span>
+          <span class="client-chip">SCHUNK</span>
+        </div>
+        <dl class="ration-meta">
+          <dt>Pill</dt><dd>Mono 9.5px · 4×8 · radius 2 · uppercase</dd>
+          <dt>Tag (rounded)</dt><dd>Mono 8.5px · 2×6 · radius 10</dd>
+          <dt>Client chip</dt><dd>Mono 10px · 5×9 · 1px border</dd>
+          <dt>Use</dt><dd>Pill = priority · Tag = topic · Chip = brand</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="system-card" style="margin-bottom:18px">
+      <h3 style="margin-bottom:14px"><span class="ix">/05.3</span> Project Row · The Most Important Component</h3>
+      <p class="muted" style="margin-bottom:14px;font-size:12px">Same anatomy on Home A, Home C, and across all case-study indexes. Predictable scan, hover lift on the row.</p>
+      <div class="num-list" style="background:#fafaf9">
+        <div class="num-row">
+          <span class="nl-ix">/01</span>
+          <div><div class="nl-name">Portal &amp; eShop</div><div class="nl-client">Schunk · SAP Commerce · 2024</div></div>
+          <span class="nl-tags">eShop · Portal · Fleet</span>
+          <span class="nl-year">'24</span>
+          <span class="nl-arr">→</span>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:14px;font-size:11px">
+        <div><div class="label-mono">Slot 01</div><div class="muted" style="margin-top:4px">Index · mono · ink 4</div></div>
+        <div><div class="label-mono">Slot 02</div><div class="muted" style="margin-top:4px">Name (18 sans · 500) + Client/Domain (mono · ink 3)</div></div>
+        <div><div class="label-mono">Slot 03</div><div class="muted" style="margin-top:4px">Tags · mono · ink 3</div></div>
+        <div><div class="label-mono">Slot 04</div><div class="muted" style="margin-top:4px">Year · mono · ink 3</div></div>
+        <div><div class="label-mono">Slot 05</div><div class="muted" style="margin-top:4px">Arrow · slides 4px on hover</div></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:18px">
+      <div class="system-card">
+        <h3 style="margin-bottom:14px"><span class="ix">/05.4</span> Card</h3>
+        <div style="background:#fff;border:1px solid var(--rule);border-radius:3px;padding:14px">
+          <div class="label-mono">/04.2 · CARD ANATOMY</div>
+          <div style="font-size:14px;font-weight:600;margin-top:6px">Card Title</div>
+          <p style="font-size:12px;color:var(--ink-2);line-height:1.55;margin-top:6px">Default text content. Cards never overlap; never have shadows; never have brand-colored borders.</p>
+        </div>
+        <dl class="ration-meta" style="margin-top:14px">
+          <dt>Background</dt><dd>#fff on #f5f4f2 · or #fafaf8 on #fff</dd>
+          <dt>Border</dt><dd>1 px · #e0ddd8 · never thicker</dd>
+          <dt>Radius</dt><dd>3 px</dd>
+          <dt>Shadow</dt><dd>None</dd>
+          <dt>Padding</dt><dd>14–18 px</dd>
+        </dl>
+      </div>
+
+      <div class="system-card">
+        <h3 style="margin-bottom:14px"><span class="ix">/05.5</span> Quote</h3>
+        <div class="quote" style="font-size:18px">
+          More usable, and faster to the point.
+          <cite>— Client PO · Schunk · 2024 sign-off</cite>
+        </div>
+        <dl class="ration-meta" style="margin-top:14px">
+          <dt>Mark</dt><dd>2 px left border · ink · 14 px padding-left</dd>
+          <dt>Type</dt><dd>Sans 18 · weight 500 · line 1.4</dd>
+          <dt>Cite</dt><dd>Mono 10 · uppercase · ink 3 · 8 px above</dd>
+          <dt>Rule</dt><dd>Real quotes only. No fabricated testimonials</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:18px">
+      <div class="system-card">
+        <h3 style="margin-bottom:14px"><span class="ix">/05.6</span> Stat Block</h3>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+          <div><div class="label-mono">Support tickets</div><div style="font-size:26px;font-weight:600;margin-top:4px;font-variant-numeric:tabular-nums">−34%</div><div class="muted" style="font-size:11px;margin-top:2px">6mo post-launch</div></div>
+          <div><div class="label-mono">Task completion</div><div style="font-size:26px;font-weight:600;margin-top:4px;font-variant-numeric:tabular-nums">+27pp</div><div class="muted" style="font-size:11px;margin-top:2px">vs. legacy flow</div></div>
+          <div><div class="label-mono">Time-on-task</div><div style="font-size:26px;font-weight:600;margin-top:4px;font-variant-numeric:tabular-nums">−41%</div><div class="muted" style="font-size:11px;margin-top:2px">order placement</div></div>
+        </div>
+        <p class="muted" style="font-size:11.5px;margin-top:14px;line-height:1.55">Tabular numerals always. If no real metric exists, swap for a quote — <b>never invent numbers</b>.</p>
+      </div>
+
+      <div class="system-card">
+        <h3 style="margin-bottom:14px"><span class="ix">/05.7</span> Image Placeholder</h3>
+        <div class="img-box" style="height:88px;margin-bottom:14px">Final Design · Sketch · Portal Dashboard</div>
+        <dl class="ration-meta">
+          <dt>Background</dt><dd>#d4d3d0 · neutral gray</dd>
+          <dt>Label</dt><dd>Mono 8.5px · uppercase · ink 3</dd>
+          <dt>Rule</dt><dd>Always label what should go there</dd>
+          <dt>Lo-Fi</dt><dd>Use as wireframe placeholder</dd>
+          <dt>Hi-Fi</dt><dd>Replace with real screen · 16:10 or 4:3 only</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="system-card" style="margin-bottom:32px">
+      <h3 style="margin-bottom:14px"><span class="ix">/05.8</span> Navigation Bar</h3>
+      <div class="wf" style="max-width:720px">
+        <div class="frame-nav" style="padding:12px 16px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <span style="font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.08em;color:var(--ink);font-weight:600">YOUR NAME</span>
+            <span class="dot"></span>
+            <span class="label-mono">Available 2026</span>
+          </div>
+          <div style="display:flex;gap:18px">
+            <span class="label-mono" style="color:var(--ink)">Work</span>
+            <span class="label-mono">Process</span>
+            <span class="label-mono">About</span>
+            <span class="label-mono">Contact</span>
+          </div>
+        </div>
+      </div>
+      <dl class="ration-meta" style="margin-top:14px">
+        <dt>Height</dt><dd>52 px · fixed</dd>
+        <dt>Behaviour</dt><dd>Sticky · background goes from transparent to #f5f4f2 once scrolled</dd>
+        <dt>Links</dt><dd>Mono 10 · uppercase · ink 3 · current page = ink</dd>
+        <dt>Availability</dt><dd>Green dot · only if open for work · removable</dd>
+      </dl>
+    </div>
+
+    <!-- ============ 06 · MOTION ============ -->
+    <div class="col-label" style="margin-bottom:14px">/06 · Motion &amp; Interaction</div>
+    <div class="grid-3" style="margin-bottom:32px">
+      <div class="system-card">
+        <h3 style="margin-bottom:10px"><span class="ix">/06.1</span> Timing</h3>
+        <ul>
+          <li>Hover · 150 ms ease-out</li>
+          <li>Tab switch · 250 ms ease</li>
+          <li>Image fade in scroll · 350 ms</li>
+          <li>Page transition · none · honest reloads</li>
+        </ul>
+      </div>
+      <div class="system-card">
+        <h3 style="margin-bottom:10px"><span class="ix">/06.2</span> Primary Patterns</h3>
+        <ul>
+          <li><b>Row hover</b> · 4px slide right + bg lightens</li>
+          <li><b>Arrow nudge</b> · 4px translate on hover</li>
+          <li><b>Sticky scroll</b> · image swaps with fade</li>
+          <li><b>Underline grow</b> · text links · left-to-right</li>
+        </ul>
+      </div>
+      <div class="system-card">
+        <h3 style="margin-bottom:10px"><span class="ix">/06.3</span> Don't</h3>
+        <ul>
+          <li>No parallax</li>
+          <li>No bounce / spring easing</li>
+          <li>No entrance animations on scroll-in</li>
+          <li>No modals · use real pages</li>
+          <li>No autoplay video</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ============ 07 · IMAGERY ============ -->
+    <div class="col-label" style="margin-bottom:14px">/07 · Imagery</div>
+    <div class="system-card" style="margin-bottom:32px">
+      <h3 style="margin-bottom:14px"><span class="ix">/07.1</span> Screen Rules</h3>
+      <div class="grid-3">
+        <div>
+          <div class="img-box" style="height:120px">Hero screen · 16 : 10</div>
+          <div class="label-mono" style="margin-top:8px">Project hero</div>
+          <p style="font-size:11.5px;color:var(--ink-2);line-height:1.55;margin-top:4px">One clean Hi-Fi screen per project · cropped to the most representative view · no laptop mockups.</p>
+        </div>
+        <div>
+          <div class="img-box" style="height:120px">Artifact · 4 : 3</div>
+          <div class="label-mono" style="margin-top:8px">Process artifacts</div>
+          <p style="font-size:11.5px;color:var(--ink-2);line-height:1.55;margin-top:4px">Personas · journey maps · wireframes · test protocols · workshop boards · sketch components.</p>
+        </div>
+        <div>
+          <div class="img-box" style="height:120px">Detail · 1 : 1</div>
+          <div class="label-mono" style="margin-top:8px">UI close-up</div>
+          <p style="font-size:11.5px;color:var(--ink-2);line-height:1.55;margin-top:4px">Component crops · before/after pairs · used inside Decision Log cards.</p>
+        </div>
+      </div>
+      <div style="height:1px;background:var(--rule);margin:18px 0"></div>
+      <div class="grid-2">
+        <div>
+          <div class="label-mono" style="color:var(--ok)">Do</div>
+          <ul style="font-size:12px;color:var(--ink-2);line-height:1.7;list-style:none;margin-top:6px">
+            <li>· Flat screens · no perspective</li>
+            <li>· Real UI · cropped tightly</li>
+            <li>· Subtle shadow only if needed for legibility</li>
+            <li>· One screen per slot · never collages</li>
+          </ul>
+        </div>
+        <div>
+          <div class="label-mono" style="color:var(--warn)">Don't</div>
+          <ul style="font-size:12px;color:var(--ink-2);line-height:1.7;list-style:none;margin-top:6px">
+            <li>· Laptop / phone mockups (clichéd)</li>
+            <li>· Floating screens at 3D angles</li>
+            <li>· Gradient backgrounds behind UI</li>
+            <li>· Stock photography · ever</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 08 · TOKENS ============ -->
+    <div class="col-label" style="margin-bottom:14px">/08 · CSS Tokens · Copy-paste ready</div>
+    <div class="system-card" style="margin-bottom:32px">
+      <pre style="font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:11.5px;line-height:1.6;color:var(--ink);background:#fafaf9;border:1px solid var(--rule);border-radius:3px;padding:16px;overflow-x:auto;white-space:pre">:root {
+  /* Color */
+  --paper:    #f5f4f2;
+  --card:     #ffffff;
+  --ink:      #1a1a1a;
+  --ink-2:    #555555;
+  --ink-3:    #888888;
+  --ink-4:    #bbbbbb;
+  --rule:     #e0ddd8;
+  --box:      #e8e7e4;
+  --tag-bg:   #efeeea;
+  --ok:       #3fa663;
+  --warn:     #c08a3b;
+
+  /* Type */
+  --sans:     "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono:     ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Scale */
+  --t-display: 56px;
+  --t-h1:      34px;
+  --t-h2:      22px;
+  --t-h3:      14px;
+  --t-body:    13px;
+  --t-small:   11px;
+  --t-mono:    10px;
+  --t-mono-xs: 9px;
+
+  /* Spacing */
+  --s-xs:  4px;
+  --s-sm:  8px;
+  --s-md:  12px;
+  --s-lg:  16px;
+  --s-xl:  24px;
+  --s-2xl: 32px;
+  --s-3xl: 48px;
+  --s-4xl: 72px;
+  --s-5xl: 120px;
+
+  /* Geometry */
+  --radius:    2px;
+  --radius-md: 3px;
+  --rule-w:    1px;
+  --container: 1320px;
+
+  /* Motion */
+  --ease:      cubic-bezier(.22,.61,.36,1);
+  --t-fast:    150ms;
+  --t-base:    250ms;
+  --t-slow:    350ms;
+}</pre>
+    </div>
+
+    <!-- ============ 09 · RECAP ============ -->
+    <div class="col-label" style="margin-bottom:14px">/09 · The System in One Line</div>
+    <div class="system-card" style="background:var(--ink);color:#fff;border-color:var(--ink)">
+      <p style="font-size:20px;line-height:1.4;font-weight:500;letter-spacing:-.005em;text-wrap:balance;max-width:64ch">
+        Off-white paper. Near-black ink. One sans, one mono, no third font. Numbered everything. Hairlines, not shadows. Boxes, not gradients. Real screens, no mockups. One green dot. Senior tone, no fluff.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ====================== HOME A · TEXT-FIRST (Fabrica) ====================== -->
+  <section class="page" data-tab-panel="home-a" data-screen-label="A Home Text-first">
+    <div class="page-head">
+      <div>
+        <h1>Home · A — Text-first</h1>
+        <div class="sub">Numbered project index · No thumbnails · Fabrica-flavored</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill dark">MUST</span>
+        <span class="pill outline">Scan-friendly</span>
+        <span class="pill outline">High signal/noise</span>
+      </div>
+    </div>
+
+    <div class="layout-3">
+
+      <!-- LEFT: page sketch -->
+      <div>
+        <div class="col-label">Page Sketch · Desktop (scroll)</div>
+
+        <!-- nav -->
+        <div class="wf">
+          <div class="frame-nav">
+            <div style="display:flex;align-items:center;gap:6px"><div class="b dark" style="height:8px;width:60px"></div><div class="dot"></div></div>
+            <div style="display:flex;gap:8px"><div class="nav-link"></div><div class="nav-link"></div><div class="nav-link"></div><div class="nav-link"></div></div>
+          </div>
+        </div>
+
+        <!-- hero -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">01 · Hero</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body">
+            <div class="row"><div class="b w30 h6"></div></div>
+            <div class="row" style="margin-top:8px"><div class="b dark w80 h22"></div></div>
+            <div class="row" style="margin-top:2px"><div class="b dark w65 h22"></div></div>
+            <div class="row" style="margin-top:8px"><div class="b w70 h8"></div></div>
+            <div class="row" style="margin-top:10px"><span class="btn">View Work</span><span class="btn o">Contact</span></div>
+          </div>
+        </div>
+
+        <!-- numbered work list -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">02 · Selected Work</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body">
+            <div class="row"><div class="b dark w50 h14"></div></div>
+            <div class="rule"></div>
+            <div class="row"><span class="num">01</span><div class="b w70 h10"></div><span class="arr">→</span></div>
+            <div class="row"><span class="num">02</span><div class="b w60 h10"></div><span class="arr">→</span></div>
+            <div class="row"><span class="num">03</span><div class="b" style="width:68%;height:10px"></div><span class="arr">→</span></div>
+            <div class="row"><span class="num">04</span><div class="b w50 h10"></div><span class="arr">→</span></div>
+            <div class="row"><span class="num">05</span><div class="b w65 h10"></div><span class="arr">→</span></div>
+          </div>
+        </div>
+
+        <!-- process strip -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">03 · Process</span><span class="wf-tag high">High</span></div>
+          <div class="wf-body">
+            <div class="row"><div class="b dark w40 h12"></div></div>
+            <div class="rule"></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px">
+              <div style="padding:6px;border:1px solid var(--rule)"><div class="b dark w30 h6" style="margin-bottom:4px"></div><div class="b w80 h6"></div></div>
+              <div style="padding:6px;border:1px solid var(--rule)"><div class="b dark w30 h6" style="margin-bottom:4px"></div><div class="b w80 h6"></div></div>
+              <div style="padding:6px;border:1px solid var(--rule)"><div class="b dark w30 h6" style="margin-bottom:4px"></div><div class="b w80 h6"></div></div>
+              <div style="padding:6px;border:1px solid var(--rule)"><div class="b dark w30 h6" style="margin-bottom:4px"></div><div class="b w80 h6"></div></div>
+              <div style="padding:6px;border:1px solid var(--rule)"><div class="b dark w30 h6" style="margin-bottom:4px"></div><div class="b w80 h6"></div></div>
+              <div style="padding:6px;border:1px solid var(--rule)"><div class="b dark w30 h6" style="margin-bottom:4px"></div><div class="b w80 h6"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- clients -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">04 · Clients</span><span class="wf-tag high">High</span></div>
+          <div class="wf-body">
+            <div class="row" style="flex-wrap:wrap;gap:6px">
+              <span class="pill-mini"></span><span class="pill-mini"></span><span class="pill-mini"></span>
+              <span class="pill-mini"></span><span class="pill-mini"></span><span class="pill-mini"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- about -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">05 · About</span><span class="wf-tag high">High</span></div>
+          <div class="wf-body">
+            <div class="row" style="align-items:flex-start;gap:10px">
+              <div class="img-box" style="width:64px;height:64px">PHOTO</div>
+              <div style="flex:1">
+                <div class="b w80 h6" style="margin-bottom:3px"></div>
+                <div class="b w70 h6" style="margin-bottom:3px"></div>
+                <div class="b w60 h6"></div>
+              </div>
+            </div>
+            <div class="rule"></div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px">
+              <div style="text-align:center;padding:5px;border:1px solid var(--rule)"><div class="b dark h12" style="width:30px;margin:0 auto 2px"></div><div class="b h6" style="width:40px;margin:0 auto"></div></div>
+              <div style="text-align:center;padding:5px;border:1px solid var(--rule)"><div class="b dark h12" style="width:30px;margin:0 auto 2px"></div><div class="b h6" style="width:40px;margin:0 auto"></div></div>
+              <div style="text-align:center;padding:5px;border:1px solid var(--rule)"><div class="b dark h12" style="width:30px;margin:0 auto 2px"></div><div class="b h6" style="width:40px;margin:0 auto"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- contact -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">06 · Contact</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body">
+            <div class="row"><div class="b dark w70 h18"></div></div>
+            <div class="row" style="margin-top:6px"><div class="b w50 h6"></div></div>
+            <div class="row" style="margin-top:8px;gap:8px"><span class="pill-mini"></span><span class="pill-mini"></span><span class="pill-mini"></span></div>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <div class="wf">
+          <div class="wf-h" style="background:#ececea"><span class="wf-name">07 · Footer</span><span class="wf-tag opt">Opt</span></div>
+          <div class="wf-body">
+            <div class="row" style="justify-content:space-between"><div class="b w30 h6"></div><div class="b w20 h6"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIDDLE: notes -->
+      <div>
+        <div class="col-label">Annotations</div>
+        <div class="notes">
+          <div class="note">
+            <div class="note-h">Nav</div>
+            <div class="note-line">Sticky name top-left, anchor links right</div>
+            <div class="note-line">Availability dot (green) next to name</div>
+          </div>
+          <div class="note">
+            <div class="note-h must">01 · Hero</div>
+            <div class="note-line">Label: "UI/UX Designer &amp; Consultant"</div>
+            <div class="note-line">Headline: "Designing complex B2B platforms <i>end-to-end</i>"</div>
+            <div class="note-line">Sub: 1 sentence value prop · Phase 0 line</div>
+            <div class="note-line warn">No photo here — type carries the weight</div>
+          </div>
+          <div class="note">
+            <div class="note-h must">02 · Selected Work</div>
+            <div class="note-line">Heart of the page — no thumbnails by default</div>
+            <div class="note-line">Per row: <b>Index · Project · Client (mono) · Year · →</b></div>
+            <div class="note-line">Hover reveals a single inline screen on the right (light reveal, not modal)</div>
+            <div class="note-line">All 4–5 cases visible without scrolling beyond first viewport</div>
+            <div class="note-line warn">Use real client names — Schunk, Fanuc, Mapal …</div>
+          </div>
+          <div class="note">
+            <div class="note-h high">03 · Process</div>
+            <div class="note-line">6 tiles on the Phase 0 → Delivery spine</div>
+            <div class="note-line">One sentence per tile · senior-thinking, not toolkit-listing</div>
+          </div>
+          <div class="note">
+            <div class="note-h high">04 · Clients</div>
+            <div class="note-line">Wordmarks, no logo-zoo. Grayscale or mono treatment</div>
+            <div class="note-line">6 visible, "+ more" overflow</div>
+          </div>
+          <div class="note">
+            <div class="note-h high">05 · About</div>
+            <div class="note-line">Authentic photo, not corporate</div>
+            <div class="note-line">3 stats: 6 yrs · Vienna agency · BA Interaction Design</div>
+            <div class="note-line">Skill tags inline · Figma, Sketch, Balsamiq, Scrum, Workshops, Research</div>
+          </div>
+          <div class="note">
+            <div class="note-h must">06 · Contact</div>
+            <div class="note-line">Direct mailto link, no form</div>
+            <div class="note-line">LinkedIn · Dribbble · Read.cv (or similar)</div>
+            <div class="note-line warn">Form = passive · for senior application use invitation copy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: rationale -->
+      <div>
+        <div class="col-label">Rationale</div>
+        <div class="ration">
+          <div class="ration-card">
+            <div class="ration-h">Why text-first</div>
+            <p>Recruiters reading 200 portfolios in a week reward <b>information density</b>. A numbered list lets them scan five projects in one breath. Thumbnails make portfolios feel <i>same-y</i> — text doesn't.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Trade-offs</div>
+            <p>Less visual hook for visitors who skim with their eyes only. Counter with strong hover-reveal previews and a confident Hero.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Closest reference</div>
+            <p>Fabrica · A24 · Linear changelog rhythm</p>
+          </div>
+          <div class="ration-card" style="background:#fafaf8">
+            <div class="ration-h">Best fit if you…</div>
+            <p>… want to read as <b>senior &amp; serious</b> from row one. Sacrifices warmth for clarity.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Detail focus: hover reveal -->
+    <div class="editorial-rule"></div>
+    <div class="col-label" style="margin-bottom:10px">Focus · Hover-Reveal Interaction</div>
+    <div class="num-list" style="max-width:1000px">
+      <div class="num-row">
+        <span class="nl-ix">/01</span>
+        <div><div class="nl-name">Portal &amp; eShop</div><div class="nl-client">Schunk · SAP Commerce · 2024</div></div>
+        <span class="nl-tags">eShop · Portal · Fleet</span>
+        <span class="nl-year">'24</span>
+        <span class="nl-arr">→</span>
+      </div>
+      <div class="num-row">
+        <span class="nl-ix">/02</span>
+        <div><div class="nl-name">Machine Management Platform</div><div class="nl-client">Index-Traub · Fleet Ops · 2023</div></div>
+        <span class="nl-tags">Fleet · Platform</span>
+        <span class="nl-year">'23</span>
+        <span class="nl-arr">→</span>
+      </div>
+      <div class="num-row">
+        <span class="nl-ix">/03</span>
+        <div><div class="nl-name">Service Portal Redesign</div><div class="nl-client">Fanuc · Self-service · 2023</div></div>
+        <span class="nl-tags">Service · Portal</span>
+        <span class="nl-year">'23</span>
+        <span class="nl-arr">→</span>
+      </div>
+      <div class="num-row">
+        <span class="nl-ix">/04</span>
+        <div><div class="nl-name">Wind-Farm Operator Dashboard</div><div class="nl-client">Enercon · Monitoring · 2022</div></div>
+        <span class="nl-tags">Dashboard · Monitoring</span>
+        <span class="nl-year">'22</span>
+        <span class="nl-arr">→</span>
+      </div>
+      <div class="num-row">
+        <span class="nl-ix">/05</span>
+        <div><div class="nl-name">Tooling Configurator</div><div class="nl-client">Mapal · Commerce · 2022</div></div>
+        <span class="nl-tags">Configurator · CPQ</span>
+        <span class="nl-year">'22</span>
+        <span class="nl-arr">→</span>
+      </div>
+    </div>
+    <p class="muted" style="font-size:11.5px;margin-top:10px;font-family:var(--mono);letter-spacing:.04em">↑ Hover any row · the project's hero screen fades in to the right of the list (desktop only)</p>
+
+  </section>
+
+
+  <!-- ====================== HOME B · EDITORIAL (Opalhaus) ====================== -->
+  <section class="page" data-tab-panel="home-b" data-screen-label="B Home Editorial">
+    <div class="page-head">
+      <div>
+        <h1>Home · B — Editorial</h1>
+        <div class="sub">Big headline · Generous whitespace · Opalhaus-flavored</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill outline">Warm</span>
+        <span class="pill outline">Slower pace</span>
+        <span class="pill outline">Imagery-led work</span>
+      </div>
+    </div>
+
+    <div class="layout-3">
+      <!-- page sketch -->
+      <div>
+        <div class="col-label">Page Sketch · Desktop (scroll)</div>
+
+        <div class="wf">
+          <div class="frame-nav">
+            <div style="display:flex;align-items:center;gap:6px"><div class="b dark" style="height:8px;width:60px"></div></div>
+            <div style="display:flex;gap:8px"><div class="nav-link"></div><div class="nav-link"></div><div class="nav-link"></div></div>
+          </div>
+        </div>
+
+        <!-- editorial hero -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">01 · Editorial Hero</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body" style="padding:18px 14px">
+            <div class="b w20 h6" style="margin-bottom:14px"></div>
+            <div class="b dark h28 w90" style="margin-bottom:4px"></div>
+            <div class="b dark h28 w70" style="margin-bottom:4px"></div>
+            <div class="b dark h28 w60" style="margin-bottom:14px"></div>
+            <div class="b w60 h6" style="margin-bottom:14px"></div>
+            <div class="row" style="justify-content:space-between"><div class="b w20 h6"></div><div class="b w20 h6"></div></div>
+          </div>
+        </div>
+
+        <!-- work grid -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">02 · Work Grid</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+              <div style="padding:6px;border:1px solid var(--rule)">
+                <div class="img-box" style="height:48px">img</div>
+                <div class="b w70 h8" style="margin-top:5px"></div>
+                <div class="b w50 h6" style="margin-top:3px"></div>
+              </div>
+              <div style="padding:6px;border:1px solid var(--rule)">
+                <div class="img-box" style="height:48px">img</div>
+                <div class="b w70 h8" style="margin-top:5px"></div>
+                <div class="b w50 h6" style="margin-top:3px"></div>
+              </div>
+              <div style="padding:6px;border:1px solid var(--rule)">
+                <div class="img-box" style="height:48px">img</div>
+                <div class="b w70 h8" style="margin-top:5px"></div>
+                <div class="b w50 h6" style="margin-top:3px"></div>
+              </div>
+              <div style="padding:6px;border:1px solid var(--rule)">
+                <div class="img-box" style="height:48px">img</div>
+                <div class="b w70 h8" style="margin-top:5px"></div>
+                <div class="b w50 h6" style="margin-top:3px"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- approach -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">03 · Approach</span><span class="wf-tag high">High</span></div>
+          <div class="wf-body">
+            <div class="b dark w50 h12" style="margin-bottom:8px"></div>
+            <div class="row"><div class="b w90 h6"></div></div>
+            <div class="row"><div class="b w80 h6"></div></div>
+            <div class="row"><div class="b w70 h6"></div></div>
+            <div class="row" style="margin-top:8px;justify-content:flex-end"><div class="b w30 h6 dark"></div></div>
+          </div>
+        </div>
+
+        <!-- clients -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">04 · Clients</span><span class="wf-tag high">High</span></div>
+          <div class="wf-body">
+            <div class="row" style="flex-wrap:wrap;gap:6px">
+              <span class="pill-mini"></span><span class="pill-mini"></span><span class="pill-mini"></span>
+              <span class="pill-mini"></span><span class="pill-mini"></span><span class="pill-mini"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- about -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">05 · About</span><span class="wf-tag high">High</span></div>
+          <div class="wf-body">
+            <div class="img-box" style="height:80px;margin-bottom:8px">PORTRAIT</div>
+            <div class="b w80 h6" style="margin-bottom:3px"></div>
+            <div class="b w70 h6" style="margin-bottom:3px"></div>
+            <div class="b w60 h6"></div>
+          </div>
+        </div>
+
+        <!-- contact -->
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">06 · Contact</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body" style="padding:18px 14px;text-align:center">
+            <div class="b dark h22" style="width:60%;margin:0 auto 8px"></div>
+            <div class="b h6" style="width:40%;margin:0 auto 12px"></div>
+            <div class="row" style="justify-content:center;gap:8px"><span class="pill-mini"></span><span class="pill-mini"></span><span class="pill-mini"></span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- middle: detailed editorial example -->
+      <div>
+        <div class="col-label">Editorial Hero · Detail</div>
+
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">Hero — Editorial Treatment</span><span class="wf-tag must">Must</span></div>
+          <div class="editorial">
+            <div class="editorial-meta" style="margin-bottom:18px">
+              <span>· Designer &amp; Consultant</span>
+              <span>· Available Q3 2026</span>
+              <span>· Based in Vienna / Stuttgart</span>
+            </div>
+            <h2>Designing complex<br>B2B platforms<br>end&#8209;to&#8209;end.</h2>
+            <div class="sub">Six years building portals, eShops and machine&#8209;management platforms for industrial leaders — from the first stakeholder workshop to the last Scrum sprint.</div>
+            <div class="row" style="gap:8px"><span class="btn">Selected Work</span><span class="btn o">Get in touch</span></div>
+          </div>
+        </div>
+
+        <div class="col-label" style="margin-top:24px">Work Grid · Detail</div>
+        <div class="work-grid">
+          <div class="work-cell">
+            <div class="img-box">Hero screen · Portal dashboard</div>
+            <div class="ix">/01 · Schunk · 2024</div>
+            <h4>Portal &amp; eShop</h4>
+            <div class="meta">eShop · Fleet · SAP Commerce</div>
+          </div>
+          <div class="work-cell">
+            <div class="img-box">Machine list view</div>
+            <div class="ix">/02 · Index-Traub · 2023</div>
+            <h4>Machine Management</h4>
+            <div class="meta">Fleet · Platform</div>
+          </div>
+          <div class="work-cell">
+            <div class="img-box">Service request flow</div>
+            <div class="ix">/03 · Fanuc · 2023</div>
+            <h4>Service Portal</h4>
+            <div class="meta">Self-service · Tickets</div>
+          </div>
+          <div class="work-cell">
+            <div class="img-box">Wind-farm overview</div>
+            <div class="ix">/04 · Enercon · 2022</div>
+            <h4>Operator Dashboard</h4>
+            <div class="meta">Monitoring · SCADA-adjacent</div>
+          </div>
+        </div>
+
+        <div class="notes" style="margin-top:24px">
+          <div class="note">
+            <div class="note-h must">Editorial Hero</div>
+            <div class="note-line">Headline runs 2–3 lines, near-display size (40–64px)</div>
+            <div class="note-line">Non-breaking hyphen on "end-to-end" — no orphan</div>
+            <div class="note-line">Single subtitle ≤ 36ch, never wider</div>
+            <div class="note-line">Metadata line above headline gives instant context (role · availability · location)</div>
+          </div>
+          <div class="note">
+            <div class="note-h must">Work Grid</div>
+            <div class="note-line">2×2 grid · always 4 projects featured · 5th moves to /work</div>
+            <div class="note-line">Project hero image lives in the cell · click → case study</div>
+            <div class="note-line warn">Choose imagery that survives in a small frame — UI close-ups, not full screens</div>
+          </div>
+          <div class="note">
+            <div class="note-h high">Approach</div>
+            <div class="note-line">Single paragraph (≤ 60 words), no list of phases</div>
+            <div class="note-line">Closes with link to a /process page <span class="muted">(or anchor)</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- right: rationale -->
+      <div>
+        <div class="col-label">Rationale</div>
+        <div class="ration">
+          <div class="ration-card">
+            <div class="ration-h">Why editorial</div>
+            <p>An editorial layout positions you as <b>thoughtful</b>, not just productive. The big headline does the heavy lifting; the grid shows craft.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Trade-offs</div>
+            <p>Requires <b>real imagery</b> per project. If you can't get clean exportable screens for 4+ projects, A is safer.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Closest reference</div>
+            <p>Opalhaus · Pentagram · It's Nice That</p>
+          </div>
+          <div class="ration-card" style="background:#fafaf8">
+            <div class="ration-h">Best fit if you…</div>
+            <p>… have <b>strong final screens</b> and want to read as a designer-with-taste, not just an operator.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== HOME C · SPLIT-SCREEN ====================== -->
+  <section class="page" data-tab-panel="home-c" data-screen-label="C Home Split-Screen">
+    <div class="page-head">
+      <div>
+        <h1>Home · C — Split-Screen</h1>
+        <div class="sub">Sticky bio left · Scrolling work right · No "About" section needed</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill outline">Unconventional</span>
+        <span class="pill outline">Single screen</span>
+        <span class="pill outline">Bio always visible</span>
+      </div>
+    </div>
+
+    <div class="layout-2">
+      <div>
+        <div class="col-label">Page Sketch · Desktop (sticky left)</div>
+
+        <div class="split">
+          <!-- left sticky -->
+          <div class="split-left">
+            <div class="split-role">UI/UX Designer &amp; Consultant</div>
+            <div class="split-name">Your Name<br><span class="muted" style="font-weight:400;font-size:14px">Senior Application 2026</span></div>
+            <div class="split-bio">
+              Six years building complex B2B platforms — portals, eShops, fleet &amp; machine management — for industrial leaders.
+              I own the path from <b>Phase 0</b> (the first stakeholder workshop) through Scrum delivery.
+            </div>
+            <dl class="split-meta">
+              <dt>Experience</dt><dd>6 years</dd>
+              <dt>Education</dt><dd>BA Interaction Design</dd>
+              <dt>Previously</dt><dd>Agency, Vienna</dd>
+              <dt>Currently</dt><dd>UI/UX Consultant</dd>
+              <dt>Stack</dt><dd>Figma · Sketch · Balsamiq</dd>
+              <dt>Process</dt><dd>Workshops · Research · Scrum</dd>
+            </dl>
+            <div class="split-availability"><span class="d"></span>Open for senior roles · 2026</div>
+          </div>
+
+          <!-- right scrolling work -->
+          <div class="split-right">
+            <div class="row-item">
+              <span class="ri-ix">/01</span>
+              <div><div class="ri-name">Portal &amp; eShop</div><div class="ri-client">Schunk · SAP Commerce</div></div>
+              <span class="ri-meta">2024</span>
+              <span class="ri-arr">→</span>
+            </div>
+            <div class="row-item">
+              <span class="ri-ix">/02</span>
+              <div><div class="ri-name">Machine Management Platform</div><div class="ri-client">Index-Traub · Fleet Ops</div></div>
+              <span class="ri-meta">2023</span>
+              <span class="ri-arr">→</span>
+            </div>
+            <div class="row-item">
+              <span class="ri-ix">/03</span>
+              <div><div class="ri-name">Service Portal Redesign</div><div class="ri-client">Fanuc · Self-service</div></div>
+              <span class="ri-meta">2023</span>
+              <span class="ri-arr">→</span>
+            </div>
+            <div class="row-item">
+              <span class="ri-ix">/04</span>
+              <div><div class="ri-name">Wind-Farm Operator Dashboard</div><div class="ri-client">Enercon · Monitoring</div></div>
+              <span class="ri-meta">2022</span>
+              <span class="ri-arr">→</span>
+            </div>
+            <div class="row-item">
+              <span class="ri-ix">/05</span>
+              <div><div class="ri-name">Tooling Configurator</div><div class="ri-client">Mapal · Commerce</div></div>
+              <span class="ri-meta">2022</span>
+              <span class="ri-arr">→</span>
+            </div>
+            <div class="row-item">
+              <span class="ri-ix">/06</span>
+              <div><div class="ri-name">B2B Quoting &amp; CPQ Flow</div><div class="ri-client">Titan Wagner · Sales</div></div>
+              <span class="ri-meta">2021</span>
+              <span class="ri-arr">→</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="notes" style="margin-top:24px">
+          <div class="note">
+            <div class="note-h must">Sticky Left Column</div>
+            <div class="note-line">All "about" content lives here · no separate About section</div>
+            <div class="note-line">Bio · Stats · Stack · Availability dot</div>
+            <div class="note-line">On scroll, this stays fixed; right column does all the moving</div>
+          </div>
+          <div class="note">
+            <div class="note-h must">Right Column</div>
+            <div class="note-line">Pure work index — every row is a case study</div>
+            <div class="note-line">Hover lifts the row + shows a small thumbnail</div>
+            <div class="note-line">Order &amp; categorize visually with metadata only · no headers</div>
+          </div>
+          <div class="note">
+            <div class="note-h tip">Process &amp; Contact</div>
+            <div class="note-line">Below the split, full-width: Process spine + Contact</div>
+            <div class="note-line">Sticky column releases once Process begins</div>
+          </div>
+          <div class="note">
+            <div class="note-h tip">Mobile Fallback</div>
+            <div class="note-line">Bio block collapses to top · work list stacks below · sticky drops away</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-label">Rationale</div>
+        <div class="ration">
+          <div class="ration-card">
+            <div class="ration-h">Why split-screen</div>
+            <p>Solves the "recruiter never scrolls past hero" problem: <b>your bio is always visible</b> while they browse work.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Trade-offs</div>
+            <p>Less canonical — riskier for very traditional reviewers. Constrains hero typography (no big editorial headline).</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Closest reference</div>
+            <p>Bureau Borsche site · Read.cv profiles · Sidebar.io author pages</p>
+          </div>
+          <div class="ration-card" style="background:#fafaf8">
+            <div class="ration-h">Best fit if you…</div>
+            <p>… want the <b>strongest signal-to-noise</b> for senior recruiters: bio + work + availability all in one viewport.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Open questions</div>
+            <p class="muted">— Headshot or no headshot in left column?</p>
+            <p class="muted">— Show clients as wordmarks below bio, or only on case pages?</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== CASE A · STICKY SCROLL ====================== -->
+  <section class="page" data-tab-panel="case-a" data-screen-label="A Case Sticky Scroll">
+    <div class="page-head">
+      <div>
+        <h1>Case Study · A — Sticky Scroll</h1>
+        <div class="sub">Image stays · narrative scrolls · refined from your existing wireframe</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill outline">Narrative</span>
+        <span class="pill outline">Long-form</span>
+        <span class="pill dark">Recommended for deep dives</span>
+      </div>
+    </div>
+
+    <div class="layout-2">
+      <div>
+        <div class="col-label">Interactive · Scroll the right column or click sections</div>
+
+        <div class="demo-wrap">
+          <div class="demo-head">
+            <div>
+              <div class="demo-title">Schunk · Portal &amp; eShop</div>
+              <div class="demo-sub">End-to-end UX · Portal · eShop · Machine Management · 2024</div>
+            </div>
+            <div class="pill-row">
+              <span class="pill outline">Case Study</span>
+              <span class="pill dark">Sticky</span>
+            </div>
+          </div>
+          <div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+          <div class="demo-body">
+
+            <div class="demo-left" id="imgCol">
+              <div class="img-panel visible" id="p1">
+                <div class="img-box" style="width:80%;height:200px">Expert Review<br>Heuristic Evaluation</div>
+                <div class="label-mono" style="margin-top:10px;text-align:center">Existing eShop · 23 Pain Points</div>
+              </div>
+              <div class="img-panel" id="p2">
+                <div class="img-box" style="width:80%;height:200px">Personas · Journey Map<br>Buyer · Admin · Technician</div>
+                <div class="label-mono" style="margin-top:10px;text-align:center">3 Personas · 1 Journey Map</div>
+              </div>
+              <div class="img-panel" id="p3">
+                <div class="img-box" style="width:80%;height:200px">Balsamiq Wireframes<br>Portal Navigation</div>
+                <div class="label-mono" style="margin-top:10px;text-align:center">3 Review Rounds</div>
+              </div>
+              <div class="img-panel" id="p4">
+                <div class="img-box" style="width:80%;height:200px">Usability Test Protocol<br>Task Completion %</div>
+                <div class="label-mono" style="margin-top:10px;text-align:center">8 Participants · Moderated</div>
+              </div>
+              <div class="img-panel" id="p5">
+                <div class="img-box" style="width:80%;height:200px">Final Design · Sketch<br>Portal Dashboard</div>
+                <div class="label-mono" style="margin-top:10px;text-align:center">Hi-Fi · Component Library</div>
+              </div>
+              <div class="img-panel" id="p6">
+                <div class="img-box" style="width:80%;height:200px;background:#e3e8e0">Outcome &amp; Client Quote</div>
+                <div class="label-mono" style="margin-top:10px;text-align:center;color:var(--ok)">Accepted · Live since 2024</div>
+              </div>
+            </div>
+
+            <div class="demo-right" id="scrollCol">
+              <div class="scroll-section active" data-panel="1" data-prog="16">
+                <div class="ss-num">/01 · EXPERT REVIEW</div>
+                <div class="ss-title">Audit the Status Quo</div>
+                <div class="ss-text">Heuristic evaluation of the existing eShop. 23 critical usability issues mapped to severity and effort. Becomes the baseline for every later decision.</div>
+                <div class="ss-tags"><span class="ss-tag">Heuristic Eval.</span><span class="ss-tag">Pain Points</span></div>
+                <div class="ss-art">Artifact · Audit document (PDF)</div>
+              </div>
+              <div class="scroll-section" data-panel="2" data-prog="33">
+                <div class="ss-num">/02 · RESEARCH</div>
+                <div class="ss-title">Understand who the users actually are</div>
+                <div class="ss-text">Stakeholder workshops with PO &amp; PL. Three personas — Buyer, Machine Admin, Service Technician. User journey map surfaces the breaks in the existing flow.</div>
+                <div class="ss-tags"><span class="ss-tag">Personas</span><span class="ss-tag">Journey Map</span><span class="ss-tag">Workshops</span></div>
+                <div class="ss-art">Artifact · Personas · Journey Maps</div>
+              </div>
+              <div class="scroll-section" data-panel="3" data-prog="50">
+                <div class="ss-num">/03 · WIREFRAMES</div>
+                <div class="ss-title">Structure before aesthetics</div>
+                <div class="ss-text">Iterative wireframes in Balsamiq. Three internal review rounds. Every decision argued — never decorative. The point is to ship the right structure, not the prettiest one.</div>
+                <div class="ss-tags"><span class="ss-tag">Balsamiq</span><span class="ss-tag">Review Cycles</span></div>
+                <div class="ss-art">Artifact · Wireframe PDFs</div>
+              </div>
+              <div class="scroll-section" data-panel="4" data-prog="66">
+                <div class="ss-num">/04 · TESTING</div>
+                <div class="ss-title">Validate, don't assume</div>
+                <div class="ss-text">Moderated usability tests with real users on the wireframes. Findings feed straight into the next iteration. No design is shipped without a test as evidence.</div>
+                <div class="ss-tags"><span class="ss-tag">Usability Test</span><span class="ss-tag">Iteration</span></div>
+                <div class="ss-art">Artifact · Test protocols</div>
+              </div>
+              <div class="scroll-section" data-panel="5" data-prog="83">
+                <div class="ss-num">/05 · FINAL DESIGN &amp; SCRUM</div>
+                <div class="ss-title">From Sketch to sprints</div>
+                <div class="ss-text">Final design in Sketch, client sign-off, handover to an interdisciplinary dev team (internal + external). Two-week sprints, continuous quality assurance through release.</div>
+                <div class="ss-tags"><span class="ss-tag">Sketch</span><span class="ss-tag">Scrum</span><span class="ss-tag">Handoff</span></div>
+                <div class="ss-art">Artifact · Final Hi-Fi screens</div>
+              </div>
+              <div class="scroll-section" data-panel="6" data-prog="100">
+                <div class="ss-num">/06 · OUTCOME</div>
+                <div class="ss-title">What it changed</div>
+                <div class="ss-text">Users now sign in once and manage everything in one place — eShop, registered machines, service, benefits. Customer feedback and PO/PL sign-off confirmed the shift.</div>
+                <div class="ss-tags"><span class="ss-tag">Sign-off</span><span class="ss-tag">Client Feedback</span></div>
+                <div class="ss-art">"More usable, and faster to the point." — Client PO</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-label">Pattern Notes</div>
+        <div class="ration">
+          <div class="ration-card">
+            <div class="ration-h">Sticky scroll</div>
+            <p>Left frame holds the artifact, right column scrolls the narrative. Image switches per section with a fade.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Why this works</div>
+            <ul style="font-size:11.5px;color:var(--ink-2);line-height:1.6;list-style:none">
+              <li>· Visual context never disappears</li>
+              <li>· Artifacts get <b>explained</b>, not just shown</li>
+              <li>· Reads as process — not a screen dump</li>
+              <li>· Feels narrative · holds attention</li>
+            </ul>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Mobile</div>
+            <p>Sticky drops away. Image and text stack per section.</p>
+          </div>
+          <div class="ration-card" style="background:#fafaf8">
+            <div class="ration-h">Use this for</div>
+            <p>Your <b>tentpole</b> case — Schunk or Index-Traub. The one where the depth of process is the point.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== CASE B · PHASED TIMELINE ====================== -->
+  <section class="page" data-tab-panel="case-b" data-screen-label="B Case Phased Timeline">
+    <div class="page-head">
+      <div>
+        <h1>Case Study · B — Phased Timeline</h1>
+        <div class="sub">Vertical timeline · One block per phase · Scannable</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill outline">Scannable</span>
+        <span class="pill outline">Process-forward</span>
+        <span class="pill outline">Linear</span>
+      </div>
+    </div>
+
+    <div class="layout-2">
+      <div>
+        <div class="col-label">Page Sketch · Vertical Timeline</div>
+
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">Case Hero · Schunk · Portal &amp; eShop</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body" style="padding:18px 22px">
+            <div class="editorial-meta" style="margin-bottom:14px">
+              <span>· Client · Schunk</span>
+              <span>· Role · Lead UX</span>
+              <span>· Year · 2024</span>
+              <span>· Duration · 9 months</span>
+            </div>
+            <div class="b dark h22 w80" style="margin-bottom:4px"></div>
+            <div class="b dark h22 w60" style="margin-bottom:10px"></div>
+            <div class="b w70 h8"></div>
+          </div>
+        </div>
+
+        <div class="wf" style="margin-top:14px">
+          <div class="wf-h"><span class="wf-name">Challenge &amp; Goals</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body" style="padding:14px 22px">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+              <div>
+                <div class="label-mono">Challenge</div>
+                <p style="font-size:11.5px;color:var(--ink-2);line-height:1.55;margin-top:5px">
+                  Customers managed eShop, machine fleet, service and benefits across <b>four disconnected systems</b>. SAP backend, fragmented frontends.
+                </p>
+              </div>
+              <div>
+                <div class="label-mono">Goals</div>
+                <p style="font-size:11.5px;color:var(--ink-2);line-height:1.55;margin-top:5px">
+                  Single sign-on, single portal · faster service requests · reduce support tickets by 30% within 6 months of launch.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-label" style="margin-top:18px">Process Timeline</div>
+
+        <div class="tl">
+          <div class="tl-phase">
+            <div class="tl-marker"><span class="mk"></span><span class="ix">2024 · Q1</span></div>
+            <div class="tl-body">
+              <div class="tl-head"><div class="tl-name">Phase 0 · Workshops &amp; Alignment</div><div class="tl-meta">/00 · 3 weeks</div></div>
+              <div class="tl-text">Two-day kickoff with PO, PL and key business stakeholders. Aligned on success metrics before any design work began. Set up bi-weekly review rhythm with the dev lead.</div>
+              <div class="tl-tags"><span class="ss-tag">Workshops</span><span class="ss-tag">Stakeholder Map</span><span class="ss-tag">Success Metrics</span></div>
+            </div>
+          </div>
+
+          <div class="tl-phase">
+            <div class="tl-marker"><span class="mk"></span><span class="ix">Q1</span></div>
+            <div class="tl-body">
+              <div class="tl-head"><div class="tl-name">Research &amp; Expert Review</div><div class="tl-meta">/01 · 4 weeks</div></div>
+              <div class="tl-text">Heuristic evaluation of existing eShop. 8 user interviews across Buyer / Admin / Technician personas. Output: pain-point map and 3 user-journey maps.</div>
+              <div class="tl-artifacts">
+                <div class="img-box">Audit doc</div>
+                <div class="img-box">Persona sheets</div>
+                <div class="img-box">Journey map</div>
+              </div>
+              <div class="tl-tags"><span class="ss-tag">Heuristic Eval.</span><span class="ss-tag">User Interviews</span><span class="ss-tag">Personas</span></div>
+            </div>
+          </div>
+
+          <div class="tl-phase">
+            <div class="tl-marker"><span class="mk"></span><span class="ix">Q2</span></div>
+            <div class="tl-body">
+              <div class="tl-head"><div class="tl-name">Wireframes &amp; Information Architecture</div><div class="tl-meta">/02 · 5 weeks</div></div>
+              <div class="tl-text">Three iterations in Balsamiq. Site map collapsed from 11 to 6 top-level areas. Each wireframe set reviewed with PO before next round.</div>
+              <div class="tl-artifacts">
+                <div class="img-box">Sitemap</div>
+                <div class="img-box">WF v1</div>
+                <div class="img-box">WF v3</div>
+              </div>
+              <div class="tl-tags"><span class="ss-tag">Balsamiq</span><span class="ss-tag">IA</span></div>
+            </div>
+          </div>
+
+          <div class="tl-phase">
+            <div class="tl-marker"><span class="mk"></span><span class="ix">Q2</span></div>
+            <div class="tl-body">
+              <div class="tl-head"><div class="tl-name">Usability Testing</div><div class="tl-meta">/03 · 2 weeks</div></div>
+              <div class="tl-text">Moderated tests with 8 real users on the v3 wireframes. Task completion rose from 62% to 89% by the end of the iteration cycle.</div>
+              <div class="tl-tags"><span class="ss-tag">Moderated Tests</span><span class="ss-tag">Task Completion</span></div>
+            </div>
+          </div>
+
+          <div class="tl-phase">
+            <div class="tl-marker"><span class="mk"></span><span class="ix">Q3</span></div>
+            <div class="tl-body">
+              <div class="tl-head"><div class="tl-name">Hi-Fi Design &amp; Component Library</div><div class="tl-meta">/04 · 6 weeks</div></div>
+              <div class="tl-text">Final design in Sketch. Component library aligned with internal SAP UI conventions. Co-design sessions with two developers ensured handoff parity.</div>
+              <div class="tl-artifacts">
+                <div class="img-box">Dashboard</div>
+                <div class="img-box">Machine list</div>
+                <div class="img-box">Service flow</div>
+              </div>
+              <div class="tl-tags"><span class="ss-tag">Sketch</span><span class="ss-tag">Design System</span><span class="ss-tag">Co-design</span></div>
+            </div>
+          </div>
+
+          <div class="tl-phase">
+            <div class="tl-marker"><span class="mk"></span><span class="ix">Q4</span></div>
+            <div class="tl-body">
+              <div class="tl-head"><div class="tl-name">Delivery · Scrum Sprints</div><div class="tl-meta">/05 · 14 weeks</div></div>
+              <div class="tl-text">Two-week sprints with internal + external developers. Acted as embedded UX in standups, refinements and reviews. Continuous QA on staging environment until acceptance.</div>
+              <div class="tl-tags"><span class="ss-tag">Scrum</span><span class="ss-tag">QA</span><span class="ss-tag">Embedded</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf" style="margin-top:14px">
+          <div class="wf-h"><span class="wf-name">Outcome</span><span class="wf-tag high">High</span></div>
+          <div class="wf-body" style="padding:18px 22px">
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:14px">
+              <div><div class="label-mono">Support tickets</div><div style="font-size:22px;font-weight:600;margin-top:4px">−34%</div><div class="muted" style="font-size:11px">vs. baseline · 6mo post-launch</div></div>
+              <div><div class="label-mono">Task completion</div><div style="font-size:22px;font-weight:600;margin-top:4px">+27pp</div><div class="muted" style="font-size:11px">tested vs. legacy flow</div></div>
+              <div><div class="label-mono">Time-on-task</div><div style="font-size:22px;font-weight:600;margin-top:4px">−41%</div><div class="muted" style="font-size:11px">order placement</div></div>
+            </div>
+            <div class="quote" style="font-size:15px">
+              Users now sign in once and manage everything in one place.
+              <cite>— Client PO, sign-off review</cite>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="col-label">Pattern Notes</div>
+        <div class="ration">
+          <div class="ration-card">
+            <div class="ration-h">Why timeline</div>
+            <p>Best for cases where the <b>sequence and time investment</b> matter — proves senior-level project management as well as design.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Cadence</div>
+            <p>Each phase has the same anatomy: name · duration · paragraph · 3 artifacts · tags. Predictable scan.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">When to skip</div>
+            <p>If a project was short (≤ 6 weeks) — timeline feels overstuffed. Use C · Decision Log instead.</p>
+          </div>
+          <div class="ration-card" style="background:#fafaf8">
+            <div class="ration-h">Use this for</div>
+            <p>Long, multi-quarter projects · Index-Traub · Schunk · Enercon</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Numbers (real or null)</div>
+            <p class="muted" style="font-size:11.5px">If you don't have hard metrics for every project, swap the outcome block for the <b>client quote treatment</b>. Don't fabricate numbers.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================== CASE C · DECISION LOG ====================== -->
+  <section class="page" data-tab-panel="case-c" data-screen-label="C Case Decision Log">
+    <div class="page-head">
+      <div>
+        <h1>Case Study · C — Decision Log</h1>
+        <div class="sub">Problem → Decision → Outcome · Narrative cards · Senior-thinking on display</div>
+      </div>
+      <div class="pill-row">
+        <span class="pill outline">Argument-driven</span>
+        <span class="pill outline">Short</span>
+        <span class="pill outline">Most senior-feeling</span>
+      </div>
+    </div>
+
+    <div class="layout-2">
+      <div>
+        <div class="col-label">Page Sketch · Card Sequence</div>
+
+        <div class="wf">
+          <div class="wf-h"><span class="wf-name">Case Hero · Index-Traub · Machine Management</span><span class="wf-tag must">Must</span></div>
+          <div class="wf-body" style="padding:18px 22px">
+            <div class="editorial-meta" style="margin-bottom:12px">
+              <span>· Client · Index-Traub</span>
+              <span>· Role · Lead UX &amp; Workshop Lead</span>
+              <span>· Year · 2023</span>
+            </div>
+            <div class="b dark h22 w80" style="margin-bottom:4px"></div>
+            <div class="b dark h22 w55" style="margin-bottom:10px"></div>
+            <p class="muted" style="font-size:12px;line-height:1.55;max-width:54ch">
+              A platform for managing global machine fleets — registered installs, service contracts, spare parts, technician access. The interesting part wasn't the screens; it was the <b>five decisions</b> we had to argue our way through.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-label" style="margin-top:18px">Five Decisions</div>
+
+        <div class="dlog">
+          <div class="dcard">
+            <div class="dcard-h">
+              <span class="dcard-ix">/01</span>
+              <span class="dcard-name">Group by machine, not by order</span>
+              <span class="dcard-tag">IA</span>
+            </div>
+            <div class="dcard-body">
+              <div class="dcell">
+                <div class="dcell-h">Problem</div>
+                <p>Existing SAP backend organized everything around order numbers. Users (Service Technicians) think in <i>physical machines</i>, not orders.</p>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Decision</div>
+                <p>Anchor the new IA on machine identity. Orders become a sub-view per machine. Argued through three reviews with PO and SAP architects.</p>
+                <div class="img-box">IA before / after</div>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Outcome</div>
+                <p>Service Technicians completed lookup tasks in 41% less time during testing. Backend mapping handled via a thin frontend service.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dcard">
+            <div class="dcard-h">
+              <span class="dcard-ix">/02</span>
+              <span class="dcard-name">Single dashboard, three roles</span>
+              <span class="dcard-tag">Personas</span>
+            </div>
+            <div class="dcard-body">
+              <div class="dcell">
+                <div class="dcell-h">Problem</div>
+                <p>Three distinct personas — Buyer, Admin, Technician — but the client wanted one platform, one URL, one onboarding.</p>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Decision</div>
+                <p>Single dashboard, role-shaped widgets. The same component renders different data per role; layout adapts via grid order, not separate pages.</p>
+                <div class="img-box">3 dashboard states</div>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Outcome</div>
+                <p>Reduced build cost (one frontend) and let users who switch roles (Admin who is also a Buyer) stay in one mental model.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dcard">
+            <div class="dcard-h">
+              <span class="dcard-ix">/03</span>
+              <span class="dcard-name">No empty state for empty fleets</span>
+              <span class="dcard-tag">Copy</span>
+            </div>
+            <div class="dcard-body">
+              <div class="dcell">
+                <div class="dcell-h">Problem</div>
+                <p>New customers signed in to an empty dashboard. Test users assumed the system was broken.</p>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Decision</div>
+                <p>Replaced "empty state" with a first-time setup checklist tied to onboarding workshops. Activation moves from <i>passive</i> to <i>guided</i>.</p>
+                <div class="img-box">Empty → checklist</div>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Outcome</div>
+                <p>First-week activation up. Trained sales-engineers report fewer "is this working?" calls in week one.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dcard">
+            <div class="dcard-h">
+              <span class="dcard-ix">/04</span>
+              <span class="dcard-name">Keep Balsamiq lo-fi all the way through testing</span>
+              <span class="dcard-tag">Process</span>
+            </div>
+            <div class="dcard-body">
+              <div class="dcell">
+                <div class="dcell-h">Problem</div>
+                <p>Pressure to skip wireframing and jump to Sketch hi-fi — "the client wants to see something real".</p>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Decision</div>
+                <p>Held the line: usability tests on lo-fi wireframes, not on hi-fi. Users critique structure, not color. Three review rounds before pixel work.</p>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Outcome</div>
+                <p>Saved an estimated 4 weeks of hi-fi rework. Stakeholders learned to trust the lo-fi → test → hi-fi sequence.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="dcard">
+            <div class="dcard-h">
+              <span class="dcard-ix">/05</span>
+              <span class="dcard-name">Embed UX in the Scrum team, don't toss-over</span>
+              <span class="dcard-tag">Delivery</span>
+            </div>
+            <div class="dcard-body">
+              <div class="dcell">
+                <div class="dcell-h">Problem</div>
+                <p>Internal + external devs. Risk of design intent being lost in translation between two organizations across time zones.</p>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Decision</div>
+                <p>Attended every standup, every refinement, every review. Set up a Figma component spec doc that both teams could comment on directly.</p>
+              </div>
+              <div class="dcell">
+                <div class="dcell-h">Outcome</div>
+                <p>Zero design-vs-build disputes through acceptance. PO described handover as <i>"the smoothest we've had"</i>.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="wf" style="margin-top:18px">
+          <div class="wf-h"><span class="wf-name">Closing · Next Project</span><span class="wf-tag opt">Opt</span></div>
+          <div class="wf-body" style="padding:18px 22px">
+            <div class="row" style="justify-content:space-between;align-items:center">
+              <div>
+                <div class="label-mono">Next case study</div>
+                <div style="font-size:18px;font-weight:600;margin-top:4px">Fanuc · Service Portal Redesign →</div>
+              </div>
+              <span class="btn">Read next</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div>
+        <div class="col-label">Pattern Notes</div>
+        <div class="ration">
+          <div class="ration-card">
+            <div class="ration-h">Why decision log</div>
+            <p>This is the pattern <b>most read as senior</b>. It shows you can <i>argue</i>, not just produce. Problem → Decision → Outcome mirrors how engineering ADRs work.</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Anatomy</div>
+            <ul style="font-size:11.5px;color:var(--ink-2);line-height:1.6;list-style:none">
+              <li>· 4–6 cards per case · no more</li>
+              <li>· Each card · 3 columns · same headers every time</li>
+              <li>· One artifact image per card · in the middle column</li>
+              <li>· Tag in top right · IA, Copy, Personas, Process, Delivery …</li>
+            </ul>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">When to skip</div>
+            <p>If the project's value was <b>volume of artifacts</b> (lots of screens, big design system) — Sticky Scroll or Timeline carry that better.</p>
+          </div>
+          <div class="ration-card" style="background:#fafaf8">
+            <div class="ration-h">Use this for</div>
+            <p>Mid-length, conceptually rich projects · Index-Traub · Mapal configurator · Titan Wagner CPQ</p>
+          </div>
+          <div class="ration-card">
+            <div class="ration-h">Recommendation</div>
+            <p class="muted">Mix patterns across your 4–5 cases. <b>Sticky Scroll</b> for your flagship, <b>Timeline</b> for the multi-quarter one, <b>Decision Log</b> for the rest.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<!-- ====================== JS: TABS + STICKY SCROLL DEMO ====================== -->
+<script>
+  // Tabs
+  const tabs = document.querySelectorAll('[role="tab"]');
+  const panels = document.querySelectorAll('[data-tab-panel]');
+  function activateTab(name, push){
+    tabs.forEach(t => t.setAttribute('aria-selected', t.dataset.tab === name ? 'true' : 'false'));
+    panels.forEach(p => {
+      if(p.dataset.tabPanel === name){ p.setAttribute('data-active',''); }
+      else { p.removeAttribute('data-active'); }
+    });
+    if(push){
+      const u = new URL(location.href); u.hash = name; history.replaceState(null,'',u);
+    }
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  tabs.forEach(t => t.addEventListener('click', () => activateTab(t.dataset.tab, true)));
+  // initial from hash
+  const initial = location.hash.replace('#','');
+  if(initial && document.querySelector(`[data-tab-panel="${initial}"]`)) activateTab(initial, false);
+
+  // Sticky scroll demo
+  const sections = document.querySelectorAll('.scroll-section');
+  const imgPanels = document.querySelectorAll('.img-panel');
+  const prog = document.getElementById('prog');
+  function activateSection(el){
+    if(!el) return;
+    sections.forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    const n = el.dataset.panel;
+    imgPanels.forEach(p => p.classList.remove('visible'));
+    const target = document.getElementById('p' + n);
+    if(target) target.classList.add('visible');
+    if(prog) prog.style.width = el.dataset.prog + '%';
+  }
+  sections.forEach(s => s.addEventListener('click', () => activateSection(s)));
+  const scrollCol = document.getElementById('scrollCol');
+  if(scrollCol){
+    scrollCol.addEventListener('scroll', () => {
+      let closest=null, minDist=Infinity;
+      const colRect = scrollCol.getBoundingClientRect();
+      sections.forEach(s => {
+        const r = s.getBoundingClientRect();
+        const d = Math.abs(r.top - colRect.top - 40);
+        if(d < minDist){ minDist=d; closest=s; }
+      });
+      activateSection(closest);
+    });
+  }
+</script>
+
+</body>
+</html>

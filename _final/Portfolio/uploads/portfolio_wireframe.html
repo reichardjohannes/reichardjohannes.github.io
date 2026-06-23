@@ -1,0 +1,336 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#f5f4f2}
+.wf{display:flex;gap:32px;padding:20px;align-items:flex-start;font-size:12px}
+.col-page{width:320px;flex-shrink:0}
+.col-notes{flex:1;min-width:200px}
+.col-ia{width:220px;flex-shrink:0}
+
+/* Page column */
+.page-label{font-size:10px;letter-spacing:.1em;color:#999;margin-bottom:10px;font-weight:500}
+.block{border:1.5px solid #ccc;background:#fff;margin-bottom:6px;padding:0;border-radius:3px;overflow:hidden;position:relative}
+.block.nav{border-color:#aaa;background:#eee}
+.block.hero{border-color:#888;background:#f9f9f9;height:90px}
+.block.primary{border-color:#666;background:#fff}
+.block.secondary{border-color:#bbb;background:#fafafa}
+.block.footer{border-color:#ccc;background:#eee;height:36px}
+
+.block-header{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-bottom:1px solid #e8e8e8}
+.block-name{font-weight:600;font-size:11px;color:#333;letter-spacing:.02em}
+.block-tag{font-size:9px;color:#999;letter-spacing:.06em;background:#f0f0f0;padding:2px 6px;border-radius:2px}
+.block-tag.must{background:#333;color:#fff}
+.block-tag.high{background:#888;color:#fff}
+.block-tag.med{background:#ccc;color:#555}
+
+.block-inner{padding:7px 10px}
+.wire-row{display:flex;gap:6px;align-items:center;margin-bottom:4px}
+.wire-box{background:#e8e7e4;border-radius:2px;height:10px;flex:1}
+.wire-box.w20{flex:0 0 20%}
+.wire-box.w30{flex:0 0 30%}
+.wire-box.w40{flex:0 0 40%}
+.wire-box.w50{flex:0 0 50%}
+.wire-box.w60{flex:0 0 60%}
+.wire-box.w70{flex:0 0 70%}
+.wire-box.w80{flex:0 0 80%}
+.wire-box.tall{height:18px}
+.wire-box.short{height:7px}
+.wire-box.dark{background:#bbb}
+.wire-img{background:#d8d7d4;border-radius:2px;flex-shrink:0}
+.wire-pill{background:#ddd;border-radius:10px;height:8px;width:50px;flex-shrink:0}
+.wire-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0}
+.wire-rule{height:1px;background:#eee;margin:5px 0}
+.wire-num{font-size:9px;color:#bbb;width:20px;flex-shrink:0}
+.wire-chevron{font-size:10px;color:#ccc;margin-left:auto}
+.wire-btn{background:#333;color:#fff;font-size:9px;padding:4px 10px;border-radius:2px;flex-shrink:0}
+.wire-btn.outline{background:#fff;color:#333;border:1px solid #ccc}
+.wire-card{border:1px solid #e0e0e0;border-radius:3px;padding:6px;flex:1}
+
+/* Navigation block */
+.nav .block-inner{display:flex;justify-content:space-between;align-items:center;padding:8px 10px}
+.nav-left{display:flex;align-items:center;gap:6px}
+.nav-right{display:flex;gap:10px}
+.nav-link{width:30px;height:6px;background:#ccc;border-radius:1px}
+
+/* Hero internal */
+.hero .block-inner{padding:12px 10px;display:flex;flex-direction:column;gap:6px}
+
+/* Notes column */
+.note-block{margin-bottom:16px}
+.note-title{font-size:10px;font-weight:600;letter-spacing:.06em;color:#666;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.note-title::before{content:'';width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0}
+.note-title.must::before{background:#333}
+.note-title.high::before{background:#888}
+.note-line{font-size:11px;color:#666;line-height:1.5;padding-left:14px}
+.note-line + .note-line{margin-top:2px}
+
+/* IA column */
+.ia-title{font-size:10px;font-weight:600;letter-spacing:.1em;color:#999;margin-bottom:12px}
+.ia-tree{font-size:10px;color:#555;line-height:1.8}
+.ia-page{font-weight:600;color:#333;padding:4px 8px;background:#eee;border-radius:3px;margin-bottom:3px;font-size:10px}
+.ia-sub{padding-left:16px;color:#777;font-size:10px;position:relative}
+.ia-sub::before{content:'└';position:absolute;left:6px;color:#ccc;font-size:10px}
+.ia-sep{height:8px}
+.ia-arrow{color:#bbb;font-size:9px;margin-left:4px}
+.ia-badge{display:inline-block;font-size:8px;padding:1px 5px;border-radius:2px;margin-left:4px;background:#f0f0f0;color:#999}
+.ia-badge.key{background:#333;color:#fff}
+.divider{height:1px;background:#e0e0e0;margin:12px 0}
+.goal-box{background:#fff;border:1px solid #e0e0e0;border-radius:4px;padding:10px;margin-bottom:8px}
+.goal-title{font-size:10px;font-weight:600;color:#444;margin-bottom:4px}
+.goal-text{font-size:10px;color:#777;line-height:1.5}
+.user-flow{font-size:10px;color:#555}
+.flow-step{display:flex;align-items:center;gap:4px;margin-bottom:4px}
+.flow-box{background:#fff;border:1px solid #ddd;border-radius:2px;padding:3px 7px;font-size:10px;color:#444;white-space:nowrap}
+.flow-arr{color:#ccc;font-size:10px}
+</style>
+
+<div class="wf">
+
+  <!-- LEFT: PAGE WIREFRAME -->
+  <div class="col-page">
+    <div class="page-label">SEITENSTRUKTUR (SCROLL)</div>
+
+    <!-- NAV -->
+    <div class="block nav">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 10px">
+        <div style="display:flex;align-items:center;gap:6px">
+          <div class="wire-box w30 dark" style="height:8px"></div>
+          <div class="wire-dot"></div>
+          <div class="wire-box w20 short" style="background:#bbb"></div>
+        </div>
+        <div style="display:flex;gap:10px">
+          <div class="nav-link"></div>
+          <div class="nav-link"></div>
+          <div class="nav-link"></div>
+          <div class="nav-link"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="block hero">
+      <div class="block-header"><span class="block-name">01 · HERO</span><span class="block-tag must">MUST</span></div>
+      <div class="block-inner">
+        <div class="wire-row"><div class="wire-box w30 short" style="background:#ccc"></div></div>
+        <div class="wire-row"><div class="wire-box w80 tall dark"></div></div>
+        <div class="wire-row"><div class="wire-box w60 short"></div></div>
+        <div class="wire-row">
+          <div class="wire-btn">Projekte ansehen</div>
+          <div class="wire-btn outline">Kontakt</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CASE STUDIES -->
+    <div class="block primary">
+      <div class="block-header"><span class="block-name">02 · CASE STUDIES</span><span class="block-tag must">MUST</span></div>
+      <div class="block-inner">
+        <div class="wire-row"><div class="wire-box w50 tall dark"></div><div class="wire-box w20 short"></div></div>
+        <div class="wire-rule"></div>
+        <div class="wire-row"><div class="wire-num">01</div><div class="wire-box w70"></div><div class="wire-chevron">→</div></div>
+        <div class="wire-row"><div class="wire-num">02</div><div class="wire-box w60"></div><div class="wire-chevron">→</div></div>
+        <div class="wire-row"><div class="wire-num">03</div><div class="wire-box w65" style="flex:0 0 65%"></div><div class="wire-chevron">→</div></div>
+        <div class="wire-row"><div class="wire-num">04</div><div class="wire-box w50"></div><div class="wire-chevron">→</div></div>
+        <div class="wire-rule"></div>
+        <div class="wire-row"><div class="wire-box w30 short" style="margin-left:auto;background:#ccc"></div></div>
+      </div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="block primary">
+      <div class="block-header"><span class="block-name">03 · PROCESS</span><span class="block-tag high">HIGH</span></div>
+      <div class="block-inner">
+        <div class="wire-row"><div class="wire-box w50 tall dark"></div><div class="wire-box w40 short"></div></div>
+        <div class="wire-rule"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:2px">
+          <div style="padding:5px;border:1px solid #eee;border-radius:2px">
+            <div class="wire-box w30 short" style="margin-bottom:3px;background:#ccc"></div>
+            <div class="wire-box w80 short"></div>
+          </div>
+          <div style="padding:5px;border:1px solid #eee;border-radius:2px">
+            <div class="wire-box w30 short" style="margin-bottom:3px;background:#ccc"></div>
+            <div class="wire-box w80 short"></div>
+          </div>
+          <div style="padding:5px;border:1px solid #eee;border-radius:2px">
+            <div class="wire-box w30 short" style="margin-bottom:3px;background:#ccc"></div>
+            <div class="wire-box w80 short"></div>
+          </div>
+          <div style="padding:5px;border:1px solid #eee;border-radius:2px">
+            <div class="wire-box w30 short" style="margin-bottom:3px;background:#ccc"></div>
+            <div class="wire-box w80 short"></div>
+          </div>
+          <div style="padding:5px;border:1px solid #eee;border-radius:2px">
+            <div class="wire-box w30 short" style="margin-bottom:3px;background:#ccc"></div>
+            <div class="wire-box w80 short"></div>
+          </div>
+          <div style="padding:5px;border:1px solid #eee;border-radius:2px">
+            <div class="wire-box w30 short" style="margin-bottom:3px;background:#ccc"></div>
+            <div class="wire-box w80 short"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="block secondary">
+      <div class="block-header"><span class="block-name">04 · ABOUT</span><span class="block-tag high">HIGH</span></div>
+      <div class="block-inner">
+        <div style="display:flex;gap:8px">
+          <div class="wire-img" style="width:60px;height:60px"></div>
+          <div style="flex:1">
+            <div class="wire-row"><div class="wire-box w80 short"></div></div>
+            <div class="wire-row"><div class="wire-box w60 short"></div></div>
+            <div class="wire-row"><div class="wire-box w70 short"></div></div>
+          </div>
+        </div>
+        <div class="wire-rule"></div>
+        <div style="display:flex;gap:6px">
+          <div style="text-align:center;flex:1;border:1px solid #eee;padding:4px;border-radius:2px">
+            <div class="wire-box tall dark" style="width:24px;margin:0 auto 2px"></div>
+            <div class="wire-box short" style="width:40px;margin:0 auto"></div>
+          </div>
+          <div style="text-align:center;flex:1;border:1px solid #eee;padding:4px;border-radius:2px">
+            <div class="wire-box tall dark" style="width:24px;margin:0 auto 2px"></div>
+            <div class="wire-box short" style="width:40px;margin:0 auto"></div>
+          </div>
+          <div style="text-align:center;flex:1;border:1px solid #eee;padding:4px;border-radius:2px">
+            <div class="wire-box tall dark" style="width:24px;margin:0 auto 2px"></div>
+            <div class="wire-box short" style="width:40px;margin:0 auto"></div>
+          </div>
+        </div>
+        <div class="wire-rule"></div>
+        <div class="wire-row" style="flex-wrap:wrap;gap:4px">
+          <div class="wire-pill"></div><div class="wire-pill"></div><div class="wire-pill"></div><div class="wire-pill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="block primary">
+      <div class="block-header"><span class="block-name">05 · CONTACT</span><span class="block-tag must">MUST</span></div>
+      <div class="block-inner">
+        <div class="wire-row"><div class="wire-box w70 tall dark"></div></div>
+        <div class="wire-row"><div class="wire-box w50 short"></div></div>
+        <div class="wire-rule"></div>
+        <div class="wire-row"><div class="wire-box w60"></div></div>
+        <div class="wire-row" style="gap:8px;margin-top:4px">
+          <div class="wire-pill"></div><div class="wire-pill"></div><div class="wire-pill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="block footer">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:0 10px;height:100%">
+        <div class="wire-box w30 short"></div>
+        <div class="wire-box w20 short"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIDDLE: NOTES -->
+  <div class="col-notes">
+    <div class="page-label">INHALT &amp; ZWECK PRO BLOCK</div>
+
+    <div class="note-block">
+      <div class="note-title">NAV</div>
+      <div class="note-line">· Name/Initials links — bleibt beim Scrollen oben</div>
+      <div class="note-line">· Availability-Dot (grün = offen für Angebote)</div>
+      <div class="note-line">· Anker-Links: /Work · /Process · /About · /Contact</div>
+    </div>
+
+    <div class="note-block">
+      <div class="note-title must">01 · HERO</div>
+      <div class="note-line">· Kleines Label: "UI/UX Designer & Consultant"</div>
+      <div class="note-line">· Haupt-Headline (groß, 1–2 Zeilen, prägnant)</div>
+      <div class="note-line">· 1 Satz Value Prop: was du anders machst</div>
+      <div class="note-line">· 2 CTAs: "Projekte ansehen" + "Kontakt"</div>
+      <div class="note-line" style="color:#f59e0b">⚑ Keine Foto — Headline macht den Eindruck</div>
+    </div>
+
+    <div class="note-block">
+      <div class="note-title must">02 · CASE STUDIES</div>
+      <div class="note-line">· Herzstück des Portfolios — kommt direkt nach Hero</div>
+      <div class="note-line">· 3–4 Projekte als nummerierte Zeilen (wie Fabrica)</div>
+      <div class="note-line">· Pro Zeile: Nummer · Projektname · Tags · Jahr · →</div>
+      <div class="note-line">· Hover-Effekt: Projektvorschau erscheint</div>
+      <div class="note-line">· Jede Zeile linked zu Detail-Seite (separate Page)</div>
+      <div class="note-line" style="color:#f59e0b">⚑ Keine Thumbnails in der Liste — Text-first wie Fabrica</div>
+    </div>
+
+    <div class="note-block">
+      <div class="note-title high">03 · PROCESS</div>
+      <div class="note-line">· Zeigt Senior-Denken: du denkst in Phasen, nicht Screens</div>
+      <div class="note-line">· 6 Kacheln im 2×3 Grid: Phase 0 → Research → Analyse</div>
+      <div class="note-line">→ Workshops → Wireframes/Testing → Dev/Scrum</div>
+      <div class="note-line">· Pro Kachel: Nummer + Name + 1 Zeile Beschreibung</div>
+      <div class="note-line" style="color:#f59e0b">⚑ Kein langer Fließtext — scanbar halten</div>
+    </div>
+
+    <div class="note-block">
+      <div class="note-title high">04 · ABOUT</div>
+      <div class="note-line">· Optional: kleines Foto (authentisch, kein Stockfoto)</div>
+      <div class="note-line">· 2–3 Sätze Bio (kein Lebenslauf-Stil)</div>
+      <div class="note-line">· 3 Stats: 6 Jahre · Wien Agentur · Interaction Design BA</div>
+      <div class="note-line">· Skills als Tags: Figma, Scrum, Research, Workshops …</div>
+    </div>
+
+    <div class="note-block">
+      <div class="note-title must">05 · CONTACT</div>
+      <div class="note-line">· Große Einladung — kein Formular</div>
+      <div class="note-line">· Direkte E-Mail-Adresse als klickbarer Link</div>
+      <div class="note-line">· 3 Social Links: LinkedIn · Dribbble · Behance</div>
+      <div class="note-line" style="color:#f59e0b">⚑ Kein Kontaktformular — für Senior-Bewerbung zu passiv</div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: IA + FLOW -->
+  <div class="col-ia">
+    <div class="page-label">INFORMATION ARCHITECTURE</div>
+
+    <div class="ia-page">/ Home (One Page)</div>
+    <div class="ia-sub">Hero</div>
+    <div class="ia-sub">Case Studies (Preview)</div>
+    <div class="ia-sub">Process</div>
+    <div class="ia-sub">About</div>
+    <div class="ia-sub">Contact</div>
+    <div class="ia-sep"></div>
+
+    <div class="ia-page">/ Work <span class="ia-badge key">optional</span></div>
+    <div class="ia-sub">Alle Projekte (gefiltert)</div>
+    <div class="ia-sep"></div>
+
+    <div class="ia-page">/ Case Study Detail</div>
+    <div class="ia-sub">Challenge & Rolle</div>
+    <div class="ia-sub">Research & Findings</div>
+    <div class="ia-sub">Design Decisions</div>
+    <div class="ia-sub">Ergebnis & Impact</div>
+    <div class="ia-sub">Nächstes Projekt →</div>
+    <div class="ia-sep"></div>
+
+    <div class="ia-page">/ Contact <span class="ia-badge key">optional</span></div>
+    <div class="ia-sub">Separate Seite</div>
+
+    <div class="divider"></div>
+    <div class="page-label">USER FLOW (RECRUITER)</div>
+
+    <div class="user-flow">
+      <div class="flow-step"><div class="flow-box">Landing</div><div class="flow-arr">→</div></div>
+      <div class="flow-step" style="padding-left:12px"><div class="flow-box">Hero lesen</div><div class="flow-arr">→</div></div>
+      <div class="flow-step" style="padding-left:24px"><div class="flow-box">Work scannen</div><div class="flow-arr">→</div></div>
+      <div class="flow-step" style="padding-left:36px"><div class="flow-box">Case Study öffnen</div><div class="flow-arr">→</div></div>
+      <div class="flow-step" style="padding-left:48px"><div class="flow-box" style="background:#333;color:#fff;border-color:#333">Kontakt!</div></div>
+    </div>
+
+    <div class="divider"></div>
+    <div class="page-label">PRIORITÄTEN</div>
+
+    <div style="display:flex;flex-direction:column;gap:5px;font-size:10px">
+      <div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:50%;background:#333;flex-shrink:0"></div><span style="color:#333;font-weight:600">MUST — Hero, Work, Contact</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:50%;background:#888;flex-shrink:0"></div><span style="color:#666">HIGH — Process, About</span></div>
+      <div style="display:flex;align-items:center;gap:6px"><div style="width:8px;height:8px;border-radius:50%;background:#ccc;flex-shrink:0"></div><span style="color:#888">SKIP — FAQ, Blog, Preise</span></div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Contact · Johannes Reichard</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .contact-hero{padding:var(--s-5xl) 0 var(--s-4xl);position:relative;overflow:hidden}
+  .contact-hero h1{
+    font-size:clamp(44px,8vw,108px);line-height:.96;letter-spacing:-.03em;font-weight:500;
+    text-wrap:balance;max-width:14ch;margin-bottom:var(--s-2xl);
+  }
+  .contact-hero h1 .accent{color:var(--accent)}
+
+  .contact-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--s-4xl);align-items:stretch}
+  .contact-grid > div{display:flex}
+  .email-block{flex:1}
+  .right-col{flex:1}
+  .right-card{flex:1}
+  @media (max-width:900px){.contact-grid{grid-template-columns:1fr;gap:var(--s-2xl)}}
+
+  /* Big email block */
+  .email-block{
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+    padding:var(--s-2xl);transition:border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  }
+  .email-block:hover{border-color:#dcdad3;box-shadow:var(--shadow)}
+  .email-block .el{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md)}
+  .email-block .em{
+    font-size:clamp(20px,2.4vw,32px);font-weight:500;letter-spacing:-.015em;color:var(--ink);
+    display:inline-flex;align-items:center;gap:var(--s-md);
+  }
+  .email-block .em:hover{color:var(--accent)}
+  .email-block .em .arr{font-size:.7em;transition:transform var(--t-fast) var(--ease)}
+  .email-block .em:hover .arr{transform:translateX(6px)}
+  .email-block .note{font-size:14px;color:var(--ink-3);margin-top:var(--s-md)}
+
+  /* Channels */
+  .channels{
+    display:grid;grid-template-columns:1fr 1fr;gap:var(--s-md);margin-top:var(--s-xl);
+  }
+  @media (max-width:520px){.channels{grid-template-columns:1fr}}
+  .channel{
+    display:flex;align-items:center;justify-content:space-between;gap:var(--s-md);
+    padding:var(--s-lg);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius);
+    transition:all var(--t-fast) var(--ease);
+  }
+  .channel:hover{border-color:#dcdad3;box-shadow:var(--shadow-sm);transform:translateY(-1px)}
+  .channel-left{display:flex;flex-direction:column;gap:2px}
+  .channel-platform{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .channel-handle{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+  .channel-arr{font-family:var(--mono);color:var(--ink-3);font-size:14px;transition:transform var(--t-fast) var(--ease)}
+  .channel:hover .channel-arr{transform:translate(3px,-3px);color:var(--accent)}
+
+  /* Right column: availability + book */
+  .right-col{display:flex;flex-direction:column;gap:var(--s-lg)}
+  .right-card{
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-xl);
+  }
+  .right-card.accent{background:var(--accent-tint);border-color:var(--accent-soft)}
+  .right-card.dark{background:var(--bg-2);color:var(--ink);border-color:var(--rule)}
+
+  .right-card h3{font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:var(--s-md)}
+  .right-card.dark h3{color:var(--ink)}
+  .right-card p{font-size:14px;line-height:1.55;color:var(--ink-2)}
+  .right-card.dark p{color:var(--ink-2)}
+
+  .avail-state{display:flex;align-items:center;gap:8px;margin-bottom:var(--s-md);font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);font-weight:500}
+  .avail-state .d{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(46,139,95,.4);animation:pulse 2.4s var(--ease) infinite}
+
+  .avail-list{display:flex;flex-direction:column;gap:8px;margin-top:var(--s-md)}
+  .avail-item{display:grid;grid-template-columns:18px 1fr;gap:10px;align-items:start;font-size:14px;color:var(--ink-2);line-height:1.5}
+  .avail-item .check{
+    width:18px;height:18px;border-radius:50%;background:var(--accent-soft);color:var(--accent);
+    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;margin-top:1px;
+  }
+  .avail-item.no .check{background:#F4F2EC;color:var(--ink-3)}
+  .avail-item b{color:var(--ink);font-weight:500}
+
+  /* FAQ */
+  .faq{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--rule);margin-top:var(--s-2xl)}
+  .faq-row{padding:var(--s-lg) 0;border-bottom:1px solid var(--rule)}
+  .faq-row summary{
+    list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:var(--s-md);
+    font-size:17px;font-weight:500;letter-spacing:-.005em;color:var(--ink);
+  }
+  .faq-row summary::-webkit-details-marker{display:none}
+  .faq-row summary::after{
+    content:"+";font-family:var(--mono);font-size:20px;color:var(--ink-3);
+    transition:transform var(--t-fast) var(--ease);font-weight:400;
+  }
+  .faq-row[open] summary::after{content:"−"}
+  .faq-row p{margin-top:var(--s-md);font-size:15px;line-height:1.65;color:var(--ink-2);max-width:60ch}
+
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link active" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="c.emailme">Email me <span class="arr">→</span></a>
+    </div>
+  <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="contact-hero" data-screen-label="01 Contact Hero">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-lg);display:inline-flex;transition-delay:.05s" data-i18n="c.eyebrow">/01 · Contact</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="c.h1.l1">Let's build your next</span></span>
+        <span class="line"><span class="line-inner"><span class="accent" data-i18n="c.h1.l2">solution.</span></span></span>
+      </h1>
+      <p class="lede reveal" style="max-width:54ch;transition-delay:.3s" data-i18n="c.lede">
+        I'm looking for a senior UX role where I can own the full design process and keep the user at the centre, from first research to delivery. Drop me a line and let's see if it's a fit.
+      </p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTACT GRID -->
+  <section class="section-tight">
+    <div class="container">
+      <div class="contact-grid">
+
+        <div>
+          <a class="email-block" href="mailto:johannes@reichard.in" style="display:block">
+            <div class="el" data-i18n="c.email.l">Email (preferred)</div>
+            <span class="em">johannes@reichard.in <span class="arr">→</span></span>
+            <div class="note" data-i18n="c.email.note">Reply within two working days. Include a sentence on context and the role/project.</div>
+          </a>
+
+        </div>
+
+        <div class="right-col">
+
+          <div class="right-card dark">
+            <h3 data-i18n="c.where.h">Where I work</h3>
+            <p style="margin-bottom:var(--s-md)" data-i18n="c.where.p">Based in Villingen-Schwenningen.
+Open to remote-first, hybrid.</p>
+            <p style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)" data-i18n="c.where.tz">Time zone · CET / CEST · UTC+1 / +2</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col"><h5 data-i18n="foot.pages">Pages</h5><ul>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li><li><a href="work.html" data-i18n="nav.work">Work</a></li>
+        <li><a href="about.html" data-i18n="nav.about">About</a></li><li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+      </ul></div>
+      <div class="foot-col"><h5 data-i18n="foot.contact">Contact</h5><ul>
+        <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  // Burger menu
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    // close on link click
+    mobileNav.querySelectorAll('.nm-link').forEach(l => {
+      l.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "Kontakt · Johannes Reichard",
+  "c.emailme": 'Schreib mir <span class="arr">→</span>',
+  "c.eyebrow": "/01 · Kontakt",
+  "c.h1.l1": "Lass uns deine nächste",
+  "c.h1.l2": "Lösung bauen.",
+  "c.lede": "Ich suche eine Senior-UX-Rolle, in der ich den gesamten Designprozess verantworten und den Nutzer in den Mittelpunkt stellen kann – von der ersten Research bis zur Auslieferung. Schreib mir kurz, und wir schauen, ob es passt.",
+  "c.email.l": "E-Mail (bevorzugt)",
+  "c.email.note": "Antwort innerhalb von zwei Werktagen. Gern mit einem Satz zum Kontext und zur Rolle/zum Projekt.",
+  "c.where.h": "Wo ich arbeite",
+  "c.where.p": "Ansässig in Villingen-Schwenningen.\nOffen für Remote-first und Hybrid.",
+  "c.where.tz": "Zeitzone · CET / CEST · UTC+1 / +2"
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+</body>
+</html>

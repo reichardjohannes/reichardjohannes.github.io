@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>iXworld Portal &amp; CycletimePro · INDEX-TRAUB · Case Study</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  .crumb{display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-xl)}
+  .crumb a{color:var(--ink-3);transition:color var(--t-fast)}
+  .crumb a:hover{color:var(--ink)}
+  .crumb .sep{color:var(--ink-4)}
+
+  .case-hero{padding:var(--s-3xl) 0}
+  .case-hero h1{font-size:clamp(38px,5.6vw,72px);line-height:1.02;letter-spacing:-.025em;font-weight:500;text-wrap:balance;max-width:20ch;margin-bottom:var(--s-xl)}
+  .case-hero p.lede{margin-bottom:var(--s-2xl);max-width:60ch}
+
+  .hero-art{background:var(--bg-2);border:1px solid var(--rule);border-radius:var(--radius-lg);aspect-ratio:16/9;overflow:hidden;position:relative;margin-top:var(--s-xl);box-shadow:var(--shadow)}
+  .hero-art img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+
+  .case-meta{display:grid;grid-template-columns:repeat(6,1fr);gap:0;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);margin-top:var(--s-2xl);overflow:hidden}
+  @media(max-width:900px){.case-meta{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:520px){.case-meta{grid-template-columns:repeat(2,1fr)}}
+  .meta-cell{padding:var(--s-lg) var(--s-md);border-right:1px solid var(--rule)}
+  .meta-cell:last-child{border-right:none}
+  @media(max-width:900px){.meta-cell{border-bottom:1px solid var(--rule)}.meta-cell:nth-child(3n){border-right:none}.meta-cell:nth-last-child(-n+3){border-bottom:none}}
+  .meta-cell .l{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:6px}
+  .meta-cell .v{font-size:15px;font-weight:500;color:var(--ink);letter-spacing:-.005em}
+
+  .cr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-top:var(--s-2xl)}
+  @media(max-width:900px){.cr-grid{grid-template-columns:1fr}}
+  .cr-cell{padding:var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  .cr-cell .ev{margin-bottom:var(--s-md)}
+  .cr-cell h3{font-size:18px;font-weight:600;letter-spacing:-.005em;margin-bottom:var(--s-sm)}
+  .cr-cell p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .cr-cell p b{color:var(--ink);font-weight:500}
+
+  .chapter-head{padding:var(--s-5xl) 0 var(--s-xl);text-align:center}
+  @media(max-width:780px){.chapter-head{padding:var(--s-3xl) 0 var(--s-md)}}
+  .chapter-head .ev{margin-bottom:var(--s-md)}
+  .chapter-head h2{margin:0 auto;max-width:20ch}
+  .chapter-head p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:54ch;margin:var(--s-lg) auto 0}
+
+  .sticky-wrap{height:500vh;padding-bottom:0}
+  .sticky-grid{position:sticky;top:80px;height:calc(100vh - 80px);display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.sticky-wrap{height:auto}.sticky-grid{position:relative;top:auto;height:auto;grid-template-columns:1fr;gap:var(--s-2xl)}}
+
+  .sticky-left{height:auto;min-height:0;display:flex;flex-direction:column;justify-content:center}
+  .panel-stage{position:relative;width:100%;aspect-ratio:4/3;background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+  .panel{position:absolute;inset:0;opacity:0;transition:opacity .4s var(--ease);display:flex;align-items:center;justify-content:center}
+  .panel.visible{opacity:1}
+  .panel img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+
+  .panel-caption{margin-top:var(--s-lg);display:flex;align-items:center;gap:var(--s-md);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .panel-caption .pc-num{color:var(--accent)}
+  .panel-caption .pc-prog{margin-left:auto;color:var(--ink-4)}
+  .progress-track{height:2px;background:var(--rule);margin-top:var(--s-sm);overflow:hidden;border-radius:1px}
+  .progress-bar{height:100%;background:var(--accent);width:20%;transition:width .35s var(--ease)}
+
+  .sticky-right{position:relative;height:calc(100vh - 80px);overflow:hidden}
+  @media(max-width:900px){.sticky-right{height:auto;overflow:visible}}
+  .step{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;padding:0 var(--s-xl);opacity:0;transform:translateY(28px);transition:opacity .5s cubic-bezier(.4,0,.2,1),transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;min-height:0}
+  .step.active{opacity:1;transform:translateY(0);pointer-events:auto;transition-delay:.06s}
+  .step.past{opacity:0;transform:translateY(-28px);transition-delay:0s}
+  @media(max-width:900px){.step{position:relative;inset:auto;padding:var(--s-3xl) 0;border-bottom:1px solid var(--rule);opacity:1;transform:none;pointer-events:auto}.step.active,.step.past{opacity:1;transform:none}.step:last-child{border-bottom:none}}
+  .step .ss-num{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);display:inline-flex;align-items:center;gap:8px;transition:color var(--t-base)}
+  .step .ss-num::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ink-4);transition:background var(--t-base)}
+  .step.active .ss-num{color:var(--accent)}
+  .step.active .ss-num::before{background:var(--accent)}
+  .step h3{font-size:clamp(22px,2.6vw,32px);font-weight:500;letter-spacing:-.015em;line-height:1.15;margin-bottom:var(--s-md);max-width:22ch}
+  .step p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:48ch}
+  .step p+p{margin-top:var(--s-md)}
+  .step .ss-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-lg)}
+  .step .ss-artifact{display:inline-flex;align-items:center;gap:8px;margin-top:var(--s-lg);font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:6px 12px;background:var(--tag-bg);border-radius:999px}
+  .step .ss-artifact::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ink-3)}
+
+  .showcase{padding:var(--s-4xl) 0}
+  .showcase-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg);margin-top:var(--s-3xl)}
+  @media(max-width:780px){.showcase-grid{grid-template-columns:1fr}}
+  .sc-full{grid-column:1/-1;border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-full img,.sc-full video{width:100%;display:block;max-height:600px;object-fit:cover;object-position:center top}
+  .sc-half{border-radius:var(--radius-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--rule);line-height:0}
+  .sc-half img{width:100%;display:block;object-fit:cover}
+  .sc-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+
+  .walkthrough{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .wt-grid{margin-top:var(--s-3xl);display:flex;flex-direction:column;gap:var(--s-lg)}
+  .wt-main{border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);line-height:0}
+  .wt-main video{width:100%;display:block;max-height:620px;object-fit:contain;background:#111}
+  .wt-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:720px){.wt-row{grid-template-columns:1fr}}
+  .wt-item{border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);line-height:0}
+  .wt-item video{width:100%;display:block;object-fit:contain;background:#111}
+  .wt-cap{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-top:var(--s-sm)}
+  .wt-sub-label{display:flex;align-items:center;gap:10px;margin-bottom:var(--s-sm)}
+  .wt-sub-label .wl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .wt-sub-label .wl-num{color:var(--accent)}
+  .wt-sub-desc{font-size:14px;line-height:1.6;color:var(--ink-2);max-width:58ch;margin-bottom:var(--s-lg)}
+  .wt-sep{height:1px;background:var(--rule);margin:var(--s-3xl) 0}
+
+  .outcome{padding:var(--s-5xl) 0 var(--s-4xl)}
+  .out-head{margin-bottom:var(--s-3xl);text-align:center}
+  .out-head .ev{margin-bottom:var(--s-md)}
+  .out-head h2{margin:0 auto;max-width:22ch}
+  .out-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-lg);margin-bottom:var(--s-3xl)}
+  @media(max-width:720px){.out-stats{grid-template-columns:1fr}}
+  .out-stat{background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:var(--s-2xl);position:relative;overflow:hidden;transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease)}
+  .out-stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .out-stat.accent{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .out-stat.accent::before{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;background:radial-gradient(ellipse 80% 80% at 100% 100%,rgba(31,80,255,.4),transparent 70%)}
+  .out-stat .sl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-md);position:relative}
+  .out-stat.accent .sl{color:rgba(255,255,255,.5)}
+  .out-stat .sv{font-size:clamp(36px,5vw,56px);font-weight:500;letter-spacing:-.025em;line-height:1;color:var(--ink);position:relative}
+  .out-stat.accent .sv{color:#fff}
+  .out-stat .sn{font-size:13px;color:var(--ink-3);margin-top:var(--s-md);position:relative}
+  .out-stat.accent .sn{color:rgba(255,255,255,.55)}
+
+  .quote-block{background:var(--accent-tint);border:1px solid var(--accent-soft);border-radius:var(--radius-lg);padding:var(--s-3xl);text-align:center}
+  .quote-mark{font-size:48px;line-height:1;color:var(--accent);margin-bottom:var(--s-md)}
+  .quote-text{font-size:clamp(22px,2.6vw,32px);line-height:1.3;letter-spacing:-.015em;font-weight:500;color:var(--ink);max-width:32ch;margin:0 auto var(--s-lg);text-wrap:balance}
+  .quote-cite{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+
+  .reflect{padding:var(--s-5xl) 0;
+  }
+  @media(max-width:780px){.reflect{padding:var(--s-3xl) 0}
+  }
+  .reflect-PLACEHOLDER{background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .reflect-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:start}
+  @media(max-width:780px){.reflect-grid{grid-template-columns:1fr;gap:var(--s-xl)}}
+  .reflect-grid h3{font-size:24px;font-weight:500;letter-spacing:-.012em;margin-bottom:var(--s-md)}
+  .reflect-grid ul{list-style:none;display:flex;flex-direction:column;gap:var(--s-md)}
+  .reflect-grid li{padding-left:24px;position:relative;font-size:15px;line-height:1.6;color:var(--ink-2)}
+  .reflect-grid li::before{content:"";position:absolute;left:0;top:9px;width:12px;height:1px;background:var(--accent)}
+  .reflect-grid li b{color:var(--ink);font-weight:500}
+
+  .spinoff{padding:var(--s-5xl) 0;background:var(--bg-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .spinoff-inner{display:grid;grid-template-columns:1fr 1.7fr;gap:var(--s-4xl);align-items:center}
+  @media(max-width:900px){.spinoff-inner{grid-template-columns:1fr;gap:var(--s-2xl)}}
+  .spinoff-pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:var(--s-lg);padding:5px 12px 5px 8px;border:1px solid var(--rule);border-radius:999px;background:var(--card)}
+  .spinoff-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .spinoff-title{font-size:clamp(26px,3.2vw,40px);font-weight:500;letter-spacing:-.018em;line-height:1.1;margin-bottom:var(--s-xl);max-width:18ch}
+  .spinoff-body{font-size:15px;line-height:1.65;color:var(--ink-2);max-width:50ch}
+  .spinoff-body+.spinoff-body{margin-top:var(--s-md)}
+  .spinoff-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:var(--s-xl)}
+  .spinoff-img-wrap{border-radius:var(--radius-lg);overflow:hidden;background:#ebebea;border:1px solid var(--rule);box-shadow:var(--shadow-lg);line-height:0}
+  .spinoff-img-wrap img{width:100%;display:block}
+  .spinoff-vid-wrap{border-radius:var(--radius-lg);overflow:hidden;background:#111;border:1px solid var(--rule);box-shadow:var(--shadow-lg);line-height:0}
+  .spinoff-vid-wrap video{width:100%;display:block;max-height:460px;object-fit:contain;background:#111}
+
+  .next-case{padding:var(--s-4xl) 0;border-top:1px solid var(--rule)}
+  .next-links{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-lg)}
+  @media(max-width:700px){.next-links{grid-template-columns:1fr}}
+  .next-case a{display:grid;grid-template-columns:1fr auto;gap:var(--s-xl);align-items:center;padding:var(--s-xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);transition:transform var(--t-base) var(--ease),box-shadow var(--t-base) var(--ease),border-color var(--t-base) var(--ease)}
+  .next-case a:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:#dcdad3}
+  .next-case .lbl{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+  .next-case .nm{font-size:clamp(20px,2.4vw,28px);font-weight:500;letter-spacing:-.012em;margin-top:4px;color:var(--ink)}
+  .next-case .arr{font-family:var(--mono);font-size:24px;color:var(--ink-3);transition:transform var(--t-fast) var(--ease),color var(--t-fast) var(--ease)}
+  .next-case a:hover .arr{transform:translateX(6px);color:var(--accent)}
+  @media(max-width:520px){.next-case a{grid-template-columns:1fr auto;gap:var(--s-md)}.next-case .lbl{font-size:10px}}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><img class="brand-logo" src="assets/logo.svg" alt="reichard"></a>
+    <div class="nav-center">
+      <a class="nav-link" href="index.html" data-i18n="nav.home">Home</a>
+      <a class="nav-link active" href="work.html" data-i18n="nav.work">Work</a>
+      <a class="nav-link" href="about.html" data-i18n="nav.about">About</a>
+      <a class="nav-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-state" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      <div class="lang-toggle lang-nav" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+      <a class="btn btn-sm btn-accent" href="mailto:johannes@reichard.in" data-i18n="nav.cta">Get in touch <span class="arr">→</span></a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="case-hero" data-screen-label="01 Hero">
+    <div class="container">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="work.html" data-i18n="nav.work">Work</a>
+        <span class="sep">/</span>
+        <span>INDEX-TRAUB</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink)" data-i18n="ix.crumb">iXworld Portal &amp; CycletimePro</span>
+      </nav>
+
+      <span class="eyebrow ev reveal" style="margin-bottom:var(--s-md);display:inline-flex;transition-delay:.05s" data-i18n="ix.eyebrow">Case Study · 2023</span>
+      <h1 class="text-reveal">
+        <span class="line"><span class="line-inner" data-i18n="ix.h1.l1">Machine management,</span></span>
+        <span class="line"><span class="line-inner" data-i18n="ix.h1.l2">eShop &amp; expert tools.</span></span>
+        <span class="line"><span class="line-inner" data-i18n="ix.h1.l3">All in one portal.</span></span>
+      </h1>
+      <p class="lede reveal" style="transition-delay:.35s" data-i18n="ix.lede">INDEX-TRAUB, one of the world's leading manufacturers of CNC turning and milling machines, needed a digital platform where machine operators can manage, configure, monitor and order spare parts for their INDEX machines.</p>
+
+      <div class="hero-art reveal" style="transition-delay:.45s">
+        <video src="uploads/Index_global%20Marketingpage-5740f424.mp4" autoplay muted loop playsinline style="width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block"></video>
+      </div>
+
+      <div class="case-meta reveal" style="transition-delay:.55s">
+        <div class="meta-cell"><div class="l" data-i18n="cs.client">Client</div><div class="v">INDEX-TRAUB</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.role">Role</div><div class="v" data-i18n="ix.m.role">End-to-End UX Lead</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.year">Year</div><div class="v">2023</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.tools">Tools</div><div class="v">Figma · Balsamiq · Sybit CX</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.method">Method</div><div class="v" data-i18n="ix.m.method">Research-Led · Scrum</div></div>
+        <div class="meta-cell"><div class="l" data-i18n="cs.platform">Platform</div><div class="v">iXworld · iXmobile</div></div>
+      </div>
+
+      <div class="cr-grid">
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.challenge">Challenge</span>
+          <h3 data-i18n="ix.cr1.h">You buy machines. Then what?</h3>
+          <p data-i18n="ix.cr1.p">Machine operators invest in high-end INDEX equipment but had <b>no central digital hub</b> to monitor their fleet, document downtime or order spare parts. Every process ran through separate channels.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.myrole">My Role</span>
+          <h3 data-i18n="ix.cr2.h">Research, Workshops &amp; UI Design</h3>
+          <p data-i18n="ix.cr2.p">Responsible for <b>research and client workshops</b> within the UX team. Collaborative development of the UI design and style guide for the portal, mobile app and the expert tool CycletimePro.</p>
+        </div>
+        <div class="cr-cell">
+          <span class="eyebrow ev" data-i18n="cs.outcome">Outcome</span>
+          <h3 data-i18n="ix.cr3.h">One portal, three products, one entry point</h3>
+          <p data-i18n="ix.cr3.p">The iXworld ecosystem bundles machine management, eShop and monitoring under one login. Additionally, the iXmobile app and CycletimePro were created as a dedicated expert solution for machine operators.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROCESS — STICKY SCROLL -->
+  <section data-screen-label="02 Process">
+    <div class="container">
+      <div class="chapter-head">
+        <span class="eyebrow ev" data-i18n="ix.proc.ey">/02 · Process</span>
+        <h2 class="h2" data-i18n="ix.proc.h">Five phases, three products.</h2>
+        <p data-i18n="ix.proc.p">From initial user research to Scrum delivery, each phase produced artefacts that drove the next decision. The image on the left changes as you scroll.</p>
+      </div>
+    </div>
+
+    <div class="container sticky-wrap">
+      <div class="sticky-grid">
+
+        <!-- LEFT — STICKY VISUAL STAGE -->
+        <div class="sticky-left">
+          <div class="panel-stage" id="stage">
+
+            <div class="panel visible" data-panel="1">
+              <img src="uploads/Page_%20H1.png" alt="Wireframe annotations · INDEX-TRAUB" style="object-position:center top">
+            </div>
+
+            <div class="panel" data-panel="2">
+              <img src="uploads/MachinenPortal_Mockup.jpg" alt="iXworld Dashboard · My Machines" style="object-position:center top">
+            </div>
+
+            <div class="panel" data-panel="3">
+              <img src="uploads/Index_machineDashboardjpg.jpg" alt="Machine detail · Monitoring Screens" style="object-position:center top">
+            </div>
+
+            <div class="panel" data-panel="4">
+              <img src="uploads/Shop_Produkt%20Detail.jpg" alt="iXshop · Product Detail Page" style="object-position:center top">
+            </div>
+
+            <div class="panel" data-panel="5">
+              <img src="uploads/Machinen_App_mockup.jpg" alt="iXmobile · Assembly Management App" style="object-position:center top">
+            </div>
+
+          </div>
+          <div class="panel-caption">
+            <span class="pc-num" id="pc-num">/01</span>
+            <span id="pc-label" data-i18n="ix.s1.label">Research &amp; Concept</span>
+            <span class="pc-prog" id="pc-prog">01 / 05</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-bar" id="prog"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT — SCROLLING STEPS -->
+        <div class="sticky-right">
+
+          <div class="step active" data-label="Research &amp; Concept" data-i18n-attr="data-label:ix.s1.label">
+            <span class="ss-num" data-i18n="ix.s1.num">/01 · Research</span>
+            <h3 data-i18n="ix.s1.h">Three key questions as a compass.</h3>
+            <p data-i18n="ix.s1.p1">Central questions arose: How does the machine operator work daily with their machines? What information is needed at the machine vs. at the desk? Where does the current system create friction?</p>
+            <p data-i18n="ix.s1.p2">Stakeholder workshops with PO, PL and management plus a heuristic evaluation of the existing systems formed the foundation. From this, personas were developed for three target groups: machine operators, maintenance managers and purchasing.</p>
+            <div class="ss-tags">
+              <span class="tag">Stakeholder Workshop</span>
+              <span class="tag">Personas</span>
+              <span class="tag">Journey Mapping</span>
+              <span class="tag tag-accent">Heuristic Audit</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="iXworld Dashboard" data-i18n-attr="data-label:ix.s2.label">
+            <span class="ss-num" data-i18n="ix.s2.num">/02 · Dashboard</span>
+            <h3 data-i18n="ix.s2.h">My Machines. Visibility at a glance.</h3>
+            <p data-i18n="ix.s2.p1">The dashboard is the daily starting point. At a glance, the user sees all their INDEX machines with current operating status, utilisation rate and open action items, colour-coded, prioritised, no detours.</p>
+            <p data-i18n="ix.s2.p2">The machine detail page shows utilisation rate, maintenance interval, current workpiece and piece count, transmitted directly from the machine controller via iX4.0.</p>
+            <div class="ss-tags">
+              <span class="tag">Dashboard</span>
+              <span class="tag">iX4.0 IoT</span>
+              <span class="tag">Status Monitoring</span>
+            </div>
+            <span class="ss-artifact" data-i18n="ix.s2.art">Artefact · Hi-Fi Dashboard · Figma</span>
+          </div>
+
+          <div class="step" data-label="Machine Detail &amp; Monitoring" data-i18n-attr="data-label:ix.s3.label">
+            <span class="ss-num" data-i18n="ix.s3.num">/03 · Monitoring</span>
+            <h3 data-i18n="ix.s3.h">Depth without complexity.</h3>
+            <p data-i18n="ix.s3.p1">Machine operators need to decide fast: is the machine still economically utilised? When is the next maintenance due? Are there open alarms? The detail view structures this information by urgency, from overview to spare-part recommendation.</p>
+            <p data-i18n="ix.s3.p2">Occupancy plans, status history and operation monitoring are designed as progressive disclosure: deep when needed, compact by default.</p>
+            <div class="ss-tags">
+              <span class="tag">Progressive Disclosure</span>
+              <span class="tag">Occupancy Plan</span>
+              <span class="tag">Operation Monitoring</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="iXshop · Spare Parts" data-i18n-attr="data-label:ix.s4.label">
+            <span class="ss-num" data-i18n="ix.s4.num">/04 · iXshop</span>
+            <h3 data-i18n="ix.s4.h">Thousands of items. Filtered by machine.</h3>
+            <p data-i18n="ix.s4.p1">The integrated eShop gives machine operators direct access to the complete INDEX spare parts range, without media breaks, with machine-specific filtering. One click from the machine dashboard to the matching part.</p>
+            <p data-i18n="ix.s4.p2">3D views, technical data, availability and delivery times are consolidated on the Product Detail Page. New or repair, both bookable in one interface.</p>
+            <div class="ss-tags">
+              <span class="tag">eShop</span>
+              <span class="tag">Spare Parts</span>
+              <span class="tag">3D View</span>
+              <span class="tag tag-accent">SAP Commerce</span>
+            </div>
+          </div>
+
+          <div class="step" data-label="iXmobile App" data-i18n-attr="data-label:ix.s5.label">
+            <span class="ss-num" data-i18n="ix.s5.num">/05 · iXmobile</span>
+            <h3 data-i18n="ix.s5.h">Document downtime from the shop floor.</h3>
+            <p data-i18n="ix.s5.p1">Machine operators are rarely at a desk. The iXmobile app allows them to capture machine status and downtime directly at the machine, enter downtime reasons and trigger service requests.</p>
+            <p data-i18n="ix.s5.p2">The app is natively designed for iOS and Android and connects seamlessly to the iXworld portal. All data captured there flows into the dashboard in real time.</p>
+            <div class="ss-tags">
+              <span class="tag">iOS · Android</span>
+              <span class="tag">Downtime Tracking</span>
+              <span class="tag">Shop Floor</span>
+              <span class="tag tag-accent">iXmobile</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOWCASE GRID -->
+  <section class="showcase" data-screen-label="03 Showcase">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="ix.sh.ey">/03 · Showcase</span>
+          <h2 class="h3" data-i18n="ix.sh.h">The ecosystem in pictures.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="ix.sh.aside">
+          <b>iXworld · iXmobile</b><br>
+          Hi-Fi Design · Figma
+        </div>
+      </div>
+
+      <div class="showcase-grid">
+        <div class="sc-full">
+          <img src="uploads/MachinenPortal_Mockup.jpg" alt="iXworld Portal · Full View" style="object-position:center 20%">
+        </div>
+        <p class="sc-cap" style="grid-column:1/-1;margin-top:calc(var(--s-sm) * -1 + 4px)" data-i18n="ix.sh.cap1">iXworld · Entry Dashboard with Machine Overview &amp; Spare Parts Shop</p>
+
+        <div>
+          <div class="sc-half">
+            <img src="uploads/Index_machineDashboardjpg.jpg" alt="Machine Management · Monitoring Screens">
+          </div>
+          <p class="sc-cap" data-i18n="ix.sh.cap2">Machine Detail · Occupancy Plan, Monitoring &amp; Status History</p>
+        </div>
+
+        <div>
+          <div class="sc-half">
+            <img src="uploads/Shop_Produkt%20Detail.jpg" alt="iXshop · Product Detail Page Spare Part">
+          </div>
+          <p class="sc-cap" data-i18n="ix.sh.cap3">iXshop · Product Detail with 3D View &amp; Technical Data</p>
+        </div>
+
+        <div class="sc-full">
+          <img src="uploads/Machinen_App_mockup.jpg" alt="iXmobile · Assembly Management App iOS" style="object-fit:contain;background:#f0f0ef;max-height:520px;object-position:center">
+        </div>
+        <p class="sc-cap" style="grid-column:1/-1;margin-top:calc(var(--s-sm) * -1 + 4px)" data-i18n="ix.sh.cap4">iXmobile App · Machine Status, Downtime Tracking &amp; Service Notifications</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WALKTHROUGH VIDEOS -->
+  <section class="walkthrough" data-screen-label="04 Walkthrough">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow ev" data-i18n="ix.wt.ey">/04 · Walkthrough</span>
+          <h2 class="h3" data-i18n="ix.wt.h">Testing &amp; Delivery in motion.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="ix.wt.aside">
+          <b>Wireframe Tests · App · Expert Tool</b><br>
+          Screen Recordings · 2023
+        </div>
+      </div>
+
+      <div class="wt-grid">
+
+        <div class="wt-sub-label">
+          <span class="wl wl-num">/A</span>
+          <span class="wl" data-i18n="ix.wt.la">Usability Testing · Wireframe-Prototype</span>
+        </div>
+        <p class="wt-sub-desc" data-i18n="ix.wt.da">Moderated sessions with machine operators and maintenance managers on mid-fi wireframes, conducted before the transition to hi-fi design.</p>
+        <div class="wt-main">
+          <video src="uploads/Index_WireframeTesting.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <p class="wt-cap" data-i18n="ix.wt.capA">Wireframe-Test · Mid-Fi Prototype · INDEX iXworld</p>
+
+        <div class="wt-sep"></div>
+
+        <div class="wt-sub-label">
+          <span class="wl wl-num">/B</span>
+          <span class="wl" data-i18n="ix.wt.lb">Assembly Management · iXmobile App</span>
+        </div>
+        <p class="wt-sub-desc" data-i18n="ix.wt.db">The iXmobile app enables machine operators to capture downtime directly from the shop floor and trigger service notifications, without the detour via desktop.</p>
+        <div class="wt-main">
+          <video src="uploads/AssemblyAmnagment_video.mp4" autoplay muted loop playsinline></video>
+        </div>
+        <p class="wt-cap" data-i18n="ix.wt.capB">Assembly Management · iXmobile App · INDEX iX40</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTCOME -->
+  <section class="outcome" data-screen-label="05 Outcome">
+    <div class="container">
+      <div class="out-head">
+        <span class="eyebrow ev" data-i18n="ix.out.ey">/05 · Impact</span>
+        <h2 class="h2" data-i18n="ix.out.h">One ecosystem, three products, one entry point.</h2>
+      </div>
+
+      <div class="out-stats">
+        <div class="out-stat">
+          <div class="sl" data-i18n="ix.st1.l">Target Groups Covered</div>
+          <div class="sv">3</div>
+          <div class="sn" data-i18n="ix.st1.n">Machine Operators · Maintenance · Procurement</div>
+        </div>
+        <div class="out-stat accent">
+          <div class="sl" data-i18n="ix.st2.l">Deliverables · End-to-End</div>
+          <div class="sv">100%</div>
+          <div class="sn" data-i18n="ix.st2.n">Portal · App · Expert Tool, all delivered</div>
+        </div>
+        <div class="out-stat">
+          <div class="sl" data-i18n="ix.st3.l">Digital Products</div>
+          <div class="sv">3</div>
+          <div class="sn" data-i18n="ix.st3.n">iXworld · iXmobile · CycletimePro</div>
+        </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-mark">"</div>
+        <div class="quote-text" data-i18n="ix.quote">The machine operator finally sees what their machines are really doing.</div>
+        <div class="quote-cite" data-i18n="ix.cite">Project Feedback · INDEX-TRAUB · 2023</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REFLECTIONS -->
+  <section class="reflect" data-screen-label="06 Reflections">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:var(--s-2xl)">
+        <div>
+          <span class="eyebrow ev" data-i18n="ix.rf.ey">/06 · Reflections</span>
+          <h2 class="h3" data-i18n="ix.rf.h">What I'd carry forward.</h2>
+        </div>
+        <div style="font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right;line-height:1.7" data-i18n="ix.rf.aside">
+          <b>Notes for the next platform</b>
+        </div>
+      </div>
+      <div class="reflect-grid">
+        <div>
+          <h3 data-i18n="ix.rf.w.h">What worked well</h3>
+          <ul>
+            <li data-i18n="ix.rf.w1"><b>Shop floor interviews</b>: Direct conversations with machine operators at the machine, not in the meeting room, delivered the most important insights. The question "What annoys you daily?" opened more doors than any questionnaire.</li>
+            <li data-i18n="ix.rf.w2"><b>Wireframe testing before Hi-Fi</b>: Two test rounds at Mid-Fi level prevented expensive corrections in Scrum. The pressure to jump to Hi-Fi was high, but the decision paid off.</li>
+            <li data-i18n="ix.rf.w3"><b>Parallel product development</b>: Designing portal, app and CycletimePro in parallel created synergies: one shared design system, one unified interaction model.</li>
+          </ul>
+        </div>
+        <div>
+          <h3 data-i18n="ix.rf.c.h">What I'd change</h3>
+          <ul>
+            <li data-i18n="ix.rf.c1"><b>Earlier IoT briefing</b>: The technical limits of the iX4.0 interface only became fully clear in Sprint 3. A technical briefing in week 1 would have sharpened design assumptions earlier.</li>
+            <li data-i18n="ix.rf.c2"><b>Quantitative baseline</b>: The starting situation was only captured qualitatively. Measurable KPIs before launch would make the impact after go-live more tangible.</li>
+            <li data-i18n="ix.rf.c3"><b>Prioritise onboarding flow earlier</b>: The question of how INDEX-TRAUB actively brings customers to the portal came too late into design. The adoption process deserved its own UX workstream.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CYCLETIMEPRO SPIN-OFF -->
+  <section class="spinoff" data-screen-label="07 Spin-off · CycletimePro">
+    <div class="container">
+      <div class="spinoff-inner">
+        <div>
+          <div class="spinoff-pill" data-i18n="ix.so.pill">Related Project · Expert Tool</div>
+          <h2 class="spinoff-title" data-i18n="ix.so.h">CycletimePro. Cycle Time Calculator for Machine Operators.</h2>
+          <p class="spinoff-body" data-i18n="ix.so.p1">Machine operators who directly set up INDEX machines need a tool that makes cycle time visually calculable. CycletimePro was created as a dedicated expert tool within the iXworld ecosystem.</p>
+          <p class="spinoff-body" data-i18n="ix.so.p2">The user creates a project, defines workpiece, machine and raw part, and sees in an interactive timeline view how main spindle, counter spindle, revolver and steady rest interact. All in one clear interface.</p>
+          <div class="spinoff-tags">
+            <span class="tag">Expert Tool</span>
+            <span class="tag">Timeline</span>
+            <span class="tag">Cycle Time Calculation</span>
+            <span class="tag">Machine Operators</span>
+            <span class="tag tag-accent">CycletimePro</span>
+          </div>
+        </div>
+        <div>
+          <div class="spinoff-vid-wrap">
+            <video src="uploads/Stu%CC%88ckzeitkalkulator_video.mp4" autoplay muted loop playsinline></video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEXT CASE -->
+  <section class="next-case" data-screen-label="08 Next Case">
+    <div class="container">
+      <p class="wt-cap" style="margin-bottom:var(--s-lg)" data-i18n="cs.more">More projects</p>
+      <div class="next-links">
+        <a href="case-geiger.html">
+          <div>
+            <div class="lbl" data-i18n="cs.casestudy">Case Study</div>
+            <div class="nm">Geiger · Sales Rep Platform</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+        <a href="case-enercon.html">
+          <div>
+            <div class="lbl" data-i18n="cs.casestudy">Case Study</div>
+            <div class="nm">ENERCON · Customer Portal</div>
+          </div>
+          <span class="arr">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <div style="text-align:center;padding:var(--s-2xl) 0 var(--s-3xl)">
+    <a class="link-arrow" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false" style="color:var(--ink-3)" data-i18n="cs.backtop">↑ Back to top</a>
+  </div>
+
+</main>
+
+<footer class="foot">
+  <div class="container">
+    <div class="foot-top">
+      <span class="lang-label" data-i18n="lang.label">Language / Sprache</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button type="button" data-setlang="de">DE</button>
+        <button type="button" data-setlang="en">EN</button>
+      </div>
+    </div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <p class="foot-statement" data-i18n="foot.statement">Senior UI/UX Designer &amp; Consultant for complex B2B platforms.</p>
+        <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot.pages">Pages</h5>
+        <ul>
+          <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+          <li><a href="work.html" data-i18n="nav.work">Work</a></li>
+          <li><a href="about.html" data-i18n="nav.about">About</a></li>
+          <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5 data-i18n="foot.contact">Contact</h5>
+        <ul>
+          <li><a href="mailto:johannes@reichard.in">johannes@reichard.in</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <div class="left">
+        <span data-i18n="foot.copy">© 2026 Johannes Reichard</span>
+      </div>
+      <span data-i18n="foot.updated">Last updated · May 2026</span>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE NAV -->
+<div class="nav-mobile" id="navMobile">
+  <button class="nm-close" id="navClose" aria-label="Close menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5l14 14M19 5 5 19"/></svg>
+  </button>
+  <nav class="nm-links">
+    <a class="nm-link" href="index.html" data-i18n="nav.home">Home</a>
+    <a class="nm-link" href="work.html" data-i18n="nav.work">Work</a>
+    <a class="nm-link" href="about.html" data-i18n="nav.about">About</a>
+    <a class="nm-link" href="contact.html" data-i18n="nav.contact">Contact</a>
+  </nav>
+  <div class="nm-footer">
+    <span class="nav-state" style="display:inline-flex" data-i18n="nav.state"><span class="dot"></span>Available · 2026</span>
+    <a class="btn btn-accent" href="mailto:johannes@reichard.in" data-i18n="nm.cta">Get in touch →</a>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-setlang="de">DE</button>
+      <button type="button" data-setlang="en">EN</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Reveal animations
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+  requestAnimationFrame(() => { requestAnimationFrame(() => {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      else { revealIO.observe(el); }
+    });
+  }); });
+
+  const nav = document.getElementById('nav');
+  document.addEventListener('scroll', () => {
+    if(!navTicking){ requestAnimationFrame(onNavScroll); navTicking = true; }
+  }, {passive:true});
+  let navLastY = (document.scrollingElement||document.documentElement).scrollTop, navTicking = false;
+  function onNavScroll(){
+    const y = (document.scrollingElement||document.documentElement).scrollTop;
+    nav.classList.toggle('scrolled', y > 10);
+    const mobOpen = document.getElementById('navMobile') && document.getElementById('navMobile').classList.contains('open');
+    const atBottom = (window.innerHeight + y) >= (document.documentElement.scrollHeight - 4);
+    if(mobOpen || y < 80 || atBottom){ nav.classList.remove('nav-hidden'); }
+    else if(y > navLastY + 4){ nav.classList.add('nav-hidden'); }
+    else if(y < navLastY - 4){ nav.classList.remove('nav-hidden'); }
+    navLastY = y;
+    navTicking = false;
+  }
+
+  const burger = document.getElementById('navBurger');
+  const mobileNav = document.getElementById('navMobile');
+  if(burger && mobileNav){
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    const navClose = document.getElementById('navClose');
+    if(navClose){
+      navClose.addEventListener('click', () => {
+        mobileNav.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded', false);
+        document.body.style.overflow = '';
+      });
+    }
+  }
+
+  const steps      = document.querySelectorAll('.step');
+  const panels     = document.querySelectorAll('.panel');
+  const prog       = document.getElementById('prog');
+  const pcNum      = document.getElementById('pc-num');
+  const pcLabel    = document.getElementById('pc-label');
+  const pcProg     = document.getElementById('pc-prog');
+  const stickyWrap = document.querySelector('.sticky-wrap');
+  const total      = steps.length;
+  let lastIdx = -1;
+
+  function activateIdx(idx){
+    if(idx === lastIdx) return;
+    lastIdx = idx;
+    steps.forEach((s, i) => {
+      s.classList.toggle('active', i === idx);
+      s.classList.toggle('past',   i < idx);
+    });
+    panels.forEach(p => p.classList.remove('visible'));
+    const target = document.querySelector(`.panel[data-panel="${idx + 1}"]`);
+    if(target) target.classList.add('visible');
+    const pct = ((idx + 1) / total) * 100;
+    if(prog)    prog.style.width = pct + '%';
+    if(pcNum)   pcNum.textContent = '/' + String(idx + 1).padStart(2,'0');
+    if(pcLabel) pcLabel.textContent = steps[idx]?.dataset.label || '';
+    if(pcProg)  pcProg.textContent = String(idx + 1).padStart(2,'0') + ' / 0' + total;
+  }
+
+  let rafPending = false;
+  function onScroll(){
+    if(rafPending) return;
+    rafPending = true;
+    requestAnimationFrame(() => {
+      rafPending = false;
+      if(!stickyWrap || window.innerWidth <= 900){ activateIdx(0); return; }
+      const rect  = stickyWrap.getBoundingClientRect();
+      const sH    = stickyWrap.offsetHeight;
+      const vH    = window.innerHeight;
+      const range = sH - vH;
+      if(range <= 0) return;
+      const scrolled = Math.max(0, Math.min(range, -rect.top));
+      const progress = scrolled / range;
+      let idx = Math.floor(progress * total);
+      if(idx >= total) idx = total - 1;
+      activateIdx(idx);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll);
+  onScroll();
+
+  // Mobile: inject panel images into steps for context
+  if(window.innerWidth <= 900){
+    document.querySelectorAll('.step').forEach(step => {
+      const pid = step.dataset.panel || step.dataset.label;
+      const panels = document.querySelectorAll('.panel[data-panel]');
+      const steps = document.querySelectorAll('.step');
+      const idx = [...steps].indexOf(step);
+      const panel = panels[idx];
+      if(!panel) return;
+      const media = panel.querySelector('img, video');
+      if(!media) return;
+      const wrap = document.createElement('div');
+      wrap.className = 'mob-panel-img';
+      const clone = media.cloneNode(true);
+      if(clone.tagName === 'VIDEO'){ clone.autoplay = true; clone.muted = true; clone.loop = true; clone.playsInline = true; }
+      wrap.appendChild(clone);
+      step.insertBefore(wrap, step.firstChild);
+    });
+  }
+</script>
+
+<script>
+window.PAGE_DE = {
+  "__title": "iXworld Portal & CycletimePro · INDEX-TRAUB · Case Study",
+  "ix.crumb": "iXworld Portal &amp; CycletimePro",
+  "ix.eyebrow": "Case Study · 2023",
+  "ix.h1.l1": "Maschinenmanagement,",
+  "ix.h1.l2": "eShop &amp; Expertentools.",
+  "ix.h1.l3": "Alles in einem Portal.",
+  "ix.lede": "INDEX-TRAUB, einer der weltweit führenden Hersteller von CNC-Dreh- und Fräsmaschinen, brauchte eine digitale Plattform, auf der Maschinenbetreiber ihre INDEX-Maschinen verwalten, konfigurieren, überwachen und Ersatzteile bestellen können.",
+  "ix.m.role": "End-to-End-UX-Lead",
+  "ix.m.method": "Research-getrieben · Scrum",
+  "ix.cr1.h": "Du kaufst Maschinen. Und dann?",
+  "ix.cr1.p": "Maschinenbetreiber investieren in High-End-INDEX-Anlagen, hatten aber <b>keinen zentralen digitalen Hub</b>, um ihre Flotte zu überwachen, Stillstände zu dokumentieren oder Ersatzteile zu bestellen. Jeder Prozess lief über separate Kanäle.",
+  "ix.cr2.h": "Research, Workshops &amp; UI-Design",
+  "ix.cr2.p": "Verantwortlich für <b>Research und Kundenworkshops</b> innerhalb des UX-Teams. Gemeinsame Entwicklung von UI-Design und Style Guide für Portal, Mobile-App und das Expertentool CycletimePro.",
+  "ix.cr3.h": "Ein Portal, drei Produkte, ein Einstiegspunkt",
+  "ix.cr3.p": "Das iXworld-Ökosystem bündelt Maschinenmanagement, eShop und Monitoring unter einem Login. Zusätzlich entstanden die iXmobile-App und CycletimePro als dedizierte Expertenlösung für Maschinenbetreiber.",
+  "ix.proc.ey": "/02 · Prozess",
+  "ix.proc.h": "Fünf Phasen, drei Produkte.",
+  "ix.proc.p": "Von der ersten Nutzer-Research bis zur Scrum-Auslieferung brachte jede Phase Artefakte hervor, die die nächste Entscheidung trugen. Das Bild links ändert sich beim Scrollen.",
+  "ix.s1.label": "Research &amp; Konzept",
+  "ix.s1.num": "/01 · Research",
+  "ix.s1.h": "Drei Schlüsselfragen als Kompass.",
+  "ix.s1.p1": "Zentrale Fragen stellten sich: Wie arbeitet der Maschinenbetreiber täglich mit seinen Maschinen? Welche Informationen werden an der Maschine vs. am Schreibtisch gebraucht? Wo erzeugt das aktuelle System Reibung?",
+  "ix.s1.p2": "Stakeholder-Workshops mit PO, PL und Management sowie eine heuristische Evaluation der bestehenden Systeme bildeten das Fundament. Daraus wurden Personas für drei Zielgruppen entwickelt: Maschinenbetreiber, Instandhaltungsleiter und Einkauf.",
+  "ix.s2.label": "iXworld Dashboard",
+  "ix.s2.num": "/02 · Dashboard",
+  "ix.s2.h": "Meine Maschinen. Überblick auf einen Blick.",
+  "ix.s2.p1": "Das Dashboard ist der tägliche Ausgangspunkt. Auf einen Blick sieht der Nutzer alle seine INDEX-Maschinen mit aktuellem Betriebsstatus, Auslastung und offenen Aufgaben – farbcodiert, priorisiert, ohne Umwege.",
+  "ix.s2.p2": "Die Maschinen-Detailseite zeigt Auslastung, Wartungsintervall, aktuelles Werkstück und Stückzahl, direkt von der Maschinensteuerung via iX4.0 übertragen.",
+  "ix.s2.art": "Artefakt · Hi-Fi-Dashboard · Figma",
+  "ix.s3.label": "Maschinendetail &amp; Monitoring",
+  "ix.s3.num": "/03 · Monitoring",
+  "ix.s3.h": "Tiefe ohne Komplexität.",
+  "ix.s3.p1": "Maschinenbetreiber müssen schnell entscheiden: Ist die Maschine noch wirtschaftlich ausgelastet? Wann steht die nächste Wartung an? Gibt es offene Alarme? Die Detailansicht strukturiert diese Informationen nach Dringlichkeit, von der Übersicht bis zur Ersatzteilempfehlung.",
+  "ix.s3.p2": "Belegungspläne, Statushistorie und Betriebsüberwachung sind als Progressive Disclosure gestaltet: tief, wenn nötig, kompakt im Standard.",
+  "ix.s4.label": "iXshop · Ersatzteile",
+  "ix.s4.num": "/04 · iXshop",
+  "ix.s4.h": "Tausende Artikel. Nach Maschine gefiltert.",
+  "ix.s4.p1": "Der integrierte eShop gibt Maschinenbetreibern direkten Zugriff auf das komplette INDEX-Ersatzteilsortiment, ohne Medienbrüche, mit maschinenspezifischer Filterung. Ein Klick vom Maschinen-Dashboard zum passenden Teil.",
+  "ix.s4.p2": "3D-Ansichten, technische Daten, Verfügbarkeit und Lieferzeiten sind auf der Produktdetailseite zusammengeführt. Neu oder Reparatur, beides in einer Oberfläche buchbar.",
+  "ix.s5.label": "iXmobile App",
+  "ix.s5.num": "/05 · iXmobile",
+  "ix.s5.h": "Stillstände direkt vom Shopfloor dokumentieren.",
+  "ix.s5.p1": "Maschinenbetreiber sind selten am Schreibtisch. Die iXmobile-App erlaubt es ihnen, Maschinenstatus und Stillstände direkt an der Maschine zu erfassen, Stillstandsgründe einzugeben und Serviceanfragen auszulösen.",
+  "ix.s5.p2": "Die App ist nativ für iOS und Android gestaltet und verbindet sich nahtlos mit dem iXworld-Portal. Alle dort erfassten Daten fließen in Echtzeit ins Dashboard.",
+  "ix.sh.ey": "/03 · Showcase",
+  "ix.sh.h": "Das Ökosystem in Bildern.",
+  "ix.sh.aside": "<b>iXworld · iXmobile</b><br>Hi-Fi Design · Figma",
+  "ix.sh.cap1": "iXworld · Einstiegs-Dashboard mit Maschinenübersicht &amp; Ersatzteil-Shop",
+  "ix.sh.cap2": "Maschinendetail · Belegungsplan, Monitoring &amp; Statushistorie",
+  "ix.sh.cap3": "iXshop · Produktdetail mit 3D-Ansicht &amp; technischen Daten",
+  "ix.sh.cap4": "iXmobile-App · Maschinenstatus, Stillstandserfassung &amp; Service-Benachrichtigungen",
+  "ix.wt.ey": "/04 · Walkthrough",
+  "ix.wt.h": "Testing &amp; Delivery in Bewegung.",
+  "ix.wt.aside": "<b>Wireframe-Tests · App · Expertentool</b><br>Screen Recordings · 2023",
+  "ix.wt.la": "Usability Testing · Wireframe-Prototyp",
+  "ix.wt.da": "Moderierte Sessions mit Maschinenbetreibern und Instandhaltungsleitern auf Mid-Fi-Wireframes, durchgeführt vor dem Übergang zum Hi-Fi-Design.",
+  "ix.wt.capA": "Wireframe-Test · Mid-Fi-Prototyp · INDEX iXworld",
+  "ix.wt.lb": "Assembly Management · iXmobile-App",
+  "ix.wt.db": "Die iXmobile-App ermöglicht es Maschinenbetreibern, Stillstände direkt vom Shopfloor zu erfassen und Service-Benachrichtigungen auszulösen, ohne den Umweg über den Desktop.",
+  "ix.wt.capB": "Assembly Management · iXmobile-App · INDEX iX40",
+  "ix.out.ey": "/05 · Impact",
+  "ix.out.h": "Ein Ökosystem, drei Produkte, ein Einstiegspunkt.",
+  "ix.st1.l": "Abgedeckte Zielgruppen",
+  "ix.st1.n": "Maschinenbetreiber · Instandhaltung · Einkauf",
+  "ix.st2.l": "Deliverables · End-to-End",
+  "ix.st2.n": "Portal · App · Expertentool, alle ausgeliefert",
+  "ix.st3.l": "Digitale Produkte",
+  "ix.st3.n": "iXworld · iXmobile · CycletimePro",
+  "ix.quote": "Der Maschinenbetreiber sieht endlich, was seine Maschinen wirklich tun.",
+  "ix.cite": "Projektfeedback · INDEX-TRAUB · 2023",
+  "ix.rf.ey": "/06 · Reflexionen",
+  "ix.rf.h": "Was ich mitnehmen würde.",
+  "ix.rf.aside": "<b>Notizen für die nächste Plattform</b>",
+  "ix.rf.w.h": "Was gut funktioniert hat",
+  "ix.rf.w1": "<b>Shopfloor-Interviews</b>: Direkte Gespräche mit Maschinenbetreibern an der Maschine, nicht im Besprechungsraum, lieferten die wichtigsten Erkenntnisse. Die Frage „Was nervt dich täglich?“ öffnete mehr Türen als jeder Fragebogen.",
+  "ix.rf.w2": "<b>Wireframe-Testing vor Hi-Fi</b>: Zwei Testrunden auf Mid-Fi-Ebene verhinderten teure Korrekturen im Scrum. Der Druck, direkt zu Hi-Fi zu springen, war hoch, aber die Entscheidung zahlte sich aus.",
+  "ix.rf.w3": "<b>Parallele Produktentwicklung</b>: Portal, App und CycletimePro parallel zu gestalten, schuf Synergien: ein gemeinsames Designsystem, ein einheitliches Interaktionsmodell.",
+  "ix.rf.c.h": "Was ich ändern würde",
+  "ix.rf.c1": "<b>Früheres IoT-Briefing</b>: Die technischen Grenzen der iX4.0-Schnittstelle wurden erst in Sprint 3 vollständig klar. Ein technisches Briefing in Woche 1 hätte die Design-Annahmen früher geschärft.",
+  "ix.rf.c2": "<b>Quantitative Baseline</b>: Die Ausgangssituation wurde nur qualitativ erfasst. Messbare KPIs vor dem Launch würden den Impact nach Go-live greifbarer machen.",
+  "ix.rf.c3": "<b>Onboarding-Flow früher priorisieren</b>: Die Frage, wie INDEX-TRAUB Kunden aktiv ins Portal bringt, kam zu spät ins Design. Der Adoptionsprozess hätte einen eigenen UX-Workstream verdient.",
+  "ix.so.pill": "Verwandtes Projekt · Expertentool",
+  "ix.so.h": "CycletimePro. Stückzeit-Kalkulator für Maschinenbetreiber.",
+  "ix.so.p1": "Maschinenbetreiber, die INDEX-Maschinen direkt einrichten, brauchen ein Tool, das die Stückzeit visuell kalkulierbar macht. CycletimePro entstand als dediziertes Expertentool innerhalb des iXworld-Ökosystems.",
+  "ix.so.p2": "Der Nutzer legt ein Projekt an, definiert Werkstück, Maschine und Rohteil und sieht in einer interaktiven Timeline-Ansicht, wie Hauptspindel, Gegenspindel, Revolver und Lünette zusammenspielen. Alles in einer klaren Oberfläche."
+};
+</script>
+<script src="assets/i18n-de.js"></script>
+<script src="assets/i18n.js"></script>
+<script src="assets/shader.js"></script>
+
+</body>
+</html>
