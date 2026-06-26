@@ -89,8 +89,98 @@
     display:grid;grid-template-columns:1fr 1fr;gap:var(--s-4xl);align-items:end;margin-bottom:var(--s-3xl);
   }
   @media (max-width:780px){.process-head{grid-template-columns:1fr;gap:var(--s-lg)}}
-  .process-head h2{max-width:14ch}
+  .process-head h2{max-width:16ch}
   .process-head p{font-size:16px;line-height:1.6;color:var(--ink-2);max-width:48ch}
+  .process-head .proc-lead-tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:var(--s-sm);display:inline-block;
+  }
+
+  /* HCD framing band — process contains phases 0–5 */
+  .hcd-band{
+    background:transparent;border:none;border-radius:0;
+    padding:var(--s-sm) 0 0;margin-bottom:var(--s-xl);
+  }
+  .hcd-band-top{
+    display:flex;align-items:center;justify-content:space-between;gap:var(--s-md);
+    margin-bottom:var(--s-xl);padding-bottom:var(--s-lg);border-bottom:1px solid var(--rule);
+  }
+  .hcd-tag{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:8px;
+  }
+  .hcd-tag::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .hcd-endpoints{
+    font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-3);white-space:nowrap;
+  }
+  /* Human-centred design cycle (ISO 9241-210) */
+  .hcd-cycle{position:relative;width:460px;height:460px;margin:var(--s-lg) auto var(--s-md)}
+  .cycle-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;z-index:0}
+  .cycle-ring .ring-arc{fill:none;stroke:var(--ink-4);stroke-width:1.5;stroke-dasharray:3 6;opacity:.65;transition:stroke .6s var(--ease),opacity .6s var(--ease)}
+  .cycle-arrow{fill:var(--ink-4);transition:fill .6s var(--ease)}
+  .hcd-cycle.running .ring-arc{stroke:var(--accent);opacity:.5}
+  .hcd-cycle.running .cycle-arrow{fill:var(--accent)}
+
+  .cycle-hub{
+    position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+    width:150px;height:150px;border-radius:50%;
+    background:var(--accent-soft);border:1px solid rgba(31,80,255,.16);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;z-index:1;
+  }
+  .cycle-hub .hub-ic{color:var(--accent);display:flex}
+  .cycle-hub .hub-t{font-size:13px;font-weight:600;color:var(--accent);letter-spacing:-.01em;line-height:1.2;max-width:9ch}
+
+  .cycle-node{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:9px;width:130px;text-align:center;z-index:2}
+  .cn-ring{
+    width:54px;height:54px;border-radius:50%;background:var(--card);border:1.5px solid var(--ink-4);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:13px;font-weight:700;color:var(--ink-3);
+    transition:border-color .45s var(--ease),color .45s var(--ease),background .45s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease);
+  }
+  .cn-label{display:flex;flex-direction:column;gap:2px}
+  .cn-name{font-size:13px;font-weight:600;color:var(--ink-2);letter-spacing:-.01em;line-height:1.2;transition:color .45s var(--ease)}
+  .cn-sub{font-size:11px;color:var(--ink-3);line-height:1.3}
+  .cycle-node.is-done .cn-ring{border-color:var(--accent);color:var(--accent)}
+  .cycle-node.is-active .cn-ring{
+    border-color:var(--accent);background:var(--accent);color:#fff;
+    transform:scale(1.1);box-shadow:0 0 0 5px rgba(31,80,255,.14);
+  }
+  .cycle-node.is-active .cn-name,.cycle-node.is-done .cn-name{color:var(--ink)}
+
+  .proc-caption{
+    display:flex;align-items:center;gap:10px;margin-top:var(--s-xl);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);
+  }
+  .proc-caption .pc-icon{display:flex;color:var(--accent)}
+  .proc-caption b{color:var(--ink-2);font-weight:600}
+
+  @media(max-width:820px){
+    .hcd-cycle{width:min(440px,86vw);height:auto;aspect-ratio:1/1;margin:var(--s-md) auto}
+    .hcd-band-top{flex-direction:column;align-items:flex-start;gap:var(--s-sm)}
+    .proc-anim{padding-top:0}
+    .proc-arcs{display:none}
+    .proc-track{display:none}
+    .proc-comet{display:none}
+    .proc-nodes{grid-template-columns:repeat(3,1fr);gap:var(--s-2xl) 0}
+    .proc-caption{font-size:9.5px}
+  }
+
+  /* ===== HCD principles (compact grid) ===== */
+  .principles-section{background:var(--bg)}
+  .hcd-principles{margin:0;padding:var(--s-2xl);background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg)}
+  .princ-head{margin-bottom:var(--s-2xl)}
+  .princ-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;display:inline-flex;align-items:center;gap:8px}
+  .princ-eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent)}
+  .princ-title{color:var(--ink);font-size:15px;font-weight:500;letter-spacing:-.01em;margin-top:10px;max-width:44ch;line-height:1.45}
+  .princ-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s-xl) var(--s-lg)}
+  @media(max-width:820px){.princ-grid{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:480px){.princ-grid{grid-template-columns:repeat(2,1fr)}}
+  .princ-item{display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+  .princ-ico{width:34px;height:34px;border-radius:9px;background:var(--tag-bg);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s var(--ease),border-color .3s var(--ease)}
+  .princ-ico svg{width:18px;height:18px;stroke:var(--accent);transition:stroke .3s var(--ease)}
+  .princ-label{font-size:12.5px;font-weight:600;color:var(--ink-2);letter-spacing:-.008em;line-height:1.3;max-width:15ch}
+  .princ-item:hover .princ-ico{background:var(--accent-soft);border-color:transparent}
 
   /* Phase list block */
   .phase-list{
@@ -216,6 +306,119 @@
   .exp-row .loc{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:right}
   @media (max-width:780px){.exp-row .loc{text-align:left;margin-top:var(--s-xs)}}
 
+  /* ===== USER RESEARCH JOURNEY ===== */
+  .research{
+    padding:var(--s-5xl) 0;
+    background:var(--bg-2);
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    overflow:hidden;
+  }
+  .research-head{
+    display:flex;align-items:flex-end;justify-content:space-between;gap:var(--s-3xl);
+    margin-bottom:var(--s-2xl);
+  }
+  .research-head .rh-lead{max-width:none;flex:1}
+  .research-head h2{margin-top:var(--s-md)}
+  .research-head .rh-aside{
+    font-family:var(--mono);font-size:12px;letter-spacing:.03em;line-height:1.7;
+    color:var(--ink-2);max-width:34ch;padding-left:var(--s-lg);
+    border-left:2px solid var(--accent);
+  }
+  .research-head .rh-aside b{color:var(--ink);font-weight:600}
+  @media(max-width:780px){
+    .research-head{flex-direction:column;align-items:flex-start;gap:var(--s-lg)}
+  }
+
+  .rj-controls{
+    display:flex;align-items:center;gap:var(--s-xl);margin-bottom:var(--s-md);
+  }
+  .rj-progress{
+    flex:1;height:2px;background:var(--rule);position:relative;border-radius:2px;
+  }
+  .rj-progress-fill{
+    position:absolute;left:0;top:0;bottom:0;background:var(--accent);
+    border-radius:2px;width:24%;transition:left .25s var(--ease), width .25s var(--ease);
+  }
+  .rj-arrows{display:flex;gap:var(--s-sm)}
+  .rj-arrow{
+    width:44px;height:44px;border-radius:50%;border:1px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    background:transparent;color:var(--ink);
+    transition:background var(--t-base) var(--ease), color var(--t-base) var(--ease), opacity var(--t-base) var(--ease);
+  }
+  .rj-arrow svg{width:18px;height:18px}
+  .rj-arrow:hover{background:var(--ink);color:#fff}
+  .rj-arrow:disabled{opacity:.28;cursor:default}
+  .rj-arrow:disabled:hover{background:transparent;color:var(--ink)}
+
+  .rj-track{
+    display:flex;gap:var(--s-xl);
+    overflow-x:auto;scroll-snap-type:x mandatory;
+    padding:var(--s-lg) var(--s-xl) var(--s-md);
+    margin:0 calc(-1 * var(--s-xl));
+    scroll-padding-left:var(--s-xl);
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .rj-track::-webkit-scrollbar{display:none}
+
+  .rj-station{
+    flex:0 0 358px;scroll-snap-align:start;
+    background:var(--card);border:1px solid var(--rule);border-radius:var(--radius-lg);
+    padding:var(--s-xl);
+    display:flex;flex-direction:column;gap:var(--s-md);
+    box-shadow:var(--shadow-sm);
+  }
+  @media(max-width:480px){.rj-station{flex-basis:82vw}}
+
+  .rj-rail{display:flex;align-items:center;gap:var(--s-sm);margin-bottom:2px}
+  .rj-dot{
+    width:11px;height:11px;border-radius:50%;background:var(--accent);
+    box-shadow:0 0 0 4px var(--accent-soft);flex-shrink:0;
+  }
+  .rj-line{flex:1;height:1px;background:var(--rule)}
+  .rj-step{
+    font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-3);flex-shrink:0;
+  }
+
+  .rj-method{
+    font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
+  .rj-name{font-size:21px;font-weight:600;letter-spacing:-.015em;color:var(--ink);line-height:1.2}
+
+  .rj-visual{
+    height:160px;border-radius:var(--radius);border:1px solid var(--rule);
+    background:
+      radial-gradient(120% 100% at 100% 0%, rgba(31,80,255,.05), transparent 60%),
+      linear-gradient(176deg,#fff,var(--bg-2));
+    display:flex;align-items:center;justify-content:center;padding:var(--s-lg) var(--s-xl);
+    overflow:hidden;margin-top:2px;
+  }
+  .rj-visual svg{width:100%;height:100%;max-height:128px}
+  .rj-cap{
+    font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);margin-top:-4px;
+  }
+  .rj-cap b{color:var(--ink);font-weight:600}
+
+  .rj-desc{font-size:14px;line-height:1.6;color:var(--ink-2)}
+
+  .rj-insights{margin-top:auto;padding-top:var(--s-md);border-top:1px solid var(--rule)}
+  .rj-ins-label{
+    font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink-3);display:block;margin-bottom:var(--s-sm);
+  }
+  .rj-insights ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .rj-insights li{
+    font-size:13px;color:var(--ink);line-height:1.45;padding-left:18px;position:relative;
+  }
+  .rj-insights li::before{
+    content:"";position:absolute;left:0;top:6px;width:7px;height:7px;
+    border:1.5px solid var(--accent);border-radius:2px;transform:rotate(45deg);
+  }
+
 </style>
 </head>
 <body>
@@ -321,9 +524,66 @@
       <div class="process-head">
         <div>
           <span class="eyebrow ev" data-i18n="a.proc.ey">/03 · Process</span>
-          <h2 class="h2" style="margin-top:var(--s-md)" data-i18n="a.proc.h">Phase&nbsp;0 → Delivery.</h2>
+          <h2 class="h2" style="margin-top:var(--s-md)" data-i18n="a.proc.h">A human-centred design process.</h2>
         </div>
+        <div>
+          <p data-i18n="a.proc.p2">Every decision starts from a real user need — observed, not assumed. These six phases are how that principle becomes concrete work: from alignment and research through testing to delivery. Skip the user, and you ship guesswork.</p>
+        </div>
+      </div>
 
+      <!-- HCD framing band: the process contains phases 0–5 -->
+      <div class="hcd-band reveal">
+        <div class="hcd-cycle" id="procAnim">
+          <svg class="cycle-ring" viewBox="0 0 460 460" aria-hidden="true">
+            <defs>
+              <marker id="cyArrow" markerWidth="8" markerHeight="8" refX="4" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" class="cycle-arrow"/></marker>
+            </defs>
+            <path class="ring-arc" d="M 291.8 77.0 A 165 165 0 0 1 356.4 123.9" marker-end="url(#cyArrow)"/><path class="ring-arc" d="M 394.6 241.5 A 165 165 0 0 1 369.9 317.4" marker-end="url(#cyArrow)"/><path class="ring-arc" d="M 269.9 390.1 A 165 165 0 0 1 190.1 390.1" marker-end="url(#cyArrow)"/><path class="ring-arc" d="M 90.1 317.4 A 165 165 0 0 1 65.4 241.5" marker-end="url(#cyArrow)"/><path class="ring-arc" d="M 103.6 123.9 A 165 165 0 0 1 168.2 77.0" marker-end="url(#cyArrow)"/>
+          </svg>
+          <div class="cycle-hub">
+            <span class="hub-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.36"/><path d="M21 3v5h-5"/></svg></span>
+            <span class="hub-t" data-i18n="a.hcd.hub">Iterative process</span>
+          </div>
+          <div class="cycle-node" style="left:50.00%;top:14.13%">
+            <span class="cn-ring">01</span>
+            <span class="cn-label">
+              <span class="cn-name" data-i18n="a.hcd.plann">Plan</span>
+              <span class="cn-sub" data-i18n="a.hcd.pland">the UX process</span>
+            </span>
+          </div>
+          <div class="cycle-node" style="left:84.11%;top:38.92%">
+            <span class="cn-ring">02</span>
+            <span class="cn-label">
+              <span class="cn-name" data-i18n="a.hcd.undn">Understand</span>
+              <span class="cn-sub" data-i18n="a.hcd.undd">the context of use</span>
+            </span>
+          </div>
+          <div class="cycle-node" style="left:71.08%;top:79.02%">
+            <span class="cn-ring">03</span>
+            <span class="cn-label">
+              <span class="cn-name" data-i18n="a.hcd.specn">Specify</span>
+              <span class="cn-sub" data-i18n="a.hcd.specd">the requirements</span>
+            </span>
+          </div>
+          <div class="cycle-node" style="left:28.92%;top:79.02%">
+            <span class="cn-ring">04</span>
+            <span class="cn-label">
+              <span class="cn-name" data-i18n="a.hcd.desn">Design</span>
+              <span class="cn-sub" data-i18n="a.hcd.desd">concept & solutions</span>
+            </span>
+          </div>
+          <div class="cycle-node" style="left:15.89%;top:38.92%">
+            <span class="cn-ring">05</span>
+            <span class="cn-label">
+              <span class="cn-name" data-i18n="a.hcd.evaln">Evaluate</span>
+              <span class="cn-sub" data-i18n="a.hcd.evald">against requirements</span>
+            </span>
+          </div>
+        </div>
+        <div class="proc-caption">
+          <span class="pc-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.36"/><path d="M21 3v5h-5"/></svg></span>
+          <span data-i18n="a.proc.cap"><b>ISO 9241-210</b> — the cycle repeats until the design meets user requirements.</span>
+        </div>
       </div>
 
       <div class="phase-list">
@@ -371,7 +631,7 @@
           </div>
           <div class="pr-body">
             <div class="pr-name" data-i18n="a.ph2.n">Wireframes &amp; IA</div>
-            <div class="pr-desc" data-i18n="a.ph2.d">Lo-fi wireframes in Balsamiq, three review rounds. Sitemaps that collapse legacy complexity before a pixel is drawn.</div>
+            <div class="pr-desc" data-i18n="a.ph2.d">Lo-fi wireframes. Sitemaps that collapse legacy complexity before a pixel is drawn.</div>
           </div>
           <span class="pr-out" data-i18n="a.ph2.o">Sitemap · WF v1–v3</span>
         </div>
@@ -386,7 +646,7 @@
           </div>
           <div class="pr-body">
             <div class="pr-name" data-i18n="a.ph3.n">Testing</div>
-            <div class="pr-desc" data-i18n="a.ph3.d">Moderated usability tests with 6–10 real users on the v3 wireframes. No design ships without test evidence and measurable deltas.</div>
+            <div class="pr-desc" data-i18n="a.ph3.d">Moderated usability tests with real users on the wireframes. No design ships without test evidence and measurable deltas.</div>
           </div>
           <span class="pr-out" data-i18n="a.ph3.o">Protocols · Findings</span>
         </div>
@@ -417,10 +677,203 @@
           </div>
           <div class="pr-body">
             <div class="pr-name" data-i18n="a.ph5.n">Scrum Delivery</div>
-            <div class="pr-desc" data-i18n="a.ph5.d">Embedded UX in 2-week sprints. Every standup, refinement, review. Continuous QA through acceptance. Zero design-vs-build disputes.</div>
+            <div class="pr-desc" data-i18n="a.ph5.d">Embedded UX in 2-week sprints. Every standup, refinement, review. Continuous QA through acceptance. </div>
           </div>
           <span class="pr-out" data-i18n="a.ph5.o">Live since launch</span>
         </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- USER RESEARCH JOURNEY -->
+  <section class="research" data-screen-label="04 User Research">
+    <div class="container">
+
+      <div class="research-head reveal">
+        <div class="rh-lead">
+          <span class="eyebrow ev" data-i18n="r.ey">/04 · User Research</span>
+          <h2 class="h2" data-i18n="r.h">Before the first pixel:
+understand the user.</h2>
+        </div>
+      </div>
+
+      <div class="rj-controls reveal">
+        <div class="rj-progress"><div class="rj-progress-fill" id="rjFill"></div></div>
+        <div class="rj-arrows">
+          <button class="rj-arrow" id="rjPrev" aria-label="Previous" disabled>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="rj-arrow" id="rjNext" aria-label="Next">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="rj-track" id="rjTrack">
+
+        <!-- 01 · IMMERSION -->
+        <article class="rj-station">
+          <div class="rj-rail"><span class="rj-step">01</span><span class="rj-dot"></span><span class="rj-line"></span></div>
+          <div>
+            <div class="rj-method" data-i18n="r.s1.m">Contextual Inquiry · Shadowing</div>
+            <div class="rj-name" data-i18n="r.s1.n">A day in their shoes</div>
+          </div>
+          <div class="rj-visual">
+            <svg viewBox="0 0 300 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="20" y1="84" x2="282" y2="84" stroke="#C2C2C2" stroke-width="1.5"/>
+              <g stroke="#C2C2C2" stroke-width="1.5">
+                <line x1="20" y1="80" x2="20" y2="88"/><line x1="150" y1="80" x2="150" y2="88"/><line x1="282" y1="80" x2="282" y2="88"/>
+              </g>
+              <rect x="24" y="64" width="52" height="11" rx="3.5" fill="#E8EEFF" stroke="#1F50FF" stroke-width="1.2"/>
+              <rect x="92" y="64" width="38" height="11" rx="3.5" fill="#fff" stroke="#C2C2C2" stroke-width="1.2"/>
+              <rect x="150" y="64" width="64" height="11" rx="3.5" fill="#1F50FF"/>
+              <rect x="226" y="64" width="40" height="11" rx="3.5" fill="#fff" stroke="#C2C2C2" stroke-width="1.2"/>
+              <g stroke="#1F50FF" stroke-width="1.5"><line x1="110" y1="84" x2="110" y2="40"/><line x1="200" y1="84" x2="200" y2="48"/></g>
+              <circle cx="110" cy="37" r="5" fill="#fff" stroke="#1F50FF" stroke-width="1.5"/>
+              <circle cx="200" cy="45" r="5" fill="#fff" stroke="#1F50FF" stroke-width="1.5"/>
+              <text x="20" y="106" font-family="monospace" font-size="9" fill="#8A8A8A">09:00</text>
+              <text x="248" y="106" font-family="monospace" font-size="9" fill="#8A8A8A">17:00</text>
+            </svg>
+          </div>
+          <div class="rj-cap"><b data-i18n="r.s1.cb">Output</b> <span data-i18n="r.s1.ct">· Context map · Field notes</span></div>
+          <p class="rj-desc" data-i18n="r.s1.d">Observe people in their real environment — the tools, the interruptions, the workarounds they never mention in a meeting.</p>
+          <div class="rj-insights">
+            <span class="rj-ins-label" data-i18n="r.ins">Possible insights</span>
+            <ul>
+              <li data-i18n="r.s1.i1">Real workflow ≠ documented process</li>
+              <li data-i18n="r.s1.i2">Hidden workarounds and silent frustrations</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 02 · INTERVIEWS -->
+        <article class="rj-station">
+          <div class="rj-rail"><span class="rj-step">02</span><span class="rj-dot"></span><span class="rj-line"></span></div>
+          <div>
+            <div class="rj-method" data-i18n="r.s2.m">Qualitative Interviews</div>
+            <div class="rj-name" data-i18n="r.s2.n">Listening, one to one</div>
+          </div>
+          <div class="rj-visual">
+            <svg viewBox="0 0 300 120" fill="none">
+              <rect x="18" y="14" width="178" height="44" rx="11" fill="#fff" stroke="#C2C2C2" stroke-width="1.3"/>
+              <path d="M34 58 L34 70 L50 58 Z" fill="#fff" stroke="#C2C2C2" stroke-width="1.3"/>
+              <g stroke="#C2C2C2" stroke-width="3.4" stroke-linecap="round">
+                <line x1="32" y1="30" x2="180" y2="30"/><line x1="32" y1="42" x2="150" y2="42"/>
+              </g>
+              <rect x="104" y="62" width="178" height="44" rx="11" fill="#1F50FF"/>
+              <path d="M266 106 L266 118 L250 106 Z" fill="#1F50FF"/>
+              <g stroke="#fff" stroke-width="3.4" stroke-linecap="round" opacity="0.95">
+                <line x1="120" y1="78" x2="266" y2="78"/><line x1="120" y1="90" x2="232" y2="90"/>
+              </g>
+            </svg>
+          </div>
+          <div class="rj-cap"><b data-i18n="r.s2.cb">Output</b> <span data-i18n="r.s2.ct">· Transcripts · Affinity diagram</span></div>
+          <p class="rj-desc" data-i18n="r.s2.d">Open, non-leading questions about their day, goals and pain points. The point isn't answers — it's the &ldquo;why&rdquo; underneath them.</p>
+          <div class="rj-insights">
+            <span class="rj-ins-label" data-i18n="r.ins">Possible insights</span>
+            <ul>
+              <li data-i18n="r.s2.i1">Motivations and mental models</li>
+              <li data-i18n="r.s2.i2">The language users actually use</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 03 · EMPATHY MAP -->
+        <article class="rj-station">
+          <div class="rj-rail"><span class="rj-step">03</span><span class="rj-dot"></span><span class="rj-line"></span></div>
+          <div>
+            <div class="rj-method" data-i18n="r.s3.m">Synthesis · Affinity Mapping</div>
+            <div class="rj-name" data-i18n="r.s3.n">Empathy map</div>
+          </div>
+          <div class="rj-visual">
+            <svg viewBox="0 0 300 120" fill="none">
+              <rect x="92" y="6" width="116" height="108" rx="7" fill="#fff" stroke="#C2C2C2" stroke-width="1.3"/>
+              <line x1="150" y1="6" x2="150" y2="114" stroke="#C2C2C2" stroke-width="1.1"/>
+              <line x1="92" y1="60" x2="208" y2="60" stroke="#C2C2C2" stroke-width="1.1"/>
+              <text x="100" y="24" font-family="monospace" font-size="9" fill="#8A8A8A">SAYS</text>
+              <text x="158" y="24" font-family="monospace" font-size="9" fill="#8A8A8A">THINKS</text>
+              <text x="100" y="104" font-family="monospace" font-size="9" fill="#8A8A8A">DOES</text>
+              <text x="158" y="104" font-family="monospace" font-size="9" fill="#8A8A8A">FEELS</text>
+              <circle cx="150" cy="60" r="18" fill="#E8EEFF" stroke="#1F50FF" stroke-width="1.5"/>
+              <circle cx="144" cy="57" r="1.8" fill="#1F50FF"/><circle cx="156" cy="57" r="1.8" fill="#1F50FF"/>
+              <path d="M143 64 Q150 69 157 64" stroke="#1F50FF" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="rj-cap"><b data-i18n="r.s3.cb">Output</b> <span data-i18n="r.s3.ct">· Empathy map · Clusters</span></div>
+          <p class="rj-desc" data-i18n="r.s3.d">Cluster what we heard into says · thinks · does · feels — and the contradictions between them become impossible to ignore.</p>
+          <div class="rj-insights">
+            <span class="rj-ins-label" data-i18n="r.ins">Possible insights</span>
+            <ul>
+              <li data-i18n="r.s3.i1">Emotional drivers behind decisions</li>
+              <li data-i18n="r.s3.i2">Say–do gaps worth designing around</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 04 · PERSONAS -->
+        <article class="rj-station">
+          <div class="rj-rail"><span class="rj-step">04</span><span class="rj-dot"></span><span class="rj-line"></span></div>
+          <div>
+            <div class="rj-method" data-i18n="r.s4.m">Segmentation · Persona Sheets</div>
+            <div class="rj-name" data-i18n="r.s4.n">Persona sheets</div>
+          </div>
+          <div class="rj-visual">
+            <svg viewBox="0 0 300 120" fill="none">
+              <rect x="16" y="8" width="268" height="104" rx="9" fill="#fff" stroke="#C2C2C2" stroke-width="1.3"/>
+              <circle cx="52" cy="44" r="21" fill="#E8EEFF" stroke="#1F50FF" stroke-width="1.4"/>
+              <circle cx="52" cy="38" r="7" fill="none" stroke="#1F50FF" stroke-width="1.4"/>
+              <path d="M40 56 Q52 46 64 56" fill="none" stroke="#1F50FF" stroke-width="1.4"/>
+              <rect x="86" y="28" width="118" height="9" rx="3" fill="#1F50FF"/>
+              <rect x="86" y="44" width="78" height="7" rx="3" fill="#C2C2C2"/>
+              <line x1="16" y1="74" x2="284" y2="74" stroke="#ECEAE3" stroke-width="1.1"/>
+              <text x="28" y="89" font-family="monospace" font-size="8" fill="#8A8A8A">GOALS</text>
+              <g stroke="#1F50FF" stroke-width="2.6" stroke-linecap="round"><line x1="28" y1="98" x2="120" y2="98"/><line x1="28" y1="105" x2="96" y2="105"/></g>
+              <text x="160" y="89" font-family="monospace" font-size="8" fill="#8A8A8A">FRUSTRATIONS</text>
+              <g stroke="#C2C2C2" stroke-width="2.6" stroke-linecap="round"><line x1="160" y1="98" x2="252" y2="98"/><line x1="160" y1="105" x2="224" y2="105"/></g>
+            </svg>
+          </div>
+          <div class="rj-cap"><b data-i18n="r.s4.cb">Output</b> <span data-i18n="r.s4.ct">· 2–4 persona sheets</span></div>
+          <p class="rj-desc" data-i18n="r.s4.d">Consolidate the patterns into a handful of personas — goals, frustrations, context — one shared reference the whole team designs against.</p>
+          <div class="rj-insights">
+            <span class="rj-ins-label" data-i18n="r.ins">Possible insights</span>
+            <ul>
+              <li data-i18n="r.s4.i1">A shared language across the team</li>
+              <li data-i18n="r.s4.i2">Prioritised, real user needs</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- 05 · SCENARIOS & JOURNEY -->
+        <article class="rj-station">
+          <div class="rj-rail"><span class="rj-step">05</span><span class="rj-dot"></span><span class="rj-line"></span></div>
+          <div>
+            <div class="rj-method" data-i18n="r.s5.m">Scenarios · Journey Mapping</div>
+            <div class="rj-name" data-i18n="r.s5.n">Scenarios &amp; journey map</div>
+          </div>
+          <div class="rj-visual">
+            <svg viewBox="0 0 300 120" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="20" y1="100" x2="282" y2="100" stroke="#C2C2C2" stroke-width="1.3"/>
+              <g stroke="#ECEAE3" stroke-width="1"><line x1="20" y1="14" x2="20" y2="100"/><line x1="85" y1="14" x2="85" y2="100"/><line x1="150" y1="14" x2="150" y2="100"/><line x1="215" y1="14" x2="215" y2="100"/><line x1="280" y1="14" x2="280" y2="100"/></g>
+              <polyline points="20,40 85,30 150,72 215,52 280,26" stroke="#1F50FF" stroke-width="2.2"/>
+              <circle cx="20" cy="40" r="4.5" fill="#fff" stroke="#1F50FF" stroke-width="1.8"/>
+              <circle cx="85" cy="30" r="4.5" fill="#fff" stroke="#1F50FF" stroke-width="1.8"/>
+              <circle cx="150" cy="72" r="6" fill="#1F50FF"/>
+              <circle cx="215" cy="52" r="4.5" fill="#fff" stroke="#1F50FF" stroke-width="1.8"/>
+              <circle cx="280" cy="26" r="4.5" fill="#fff" stroke="#1F50FF" stroke-width="1.8"/>
+              <text x="132" y="92" font-family="monospace" font-size="8" fill="#1F50FF">pain point</text>
+            </svg>
+          </div>
+          <div class="rj-cap"><b data-i18n="r.s5.cb">Output</b> <span data-i18n="r.s5.ct">· Journey map · Scenarios</span></div>
+          <p class="rj-desc" data-i18n="r.s5.d">Map tasks and touchpoints with the emotional curve across the journey — the dips show exactly where the experience breaks.</p>
+          <div class="rj-insights">
+            <span class="rj-ins-label" data-i18n="r.ins">Possible insights</span>
+            <ul>
+              <li data-i18n="r.s5.i1">Pain points located on the timeline</li>
+              <li data-i18n="r.s5.i2">Opportunity moments to design for</li>
+            </ul>
+          </div>
+        </article>
 
       </div>
     </div>
@@ -431,7 +884,7 @@
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="eyebrow ev" data-i18n="a.skills.ey">/04 · Skills</span>
+          <span class="eyebrow ev" data-i18n="a.skills.ey">/05 · Skills</span>
           <h2 class="h3" data-i18n="a.skills.h">Tools, methods, mindset.</h2>
         </div>
         <div class="aside" data-i18n="a.skills.aside">
@@ -487,7 +940,7 @@
     <div class="container">
       <div class="section-head">
         <div>
-          <span class="eyebrow ev" data-i18n="a.exp.ey">/05 · Experience</span>
+          <span class="eyebrow ev" data-i18n="a.exp.ey">/06 · Experience</span>
           <h2 class="h3" data-i18n="a.exp.h">The path so far.</h2>
         </div>
       </div>
@@ -589,6 +1042,39 @@
 </div>
 
 <script>
+  // User Research journey — horizontal scroll controls
+  (function(){
+    const track = document.getElementById('rjTrack');
+    if(!track) return;
+    const prev = document.getElementById('rjPrev');
+    const next = document.getElementById('rjNext');
+    const fill = document.getElementById('rjFill');
+    const stepW = () => {
+      const card = track.querySelector('.rj-station');
+      if(!card) return 360;
+      const gap = parseFloat(getComputedStyle(track).columnGap || getComputedStyle(track).gap || '24') || 24;
+      return card.getBoundingClientRect().width + gap;
+    };
+    function update(){
+      const max = track.scrollWidth - track.clientWidth;
+      const x = track.scrollLeft;
+      const ratio = max > 0 ? x / max : 0;
+      const visible = track.clientWidth / track.scrollWidth;
+      const fw = Math.max(.16, Math.min(1, visible));
+      fill.style.width = (fw * 100) + '%';
+      fill.style.left = (ratio * (1 - fw) * 100) + '%';
+      prev.disabled = x <= 2;
+      next.disabled = x >= max - 2;
+    }
+    prev.addEventListener('click', () => track.scrollBy({left:-stepW(), behavior:'smooth'}));
+    next.addEventListener('click', () => track.scrollBy({left: stepW(), behavior:'smooth'}));
+    track.addEventListener('scroll', () => requestAnimationFrame(update), {passive:true});
+    window.addEventListener('resize', update);
+    requestAnimationFrame(update);
+  })();
+</script>
+
+<script>
   // Reveal animations
   const revealIO = new IntersectionObserver((entries) => {
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
@@ -636,7 +1122,62 @@
         document.body.style.overflow = '';
       });
     });
+    // close button
+    const navClose = document.getElementById('navClose');
+    if(navClose) navClose.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
   }
+
+  /* ===== Animated HCD cycle (ISO 9241-210) ===== */
+  (function(){
+    var wrap = document.getElementById('procAnim');
+    if(!wrap) return;
+    var nodes = [].slice.call(wrap.querySelectorAll('.cycle-node'));
+    var N = nodes.length;
+    if(!N) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+    function setStep(i){
+      nodes.forEach(function(n, idx){
+        n.classList.toggle('is-done', idx < i);
+        n.classList.toggle('is-active', idx === i);
+      });
+    }
+
+    if(reduce){
+      wrap.classList.add('running');
+      nodes.forEach(function(n){ n.classList.add('is-done'); });
+      return;
+    }
+
+    var step = 0, started = false;
+    function tick(){
+      setStep(step);
+      if(step < N - 1){
+        step++;
+        setTimeout(tick, 820);
+      } else {
+        // settle: keep whole cycle lit to convey the iterative loop
+        setTimeout(function(){
+          nodes.forEach(function(n){ n.classList.remove('is-active'); n.classList.add('is-done'); });
+        }, 820);
+      }
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting && !started){
+          started = true;
+          wrap.classList.add('running');
+          setTimeout(tick, 300);
+        }
+      });
+    }, { threshold: 0.3 });
+    io.observe(wrap);
+  })();
 </script>
 
 <script>
@@ -668,7 +1209,36 @@ window.PAGE_DE = {
   "a.f6.t": "Fokus", "a.f6.d": "B2B-Plattformen · Commerce · Experten-Tools · Fleet-Management · Corporate-Portale",
   "a.f7.t": "Verfügbar", "a.f7.d": "Senior-Rollen · 2026",
   "a.proc.ey": "/03 · Prozess",
-  "a.proc.h": "Phase&nbsp;0 → Delivery.",
+  "a.proc.h": "Ein menschzentrierter Design-Prozess.",
+  "a.proc.lt": "Human-Centred Design",
+  "a.proc.p2": "Jede Entscheidung beginnt bei einem echten Nutzerbedürfnis — beobachtet, nicht angenommen. Diese sechs Phasen machen aus diesem Prinzip konkrete Arbeit: von Alignment und Research über Testing bis zum Delivery. Wer den Nutzer überspringt, liefert Vermutungen.",
+  "a.proc.band": "Ein Prozess · sechs Phasen",
+  "a.proc.ep": "Phase 0 → Delivery",
+  "a.proc.cap": "<b>ISO 9241-210</b> — der Zyklus wiederholt sich, bis das Design die Nutzeranforderungen erfüllt.",
+  "a.princ.ey": "Prinzipien",
+  "a.princ.h": "Zehn Prinzipien hinter jeder nutzerzentrierten Entscheidung.",
+  "a.pr1": "Nutzerfokus",
+  "a.pr2": "Iteratives Design",
+  "a.pr3": "Kollaboratives Design",
+  "a.pr4": "Ganzheitliche Experience",
+  "a.pr5": "Empathie zuerst",
+  "a.pr6": "Nahtlose Usability",
+  "a.pr7": "Iterieren &amp; Verbessern",
+  "a.pr8": "Ausgewogene Ergebnisse",
+  "a.pr9": "Inklusiv by Design",
+  "a.pr10": "Kontextbewusste Lösungen",
+  "a.hcd0": "Alignment",
+  "a.hcd1": "Research",
+  "a.hcd2": "Wireframes",
+  "a.hcd3": "Testing",
+  "a.hcd4": "Hi-Fi",
+  "a.hcd5": "Delivery",
+  "a.hcd.hub": "Iterativer Prozess",
+  "a.hcd.plann": "Planen", "a.hcd.pland": "den UX-Prozess",
+  "a.hcd.undn": "Verstehen", "a.hcd.undd": "den Nutzungskontext",
+  "a.hcd.specn": "Spezifizieren", "a.hcd.specd": "die Anforderungen",
+  "a.hcd.desn": "Design", "a.hcd.desd": "Konzept & Lösungen",
+  "a.hcd.evaln": "Evaluieren", "a.hcd.evald": "gegen Anforderungen",
   "a.proc.p": "Sechs Schritte. Jedes Projekt, dasselbe Rückgrat. An den Kontext angepasst, nie übersprungen.",
   "a.ph0.n": "Phase 0: Alignment",
   "a.ph0.d": "Kickoff-Workshops mit PO &amp; PL. Stakeholder-Map, Erfolgskennzahlen, Working Agreement. Bevor die Designarbeit beginnt.",
@@ -688,13 +1258,53 @@ window.PAGE_DE = {
   "a.ph5.n": "Scrum Delivery",
   "a.ph5.d": "Eingebettete UX in 2-Wochen-Sprints. Jedes Standup, Refinement, Review. Kontinuierliche QA bis zur Abnahme. Null Design-vs-Build-Streit.",
   "a.ph5.o": "Live seit Launch",
-  "a.skills.ey": "/04 · Fähigkeiten",
+  "a.skills.ey": "/05 · Fähigkeiten",
+  "r.ey": "/04 · User Research",
+  "r.h": "Vor dem ersten Pixel: den Nutzer verstehen.",
+  "r.aside.b": "Gutes Design beginnt mit Zuhören.",
+  "r.aside.t": " Bei den Nutzern sitzen, ihren Alltag beobachten, fragen wie die Arbeit wirklich abläuft — genau dort beginnt jede ehrliche Design-Entscheidung.",
+  "r.ins": "Mögliche Erkenntnisse",
+  "r.s1.m": "Contextual Inquiry · Shadowing",
+  "r.s1.n": "Ein Tag in ihren Schuhen",
+  "r.s1.cb": "Output",
+  "r.s1.ct": "· Kontext-Map · Feldnotizen",
+  "r.s1.d": "Menschen in ihrer echten Umgebung beobachten — die Tools, die Unterbrechungen, die Workarounds, die in keinem Meeting erwähnt werden.",
+  "r.s1.i1": "Echter Arbeitsablauf ≠ dokumentierter Prozess",
+  "r.s1.i2": "Versteckte Workarounds und stille Frustrationen",
+  "r.s2.m": "Qualitative Interviews",
+  "r.s2.n": "Zuhören, eins zu eins",
+  "r.s2.cb": "Output",
+  "r.s2.ct": "· Transkripte · Affinity-Diagramm",
+  "r.s2.d": "Offene, nicht-suggestive Fragen zu Alltag, Zielen und Pain Points. Es geht nicht um Antworten — sondern um das „Warum“ dahinter.",
+  "r.s2.i1": "Motivationen und mentale Modelle",
+  "r.s2.i2": "Die Sprache, die Nutzer tatsächlich verwenden",
+  "r.s3.m": "Synthese · Affinity Mapping",
+  "r.s3.n": "Empathy Map",
+  "r.s3.cb": "Output",
+  "r.s3.ct": "· Empathy Map · Cluster",
+  "r.s3.d": "Das Gehörte in Says · Thinks · Does · Feels clustern — und die Widersprüche dazwischen lassen sich nicht mehr ignorieren.",
+  "r.s3.i1": "Emotionale Treiber hinter Entscheidungen",
+  "r.s3.i2": "Say-Do-Lücken, um die es sich zu designen lohnt",
+  "r.s4.m": "Segmentierung · Persona Sheets",
+  "r.s4.n": "Persona Sheets",
+  "r.s4.cb": "Output",
+  "r.s4.ct": "· 2–4 Persona Sheets",
+  "r.s4.d": "Die Muster zu einer Handvoll Personas verdichten — Ziele, Frustrationen, Kontext — eine geteilte Referenz, gegen die das ganze Team designt.",
+  "r.s4.i1": "Eine gemeinsame Sprache im Team",
+  "r.s4.i2": "Priorisierte, echte Nutzerbedürfnisse",
+  "r.s5.m": "Szenarien · Journey Mapping",
+  "r.s5.n": "Szenarien &amp; Journey Map",
+  "r.s5.cb": "Output",
+  "r.s5.ct": "· Journey Map · Szenarien",
+  "r.s5.d": "Aufgaben und Touchpoints mit der Emotionskurve über die Journey abbilden — die Täler zeigen genau, wo die Experience bricht.",
+  "r.s5.i1": "Pain Points auf der Timeline verortet",
+  "r.s5.i2": "Chancen-Momente, für die es zu designen gilt",
   "a.skills.h": "Tools, Methoden, Mindset.",
   "a.skills.aside": "<b>T-shaped</b><br>Tief · B2B-Plattform-UX<br>Breit · Workshops, Research, Delivery",
   "a.sk1.h": "Design-Tools",
   "a.sk2.h": "Research &amp; Strategie",
   "a.sk3.h": "Delivery",
-  "a.exp.ey": "/05 · Werdegang",
+  "a.exp.ey": "/06 · Werdegang",
   "a.exp.h": "Der Weg bisher.",
   "a.e1.r": "Bachelor<span class=\"co\">HfG Schwäbisch-Gmünd</span>",
   "a.e1.d": "Interaction-Design-Studium mit Fokus auf nutzerzentriertes Design, Prototyping und visuelle Sprache. Abschlussarbeit über Workshop-Methoden für industrielle Software-Produktteams.",

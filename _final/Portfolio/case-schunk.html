@@ -879,6 +879,14 @@
         document.body.style.overflow = '';
       });
     });
+    // close button
+    const navClose = document.getElementById('navClose');
+    if(navClose) navClose.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
   }
 
   // Sticky scroll sync
