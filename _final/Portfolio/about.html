@@ -469,7 +469,7 @@
       </div>
     </div>
     <div class="portrait">
-      <img src="uploads/portrait.jpg" alt="Johannes Reichard" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block">
+      <img src="uploads/portait3-4611657c.jpg" alt="Johannes Reichard" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;display:block">
     </div>
     </div>
   </section>
@@ -490,7 +490,7 @@
           <span class="eyebrow ev" style="margin-bottom:var(--s-md);display:inline-flex" data-i18n="a.bio.ey">/02 · Bio</span>
           <h2 class="h3" style="margin-bottom:var(--s-lg);max-width:18ch" data-i18n="a.bio.h">From agency floor to senior consultant.</h2>
           <p data-i18n="a.bio.p1">
-            My focus sits in <b>eCommerce</b>, SAP Commerce, customer portals, fleet and machine management platforms. I work best in interdisciplinary teams alongside internal and external developers, where strong communication is the difference between a good design and one that actually ships.
+            UX is not just visual craft — it is the ability to open a problem space, question assumptions, and define precisely what needs solving before a single line is drawn. My work lives in complex B2B environments: <b>eCommerce</b>, SAP Commerce, customer portals, fleet and machine management platforms, where that clarity makes all the difference, where strong communication is the difference between a good design and one that actually ships.
           </p>
           <p data-i18n="a.bio.p2">
             I own the whole UX path: <b>client communication, research, workshops, wireframes, testing, alignment, and delivery</b>. I speak the language of PO/PL stakeholders just as well as the dev team on the other side of the handover.
@@ -1076,16 +1076,20 @@ understand the user.</h2>
 
 <script>
   // Reveal animations
-  const revealIO = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
-  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
-  requestAnimationFrame(() => { requestAnimationFrame(() => {
-    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
-      const r = el.getBoundingClientRect();
-      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
-      else { revealIO.observe(el); }
-    });
-  }); });
+  if ('IntersectionObserver' in window) {
+    const revealIO = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); revealIO.unobserve(e.target); } });
+    }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+    requestAnimationFrame(() => { requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+        else { revealIO.observe(el); }
+      });
+    }); });
+  } else {
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => el.classList.add('in'));
+  }
 
   const nav = document.getElementById('nav');
   document.addEventListener('scroll', () => {
@@ -1167,16 +1171,23 @@ understand the user.</h2>
         }, 820);
       }
     }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting && !started){
-          started = true;
-          wrap.classList.add('running');
-          setTimeout(tick, 300);
-        }
-      });
-    }, { threshold: 0.3 });
-    io.observe(wrap);
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting && !started){
+            started = true;
+            wrap.classList.add('running');
+            setTimeout(tick, 300);
+          }
+        });
+      }, { threshold: 0.3 });
+      io.observe(wrap);
+    } else {
+      // Fallback: start animation immediately
+      started = true;
+      wrap.classList.add('running');
+      setTimeout(tick, 300);
+    }
   })();
 </script>
 
@@ -1196,7 +1207,7 @@ window.PAGE_DE = {
   "a.stat4": "Arbeitssprachen",
   "a.bio.ey": "/02 · Bio",
   "a.bio.h": "Vom Agentur-Alltag zum Senior Consultant.",
-  "a.bio.p1": "Mein Fokus liegt auf <b>eCommerce</b>, SAP Commerce, Kundenportalen sowie Fleet- und Maschinenmanagement-Plattformen. Am besten arbeite ich in interdisziplinären Teams mit internen und externen Entwicklern – dort, wo gute Kommunikation den Unterschied zwischen einem guten Design und einem, das wirklich live geht, ausmacht.",
+  "a.bio.p1": "UX ist nicht bloß visuelles Gestalten — es ist die Fähigkeit, einen Problemraum zu öffnen, Annahmen zu hinterfragen und präzise zu definieren, was gelöst werden muss, bevor die erste Linie gezeichnet wird. Mein Feld sind komplexe B2B-Umgebungen: <b>eCommerce</b>, SAP Commerce, Kundenportale sowie Fleet- und Maschinenmanagement-Plattformen — wo diese Klarheit den Unterschied macht. externen Entwicklern – dort, wo gute Kommunikation den Unterschied zwischen einem guten Design und einem, das wirklich live geht, ausmacht.",
   "a.bio.p2": "Ich verantworte den gesamten UX-Weg: <b>Kundenkommunikation, Research, Workshops, Wireframes, Testing, Abstimmung und Delivery</b>. Ich spreche die Sprache der PO/PL-Stakeholder genauso wie die des Dev-Teams auf der anderen Seite der Übergabe.",
   "a.bio.p3": "Außerdem halte ich <b>interne UX-Schulungen</b> – dabei zeige ich, was nutzerzentriertes Design wirklich bedeutet und warum es zählt, besonders für Entwickler, Projektleiter und Product Owner. Das Ziel: den Nutzer in jeder Rolle eines Projekts in den Mittelpunkt zu stellen.",
   "a.bio.p4": "KI verändert, wie wir gestalten, und das nutze ich bewusst. Ich setze sie über den gesamten Workflow ein – von der Research-Synthese über das Prototyping bis zur Delivery. Nicht als Abkürzung, sondern als <b>Werkzeug, das jede Phase schneller und schärfer macht</b>. Bessere Iterationen, bessere Insights, bessere Ergebnisse für das Team und den Endnutzer.",

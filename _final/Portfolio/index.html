@@ -763,16 +763,21 @@
     });
   }
 
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal,.text-reveal').forEach(el => io.observe(el));
-  requestAnimationFrame(() => { requestAnimationFrame(() => {
-    document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
-      const r = el.getBoundingClientRect();
-      if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
-    });
-  }); });
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:0.01, rootMargin:'0px 0px -40px 0px'});
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => io.observe(el));
+    requestAnimationFrame(() => { requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal,.text-reveal').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('in'); }
+      });
+    }); });
+  } else {
+    // Fallback for Edge < 79 / older browsers: show all content immediately
+    document.querySelectorAll('.reveal,.text-reveal').forEach(el => el.classList.add('in'));
+  }
 
   // Approach · scrollytelling (sticky pin + single-card deck)
   const approachScroller = document.querySelector('.approach-scroller');
